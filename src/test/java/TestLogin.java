@@ -14,7 +14,6 @@ public class TestLogin extends BaseTest{
 	public void beforeMethod(){
 		super.beforeMethod();
 		loginPage = PageFactory.initElements(browserAction.getDriver(), LoginPage.class);
-		dropdownLogin = PageFactory.initElements(browserAction.getDriver(), DropdownLogin.class);
 	}
 	
 
@@ -33,27 +32,27 @@ public class TestLogin extends BaseTest{
 	 * input e-mail
 	 * input password
 	 * click on button "Log in"*/
-	@Test(priority=1, dependsOnMethods={"checkElementsLoginPage"})
+	@Test(priority=0, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLogin(){
 		browserAction.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("nadja_cv@mail.ru");
-		loginPage.passwordLogin.sendKeys("perekuta96");
+		loginPage.emailLogin.sendKeys("atqc@mail.ru");
+		loginPage.passwordLogin.sendKeys("atqc");
 		loginPage.loginButton.click();
-		Assert.assertTrue(browserAction.containsText("@"));
+		Assert.assertTrue(browserAction.containsText("LOG OUT"));
 	}
 	
 	/*Correct log in
 	 * go to login page
-	 * inut e-mail
+	 * input e-mail
 	 * input password
 	 * click on button "Log in"*/
-	@Test(priority=2, dependsOnMethods={"checkElementsLoginPage"})
+	@Test(priority=1, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginHomeButton(){
 		browserAction.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("nadja_cv@mail.ru");
-		loginPage.passwordLogin.sendKeys("perekuta96");
+		loginPage.emailLogin.sendKeys("atqc@mail.ru");
+		loginPage.passwordLogin.sendKeys("atqc");
 		loginPage.homeButton.click();
-		Assert.assertEquals(browserAction.getCurrentUrl(),"http://localhost:8080/hospital/");
+		Assert.assertEquals(browserAction.getCurrentUrl(),HOME_URL);
 	}
 	
 	/*Login without e-mail
@@ -61,11 +60,11 @@ public class TestLogin extends BaseTest{
 	 * field for e-mail keep empty
 	 * input password
 	 * click on button "Log in"*/
-	@Test(priority=0, dependsOnMethods={"checkElementsLoginPage"})
+	@Test(priority=2, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginWithoutEmail(){
 		browserAction.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("");
-		loginPage.passwordLogin.sendKeys("nadja");
+		loginPage.passwordLogin.sendKeys("atqc");
 		loginPage.loginButton.click();
 		Assert.assertEquals(browserAction.getCurrentUrl(),LOGIN_URL);
 	}
@@ -75,10 +74,10 @@ public class TestLogin extends BaseTest{
 	 * input e-mail
 	 * field for password keep empty
 	 * click on button "Log in"*/
-	@Test(priority=4, dependsOnMethods={"checkElementsLoginPage"})
+	@Test(priority=3, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginWithoutPassword(){
 		browserAction.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("nadjacv545@mail.ru");
+		loginPage.emailLogin.sendKeys("atqc@mail.ru");
 		loginPage.passwordLogin.sendKeys("");
 		loginPage.loginButton.click();	
 		Assert.assertEquals(browserAction.getCurrentUrl(),LOGIN_URL);
@@ -89,11 +88,11 @@ public class TestLogin extends BaseTest{
 	 * input unregistered e-mail
 	 * input password
 	 * click on button "Log in"*/
-	@Test(priority=5, dependsOnMethods={"checkElementsLoginPage"})
+	@Test(priority=4, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginIncorrectEmail(){
 		browserAction.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("nadjacv577@mail.ru");
-		loginPage.passwordLogin.sendKeys("nadja57");
+		loginPage.emailLogin.sendKeys("attqc@mail.ru");
+		loginPage.passwordLogin.sendKeys("atqc");
 		loginPage.loginButton.click();
 		Assert.assertTrue(browserAction.containsText("Invalid"));
 	}
@@ -103,11 +102,11 @@ public class TestLogin extends BaseTest{
 	 * input registered e-mail
 	 * input incorrect password
 	 * click on button "Log in"*/
-    @Test(priority=6, dependsOnMethods={"checkElementsLoginPage"})
+    @Test(priority=5, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginIncorrectPassword(){
 		browserAction.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("nadjacv57@mail.ru");
-		loginPage.passwordLogin.sendKeys("nadja577");
+		loginPage.emailLogin.sendKeys("atqc@mail.ru");
+		loginPage.passwordLogin.sendKeys("attqc");
 		loginPage.loginButton.click();
 		Assert.assertTrue(browserAction.containsText("Invalid"));
 	}
