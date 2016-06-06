@@ -1,35 +1,48 @@
+package atqc.hospital;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage {
-
-    @FindBy(xpath = "/html/body/header/div/div/div[2]/nav/div/div[2]/ul/li[7]/a")
-    public WebElement loginDropdownButton;
-
-    @FindBy(xpath = "/html/body/header/div/div/div[2]/nav/div/div[2]/ul/li[7]/ul/div/form/div[1]/input")
-    public WebElement emailField;
-
-    @FindBy(xpath = "/html/body/header/div/div/div[2]/nav/div/div[2]/ul/li[7]/ul/div/form/div[2]/input")
-    public WebElement passwordField;
-
-    @FindBy(xpath = "/html/body/header/div/div/div[2]/nav/div/div[2]/ul/li[7]/ul/div/form/div[3]/div/div[1]/input")
-    public WebElement rememberMeCheckbox;
-
-    @FindBy(xpath = "/html/body/header/div/div/div[2]/nav/div/div[2]/ul/li[7]/ul/div/form/div[3]/div/div[2]/input")
+public class LoginPage extends BrowserWrapper {
+	
+	@FindBy(xpath = "/html/body/section/div/div/div/div/div/form/div[1]/input")
+	public WebElement emailLogin;
+	
+	@FindBy(xpath = "/html/body/section/div/div/div/div/div/form/div[2]/input")
+	public WebElement passwordLogin;
+	
+	@FindBy(id = "rememberme")
+	public WebElement rememberMe;
+	
+	@FindBy(css = "input.btn.btn-block.btn-primary.btn-default")
     public WebElement loginButton;
-
-    @FindBy(xpath = "/html/body/header/div/div/div[2]/nav/div/div[2]/ul/li[6]/a")
-    public WebElement logoutButton;
-
-    public void loggingIn(String email, String password) {
-        loginDropdownButton.click();
-        emailField.sendKeys(email);
-        passwordField.sendKeys(password);
-        loginButton.click();
+	
+	@FindBy(css = "input.btn.btn-block.btn-default.btn-default")
+    public WebElement homeButton;
+	
+	public LoginPage(WebDriver driver) {
+        super(driver);
     }
 
-    public void logout() {
-        logoutButton.click();
-    }
-
+	public String getText1(){
+		driver.findElement(By.tagName("body")).getText().contains("Invalid");
+		return "Invalid e-mail or password";
+	}
+	
+	public String getText2(){
+		driver.findElement(By.tagName("body")).getText().contains("Пожалуйста, заполните это поле.");
+		return "Input e-mail!";
+	}
+	
+	public String getText3(){
+		driver.findElement(By.tagName("body")).getText().contains("Пожалуйста, заполните это поле.");
+		return "Input password!";
+	}
+	
+	public String getText4(){
+		driver.findElement(By.tagName("body")).getText().contains("@");
+		return "Log in successfully!";
+	}
 }
