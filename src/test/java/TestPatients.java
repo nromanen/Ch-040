@@ -15,12 +15,6 @@ public class TestPatients extends BaseTest{
     CardPage cardPage;
     NewRecordPage newRecordPage;
     LoginPage loginPage;
-    
-    private static final String USER_NAME_FOR_PATIENT = "pat12@uk.uk";
-	private static final String PASSWORD_FOR_PATIENT = "pat12";
-	private static final String USER_NAME_FOR_DOCTOR = "doctor@com.com";
-	private static final String PASSWORD_FOR_DOCTOR = "doctor";
-	
 
     @BeforeMethod
     public void beforeMethod() {
