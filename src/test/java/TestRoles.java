@@ -25,7 +25,7 @@ public class TestRoles extends BaseTest {
     public void testDefaultAdminPage() {
         browserAction.goTo(homeUrl);
         loginPage.loggingIn(adminLogin, adminPassword);
-        assertTrue(browserAction.isElementPresentByXpath(AdminDashboardPage.adminButtonXPATH), "element isn't present");
+        assertTrue(browserAction.isElementPresentByXpath(Header.adminButtonXPATH), "element isn't present");
         assertTrue(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element isn't present");
         assertTrue(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element isn't present");
         loginPage.logout();
@@ -38,7 +38,7 @@ public class TestRoles extends BaseTest {
     @Test (dependsOnMethods = {"testDefaultAdminPage"})
     public void testAccessDeniedToAdminDashboardForUnregisteredUsers() {
         browserAction.goTo(homeUrl);
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.adminButtonByText), "element is present");
+        assertFalse(browserAction.isElementPresent(Header.adminButtonByText), "element is present");
         assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present");
         browserAction.goTo(adminDashboardUrl);
         assertEquals(browserAction.getTitle(), "Login", "access not denied");
@@ -55,7 +55,7 @@ public class TestRoles extends BaseTest {
     public void testAccessDeniedToAdminDashboardForPatients() {
         browserAction.goTo(homeUrl);
         loginPage.loggingIn(patientLogin, patientPassword);
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.adminButtonByText), "element is present");
+        assertFalse(browserAction.isElementPresent(Header.adminButtonByText), "element is present");
         assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present");
         browserAction.goTo(adminDashboardUrl);
         assertEquals(browserAction.getTitle(), "Denied Access", "access not denied");
@@ -73,7 +73,7 @@ public class TestRoles extends BaseTest {
     public void testAccessDeniedToAdminDashboardForManagers() {
         browserAction.goTo(homeUrl);
         loginPage.loggingIn(managerLogin, managerPassword);
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.adminButtonByText), "element is present!");
+        assertFalse(browserAction.isElementPresent(Header.adminButtonByText), "element is present!");
         assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present!");
         browserAction.goTo(adminDashboardUrl);
         assertEquals(browserAction.getTitle(), "Denied Access", "access not denied!");
@@ -91,7 +91,7 @@ public class TestRoles extends BaseTest {
     public void testAccessDeniedToAdminDashboardForDoctors() {
         browserAction.goTo(homeUrl);
         loginPage.loggingIn(doctorLogin, doctorPassword);
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.adminButtonByText), "element is present!");
+        assertFalse(browserAction.isElementPresent(Header.adminButtonByText), "element is present!");
         assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present!");
         browserAction.goTo(adminDashboardUrl);
         assertEquals(browserAction.getTitle(), "Denied Access", "access not denied!");
@@ -104,7 +104,7 @@ public class TestRoles extends BaseTest {
     // 3. Go to admin/map/new url
     // 4. Check if access to this page is denied
     @Test (dependsOnMethods = {"testDefaultAdminPage"})
-    public void testAccessDeniedForAddingNewHospitalForUnregisteredUsers() {
+    public void testAccessDeniedToAddingNewHospitalForUnregisteredUsers() {
         browserAction.goTo(homeUrl);
         assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
         browserAction.goTo(addingNewHospitalUrl);
@@ -119,7 +119,7 @@ public class TestRoles extends BaseTest {
     // 5. Check if access to this page is denied
     // 6. Log out by clicking "Log out" button
     @Test (dependsOnMethods = {"testDefaultAdminPage"})
-    public void testAccessDeniedForAddingNewHospitalForPatients() {
+    public void testAccessDeniedToAddingNewHospitalForPatients() {
         browserAction.goTo(homeUrl);
         loginPage.loggingIn(patientLogin, patientPassword);
         assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
@@ -136,7 +136,7 @@ public class TestRoles extends BaseTest {
     // 5. Check if access to this page is denied
     // 6. Log out by clicking "Log out" button
     @Test (dependsOnMethods = {"testDefaultAdminPage"})
-    public void testAccessDeniedForAddingNewHospitalForDoctors() {
+    public void testAccessDeniedToAddingNewHospitalForDoctors() {
         browserAction.goTo(homeUrl);
         loginPage.loggingIn(doctorLogin, doctorPassword);
         assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
@@ -153,7 +153,7 @@ public class TestRoles extends BaseTest {
     // 5. Check if access to this page is denied
     // 6. Log out by clicking "Log out" button
     @Test (dependsOnMethods = {"testDefaultAdminPage"})
-    public void testAccessDeniedForAddingNewHospitalForManagers() {
+    public void testAccessDeniedToAddingNewHospitalForManagers() {
         browserAction.goTo(homeUrl);
         loginPage.loggingIn(managerLogin, managerPassword);
         assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
@@ -169,6 +169,14 @@ public class TestRoles extends BaseTest {
     // 4. Go to /patients url
     // 5. Check if there isn't table with patients
     // 6. Log out by clicking "Log out" button
+    @Test
+    public void testAccessDeniedToPatientsListForUnregisteredUsers() {
+        browserAction.goTo(homeUrl);
+        assertFalse(browserAction.isElementPresent(Header.patientsButtonByXpath), "element is present");
+        browserAction.goTo(patientsListUrl);
+        assertEquals(browserAction.getTitle(), "Login", "access not denied");
+        browserAction.sleep();
+    }
 
     @AfterMethod
     public void afterMethod() {
