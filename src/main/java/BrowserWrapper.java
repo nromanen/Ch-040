@@ -25,6 +25,15 @@ public class BrowserWrapper {
         return driver.getTitle();
     }
 
+    public boolean containsText(String text) {
+        if (driver.getPageSource().contains(text)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public void resize(int width, int height) {
         driver.manage().window().setPosition(new Point(0, 0));
         driver.manage().window().setSize(new Dimension(width, height));
@@ -60,9 +69,11 @@ public class BrowserWrapper {
         }
         return present;
     }
+
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
+
     public void browserBack() {
         sleep();
         driver.navigate().back();
