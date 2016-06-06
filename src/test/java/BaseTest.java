@@ -25,6 +25,11 @@ public class BaseTest {
     public static final String doctorPassword = "doctor";
     public static final String patientLogin = "tutu@ukr.net";
     public static final String patientPassword = "tutu2016";
+    private static final String USER_NAME_FOR_PATIENT = "pat12@uk.uk";
+  	private static final String PASSWORD_FOR_PATIENT = "pat12";
+  	private static final String USER_NAME_FOR_DOCTOR = "doctor@com.com";
+  	private static final String PASSWORD_FOR_DOCTOR = "doctor";
+  	
 
     @BeforeMethod
     public void beforeMethod() {
