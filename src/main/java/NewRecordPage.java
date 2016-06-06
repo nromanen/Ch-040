@@ -1,14 +1,10 @@
-package hospital;
+
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class NewRecordPage extends BrowserWrapper {
-	public NewRecordPage(WebDriver driver) {
-		super(driver);
-		// TODO Auto-generated constructor stub
-	}
+public class NewRecordPage {
 
 	@FindBy (id="complaint")
 	public WebElement complaintArea;

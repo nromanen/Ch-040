@@ -1,4 +1,4 @@
-package hospital;
+
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -25,13 +25,13 @@ public class TestPatients extends BaseTest{
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
-        patientsPage = PageFactory.initElements(browserActions.getDriver(), PatientsPage.class);
-        cardPage = PageFactory.initElements(browserActions.getDriver(), CardPage.class);
-        newRecordPage = PageFactory.initElements(browserActions.getDriver(), NewRecordPage.class);
-        loginPage = PageFactory.initElements(browserActions.getDriver(), LoginPage.class);
+        patientsPage = PageFactory.initElements(browserAction.getDriver(), PatientsPage.class);
+        cardPage = PageFactory.initElements(browserAction.getDriver(), CardPage.class);
+        newRecordPage = PageFactory.initElements(browserAction.getDriver(), NewRecordPage.class);
+        loginPage = PageFactory.initElements(browserAction.getDriver(), LoginPage.class);
     }
  
-   @Test (enabled = false )
+   @Test 
    public void testIfDoctorCanEditOwnRecord(){
     	 browserActions.goTo(homeUrl);
     	 loginPage.logInAction(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
@@ -62,7 +62,7 @@ public class TestPatients extends BaseTest{
     	 newRecordPage.submitButton.click();
    }
    
-    @Test (enabled = false )
+    @Test 
     public void testIfDoctorCanMakeNewRecord(){
     	browserActions.goTo(homeUrl);
    	 	loginPage.logInAction(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
@@ -82,7 +82,7 @@ public class TestPatients extends BaseTest{
    	 	newRecordPage.submitButton.click();	
     }
     
-    @Test (enabled = false )
+    @Test 
    	public void testEmptyTextAreasInCardPage(){
     	browserActions.goTo(homeUrl);
    	 	loginPage.logInAction(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
@@ -103,7 +103,7 @@ public class TestPatients extends BaseTest{
 	 	Boolean isPresent = newRecordPage.errorString.isDisplayed();
    		}
    
-    @Test (enabled = false ) 
+    @Test 
     public void checkElementsInPatientsPage() {
     	browserActions.goTo(homeUrl);
    	 	loginPage.logInAction(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);

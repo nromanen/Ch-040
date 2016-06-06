@@ -1,14 +1,11 @@
-package hospital;
+
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PatientsPage extends BrowserWrapper{
-	public PatientsPage(WebDriver driver) {
-		super(driver);
-		// TODO Auto-generated constructor stub
-	}
+public class PatientsPage {
+
 
 	@FindBy (linkText="patient2@i.ua")
 	public WebElement patient2iua;
