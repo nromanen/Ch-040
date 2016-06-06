@@ -17,7 +17,7 @@ public class TestDoctorPage extends BaseTest {
 
     @Test
     public void testLogin() {
-        browserAction.goTo(doctorPageUrl);
+        browserAction.goTo(DOCTOR_PAGE_URL);
         loginPage.loginDropdownButton.click();
         loginPage.emailField.sendKeys("admin@admin.com");
         loginPage.passwordField.sendKeys("12345");
@@ -27,7 +27,7 @@ public class TestDoctorPage extends BaseTest {
 
     @Test
     public void testDoctorLinks() {
-        browserAction.goTo(doctorPageUrl);
+        browserAction.goTo(DOCTOR_PAGE_URL);
 
         doctorPage.GregoryHouseLink.click();
         browserAction.browserBack();

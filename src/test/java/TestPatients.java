@@ -1,14 +1,9 @@
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.concurrent.TimeUnit;
 
 public class TestPatients extends BaseTest{
     PatientsPage patientsPage;
@@ -27,9 +22,9 @@ public class TestPatients extends BaseTest{
  
    @Test 
    public void testIfDoctorCanEditOwnRecord(){
-    	 browserAction.goTo(homeUrl);
+    	 browserAction.goTo(HOME_URL);
     	 loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
-    	 browserAction.goTo(patientsUrl);
+    	 browserAction.goTo(PATIENTS_URL);
     	 
     	 patientsPage.tutu.click();
     	 cardPage.dateRecordButton.click();
@@ -58,9 +53,9 @@ public class TestPatients extends BaseTest{
    
     @Test 
     public void testIfDoctorCanMakeNewRecord(){
-    	browserAction.goTo(homeUrl);
+    	browserAction.goTo(HOME_URL);
    	 	loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
-   	 	browserAction.goTo(patientsUrl);
+   	 	browserAction.goTo(PATIENTS_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
    	 	
@@ -78,9 +73,9 @@ public class TestPatients extends BaseTest{
     
     @Test 
    	public void testEmptyTextAreasInCardPage(){
-    	browserAction.goTo(homeUrl);
+    	browserAction.goTo(HOME_URL);
    	 	loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
-   	 	browserAction.goTo(patientsUrl);
+   	 	browserAction.goTo(PATIENTS_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
    	 	
@@ -99,9 +94,9 @@ public class TestPatients extends BaseTest{
    
     @Test 
     public void checkElementsInPatientsPage() {
-    	browserAction.goTo(homeUrl);
+    	browserAction.goTo(HOME_URL);
    	 	loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
-        browserAction.goTo(patientsUrl);
+        browserAction.goTo(PATIENTS_URL);
     	Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
     	Boolean isPresent2 = patientsPage.tutu.isDisplayed();
     	Boolean isPresent4 = patientsPage.nadja_cvmailru.isDisplayed();

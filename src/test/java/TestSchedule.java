@@ -27,7 +27,7 @@ public class TestSchedule extends BaseTest{
 
     @Test
     public void checkElementsOnLoginPage() {
-        browserAction.goTo(homeUrl);
+        browserAction.goTo(HOME_URL);
         loginPage.loginButton.click();
         Assert.assertTrue(browserAction.isElementPresent(loginPage.loginDropdownButton), "Login button isn't present!");
         Assert.assertTrue(browserAction.isElementPresent(loginPage.emailField), "Email field isn't present!");
@@ -37,9 +37,9 @@ public class TestSchedule extends BaseTest{
 
     @Test
     public void checkElementsOnSchedulePage() {
-        browserAction.goTo(homeUrl);
-        loginPage.loggingIn(managerLogin, managerPassword);
-        browserAction.goTo(doctorUrl);
+        browserAction.goTo(HOME_URL);
+        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        browserAction.goTo(DOCTOR_URL);
         Assert.assertTrue(browserAction.isElementPresent(schedulePage.eventBody), "Event body isn't present!");
         schedulePage.events.get(0).click();
         Assert.assertTrue(browserAction.isElementPresent(schedulePage.eventDetails), "Event details button isn't present!");
@@ -75,28 +75,28 @@ public class TestSchedule extends BaseTest{
 
     @Test (dependsOnMethods = "checkElementsOnSchedulePage")
     public void selectSecondHospital() {
-        browserAction.goTo(hospitalsUrl);
+        browserAction.goTo(HOSPITALS_URL);
         System.out.println(hospitalPage.hospitals.size());
         hospitalPage.hospitals.get(0).click();
     }
 
     @Test (dependsOnMethods = "checkElementsOnSchedulePage")
     public void selectSecondDepartment() {
-        browserAction.goTo(departmentUrl);
+        browserAction.goTo(DEPARTMENT_URL);
         System.out.println(departmentPage.departments.size());
         departmentPage.departments.get(1).click();
     }
 
     @Test (dependsOnMethods = "checkElementsOnSchedulePage")
     public void selectSecondDoctor() {
-        browserAction.goTo(doctorsUrl);
+        browserAction.goTo(DOCTORS_URL);
         System.out.println(doctorPage.doctors.size());
     }
 
     @Test (priority = 4, dependsOnMethods = "checkElementsOnSchedulePage")
     public void testIfManagerCanEdit() {
-        browserAction.goTo(homeUrl);
-        loginPage.loggingIn(managerLogin, managerPassword);
+        browserAction.goTo(HOME_URL);
+        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();
@@ -109,9 +109,9 @@ public class TestSchedule extends BaseTest{
 
     @Test (priority = 5, dependsOnMethods = {"checkElementsOnSchedulePage", "checkElementsOnLoginPage"})
     public void testIfPatientCanEdit() {
-        browserAction.goTo(homeUrl);
-        loginPage.loggingIn(patientLogin, patientPassword);
-        browserAction.goTo(hospitalsUrl);
+        browserAction.goTo(HOME_URL);
+        loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
+        browserAction.goTo(HOSPITALS_URL);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();
@@ -124,9 +124,9 @@ public class TestSchedule extends BaseTest{
 
     @Test (priority = 6, dependsOnMethods = "checkElementsOnSchedulePage")
     public void testIfDoctorCanEdit() {
-        browserAction.goTo(homeUrl);
-        loginPage.loggingIn(doctorLogin, doctorPassword);
-        browserAction.goTo(hospitalsUrl);
+        browserAction.goTo(HOME_URL);
+        loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        browserAction.goTo(HOSPITALS_URL);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();
@@ -139,9 +139,9 @@ public class TestSchedule extends BaseTest{
 
     @Test (priority = 7, dependsOnMethods = "checkElementsOnSchedulePage")
     public void testIfAdminCanEdit() {
-        browserAction.goTo(homeUrl);
-        loginPage.loggingIn(adminLogin, adminPassword);
-        browserAction.goTo(hospitalsUrl);
+        browserAction.goTo(HOME_URL);
+        loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
+        browserAction.goTo(HOSPITALS_URL);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();
@@ -154,8 +154,8 @@ public class TestSchedule extends BaseTest{
 
     @Test (priority = 5)
     public void testManagerEditTimePeriod() {
-        browserAction.goTo(homeUrl);
-        loginPage.loggingIn(managerLogin, managerPassword);
+        browserAction.goTo(HOME_URL);
+        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();
