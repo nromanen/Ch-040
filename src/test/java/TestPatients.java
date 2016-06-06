@@ -23,7 +23,7 @@ public class TestPatients extends BaseTest{
    @Test 
    public void testIfDoctorCanEditOwnRecord(){
     	 browserAction.goTo(HOME_URL);
-    	 loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
+    	 loginPage.loggingIn(DOCTOR_LOGIN , DOCTOR_PASSWORD);
     	 browserAction.goTo(PATIENTS_URL);
     	 
     	 patientsPage.tutu.click();
@@ -54,7 +54,7 @@ public class TestPatients extends BaseTest{
     @Test 
     public void testIfDoctorCanMakeNewRecord(){
     	browserAction.goTo(HOME_URL);
-   	 	loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
+   	 	loginPage.loggingIn(DOCTOR_LOGIN , DOCTOR_PASSWORD);
    	 	browserAction.goTo(PATIENTS_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
@@ -74,7 +74,7 @@ public class TestPatients extends BaseTest{
     @Test 
    	public void testEmptyTextAreasInCardPage(){
     	browserAction.goTo(HOME_URL);
-   	 	loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
+   	 	loginPage.loggingIn(DOCTOR_LOGIN , DOCTOR_PASSWORD);
    	 	browserAction.goTo(PATIENTS_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
@@ -95,7 +95,7 @@ public class TestPatients extends BaseTest{
     @Test 
     public void checkElementsInPatientsPage() {
     	browserAction.goTo(HOME_URL);
-   	 	loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
+   	 	loginPage.loggingIn(DOCTOR_LOGIN , DOCTOR_PASSWORD);
         browserAction.goTo(PATIENTS_URL);
     	Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
     	Boolean isPresent2 = patientsPage.tutu.isDisplayed();
