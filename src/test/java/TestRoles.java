@@ -8,13 +8,13 @@ import static org.testng.Assert.*;
 public class TestRoles extends BaseTest {
 
     LoginPage loginPage;
-    AdminDashboardPage adminDashboardPage;
+    AdminPage adminPage;
 
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
         loginPage = PageFactory.initElements(browserAction.getDriver(), LoginPage.class);
-        adminDashboardPage = PageFactory.initElements(browserAction.getDriver(), AdminDashboardPage.class);
+        adminPage = PageFactory.initElements(browserAction.getDriver(), AdminPage.class);
     }
 
     // 1. Go to home page
@@ -26,8 +26,8 @@ public class TestRoles extends BaseTest {
         browserAction.goTo(HOME_URL);
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
         assertTrue(browserAction.isElementPresentByXpath(Header.adminButtonXPATH), "element isn't present");
-        assertTrue(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element isn't present");
-        assertTrue(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element isn't present");
+        assertTrue(browserAction.isElementPresent(adminPage.dashboardTable), "element isn't present");
+        assertTrue(browserAction.isElementPresent(adminPage.optionsButton), "element isn't present");
         loginPage.logout();
     }
 
@@ -39,7 +39,7 @@ public class TestRoles extends BaseTest {
     public void testAccessDeniedToAdminDashboardForUnregisteredUsers() {
         browserAction.goTo(HOME_URL);
         assertFalse(browserAction.isElementPresent(Header.adminButtonByText), "element is present");
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present");
+        assertFalse(browserAction.isElementPresent(adminPage.dashboardTable), "element is present");
         browserAction.goTo(ADMIN_DASHBOARD_URL);
         assertTrue(browserAction.containsText("Log in"), "access not denied");
     }
@@ -55,7 +55,7 @@ public class TestRoles extends BaseTest {
         browserAction.goTo(HOME_URL);
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
         assertFalse(browserAction.isElementPresent(Header.adminButtonByText), "element is present");
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present");
+        assertFalse(browserAction.isElementPresent(adminPage.dashboardTable), "element is present");
         browserAction.goTo(ADMIN_DASHBOARD_URL);
         assertTrue(browserAction.containsText("not authorized to access"), "access not denied");
         loginPage.logout();
@@ -72,7 +72,7 @@ public class TestRoles extends BaseTest {
         browserAction.goTo(HOME_URL);
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         assertFalse(browserAction.isElementPresent(Header.adminButtonByText), "element is present!");
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present!");
+        assertFalse(browserAction.isElementPresent(adminPage.dashboardTable), "element is present!");
         browserAction.goTo(ADMIN_DASHBOARD_URL);
         assertTrue(browserAction.containsText("not authorized to access"), "access not denied");
         loginPage.logout();
@@ -89,7 +89,7 @@ public class TestRoles extends BaseTest {
         browserAction.goTo(HOME_URL);
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
         assertFalse(browserAction.isElementPresent(Header.adminButtonByText), "element is present!");
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present!");
+        assertFalse(browserAction.isElementPresent(adminPage.dashboardTable), "element is present!");
         browserAction.goTo(ADMIN_DASHBOARD_URL);
         assertTrue(browserAction.containsText("not authorized to access"), "access not denied");
         loginPage.logout();
@@ -102,7 +102,7 @@ public class TestRoles extends BaseTest {
     @Test (dependsOnMethods = {"testDefaultAdminPage"})
     public void testAccessDeniedToAddingNewHospitalForUnregisteredUsers() {
         browserAction.goTo(HOME_URL);
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
+        assertFalse(browserAction.isElementPresent(adminPage.optionsButton), "element is present");
         browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
         assertTrue(browserAction.containsText("Log in"), "access not denied");
         browserAction.sleep();
@@ -118,7 +118,7 @@ public class TestRoles extends BaseTest {
     public void testAccessDeniedToAddingNewHospitalForPatients() {
         browserAction.goTo(HOME_URL);
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
+        assertFalse(browserAction.isElementPresent(adminPage.optionsButton), "element is present");
         browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
         assertTrue(browserAction.containsText("not authorized to access"), "access not denied");
         loginPage.logout();
@@ -134,7 +134,7 @@ public class TestRoles extends BaseTest {
     public void testAccessDeniedToAddingNewHospitalForDoctors() {
         browserAction.goTo(HOME_URL);
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
+        assertFalse(browserAction.isElementPresent(adminPage.optionsButton), "element is present");
         browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
         assertTrue(browserAction.containsText("not authorized to access"), "access not denied");
         loginPage.logout();
@@ -150,7 +150,7 @@ public class TestRoles extends BaseTest {
     public void testAccessDeniedToAddingNewHospitalForManagers() {
         browserAction.goTo(HOME_URL);
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
-        assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
+        assertFalse(browserAction.isElementPresent(adminPage.optionsButton), "element is present");
         browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
         assertTrue(browserAction.containsText("not authorized to access"), "access not denied");
         loginPage.logout();

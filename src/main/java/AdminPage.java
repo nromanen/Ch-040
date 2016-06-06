@@ -1,7 +1,7 @@
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AdminDashboardPage {
+public class AdminPage {
 
     public static final String dashboardClassName = "dashboard";
     public static final String optionsButtonXPATH = "/html/body/section/div/a";
