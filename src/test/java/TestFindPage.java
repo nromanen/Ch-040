@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
 
-public class TestFindPage extends BaseClassTest{
+public class TestFindPage extends BaseTest{
     FindPage findPage;
 
     @BeforeMethod
