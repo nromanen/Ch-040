@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
 
-public class TestNewHospital extends BaseClassTest{
+public class TestNewHospital extends BaseTest{
     NewHospital newHospital;
     HospitalList hospitalList;
     @BeforeMethod
