@@ -1,5 +1,8 @@
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class DoctorPage {
 
@@ -16,6 +19,8 @@ public class DoctorPage {
     @FindBy(xpath = "/html/body/section/div/div/div[2]/div[4]/div/a")
     public WebElement RemyHeadleyLink;
     
+
+
     @FindAll(@FindBy(xpath = ".//*[@class='person-detail']"))
     public List<WebElement> doctors;
 

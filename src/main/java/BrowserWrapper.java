@@ -60,7 +60,9 @@ public class BrowserWrapper {
         }
         return present;
     }
-
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
     public void browserBack() {
         sleep();
         driver.navigate().back();
