@@ -1,4 +1,5 @@
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BrowserWrapper {
@@ -81,6 +82,11 @@ public class BrowserWrapper {
 
     public void sleep() {
         WebDriverWait sleeper = new WebDriverWait(getDriver(), 10);
+    }
+
+    public void selectTime(WebElement element, String hours) {
+        Select dropdown = new Select(element);
+        dropdown.selectByVisibleText(hours);
     }
 }
 
