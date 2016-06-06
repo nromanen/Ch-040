@@ -6,26 +6,26 @@ public class DropdownLogin {
 	public WebElement dropdownLogin;
 	
 	@FindBy (xpath = "/html/body/header/div/div/div[2]/nav/div/div[2]/ul/li[7]/ul/div/form/div[1]/input")
-	public WebElement dropdownEmailLogin;
+	public WebElement dropdownEmailField;
 	
 	@FindBy (xpath = "/html/body/header/div/div/div[2]/nav/div/div[2]/ul/li[7]/ul/div/form/div[2]/input")
-	public WebElement dropdownPasswordLogin;
+	public WebElement dropdownPasswordField;
 	
 	@FindBy (id = "remember")
-	public WebElement dropdownRememberLogin;
+	public WebElement dropdownRememberButton;
 	
 	@FindBy (id = "login-submit")
 	public WebElement dropdownLoginButton;
 
 	public void loggingIn(String email, String password) {
-		loginDropdownButton.click();
-		emailField.sendKeys(email);
-		passwordField.sendKeys(password);
-		loginButton.click();
+		dropdownLogin.click();
+		dropdownEmailField.sendKeys(email);
+		dropdownPasswordField.sendKeys(password);
+		dropdownLoginButton.click();
 	}
 
-	public void logout() {
-		logoutButton.click();
-	}
+//	public void logout() {
+//		logoutButton.click();
+//	}
 }
 

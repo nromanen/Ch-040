@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 public class TestSchedule extends BaseTest{
     SchedulePage schedulePage;
     LoginPage loginPage;
+    DropdownLogin dropdownLogin;
     HospitalPage hospitalPage;
     DepartmentPage departmentPage;
     DoctorPage doctorPage;
@@ -29,16 +30,16 @@ public class TestSchedule extends BaseTest{
     public void checkElementsOnLoginPage() {
         browserAction.goTo(HOME_URL);
         loginPage.loginButton.click();
-        Assert.assertTrue(browserAction.isElementPresent(loginPage.loginDropdownButton), "Login button isn't present!");
-        Assert.assertTrue(browserAction.isElementPresent(loginPage.emailField), "Email field isn't present!");
-        Assert.assertTrue(browserAction.isElementPresent(loginPage.passwordField), "Password field isn't present!");
-        Assert.assertTrue(browserAction.isElementPresent(loginPage.loginButton), "Submit button isn't present!");
+        Assert.assertTrue(browserAction.isElementPresent(dropdownLogin.dropdownLogin), "Login button isn't present!");
+        Assert.assertTrue(browserAction.isElementPresent(dropdownLogin.dropdownEmailField), "Email field isn't present!");
+        Assert.assertTrue(browserAction.isElementPresent(dropdownLogin.dropdownPasswordField), "Password field isn't present!");
+        Assert.assertTrue(browserAction.isElementPresent(dropdownLogin.dropdownLoginButton), "Submit button isn't present!");
     }
 
     @Test
     public void checkElementsOnSchedulePage() {
         browserAction.goTo(HOME_URL);
-        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         browserAction.goTo(DOCTOR_URL);
         Assert.assertTrue(browserAction.isElementPresent(schedulePage.eventBody), "Event body isn't present!");
         schedulePage.events.get(0).click();
@@ -96,7 +97,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 4, dependsOnMethods = "checkElementsOnSchedulePage")
     public void testIfManagerCanEdit() {
         browserAction.goTo(HOME_URL);
-        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();
@@ -110,7 +111,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 5, dependsOnMethods = {"checkElementsOnSchedulePage", "checkElementsOnLoginPage"})
     public void testIfPatientCanEdit() {
         browserAction.goTo(HOME_URL);
-        loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
+        dropdownLogin.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
         browserAction.goTo(HOSPITALS_URL);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
@@ -131,7 +132,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 6, dependsOnMethods = "checkElementsOnSchedulePage")
     public void testIfDoctorCanEdit() {
         browserAction.goTo(HOME_URL);
-        loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
         browserAction.goTo(HOSPITALS_URL);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
@@ -146,7 +147,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 7, dependsOnMethods = "checkElementsOnSchedulePage")
     public void testIfAdminCanEdit() {
         browserAction.goTo(HOME_URL);
-        loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
+        dropdownLogin.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
         browserAction.goTo(HOSPITALS_URL);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
@@ -161,7 +162,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 5)
     public void testManagerEditTimePeriod() {
         browserAction.goTo(HOME_URL);
-        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();
