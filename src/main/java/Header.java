@@ -9,13 +9,13 @@ public class Header {
 
     //only for admin
     @FindBy(linkText = adminButtonText)
-    public WebElement adminButtonByText;
+    public static WebElement adminButtonByText;
 
     @FindBy(xpath = adminButtonXPATH)
     public WebElement adminButtonByXpath;
 
     //only for doctors
     @FindBy(xpath = patientsButtonXPATH)
-    public WebElement patientsButtonByXpath;
+    public static WebElement patientsButtonByXpath;
 
 }
