@@ -42,7 +42,6 @@ public class TestRoles extends BaseTest {
         assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present");
         browserAction.goTo(adminDashboardUrl);
         assertEquals(browserAction.getTitle(), "Login", "access not denied");
-        browserAction.sleep();
     }
 
     // 1. Go to home page
@@ -59,7 +58,6 @@ public class TestRoles extends BaseTest {
         assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present");
         browserAction.goTo(adminDashboardUrl);
         assertEquals(browserAction.getTitle(), "Denied Access", "access not denied");
-        browserAction.sleep();
         loginPage.logout();
     }
 
@@ -77,7 +75,6 @@ public class TestRoles extends BaseTest {
         assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present!");
         browserAction.goTo(adminDashboardUrl);
         assertEquals(browserAction.getTitle(), "Denied Access", "access not denied!");
-        browserAction.sleep();
         loginPage.logout();
     }
 
@@ -95,7 +92,6 @@ public class TestRoles extends BaseTest {
         assertFalse(browserAction.isElementPresent(adminDashboardPage.dashboardTable), "element is present!");
         browserAction.goTo(adminDashboardUrl);
         assertEquals(browserAction.getTitle(), "Denied Access", "access not denied!");
-        browserAction.sleep();
         loginPage.logout();
     }
 
@@ -125,7 +121,6 @@ public class TestRoles extends BaseTest {
         assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
         browserAction.goTo(addingNewHospitalUrl);
         assertEquals(browserAction.getTitle(), "Denied Access", "access not denied");
-        browserAction.sleep();
         loginPage.logout();
     }
 
@@ -142,7 +137,6 @@ public class TestRoles extends BaseTest {
         assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
         browserAction.goTo(addingNewHospitalUrl);
         assertEquals(browserAction.getTitle(), "Denied Access", "access not denied");
-        browserAction.sleep();
         loginPage.logout();
     }
 
@@ -159,7 +153,6 @@ public class TestRoles extends BaseTest {
         assertFalse(browserAction.isElementPresent(adminDashboardPage.optionsButton), "element is present");
         browserAction.goTo(addingNewHospitalUrl);
         assertEquals(browserAction.getTitle(), "Denied Access", "access not denied");
-        browserAction.sleep();
         loginPage.logout();
     }
 
@@ -175,7 +168,6 @@ public class TestRoles extends BaseTest {
         assertFalse(browserAction.isElementPresent(Header.patientsButtonByXpath), "element is present");
         browserAction.goTo(patientsListUrl);
         assertEquals(browserAction.getTitle(), "Login", "access not denied");
-        browserAction.sleep();
     }
 
     @AfterMethod
