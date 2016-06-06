@@ -9,12 +9,14 @@ public class TestRoles extends BaseTest {
 
     LoginPage loginPage;
     AdminPage adminPage;
+    Header header;
 
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
         loginPage = PageFactory.initElements(browserAction.getDriver(), LoginPage.class);
         adminPage = PageFactory.initElements(browserAction.getDriver(), AdminPage.class);
+        header = PageFactory.initElements(browserAction.getDriver(), Header.class);
     }
 
     // 1. Go to home page
