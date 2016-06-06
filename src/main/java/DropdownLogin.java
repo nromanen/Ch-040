@@ -24,7 +24,7 @@ public class DropdownLogin {
 		dropdownLoginButton.click();
 		dropdownEmailField.sendKeys(email);
 		dropdownPasswordField.sendKeys(password);
-		dropdownLoginButton.click();
+		dropdownLoginSubmitButton.click();
 	}
 
 	public void logout() {
