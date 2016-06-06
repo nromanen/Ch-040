@@ -8,16 +8,16 @@ public class BaseTest {
     public BrowserWrapper browserAction;
     public static final String HOME_URL = "http://91.209.24.68/ch-040";
     public static final String DOCTOR_PAGE_URL = HOME_URL.concat("hospital/1/department/1");
-    public static final String ADMIN_DASHBOARD_URL = "http://91.209.24.68/ch-040/admin/dashboard";
-    public static final String ADDING_NEW_HOSPITAL_URL = "http://91.209.24.68/ch-040/admin/map/new";
-    public static final String HOSPITALS_URL = "http://91.209.24.68/ch-040/hospitals";
-    public static final String DEPARTMENT_URL = "http://91.209.24.68/ch-040/hospital/1";
-    public static final String DOCTORS_URL = "http://91.209.24.68/ch-040/hospital/1/department/1";
-    public static final String DOCTOR_URL = "http://91.209.24.68/ch-040/dashboard?id=37&did=1";
-    public static final String PATIENTS_LIST_URL = "http://91.209.24.68/ch-040/patients";
-    public static final String PATIENTS_URL = "http://91.209.24.68/ch-040/patients";
-    public static final String LOGIN_URL = "http://91.209.24.68/ch-040/login";
-    public static final String REGISTER_URL = "http://91.209.24.68/ch-040/newUser";
+    public static final String ADMIN_DASHBOARD_URL = HOME_URL.concat("/admin/dashboard");
+    public static final String ADDING_NEW_HOSPITAL_URL = HOME_URL.concat("/admin/map/new");
+    public static final String HOSPITALS_URL = HOME_URL.concat("/hospitals");
+    public static final String DEPARTMENT_URL = HOME_URL.concat("/hospital/1");
+    public static final String DOCTORS_URL = HOME_URL.concat("/hospital/1/department/1");
+    public static final String DOCTOR_URL = HOME_URL.concat("/dashboard?id=37&did=1");
+    public static final String PATIENTS_LIST_URL = HOME_URL.concat("/patients");
+    public static final String PATIENTS_URL = HOME_URL.concat("/patients");
+    public static final String LOGIN_URL = HOME_URL.concat("/login");
+    public static final String REGISTER_URL = HOME_URL.concat("/newUser");
 
     public static final String ADMIN_LOGIN = "admin@ad.ad";
     public static final String ADMIN_PASSWORD = "qwer";
