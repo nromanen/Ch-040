@@ -1,10 +1,7 @@
-package atqc.hospital;
-
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class DropdownLogin extends BrowserWrapper {
+public class DropdownLogin {
 	@FindBy (xpath = "/html/body/header/div/div/div[2]/nav/div/div[2]/ul/li[7]/a")
 	public WebElement dropdownLogin;
 	
@@ -19,9 +16,16 @@ public class DropdownLogin extends BrowserWrapper {
 	
 	@FindBy (id = "login-submit")
 	public WebElement dropdownLoginButton;
-	
-	public DropdownLogin(WebDriver driver) {
-        super(driver);
-   }	
+
+	public void loggingIn(String email, String password) {
+		loginDropdownButton.click();
+		emailField.sendKeys(email);
+		passwordField.sendKeys(password);
+		loginButton.click();
+	}
+
+	public void logout() {
+		logoutButton.click();
+	}
 }
 

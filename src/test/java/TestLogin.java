@@ -1,4 +1,3 @@
-package atqc.hospital;
 
 import org.testng.annotations.Test;
 import org.testng.Assert;
@@ -14,19 +13,19 @@ public class TestLogin extends BaseTest{
 	@BeforeMethod
 	public void beforeMethod(){
 		super.beforeMethod();
-		loginPage = PageFactory.initElements(browserActions.getDriver(), LoginPage.class);
-		dropdownLogin = PageFactory.initElements(browserActions.getDriver(), DropdownLogin.class);
+		loginPage = PageFactory.initElements(browserAction.getDriver(), LoginPage.class);
+		dropdownLogin = PageFactory.initElements(browserAction.getDriver(), DropdownLogin.class);
 	}
 	
 
 	  @Test(priority=0)
 	    public void checkElementsLoginPage() {
-	        browserActions.goTo(loginUrl);
-	        Assert.assertTrue(browserActions.isElementPresent(loginPage.emailLogin));
-	        Assert.assertTrue(browserActions.isElementPresent(loginPage.passwordLogin));
-	        Assert.assertTrue(browserActions.isElementPresent(loginPage.rememberMe));
-	        Assert.assertTrue(browserActions.isElementPresent(loginPage.loginButton));
-	        Assert.assertTrue(browserActions.isElementPresent(loginPage.homeButton));
+	        browserAction.goTo(LOGIN_URL);
+	        Assert.assertTrue(browserAction.isElementPresent(loginPage.emailLogin));
+	        Assert.assertTrue(browserAction.isElementPresent(loginPage.passwordLogin));
+	        Assert.assertTrue(browserAction.isElementPresent(loginPage.rememberMe));
+	        Assert.assertTrue(browserAction.isElementPresent(loginPage.loginButton));
+	        Assert.assertTrue(browserAction.isElementPresent(loginPage.homeButton));
 	    }
 	  
 	/*Correct log in
@@ -36,11 +35,11 @@ public class TestLogin extends BaseTest{
 	 * click on button "Log in"*/
 	@Test(priority=1, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLogin(){
-		loginPage.goTo(loginUrl);
+		browserAction.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("nadja_cv@mail.ru");
 		loginPage.passwordLogin.sendKeys("perekuta96");
 		loginPage.loginButton.click();
-		Assert.assertTrue(loginPage.containsText("@"));
+		Assert.assertTrue(browserAction.containsText("@"));
 	}
 	
 	/*Correct log in
@@ -50,11 +49,11 @@ public class TestLogin extends BaseTest{
 	 * click on button "Log in"*/
 	@Test(priority=2, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginHomeButton(){
-		loginPage.goTo(loginUrl);
+		browserAction.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("nadja_cv@mail.ru");
 		loginPage.passwordLogin.sendKeys("perekuta96");
 		loginPage.homeButton.click();
-		Assert.assertEquals(loginPage.getCurrentUrl(),"http://localhost:8080/hospital/");
+		Assert.assertEquals(browserAction.getCurrentUrl(),"http://localhost:8080/hospital/");
 	}
 	
 	/*Login without e-mail
@@ -64,11 +63,11 @@ public class TestLogin extends BaseTest{
 	 * click on button "Log in"*/
 	@Test(priority=0, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginWithoutEmail(){
-		loginPage.goTo(loginUrl);
+		browserAction.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("");
 		loginPage.passwordLogin.sendKeys("nadja");
 		loginPage.loginButton.click();
-		Assert.assertEquals(loginPage.getCurrentUrl(),loginUrl);
+		Assert.assertEquals(browserAction.getCurrentUrl(),LOGIN_URL);
 	}
 	
 	/*Login without password
@@ -78,11 +77,11 @@ public class TestLogin extends BaseTest{
 	 * click on button "Log in"*/
 	@Test(priority=4, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginWithoutPassword(){
-		loginPage.goTo(loginUrl);
+		browserAction.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("nadjacv545@mail.ru");
 		loginPage.passwordLogin.sendKeys("");
 		loginPage.loginButton.click();	
-		Assert.assertEquals(loginPage.getCurrentUrl(),loginUrl);
+		Assert.assertEquals(browserAction.getCurrentUrl(),LOGIN_URL);
 	}
 	
 	/*Login by unregistered e-mail
@@ -92,11 +91,11 @@ public class TestLogin extends BaseTest{
 	 * click on button "Log in"*/
 	@Test(priority=5, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginIncorrectEmail(){
-		loginPage.goTo(loginUrl);
+		browserAction.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("nadjacv577@mail.ru");
 		loginPage.passwordLogin.sendKeys("nadja57");
 		loginPage.loginButton.click();
-		Assert.assertTrue(loginPage.containsText("Invalid"));
+		Assert.assertTrue(browserAction.containsText("Invalid"));
 	}
 	
 	/*Login by incorrect password
@@ -106,16 +105,16 @@ public class TestLogin extends BaseTest{
 	 * click on button "Log in"*/
     @Test(priority=6, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginIncorrectPassword(){
-		loginPage.goTo(loginUrl);
+		browserAction.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("nadjacv57@mail.ru");
 		loginPage.passwordLogin.sendKeys("nadja577");
 		loginPage.loginButton.click();
-		Assert.assertTrue(loginPage.containsText("Invalid"));
+		Assert.assertTrue(browserAction.containsText("Invalid"));
 	}
 	
 	@AfterMethod
 	public void afterMethod(){
-		browserActions.getDriver().quit();
+		browserAction.getDriver().quit();
 	}
 	
 }

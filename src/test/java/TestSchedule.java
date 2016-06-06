@@ -122,6 +122,12 @@ public class TestSchedule extends BaseTest{
         schedulePage.saveChanges.click();
     }
 
+    @Test
+    public void test() {
+        browserAction.goTo("http://91.209.24.68/ch-040/newUser");
+
+    }
+
     @Test (priority = 6, dependsOnMethods = "checkElementsOnSchedulePage")
     public void testIfDoctorCanEdit() {
         browserAction.goTo(HOME_URL);

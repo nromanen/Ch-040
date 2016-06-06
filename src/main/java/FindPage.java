@@ -16,8 +16,10 @@ public class FindPage {
 
     @FindBy(id = "pac-input")
     public WebElement enterAdress;
+
     @FindBy(id = "googleMap")
     public WebElement googleMap;
+
     public static FindPage navigateTo(WebDriver driver) {
         driver.get(baseUrl);
         return PageFactory.initElements(driver, FindPage.class);
