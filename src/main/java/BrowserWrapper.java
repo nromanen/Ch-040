@@ -1,13 +1,10 @@
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BrowserWrapper {
 
     protected WebDriver driver;
-
-    public static String homeUrl = "http://91.209.24.68";
-    public static String doctorPageUrl = "http://91.209.24.68/hospital/1/department/1";
-
 
     BrowserWrapper(WebDriver driver) {
         this.driver = driver;
@@ -23,11 +20,6 @@ public class BrowserWrapper {
 
     public String getTitle() {
         return driver.getTitle();
-    }
-
-    public void resize(int width, int height) {
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(width, height));
     }
 
     public boolean isElementPresent(WebElement webElement) {
@@ -63,6 +55,7 @@ public class BrowserWrapper {
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
+
     public void browserBack() {
         sleep();
         driver.navigate().back();
@@ -70,6 +63,11 @@ public class BrowserWrapper {
 
     public void sleep() {
         WebDriverWait sleeper = new WebDriverWait(getDriver(), 10);
+    }
+
+    public void selectTime(WebElement element, String hours) {
+        Select dropdown = new Select(element);
+        dropdown.selectByVisibleText(hours);
     }
 }
 
