@@ -33,9 +33,9 @@ public class TestPatients extends BaseTest{
  
    @Test 
    public void testIfDoctorCanEditOwnRecord(){
-    	 browserActions.goTo(homeUrl);
-    	 loginPage.logInAction(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
-    	 browserActions.goTo(patientsUrl);
+    	 browserAction.goTo(homeUrl);
+    	 loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
+    	 browserAction.goTo(patientsUrl);
     	 
     	 patientsPage.tutu.click();
     	 cardPage.dateRecordButton.click();
@@ -64,9 +64,9 @@ public class TestPatients extends BaseTest{
    
     @Test 
     public void testIfDoctorCanMakeNewRecord(){
-    	browserActions.goTo(homeUrl);
-   	 	loginPage.logInAction(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
-   	 	browserActions.goTo(patientsUrl);
+    	browserAction.goTo(homeUrl);
+   	 	loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
+   	 	browserAction.goTo(patientsUrl);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
    	 	
@@ -84,9 +84,9 @@ public class TestPatients extends BaseTest{
     
     @Test 
    	public void testEmptyTextAreasInCardPage(){
-    	browserActions.goTo(homeUrl);
-   	 	loginPage.logInAction(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
-   	 	browserActions.goTo(patientsUrl);
+    	browserAction.goTo(homeUrl);
+   	 	loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
+   	 	browserAction.goTo(patientsUrl);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
    	 	
@@ -105,9 +105,9 @@ public class TestPatients extends BaseTest{
    
     @Test 
     public void checkElementsInPatientsPage() {
-    	browserActions.goTo(homeUrl);
-   	 	loginPage.logInAction(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
-        browserActions.goTo(patientsUrl);
+    	browserAction.goTo(homeUrl);
+   	 	loginPage.loggingIn(USER_NAME_FOR_DOCTOR , PASSWORD_FOR_DOCTOR);
+        browserAction.goTo(patientsUrl);
     	Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
     	Boolean isPresent2 = patientsPage.tutu.isDisplayed();
     	Boolean isPresent4 = patientsPage.nadja_cvmailru.isDisplayed();
@@ -118,6 +118,6 @@ public class TestPatients extends BaseTest{
 
     @AfterMethod
     public void afterMethod() {
-        browserActions.driver.quit();
+        browserAction.driver.quit();
     }
 }
