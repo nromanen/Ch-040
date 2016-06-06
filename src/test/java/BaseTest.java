@@ -15,6 +15,7 @@ public class BaseTest {
     public static final String doctorsUrl = "http://91.209.24.68/ch-040/hospital/1/department/1";
     public static final String doctorUrl = "http://91.209.24.68/ch-040/dashboard?id=37&did=1";
     public static final String patientsListUrl = "http://91.209.24.68/ch-040/patients";
+    public static final String patientsUrl = "http://91.209.24.68/ch-040/patients";
     
     public static final String adminLogin = "admin@ad.ad";
     public static final String adminPassword = "qwer";
