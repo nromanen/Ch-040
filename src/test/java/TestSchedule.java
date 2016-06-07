@@ -1,5 +1,7 @@
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import static org.testng.Assert.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,7 +11,6 @@ import org.testng.annotations.Test;
  */
 public class TestSchedule extends BaseTest{
     SchedulePage schedulePage;
-    LoginPage loginPage;
     DropdownLogin dropdownLogin;
     HospitalPage hospitalPage;
     DepartmentPage departmentPage;
@@ -19,24 +20,24 @@ public class TestSchedule extends BaseTest{
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
-        loginPage = PageFactory.initElements(browserAction.getDriver(), LoginPage.class);
+        dropdownLogin = PageFactory.initElements(browserAction.getDriver(), DropdownLogin.class);
         schedulePage = PageFactory.initElements(browserAction.getDriver(), SchedulePage.class);
         hospitalPage = PageFactory.initElements(browserAction.getDriver(), HospitalPage.class);
         departmentPage = PageFactory.initElements(browserAction.getDriver(), DepartmentPage.class);
         doctorPage = PageFactory.initElements(browserAction.getDriver(), DoctorPage.class);
     }
 
-    @Test
-    public void checkElementsOnLoginPage() {
+    @Test (priority = 0)
+    public void checkDropdownLoginElements() {
         browserAction.goTo(HOME_URL);
-        loginPage.loginButton.click();
-        Assert.assertTrue(browserAction.isElementPresent(dropdownLogin.dropdownLogin), "Login button isn't present!");
+        dropdownLogin.dropdownLoginButton.click();
+        Assert.assertTrue(browserAction.isElementPresent(dropdownLogin.dropdownLoginButton), "Login button isn't present!");
         Assert.assertTrue(browserAction.isElementPresent(dropdownLogin.dropdownEmailField), "Email field isn't present!");
         Assert.assertTrue(browserAction.isElementPresent(dropdownLogin.dropdownPasswordField), "Password field isn't present!");
-        Assert.assertTrue(browserAction.isElementPresent(dropdownLogin.dropdownLoginButton), "Submit button isn't present!");
+        Assert.assertTrue(browserAction.isElementPresent(dropdownLogin.dropdownLoginSubmitButton), "Submit button isn't present!");
     }
 
-    @Test
+    @Test (priority = 1)
     public void checkElementsOnSchedulePage() {
         browserAction.goTo(HOME_URL);
         dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
@@ -74,27 +75,18 @@ public class TestSchedule extends BaseTest{
         Assert.assertTrue(browserAction.isElementPresent(schedulePage.saveDetailedChanges), "Save detailed changes button isn't present!");
     }
 
-    @Test (dependsOnMethods = "checkElementsOnSchedulePage")
-    public void selectSecondHospital() {
-        browserAction.goTo(HOSPITALS_URL);
-        System.out.println(hospitalPage.hospitals.size());
-        hospitalPage.hospitals.get(0).click();
-    }
+    /*
+    1. Go to the home page.
+    2. Login from the dropdown login form as manager.
+    3. Select hospital.
+    4. Select department.
+    5. Select doctor.
+    6. Choose event that you want to edit.
+    7. Change description of the event and click save changes.
+    8. Check if these changes are correct.
+     */
 
-    @Test (dependsOnMethods = "checkElementsOnSchedulePage")
-    public void selectSecondDepartment() {
-        browserAction.goTo(DEPARTMENT_URL);
-        System.out.println(departmentPage.departments.size());
-        departmentPage.departments.get(1).click();
-    }
-
-    @Test (dependsOnMethods = "checkElementsOnSchedulePage")
-    public void selectSecondDoctor() {
-        browserAction.goTo(DOCTORS_URL);
-        System.out.println(doctorPage.doctors.size());
-    }
-
-    @Test (priority = 4, dependsOnMethods = "checkElementsOnSchedulePage")
+    @Test (priority = 4, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testIfManagerCanEdit() {
         browserAction.goTo(HOME_URL);
         dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
@@ -106,9 +98,20 @@ public class TestSchedule extends BaseTest{
         schedulePage.eventEdit.click();
         schedulePage.editSchedule("text field test, manager edit, #7");
         schedulePage.saveChanges.click();
+        assertTrue(schedulePage.events.get(6).getText().equals("text field test, manager edit, #7"), "Event isn't present!");
     }
 
-    @Test (priority = 5, dependsOnMethods = {"checkElementsOnSchedulePage", "checkElementsOnLoginPage"})
+    /*
+    1. Go to the home page.
+    2. Login from the dropdown login form as patient.
+    3. Select hospital.
+    4. Select department.
+    5. Select doctor.
+    6. Choose event that you want to edit.
+    7. Check if you can edit this event.
+    */
+
+    @Test (priority = 5, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testIfPatientCanEdit() {
         browserAction.goTo(HOME_URL);
         dropdownLogin.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
@@ -118,18 +121,20 @@ public class TestSchedule extends BaseTest{
         doctorPage.doctors.get(3).click();
         schedulePage.previousDate.click();
         schedulePage.events.get(6).click();
-        schedulePage.eventEdit.click();
-        schedulePage.editSchedule("text field test, patient edit, #7");
-        schedulePage.saveChanges.click();
+        assertFalse(browserAction.isElementPresent(schedulePage.eventEdit), "Event edit button is present!");
     }
 
-    @Test
-    public void test() {
-        browserAction.goTo("http://91.209.24.68/ch-040/newUser");
+    /*
+    1. Go to the home page.
+    2. Login from the dropdown login form as doctor.
+    3. Select hospital.
+    4. Select department.
+    5. Select doctor.
+    6. Choose event that you want to edit.
+    7. Check if you can edit this event.
+    */
 
-    }
-
-    @Test (priority = 6, dependsOnMethods = "checkElementsOnSchedulePage")
+    @Test (priority = 6, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testIfDoctorCanEdit() {
         browserAction.goTo(HOME_URL);
         dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
@@ -139,12 +144,20 @@ public class TestSchedule extends BaseTest{
         doctorPage.doctors.get(3).click();
         schedulePage.previousDate.click();
         schedulePage.events.get(6).click();
-        schedulePage.eventEdit.click();
-        schedulePage.editSchedule("text field test, doctor edit, #7");
-        schedulePage.saveChanges.click();
+        assertFalse(browserAction.isElementPresent(schedulePage.eventEdit), "Event edit button is present!");
     }
 
-    @Test (priority = 7, dependsOnMethods = "checkElementsOnSchedulePage")
+    /*
+    1. Go to the home page.
+    2. Login from the dropdown login form as administrator.
+    3. Select hospital.
+    4. Select department.
+    5. Select doctor.
+    6. Choose event that you want to edit.
+    7. Check if you can edit this event.
+    */
+
+    @Test (priority = 7, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testIfAdminCanEdit() {
         browserAction.goTo(HOME_URL);
         dropdownLogin.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
@@ -154,24 +167,62 @@ public class TestSchedule extends BaseTest{
         doctorPage.doctors.get(3).click();
         schedulePage.previousDate.click();
         schedulePage.events.get(6).click();
-        schedulePage.eventEdit.click();
-        schedulePage.editSchedule("text field test, admin edit, #7");
-        schedulePage.saveChanges.click();
+        assertFalse(browserAction.isElementPresent(schedulePage.eventEdit), "Event edit button is present!");
     }
 
-    @Test (priority = 5)
+    /*
+    1. Go to the home page.
+    2. Login from the dropdown login form as manager.
+    3. Select hospital.
+    4. Select department.
+    5. Select doctor.
+    6. Choose event that you want to edit.
+    7. Select different day and time (from 8:00 to 20:00) for this event.
+    8. Save changes.
+    9. Check if these changes are correct.
+     */
+    @Test (priority = 8, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testManagerEditTimePeriod() {
         browserAction.goTo(HOME_URL);
         dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();
-        schedulePage.previousDate.click();
-        schedulePage.events.get(8).click();
+        schedulePage.events.get(0).click();
         schedulePage.eventDetails.click();
         browserAction.selectTime(schedulePage.timePeriodHoursStart, "12:55");
         browserAction.selectTime(schedulePage.timePeriodHoursEnd, "19:55");
+        browserAction.selectTime(schedulePage.timePeriodMonthStart, "June");
+        browserAction.selectTime(schedulePage.timePeriodMonthEnd, "June");
+        browserAction.selectTime(schedulePage.timePeriodDayStart, "7");
+        browserAction.selectTime(schedulePage.timePeriodDayEnd, "7");
         schedulePage.saveDetailedChanges.click();
+        assertTrue(schedulePage.eventTitle.getText().equals("12:55 - 19:55"), "Event isn't present!");
+    }
+    /*
+    1. Go to the home page.
+    2. Login from the dropdown login form as manager.
+    3. Select hospital.
+    4. Select department.
+    5. Select doctor.
+    6. Choose event that you want to edit.
+    7. Select time beyond working hours (20:05 - 07:55) for this event.
+    8. Save changes.
+    9. Check if these changes are correct.
+     */
+    @Test (priority = 9, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
+    public void testManagerEditBeyondWorkingHours() {
+        browserAction.goTo(HOME_URL);
+        dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        hospitalPage.hospitals.get(0).click();
+        departmentPage.departments.get(0).click();
+        doctorPage.doctors.get(3).click();
+        schedulePage.events.get(0).click();
+        schedulePage.eventDetails.click();
+        browserAction.selectTime(schedulePage.timePeriodHoursStart, "17:00");
+        browserAction.selectTime(schedulePage.timePeriodHoursEnd, "20:30");
+        schedulePage.saveDetailedChanges.click();
+        assertFalse(schedulePage.eventTitle.getText().equals("17:00 - 20:30"), "Event is present!");
     }
 
     @AfterMethod
