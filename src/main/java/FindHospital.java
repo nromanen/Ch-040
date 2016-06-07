@@ -6,13 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class FindPage {
+public class FindHospital {
 
-    public  static String baseUrl =  "http://91.209.24.68/ch-040/mapsearch";
+    public  static final String baseUrl =  "http://91.209.24.68/ch-040/mapsearch";
 
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
 
     @FindBy(id = "pac-input")
     public WebElement enterAdress;
@@ -20,10 +17,6 @@ public class FindPage {
     @FindBy(id = "googleMap")
     public WebElement googleMap;
 
-    public static FindPage navigateTo(WebDriver driver) {
-        driver.get(baseUrl);
-        return PageFactory.initElements(driver, FindPage.class);
-    }
 
 
     public void findInAction(String city){

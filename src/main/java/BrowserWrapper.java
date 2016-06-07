@@ -6,10 +6,10 @@ public class BrowserWrapper {
 
     protected WebDriver driver;
 
-    public static String homeUrl = "http://91.209.24.68";
+    public final static String homeUrl = "http://91.209.24.68/ch-040";
     public static String doctorPageUrl = "http://91.209.24.68/hospital/1/department/1";
 
-
+    public String getHomeUrl(){return this.homeUrl;}
     BrowserWrapper(WebDriver driver) {
         this.driver = driver;
     }
