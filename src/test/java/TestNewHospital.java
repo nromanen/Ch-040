@@ -90,7 +90,7 @@ public class TestNewHospital extends BaseTest{
 	* input e-mail
     * input password
 	 * click on button "Log in"
-   *     go to new hospital page
+   *     go to validate hospital page
    *     click on button "Save"
    *     @requires wait any actions
    *     @effect clickable button
@@ -109,7 +109,7 @@ public class TestNewHospital extends BaseTest{
 	 * input e-mail
 	 * input password
 	 * click on button "Log in"
-	 * go to new hospital page
+	 * go to validate hospital page
 	 * check if isElementPresent true
 	 * input address
 	 * wait for 4 seconds
@@ -117,11 +117,12 @@ public class TestNewHospital extends BaseTest{
 	 * input name
 	 * input longitude
 	 * input latitude
+	 * click on imageButton
 	 * click submitButton
 	 * wait for 4 seconds
 	 * check if confirm box present
-	 * @requires true
-	 * @effects check all page elements
+	 * @requires confirm
+	 * @effects new hospital add
 
     *     </p>
      */
@@ -135,6 +136,7 @@ public class TestNewHospital extends BaseTest{
         newHospital.inputDecsription("ololooloololol");
         newHospital.inputLon("180");
         newHospital.inputLat("180");
+        newHospital.imagePathButton.click();
         newHospital.submitButton.click();
         browserAction.getDriver().manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
         assertTrue(browserAction.isElementPresent(newHospital.confirmBox),"confirm box not displayed");
