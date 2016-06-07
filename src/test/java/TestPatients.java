@@ -163,9 +163,9 @@ public class TestPatients extends BaseTest{
     
     @Test ()
     public void testThatDoctorCantEditRecordAfter00 (){
-    	 browserAction.goTo(homeUrl);
+    	 browserAction.goTo(HOME_URL);
     	 dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-   	 	 browserActions.goTo(PATIENTS_LIST_URL);
+   	 	 browserAction.goTo(PATIENTS_LIST_URL);
    	 
    	   	 patientsPage.tutu.click();
 	     cardPage.dateRecordButton.click();
