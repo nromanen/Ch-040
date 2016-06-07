@@ -8,6 +8,7 @@ public class TestPatients extends BaseTest{
     CardPage cardPage;
     NewRecordPage newRecordPage;
     LoginPage loginPage;
+    DropdownLogin dropdownLogin;
 
     @BeforeMethod
     public void beforeMethod() {
@@ -16,6 +17,7 @@ public class TestPatients extends BaseTest{
         cardPage = PageFactory.initElements(browserAction.getDriver(), CardPage.class);
         newRecordPage = PageFactory.initElements(browserAction.getDriver(), NewRecordPage.class);
         loginPage = PageFactory.initElements(browserAction.getDriver(), LoginPage.class);
+        dropdownLogin = PageFactory.initElements(browserAction.getDriver(), DropdownLogin.class);
     }
     
  /* Editing Record by Doctor

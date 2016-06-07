@@ -159,18 +159,66 @@ public class TestRoles extends BaseTest {
     }
 
     // 1. Go to home page
+    // 2. Check if patients button isn't present
+    // 3. Go to /patients url
+    // 4. Check if there isn't table with patients
+    @Test
+    public void testAccessDeniedToPatientsListForUnregisteredUser() {
+        browserAction.goTo(HOME_URL);
+        assertFalse(browserAction.isElementPresent(Header.patientsButtonByXpath), "element is present");
+        browserAction.goTo(PATIENTS_LIST_URL);
+        assertTrue(browserAction.containsText("Log in"), "access not denied");
+    }
+
+    // 1. Go to home page
     // 2. Log in as patient using method loggingIn (click on dropdown button "Log in", enter email, password, click "Log in")
     // 3. Check if patients button isn't present
     // 4. Go to /patients url
     // 5. Check if there isn't table with patients
     // 6. Log out by clicking "Log out" button
     @Test
-    public void testAccessDeniedToPatientsListForUnregisteredUsers() {
+    public void testAccessDeniedToPatientsListForPatient() {
         browserAction.goTo(HOME_URL);
-        assertFalse(browserAction.isElementPresent(Header.patientsButtonByXpath), "element is present");
+        dropdownLogin.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
+        assertFalse(browserAction.isElementPresent(Header.patientsButtonByText), "element is present");
         browserAction.goTo(PATIENTS_LIST_URL);
         assertTrue(browserAction.containsText("Log in"), "access not denied");
+        dropdownLogin.logout();
     }
+
+    // 1. Go to home page
+    // 2. Log in as doctor using method loggingIn (click on dropdown button "Log in", enter email, password, click "Log in")
+    // 3. Check if patients button isn't present
+    // 4. Go to /patients url
+    // 5. Check if there isn't table with patients
+    // 6. Log out by clicking "Log out" button
+    @Test
+    public void testAccessDeniedToPatientsListForDoctor() {
+        browserAction.goTo(HOME_URL);
+        dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        assertFalse(browserAction.isElementPresent(Header.patientsButtonByText), "element is present");
+        browserAction.goTo(PATIENTS_LIST_URL);
+        assertTrue(browserAction.containsText("Log in"), "access not denied");
+        dropdownLogin.logout();
+    }
+
+    // 1. Go to home page
+    // 2. Log in as manager using method loggingIn (click on dropdown button "Log in", enter email, password, click "Log in")
+    // 3. Check if patients button isn't present
+    // 4. Go to /patients url
+    // 5. Check if there isn't table with patients
+    // 6. Log out by clicking "Log out" button
+    @Test
+    public void testAccessDeniedToPatientsListForManager() {
+        browserAction.goTo(HOME_URL);
+        dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        assertFalse(browserAction.isElementPresent(Header.patientsButtonByText), "element is present");
+        browserAction.goTo(PATIENTS_LIST_URL);
+        assertTrue(browserAction.containsText("Log in"), "access not denied");
+        dropdownLogin.logout();
+    }
+
+    
 
     @AfterMethod
     public void afterMethod() {

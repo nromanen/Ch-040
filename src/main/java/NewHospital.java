@@ -78,8 +78,5 @@ public class NewHospital {
         driver.get(baseUrl);
         return PageFactory.initElements(driver, NewHospital.class);
     }
-    public static NewHospital navigateToLgn(WebDriver driver) {
-        driver.get("http://91.209.24.68/ch-040");
-        return PageFactory.initElements(driver, NewHospital.class);
-    }
+
 }

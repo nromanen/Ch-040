@@ -17,6 +17,11 @@ public class BaseTest {
     public static final String PATIENTS_LIST_URL = HOME_URL.concat("/patients");
     public static final String LOGIN_URL = HOME_URL.concat("/login");
     public static final String REGISTER_URL = HOME_URL.concat("/newUser");
+    public static final String FIND_URL = HOME_URL.concat("/mapsearch");
+    public static final String NEW_HOSPITAL_URL = HOME_URL.concat("/admin/map/new");
+    public static final String VALIDATE_URL = HOME_URL.concat("/admin/map/validate");
+
+
 
     public static final String ADMIN_LOGIN = "admin@ad.ad";
     public static final String ADMIN_PASSWORD = "qwer";
