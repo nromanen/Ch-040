@@ -24,6 +24,9 @@ public class SchedulePage {
     @FindBy(css = "textarea.dhx_cal_editor")
     public WebElement editorField;
 
+    @FindBy(css = "div.dhx_event_move.dhx_title")
+    public WebElement eventTitle;
+
     @FindBy(css = "div.dhx_menu_icon.icon_save")
     public WebElement saveChanges;
 
@@ -36,7 +39,7 @@ public class SchedulePage {
     @FindBy(css = "div.dhx_cal_next_button")
     public WebElement nextDate;
 
-    @FindBy(css = "div.dhx_scale_holder ")
+    @FindBy(css = "div.dhx_scale_holder")
     public WebElement dateColumn;
 
     @FindBy(css = "div.dhx_cal_tab.dhx_cal_tab_first[name=day_tab]")
