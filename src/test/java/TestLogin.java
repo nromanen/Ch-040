@@ -42,11 +42,11 @@ public class TestLogin extends BaseTest{
 		Assert.assertTrue(browserAction.containsText("Log out"));
 	}
 	
-	/*Correct log in
+	/*Correct work of homeButton
 	 * go to login page
 	 * input e-mail
 	 * input password
-	 * click on button "Log in"*/
+	 * click on button "Home"*/
 	@Test(priority=1, dependsOnMethods={"checkElementsLoginPage"})
 	public void testLoginHomeButton(){
 		browserAction.goTo(LOGIN_URL);
