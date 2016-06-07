@@ -1,8 +1,8 @@
+import header.DropdownRegister;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 public class TestRegister extends BaseTest {
