@@ -1,4 +1,4 @@
-/**
+package googleApi; /**
  * Created by oleg on 25.05.2016.
  */
 import org.openqa.selenium.WebDriver;
@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class NewHospital {
-
-    public  static String baseUrl =  "http://91.209.24.68/ch-040/admin/map/new";
 
     @FindBy(xpath = "/html/body/header/div/div/div[2]/nav/div/div[2]/ul/li[7]/a/span")
     public WebElement loginButtonXpath;
@@ -64,19 +62,12 @@ public class NewHospital {
     public void inputLon(String lon){
         longitudeField.sendKeys(lon);
     }
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
 
     public void logInAction(String username, String password) {
         loginButtonXpath.click();
         emailField.sendKeys(username);
         passwordField.sendKeys(password);
         loginSubmitButton.click();
-    }
-    public static NewHospital navigateTo(WebDriver driver) {
-        driver.get(baseUrl);
-        return PageFactory.initElements(driver, NewHospital.class);
     }
 
 }

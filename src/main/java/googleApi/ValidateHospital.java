@@ -1,4 +1,4 @@
-/**
+package googleApi; /**
  * Created by oleg on 25.05.2016.
  */
 import org.openqa.selenium.WebDriver;
