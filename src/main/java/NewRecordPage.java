@@ -24,4 +24,7 @@ public class NewRecordPage {
 	@FindBy (css = "p.error")
 	public WebElement errorString;
 	
+	@FindBy (css = "p.error")
+	public WebElement editTimeError;
+	
 }
