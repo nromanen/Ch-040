@@ -31,6 +31,10 @@ public class TestValidateHospital extends BaseTest {
 	 * input password
 	 * click on button "Log in"
 	 * check if google api is present
+	 * check if "validate" button is present
+	 * click "validate" button
+	 * wait for 4 seconds
+	 * check if add button is present
 	 * </p>
 	 */
     @Test(priority = 0)
@@ -42,7 +46,7 @@ public class TestValidateHospital extends BaseTest {
         assertTrue(browserAction.isElementPresent(validateHospital.validateButton), "Button for validate hospital is not present");
         validateHospital.addValidateHospitalClick();
         browserAction.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-        assertTrue(browserAction.isElementPresent(validateHospital.addValidateHospital), "Button for validate hospital is not present");
+        assertTrue(browserAction.isElementPresent(validateHospital.addValidateHospital), "Button for addvalidate hospital is not present");
     }
 
     @Test(dependsOnMethods = "isElementsPresent")

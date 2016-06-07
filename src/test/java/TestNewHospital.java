@@ -41,7 +41,7 @@ public class TestNewHospital extends BaseTest{
     @Test(priority = 0)
     public void isElementPresent(){
         testLogin();
-        browserAction.goTo(NEW_HOSPITAL_URL);
+        browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
 
         assertTrue(browserAction.isElementPresent(newHospital.googleMap),"element googleMap isn't present");
         assertTrue(browserAction.isElementPresent(newHospital.addresField),"element addres isn't present");
@@ -80,7 +80,7 @@ public class TestNewHospital extends BaseTest{
     @Test(dependsOnMethods = {"isElementPresent","testClick"})
     public void validationError(){
         testLogin();
-        browserAction.goTo(NEW_HOSPITAL_URL);
+        browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
         newHospital.submitButton.click();
         assertTrue(newHospital.errorField.isDisplayed(),"element isn't present");
     }
@@ -99,7 +99,7 @@ public class TestNewHospital extends BaseTest{
     @Test(dependsOnMethods = "isElementPresent")
     public void testClick(){
         testLogin();
-        browserAction.goTo(NEW_HOSPITAL_URL);
+        browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
         newHospital.submitButton.click();
     }
     /*
@@ -128,7 +128,7 @@ public class TestNewHospital extends BaseTest{
     @Test(dependsOnMethods = "isElementPresent")
     public void addNewHospital(){
         testLogin();
-        browserAction.goTo(NEW_HOSPITAL_URL);
+        browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
         newHospital.inputAddress("Chernivtsi");
         browserAction.getDriver().manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
         newHospital.inputName("OlegHospital");
