@@ -218,7 +218,6 @@ public class TestRoles extends BaseTest {
         dropdownLogin.logout();
     }
 
-    
 
     @AfterMethod
     public void afterMethod() {
