@@ -5,24 +5,24 @@ import org.testng.annotations.Test;
 
 public class TestDoctorPage extends BaseTest {
 
-    LoginPage loginPage;
+    DropdownLogin dropdownLogin;
     DoctorPage doctorPage;
 
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
-        loginPage = PageFactory.initElements(browserAction.getDriver(), LoginPage.class);
+        dropdownLogin = PageFactory.initElements(browserAction.getDriver(), DropdownLogin.class);
         doctorPage = PageFactory.initElements(browserAction.getDriver(), DoctorPage.class);
     }
 
     @Test
     public void testLogin() {
         browserAction.goTo(DOCTOR_PAGE_URL);
-        loginPage.loginDropdownButton.click();
-        loginPage.emailField.sendKeys("admin@admin.com");
-        loginPage.passwordField.sendKeys("12345");
-        loginPage.rememberMeCheckbox.click();
-        loginPage.loginButton.click();
+        dropdownLogin.dropdownLoginButton.click();
+        dropdownLogin.dropdownEmailField.sendKeys("admin@admin.com");
+        dropdownLogin.dropdownPasswordField.sendKeys("12345");
+        dropdownLogin.dropdownRememberMeCheckbox.click();
+        dropdownLogin.dropdownLogoutButton.click();
     }
 
     @Test
