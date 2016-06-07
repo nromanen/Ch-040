@@ -1,5 +1,3 @@
-
-
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -24,7 +22,7 @@ public class TestPatients extends BaseTest{
    public void testIfDoctorCanEditOwnRecord(){
     	 browserAction.goTo(HOME_URL);
     	 loginPage.loggingIn(DOCTOR_LOGIN , DOCTOR_PASSWORD);
-    	 browserAction.goTo(PATIENTS_URL);
+    	 browserAction.goTo(PATIENTS_LIST_URL);
     	 
     	 patientsPage.tutu.click();
     	 cardPage.dateRecordButton.click();
@@ -55,7 +53,7 @@ public class TestPatients extends BaseTest{
     public void testIfDoctorCanMakeNewRecord(){
     	browserAction.goTo(HOME_URL);
    	 	loginPage.loggingIn(DOCTOR_LOGIN , DOCTOR_PASSWORD);
-   	 	browserAction.goTo(PATIENTS_URL);
+   	 	browserAction.goTo(PATIENTS_LIST_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
    	 	
@@ -75,7 +73,7 @@ public class TestPatients extends BaseTest{
    	public void testEmptyTextAreasInCardPage(){
     	browserAction.goTo(HOME_URL);
    	 	loginPage.loggingIn(DOCTOR_LOGIN , DOCTOR_PASSWORD);
-   	 	browserAction.goTo(PATIENTS_URL);
+   	 	browserAction.goTo(PATIENTS_LIST_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
    	 	
@@ -96,7 +94,7 @@ public class TestPatients extends BaseTest{
     public void checkElementsInPatientsPage() {
     	browserAction.goTo(HOME_URL);
    	 	loginPage.loggingIn(DOCTOR_LOGIN , DOCTOR_PASSWORD);
-        browserAction.goTo(PATIENTS_URL);
+        browserAction.goTo(PATIENTS_LIST_URL);
     	Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
     	Boolean isPresent2 = patientsPage.tutu.isDisplayed();
     	Boolean isPresent4 = patientsPage.nadja_cvmailru.isDisplayed();

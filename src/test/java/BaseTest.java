@@ -15,7 +15,6 @@ public class BaseTest {
     public static final String DOCTORS_URL = HOME_URL.concat("/hospital/1/department/1");
     public static final String DOCTOR_URL = HOME_URL.concat("/dashboard?id=37&did=1");
     public static final String PATIENTS_LIST_URL = HOME_URL.concat("/patients");
-    public static final String PATIENTS_URL = HOME_URL.concat("/patients");
     public static final String LOGIN_URL = HOME_URL.concat("/login");
     public static final String REGISTER_URL = HOME_URL.concat("/newUser");
 
