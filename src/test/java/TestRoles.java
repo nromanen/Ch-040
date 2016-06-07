@@ -190,17 +190,17 @@ public class TestRoles extends BaseTest {
 
     // 1. Go to home page
     // 2. Log in as doctor using method loggingIn (click on dropdown button "Log in", enter email, password, click "Log in")
-    // 3. Check if patients button isn't present
+    // 3. Check if patients button is present
     // 4. Go to /patients url
-    // 5. Check if there isn't table with patients
+    // 5. Check if there is a table with patients
     // 6. Log out by clicking "Log out" button
     @Test
     public void testAccessDeniedToPatientsListForDoctor() {
         browserAction.goTo(HOME_URL);
         dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-        assertFalse(browserAction.isElementPresent(Header.patientsButtonByText), "element is present");
+        assertTrue(browserAction.isElementPresent(Header.patientsButtonByXpath), "element is present");
         browserAction.goTo(PATIENTS_LIST_URL);
-        assertTrue(browserAction.containsText("Log in"), "access not denied");
+        assertTrue(browserAction.containsText("Patient"), "access denied");
         dropdownLogin.logout();
     }
 
