@@ -1,6 +1,7 @@
 /**
  * Created by oleg on 25.05.2016.
  */
+import googleApi.FindHospital;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -20,6 +21,7 @@ public class TestFindHospital extends BaseTest{
     public void isElementsPresents(){
         browserAction.goTo(FIND_URL);
         assertTrue(browserAction.isElementPresent(findHospital.enterAdress),"Input Box for Address not present lalka");
+        assertTrue(browserAction.isElementPresent(findHospital.googleMap),"Input Box for Address not present lalka");
     }
 
     @Test(dependsOnMethods = "isElementsPresents")

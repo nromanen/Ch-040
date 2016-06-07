@@ -1,8 +1,8 @@
 /**
  * Created by oleg on 03.06.2016.
  */
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import googleApi.NewHospital;
+import googleApi.ValidateHospital;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,7 +23,16 @@ public class TestValidateHospital extends BaseTest {
         validateHospital = PageFactory.initElements(browserAction.getDriver(), ValidateHospital.class);
         newHospital = PageFactory.initElements(browserAction.getDriver(), NewHospital.class);
     }
-
+    /*
+    *<p>
+    *
+	 * go to login page
+	 * input e-mail
+	 * input password
+	 * click on button "Log in"
+	 * check if google api is present
+	 * </p>
+	 */
     @Test(priority = 0)
     public void isElementsPresent() {
         testLogin();
