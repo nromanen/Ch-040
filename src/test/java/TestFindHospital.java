@@ -17,13 +17,31 @@ public class TestFindHospital extends BaseTest{
         super.beforeMethod();
         findHospital = PageFactory.initElements(browserAction.getDriver(), FindHospital.class);
     }
+    /*
+    *<p>
+    *
+	 *go to Find page
+	 * check if google api is present
+	 * check if input box is present
+	 * @requires true
+	 * @effect all elements must be present
+    *     </p>
+     */
     @Test
     public void isElementsPresents(){
         browserAction.goTo(FIND_URL);
         assertTrue(browserAction.isElementPresent(findHospital.enterAdress),"Input Box for Address not present lalka");
         assertTrue(browserAction.isElementPresent(findHospital.googleMap),"Input Box for Address not present lalka");
     }
-
+    /*
+        *<p>
+        *
+         *go to Find page
+         * input address
+         * @requires true
+         * @effect google api 
+        *     </p>
+         */
     @Test(dependsOnMethods = "isElementsPresents")
     public void test() {
         browserAction.goTo(FIND_URL);
