@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestHospitalSeeker" verbose="1" >
+    <test name="hospitalSeeker.TestRoles" >
+        <classes>
+            <class name="hospitalSeeker.roles.TestAdminRole" />
+            <class name="hospitalSeeker.roles.TestManagerRole" />
+            <class name="hospitalSeeker.roles.TestDoctorRole" />
+            <class name="hospitalSeeker.roles.TestPatientRole" />
+            <class name="hospitalSeeker.roles.TestUnregisteredUser" />
+        </classes>
+    </test>
+</suite>
