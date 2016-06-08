@@ -27,6 +27,7 @@ public class TestLogin extends BaseTest{
 	        Assert.assertTrue(browserAction.isElementPresent(loginPage.loginButton));
 	        Assert.assertTrue(browserAction.isElementPresent(loginPage.homeButton));
 	    }
+	//
 	  
 	/*Correct log in
 	 * go to login page
