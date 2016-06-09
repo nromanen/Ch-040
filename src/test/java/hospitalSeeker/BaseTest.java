@@ -20,8 +20,8 @@ public class BaseTest {
     public static final String FIND_URL = HOME_URL.concat("mapsearch");
     public static final String VALIDATE_URL = HOME_URL.concat("admin/map/validate");
 
-    public static final String ADMIN_LOGIN = "admin@ad.ad";
-    public static final String ADMIN_PASSWORD = "qwer";
+    public static final String ADMIN_LOGIN = "admin@hospitals.ua";
+    public static final String ADMIN_PASSWORD = "1111";
     public static final String MANAGER_LOGIN = "manager@com.com";
     public static final String MANAGER_PASSWORD = "manager";
     public static final String DOCTOR_LOGIN = "doctor@com.com";
