@@ -4,10 +4,10 @@
     <test name="hospitalSeeker.TestRoles" >
         <classes>
             <class name="hospitalSeeker.roles.TestAdminRole" />
+            <class name="hospitalSeeker.roles.TestUnregisteredUser" />
             <class name="hospitalSeeker.roles.TestManagerRole" />
             <class name="hospitalSeeker.roles.TestDoctorRole" />
             <class name="hospitalSeeker.roles.TestPatientRole" />
-            <class name="hospitalSeeker.roles.TestUnregisteredUser" />
         </classes>
     </test>
 </suite>
