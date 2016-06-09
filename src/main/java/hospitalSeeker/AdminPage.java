@@ -5,12 +5,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class AdminPage {
 
-    public static final String dashboardClassName = "dashboard";
-    public static final String optionsButtonXPATH = "/html/body/section/div/a";
+    public static final String ALL_USERS_TABLE_ID = "allUsers";
 
-    @FindBy(className = dashboardClassName)
-    public WebElement dashboardTable;
+    @FindBy(id = ALL_USERS_TABLE_ID)
+    public WebElement allUsersTable;
 
-    @FindBy(xpath = optionsButtonXPATH)
-    public WebElement optionsButton;
+
 }
