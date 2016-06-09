@@ -7,11 +7,6 @@ import static org.testng.Assert.assertTrue;
 
 public class TestAdminRole extends BaseRoleTest{
 
-    @BeforeClass
-    public void beforeClass() {
-        super.beforeClass();
-    }
-
     @BeforeMethod
     public void beforeMethod(){
         browserAction.goTo(HOME_URL);
@@ -27,12 +22,7 @@ public class TestAdminRole extends BaseRoleTest{
 
     @AfterMethod
     public void afterMethod() {
-        super.afterMethod();
-    }
-
-    @AfterClass
-    public void afterClass() {
-        super.afterClass();
+        dropdownLogin.logout();
     }
 
 }

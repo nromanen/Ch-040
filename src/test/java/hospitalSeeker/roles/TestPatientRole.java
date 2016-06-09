@@ -8,11 +8,6 @@ import static org.testng.Assert.assertTrue;
 
 public class TestPatientRole extends BaseRoleTest {
 
-    @BeforeClass
-    public void beforeClass() {
-        super.beforeClass();
-    }
-
     @BeforeMethod
     public void beforeMethod() {
         browserAction.goTo(HOME_URL);
@@ -43,12 +38,7 @@ public class TestPatientRole extends BaseRoleTest {
 
     @AfterMethod
     public void afterMethod() {
-        super.afterMethod();
-    }
-
-    @AfterClass
-    public void afterClass() {
-        super.afterClass();
+        dropdownLogin.logout();
     }
 
 }

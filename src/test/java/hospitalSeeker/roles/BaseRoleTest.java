@@ -6,7 +6,6 @@ import hospitalSeeker.header.DropdownLogin;
 import hospitalSeeker.header.Header;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
 public class BaseRoleTest extends BaseTest {
@@ -21,11 +20,6 @@ public class BaseRoleTest extends BaseTest {
         dropdownLogin = PageFactory.initElements(browserAction.getDriver(), DropdownLogin.class);
         adminPage = PageFactory.initElements(browserAction.getDriver(), AdminPage.class);
         header = PageFactory.initElements(browserAction.getDriver(), Header.class);
-    }
-
-    @AfterMethod
-    public void afterMethod() {
-        dropdownLogin.logout();
     }
 
     @AfterClass

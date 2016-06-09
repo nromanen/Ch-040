@@ -9,10 +9,6 @@ import static org.testng.Assert.assertTrue;
 public class TestDoctorRole extends BaseRoleTest {
 
     // TODO: 09.06.16 what if use browser instead of browserAction?
-    @BeforeClass
-    public void beforeClass() {
-        super.beforeClass();
-    }
 
     @BeforeMethod
     public void beforeMethod(){
@@ -44,12 +40,7 @@ public class TestDoctorRole extends BaseRoleTest {
 
     @AfterMethod
     public void afterMethod() {
-        super.afterMethod();
-    }
-
-    @AfterClass
-    public void afterClass() {
-        super.afterClass();
+        dropdownLogin.logout();
     }
 
 }

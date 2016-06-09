@@ -8,10 +8,6 @@ import static org.testng.Assert.assertTrue;
 
 public class TestManagerRole extends BaseRoleTest {
 
-    @BeforeClass
-    public void beforeClass() {
-        super.beforeClass();
-    }
 
     @BeforeMethod
     public void beforeMethod() {
@@ -43,12 +39,7 @@ public class TestManagerRole extends BaseRoleTest {
 
     @AfterMethod
     public void afterMethod() {
-        super.afterMethod();
-    }
-
-    @AfterClass
-    public void afterClass() {
-        super.afterClass();
+        dropdownLogin.logout();
     }
 
 }
