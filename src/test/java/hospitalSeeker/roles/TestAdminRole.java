@@ -1,10 +1,38 @@
 package hospitalSeeker.roles;
 
-import hospitalSeeker.BaseTest;
+import hospitalSeeker.header.Header;
+import org.testng.annotations.*;
 
-public class TestAdminRole extends BaseTest{
+import static org.testng.Assert.assertTrue;
 
-    // TODO: 08.06.16 refactor TestRoles, make tests up-to-date
+public class TestAdminRole extends BaseRoleTest{
 
+    @BeforeClass
+    public void beforeClass() {
+        super.beforeClass();
+    }
+
+    @BeforeMethod
+    public void beforeMethod(){
+        browserAction.goTo(HOME_URL);
+        dropdownLogin.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD); // TODO: 09.06.16 loggingIn won't work now
+    }
+
+    @Test
+    public void testAccessToAdminPage() {
+        assertTrue(browserAction.isElementPresentByXpath(Header.adminButtonXPATH), "element isn't present!");
+        assertTrue(browserAction.isElementPresent(adminPage.dashboardTable), "element isn't present!");
+        assertTrue(browserAction.isElementPresent(adminPage.optionsButton), "element isn't present!");
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        super.afterMethod();
+    }
+
+    @AfterClass
+    public void afterClass() {
+        super.afterClass();
+    }
 
 }
