@@ -15,21 +15,21 @@ public class TestRegister extends BaseTest {
 	@BeforeMethod
 	public void beforeMethod(){
 		super.beforeMethod();
-		registerPage = PageFactory.initElements(browserAction.getDriver(), RegisterPage.class);
+		registerPage = PageFactory.initElements(browser.getDriver(), RegisterPage.class);
 	}
 
 	  @Test(priority=0)
 	    public void checkElementsRegisterPage() {
-	        browserAction.goTo(REGISTER_URL);
-	        Assert.assertTrue(browserAction.isElementPresent(registerPage.emailRegister));
-	        Assert.assertTrue(browserAction.isElementPresent(registerPage.passwordRegister));
-	        Assert.assertTrue(browserAction.isElementPresent(registerPage.enabledButton));
-	        Assert.assertTrue(browserAction.isElementPresent(registerPage.roleAdmin));
-	        Assert.assertTrue(browserAction.isElementPresent(registerPage.roleDoctor));
-	        Assert.assertTrue(browserAction.isElementPresent(registerPage.roleManager));
-	        Assert.assertTrue(browserAction.isElementPresent(registerPage.rolePatient));
-	        Assert.assertTrue(browserAction.isElementPresent(registerPage.registerButton));
-	        Assert.assertTrue(browserAction.isElementPresent(registerPage.cancelButton));
+	        browser.goTo(REGISTER_URL);
+	        Assert.assertTrue(browser.isElementPresent(registerPage.emailRegister));
+	        Assert.assertTrue(browser.isElementPresent(registerPage.passwordRegister));
+	        Assert.assertTrue(browser.isElementPresent(registerPage.enabledButton));
+	        Assert.assertTrue(browser.isElementPresent(registerPage.roleAdmin));
+	        Assert.assertTrue(browser.isElementPresent(registerPage.roleDoctor));
+	        Assert.assertTrue(browser.isElementPresent(registerPage.roleManager));
+	        Assert.assertTrue(browser.isElementPresent(registerPage.rolePatient));
+	        Assert.assertTrue(browser.isElementPresent(registerPage.registerButton));
+	        Assert.assertTrue(browser.isElementPresent(registerPage.cancelButton));
 	    }
 
 	 /*Correct registration
@@ -40,12 +40,12 @@ public class TestRegister extends BaseTest {
 	 * click on button"Register"*/
 	@Test(priority=0, dependsOnMethods={"checkElementsRegisterPage"})
 	public void testRegister(){
-		browserAction.goTo(REGISTER_URL);
+		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("user@gmail.com");
 		registerPage.passwordRegister.sendKeys("user");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertTrue(browserAction.containsText("registered successfully"));
+		Assert.assertTrue(browser.containsText("registered successfully"));
 	}
 	
 	 /*Correct work of button "Cancel"
@@ -56,12 +56,12 @@ public class TestRegister extends BaseTest {
 	 * click on button "Cancel"*/
 	@Test(priority=1, dependsOnMethods={"checkElementsRegisterPage"})
 	public void testRegisterButtonCancel(){
-		browserAction.goTo(REGISTER_URL);
+		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("user@gmail.com");
 		registerPage.passwordRegister.sendKeys("user");
 		registerPage.rolePatient.click();
 		registerPage.cancelButton.click();
-		Assert.assertEquals(browserAction.getCurrentUrl(),HOME_URL);
+		Assert.assertEquals(browser.getCurrentUrl(),HOME_URL);
 	}
 	
 	/*Registration by already existing e-mail
@@ -72,12 +72,12 @@ public class TestRegister extends BaseTest {
 	* click on button"Register" */
 	@Test(priority=2, dependsOnMethods={"checkElementsRegisterPage"})
 	public void testRegisterExistingEmail(){
-		browserAction.goTo(REGISTER_URL);
+		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("atqc@mail.ru");
 		registerPage.passwordRegister.sendKeys("atqc");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertTrue(browserAction.containsText("is already exist"));
+		Assert.assertTrue(browser.containsText("is already exist"));
 	}
 
 	/*Registration by username (not by e-mail format)
@@ -88,12 +88,12 @@ public class TestRegister extends BaseTest {
 	* click on button "Register"*/
 	@Test(priority=3, dependsOnMethods={"checkElementsRegisterPage"})
 	public void testRegisterByLogin(){
-		browserAction.goTo(REGISTER_URL);
+		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("atqc");
 		registerPage.passwordRegister.sendKeys("atqc");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertEquals(browserAction.getCurrentUrl(),REGISTER_URL);
+		Assert.assertEquals(browser.getCurrentUrl(),REGISTER_URL);
 	}
 
 	/*Registration by password including less than any 4 symbols
@@ -104,12 +104,12 @@ public class TestRegister extends BaseTest {
 	* click on button "Register"*/
 	@Test(priority=4, dependsOnMethods={"checkElementsRegisterPage"})
 	public void testRegisterInsecurePassword(){
-		browserAction.goTo(REGISTER_URL);
+		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("user@gmail.com");
 		registerPage.passwordRegister.sendKeys("usr");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertEquals(browserAction.getCurrentUrl(),REGISTER_URL);
+		Assert.assertEquals(browser.getCurrentUrl(),REGISTER_URL);
 	}
 
 	/*Registration without e-mail
@@ -120,12 +120,12 @@ public class TestRegister extends BaseTest {
 	 * click on button "Register"*/
 	@Test(priority=5, dependsOnMethods={"checkElementsRegisterPage"})
 	public void testRegisterWithoutEmail(){
-		browserAction.goTo(REGISTER_URL);
+		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("");
 		registerPage.passwordRegister.sendKeys("user");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertEquals(browserAction.getCurrentUrl(),REGISTER_URL);
+		Assert.assertEquals(browser.getCurrentUrl(),REGISTER_URL);
 	} 
 	
 	/*Registration without password
@@ -136,16 +136,16 @@ public class TestRegister extends BaseTest {
 	 * click on button "Register"*/
 	@Test(priority=6, dependsOnMethods={"checkElementsRegisterPage"})
 	public void testRegisterWithoutPassword(){
-		browserAction.goTo(REGISTER_URL);
+		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("user@gmail.com");
 		registerPage.passwordRegister.sendKeys("");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertEquals(browserAction.getCurrentUrl(),REGISTER_URL);
+		Assert.assertEquals(browser.getCurrentUrl(),REGISTER_URL);
 	} 
 
 	@AfterMethod
 	public void afterMethod(){
-		browserAction.getDriver().quit();
+		browser.getDriver().quit();
 	}
 }

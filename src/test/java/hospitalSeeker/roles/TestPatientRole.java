@@ -10,30 +10,30 @@ public class TestPatientRole extends BaseRoleTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        browserAction.goTo(HOME_URL);
+        browser.goTo(HOME_URL);
         dropdownLogin.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
     }
 
     @Test
     public void testAccessDeniedToAdminDashboardForPatients() {
-        assertFalse(browserAction.isElementPresent(Header.adminButtonByText), "element is present");
-        assertFalse(browserAction.isElementPresent(adminPage.dashboardTable), "element is present");
-        browserAction.goTo(ADMIN_DASHBOARD_URL);
-        assertTrue(browserAction.containsText("not authorized to access"), "access not denied");
+        assertFalse(browser.isElementPresent(Header.adminButtonByText), "element is present");
+        assertFalse(browser.isElementPresent(adminPage.dashboardTable), "element is present");
+        browser.goTo(ADMIN_DASHBOARD_URL);
+        assertTrue(browser.containsText("not authorized to access"), "access not denied");
     }
 
     @Test
     public void testAccessDeniedToAddingNewHospitalForPatients() {
-        assertFalse(browserAction.isElementPresent(adminPage.optionsButton), "element is present");
-        browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
-        assertTrue(browserAction.containsText("not authorized to access"), "access not denied");
+        assertFalse(browser.isElementPresent(adminPage.optionsButton), "element is present");
+        browser.goTo(ADDING_NEW_HOSPITAL_URL);
+        assertTrue(browser.containsText("not authorized to access"), "access not denied");
     }
 
     @Test
     public void testAccessDeniedToPatientsListForPatient() {
-        assertFalse(browserAction.isElementPresent(Header.patientsButtonByText), "element is present");
-        browserAction.goTo(PATIENTS_LIST_URL);
-        assertTrue(browserAction.containsText("Log in"), "access not denied");
+        assertFalse(browser.isElementPresent(Header.patientsButtonByText), "element is present");
+        browser.goTo(PATIENTS_LIST_URL);
+        assertTrue(browser.containsText("Log in"), "access not denied");
     }
 
     @AfterMethod

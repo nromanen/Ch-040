@@ -20,8 +20,6 @@ public class BrowserWrapper {
         return driver;
     }
 
-    // TODO: 08.06.16 change sendKeys, click etc.
-    
     public void goTo(String url) {
         driver.get(url);
     }

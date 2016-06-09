@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
-    public BrowserWrapper browserAction;
+    public BrowserWrapper browser;
     public static final String HOME_URL = "localhost:8080/HospitalSeeker/";
     public static final String DOCTOR_PAGE_URL = HOME_URL.concat("hospital/1/department/1");
     public static final String ADMIN_DASHBOARD_URL = HOME_URL.concat("admin/users?status=all");
@@ -33,9 +33,9 @@ public class BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        browserAction = new BrowserWrapper(new FirefoxDriver());
+        browser = new BrowserWrapper(new FirefoxDriver());
         // TODO: 09.06.16 wait until???
-        browserAction.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        browser.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
 }

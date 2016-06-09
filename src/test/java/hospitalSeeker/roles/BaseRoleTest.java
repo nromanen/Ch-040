@@ -17,14 +17,14 @@ public class BaseRoleTest extends BaseTest {
     @BeforeClass
     public void beforeClass() {
         super.beforeMethod();
-        dropdownLogin = PageFactory.initElements(browserAction.getDriver(), DropdownLogin.class);
-        adminPage = PageFactory.initElements(browserAction.getDriver(), AdminPage.class);
-        header = PageFactory.initElements(browserAction.getDriver(), Header.class);
+        dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
+        adminPage = PageFactory.initElements(browser.getDriver(), AdminPage.class);
+        header = PageFactory.initElements(browser.getDriver(), Header.class);
     }
 
     @AfterClass
     public void afterClass() {
-        browserAction.getDriver().quit();
+        browser.getDriver().quit();
     }
 
 }

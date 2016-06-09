@@ -20,8 +20,8 @@ public class TestValidateHospital extends BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
-        validateHospital = PageFactory.initElements(browserAction.getDriver(), ValidateHospital.class);
-        newHospital = PageFactory.initElements(browserAction.getDriver(), NewHospital.class);
+        validateHospital = PageFactory.initElements(browser.getDriver(), ValidateHospital.class);
+        newHospital = PageFactory.initElements(browser.getDriver(), NewHospital.class);
     }
     /*
     *<p>
@@ -43,13 +43,13 @@ public class TestValidateHospital extends BaseTest {
     @Test(priority = 0)
     public void isElementsPresent() {
         testLogin();
-        browserAction.goTo(HOME_URL);
-        browserAction.goTo(VALIDATE_URL);
-        assertTrue(browserAction.isElementPresent(validateHospital.googleApi), "Dude, Google Api is not present");
-        assertTrue(browserAction.isElementPresent(validateHospital.validateButton), "Button for validate hospital is not present");
+        browser.goTo(HOME_URL);
+        browser.goTo(VALIDATE_URL);
+        assertTrue(browser.isElementPresent(validateHospital.googleApi), "Dude, Google Api is not present");
+        assertTrue(browser.isElementPresent(validateHospital.validateButton), "Button for validate hospital is not present");
         validateHospital.addValidateHospitalClick();
-        browserAction.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-        assertTrue(browserAction.isElementPresent(validateHospital.addValidateHospital), "Button for addvalidate hospital is not present");
+        browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        assertTrue(browser.isElementPresent(validateHospital.addValidateHospital), "Button for addvalidate hospital is not present");
     }
     /*
     *<p>
@@ -64,7 +64,7 @@ public class TestValidateHospital extends BaseTest {
      */
     @Test(dependsOnMethods = "isElementsPresent")
     public void testLogin() {
-        browserAction.goTo(HOME_URL);
+        browser.goTo(HOME_URL);
         newHospital.logInAction(ADMIN_LOGIN, ADMIN_PASSWORD);
     }
     /*
@@ -83,7 +83,7 @@ public class TestValidateHospital extends BaseTest {
     @Test(dependsOnMethods = "isElementsPresent")
     public void validateButtonClick() {
         testLogin();
-        browserAction.goTo(VALIDATE_URL);
+        browser.goTo(VALIDATE_URL);
         validateHospital.validateButtonClick();
     }
     /*
@@ -105,9 +105,9 @@ public class TestValidateHospital extends BaseTest {
     @Test(dependsOnMethods = {"isElementsPresent","validateButtonClick"})
     public void addValidateHospital(){
         testLogin();
-        browserAction.goTo(VALIDATE_URL);
+        browser.goTo(VALIDATE_URL);
         validateHospital.validateButtonClick();
-        browserAction.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         validateHospital.addValidateHospitalClick();
     }
     /*
@@ -131,15 +131,15 @@ public class TestValidateHospital extends BaseTest {
     @Test(dependsOnMethods = "addValidateHospital")
     public void  resirectToOtheUrl(){
         testLogin();
-        browserAction.goTo(VALIDATE_URL);
+        browser.goTo(VALIDATE_URL);
         validateHospital.validateButtonClick();
-        assertTrue(browserAction.isElementPresent(validateHospital.addValidateHospital));
+        assertTrue(browser.isElementPresent(validateHospital.addValidateHospital));
         validateHospital.addValidateHospitalClick();
-        browserAction.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-       assertEquals(false, (browserAction.getCurrentUrl() == VALIDATE_URL));
+        browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+       assertEquals(false, (browser.getCurrentUrl() == VALIDATE_URL));
     }
     @AfterMethod
     public void afterMethod() {
-        browserAction.getDriver().quit();
+        browser.getDriver().quit();
     }
 }

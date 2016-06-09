@@ -14,13 +14,13 @@ public class TestDoctorPage extends BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
-        dropdownLogin = PageFactory.initElements(browserAction.getDriver(), DropdownLogin.class);
-        doctorPage = PageFactory.initElements(browserAction.getDriver(), DoctorPage.class);
+        dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
+        doctorPage = PageFactory.initElements(browser.getDriver(), DoctorPage.class);
     }
 
     @Test
     public void testLogin() {
-        browserAction.goTo(DOCTOR_PAGE_URL);
+        browser.goTo(DOCTOR_PAGE_URL);
         dropdownLogin.dropdownLoginButton.click();
         dropdownLogin.dropdownEmailField.sendKeys("admin@admin.com");
         dropdownLogin.dropdownPasswordField.sendKeys("12345");
@@ -30,22 +30,22 @@ public class TestDoctorPage extends BaseTest {
 
     @Test
     public void testDoctorLinks() {
-        browserAction.goTo(DOCTOR_PAGE_URL);
+        browser.goTo(DOCTOR_PAGE_URL);
 
         doctorPage.GregoryHouseLink.click();
-        browserAction.browserBack();
+        browser.browserBack();
         doctorPage.LisaCuddyLink.click();
-        browserAction.browserBack();
+        browser.browserBack();
         doctorPage.EricForemanLink.click();
-        browserAction.browserBack();
+        browser.browserBack();
         doctorPage.RemyHeadleyLink.click();
-        browserAction.sleep();
+        browser.sleep();
     }
 
 
     @AfterMethod
     public void afterMethod() {
-        browserAction.getDriver().quit();
+        browser.getDriver().quit();
     }
 
 }

@@ -10,29 +10,29 @@ public class TestUnregisteredUser extends BaseRoleTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        browserAction.goTo(HOME_URL);
+        browser.goTo(HOME_URL);
     }
 
     @Test
     public void testAccessDeniedToAdminDashboard() {
-        assertFalse(browserAction.isElementPresent(Header.adminButtonByText), "element is present!");
-        assertFalse(browserAction.isElementPresent(adminPage.dashboardTable), "element is present!");
-        browserAction.goTo(ADMIN_DASHBOARD_URL);
-        assertTrue(browserAction.containsText("Please Log In"), "access not denied!");
+        assertFalse(browser.isElementPresent(Header.adminButtonByText), "element is present!");
+        assertFalse(browser.isElementPresent(adminPage.dashboardTable), "element is present!");
+        browser.goTo(ADMIN_DASHBOARD_URL);
+        assertTrue(browser.containsText("Please Log In"), "access not denied!");
     }
 
     @Test
     public void testAccessDeniedToAddingNewHospital() {
-        assertFalse(browserAction.isElementPresent(adminPage.optionsButton), "element is present!");
-        browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
-        assertTrue(browserAction.containsText("Please Log In"), "access not denied!");
+        assertFalse(browser.isElementPresent(adminPage.optionsButton), "element is present!");
+        browser.goTo(ADDING_NEW_HOSPITAL_URL);
+        assertTrue(browser.containsText("Please Log In"), "access not denied!");
     }
 
     @Test
     public void testAccessDeniedToPatientsList() {
-        assertFalse(browserAction.isElementPresent(Header.patientsButtonByXpath), "element is present!");
-        browserAction.goTo(PATIENTS_LIST_URL);
-        assertTrue(browserAction.containsText("Please Log In"), "access not denied!");
+        assertFalse(browser.isElementPresent(Header.patientsButtonByXpath), "element is present!");
+        browser.goTo(PATIENTS_LIST_URL);
+        assertTrue(browser.containsText("Please Log In"), "access not denied!");
     }
 
 }

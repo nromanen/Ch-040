@@ -16,7 +16,7 @@ public class TestNewHospital extends BaseTest{
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
-        newHospital = PageFactory.initElements(browserAction.getDriver(), NewHospital.class);
+        newHospital = PageFactory.initElements(browser.getDriver(), NewHospital.class);
     }
     /*
     *<p>
@@ -41,15 +41,15 @@ public class TestNewHospital extends BaseTest{
     @Test(priority = 0)
     public void isElementPresent(){
         testLogin();
-        browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
+        browser.goTo(ADDING_NEW_HOSPITAL_URL);
 
-        assertTrue(browserAction.isElementPresent(newHospital.googleMap),"element googleMap isn't present");
-        assertTrue(browserAction.isElementPresent(newHospital.addresField),"element addres isn't present");
-        assertTrue(browserAction.isElementPresent(newHospital.descriptionField),"input element description isn't present");
-        assertTrue(browserAction.isElementPresent(newHospital.nameField),"input element description isn't present");
-        assertTrue(browserAction.isElementPresent(newHospital.longitudeField),"element isn't present");
-        assertTrue(browserAction.isElementPresent(newHospital.latitudeField),"element isn't present");
-        assertTrue(browserAction.isElementPresent(newHospital.submitButton),"element isn't present");
+        assertTrue(browser.isElementPresent(newHospital.googleMap),"element googleMap isn't present");
+        assertTrue(browser.isElementPresent(newHospital.addresField),"element addres isn't present");
+        assertTrue(browser.isElementPresent(newHospital.descriptionField),"input element description isn't present");
+        assertTrue(browser.isElementPresent(newHospital.nameField),"input element description isn't present");
+        assertTrue(browser.isElementPresent(newHospital.longitudeField),"element isn't present");
+        assertTrue(browser.isElementPresent(newHospital.latitudeField),"element isn't present");
+        assertTrue(browser.isElementPresent(newHospital.submitButton),"element isn't present");
     }
     /*
     *<p>
@@ -62,7 +62,7 @@ public class TestNewHospital extends BaseTest{
      */
     @Test(dependsOnMethods = "isElementPresent")
     public void testLogin(){
-        browserAction.goTo(HOME_URL);
+        browser.goTo(HOME_URL);
         newHospital.logInAction(ADMIN_LOGIN,ADMIN_PASSWORD);
     }
     /*
@@ -80,7 +80,7 @@ public class TestNewHospital extends BaseTest{
     @Test(dependsOnMethods = {"isElementPresent","testClick"})
     public void validationError(){
         testLogin();
-        browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
+        browser.goTo(ADDING_NEW_HOSPITAL_URL);
         newHospital.submitButton.click();
         assertTrue(newHospital.errorField.isDisplayed(),"element isn't present");
     }
@@ -99,7 +99,7 @@ public class TestNewHospital extends BaseTest{
     @Test(dependsOnMethods = "isElementPresent")
     public void testClick(){
         testLogin();
-        browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
+        browser.goTo(ADDING_NEW_HOSPITAL_URL);
         newHospital.submitButton.click();
     }
     /*
@@ -129,21 +129,21 @@ public class TestNewHospital extends BaseTest{
     @Test(dependsOnMethods = "isElementPresent")
     public void addNewHospital(){
         testLogin();
-        browserAction.goTo(ADDING_NEW_HOSPITAL_URL);
+        browser.goTo(ADDING_NEW_HOSPITAL_URL);
         newHospital.inputAddress("Chernivtsi");
-        browserAction.getDriver().manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
+        browser.getDriver().manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
         newHospital.inputName("OlegHospital");
         newHospital.inputDecsription("ololooloololol");
         newHospital.inputLon("180");
         newHospital.inputLat("180");
         newHospital.imagePathButton.click();
         newHospital.submitButton.click();
-        browserAction.getDriver().manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
-        assertTrue(browserAction.isElementPresent(newHospital.confirmBox),"confirm box not displayed");
+        browser.getDriver().manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
+        assertTrue(browser.isElementPresent(newHospital.confirmBox),"confirm box not displayed");
     }
     @AfterMethod
     public void afterMethod() {
-        browserAction.getDriver().quit();
+        browser.getDriver().quit();
 }
 
 }

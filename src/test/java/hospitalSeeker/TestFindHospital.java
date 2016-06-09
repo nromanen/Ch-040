@@ -15,7 +15,7 @@ public class TestFindHospital extends BaseTest{
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
-        findHospital = PageFactory.initElements(browserAction.getDriver(), FindHospital.class);
+        findHospital = PageFactory.initElements(browser.getDriver(), FindHospital.class);
     }
     /*
     *<p>
@@ -29,9 +29,9 @@ public class TestFindHospital extends BaseTest{
      */
     @Test
     public void isElementsPresents(){
-        browserAction.goTo(FIND_URL);
-        assertTrue(browserAction.isElementPresent(findHospital.enterAdress),"Input Box for Address not present lalka");
-        assertTrue(browserAction.isElementPresent(findHospital.googleMap),"Input Box for Address not present lalka");
+        browser.goTo(FIND_URL);
+        assertTrue(browser.isElementPresent(findHospital.enterAdress),"Input Box for Address not present lalka");
+        assertTrue(browser.isElementPresent(findHospital.googleMap),"Input Box for Address not present lalka");
     }
     /*
         *<p>
@@ -44,11 +44,11 @@ public class TestFindHospital extends BaseTest{
          */
     @Test(dependsOnMethods = "isElementsPresents")
     public void test() {
-        browserAction.goTo(FIND_URL);
+        browser.goTo(FIND_URL);
         findHospital.findInAction("Chernivtsi");
     }
     @AfterMethod
     public void afterMethod() {
-        browserAction.getDriver().quit();
+        browser.getDriver().quit();
     }
 }

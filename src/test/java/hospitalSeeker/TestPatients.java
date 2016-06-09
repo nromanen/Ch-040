@@ -16,11 +16,11 @@ public class TestPatients extends BaseTest{
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
-        patientsPage = PageFactory.initElements(browserAction.getDriver(), PatientsPage.class);
-        cardPage = PageFactory.initElements(browserAction.getDriver(), CardPage.class);
-        newRecordPage = PageFactory.initElements(browserAction.getDriver(), NewRecordPage.class);
-        loginPage = PageFactory.initElements(browserAction.getDriver(), LoginPage.class);
-        dropdownLogin = PageFactory.initElements(browserAction.getDriver(), DropdownLogin.class);
+        patientsPage = PageFactory.initElements(browser.getDriver(), PatientsPage.class);
+        cardPage = PageFactory.initElements(browser.getDriver(), CardPage.class);
+        newRecordPage = PageFactory.initElements(browser.getDriver(), NewRecordPage.class);
+        loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
+        dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
     }
     
  /* Editing Record by Doctor
@@ -37,9 +37,9 @@ public class TestPatients extends BaseTest{
     
    @Test 
    public void testIfDoctorCanEditOwnRecord(){
-    	 browserAction.goTo(HOME_URL);
+    	 browser.goTo(HOME_URL);
     	 dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-    	 browserAction.goTo(PATIENTS_LIST_URL);
+    	 browser.goTo(PATIENTS_LIST_URL);
     	 
     	 patientsPage.tutu.click();
     	 cardPage.dateRecordButton.click();
@@ -79,9 +79,9 @@ public class TestPatients extends BaseTest{
    
     @Test 
     public void testIfDoctorCanMakeNewRecord(){
-    	browserAction.goTo(HOME_URL);
+    	browser.goTo(HOME_URL);
     	dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-   	 	browserAction.goTo(PATIENTS_LIST_URL);
+   	 	browser.goTo(PATIENTS_LIST_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
    	 	
@@ -111,9 +111,9 @@ public class TestPatients extends BaseTest{
     
     @Test 
    	public void testEmptyTextAreasInCardPage(){
-    	browserAction.goTo(HOME_URL);
+    	browser.goTo(HOME_URL);
     	dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-   	 	browserAction.goTo(PATIENTS_LIST_URL);
+   	 	browser.goTo(PATIENTS_LIST_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
    	 	
@@ -139,9 +139,9 @@ public class TestPatients extends BaseTest{
     
     @Test 
     public void checkElementsInPatientsPage() {
-    	browserAction.goTo(HOME_URL);
+    	browser.goTo(HOME_URL);
     	dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-        browserAction.goTo(PATIENTS_LIST_URL);
+        browser.goTo(PATIENTS_LIST_URL);
     	Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
     	Boolean isPresent2 = patientsPage.tutu.isDisplayed();
     	Boolean isPresent4 = patientsPage.nadja_cvmailru.isDisplayed();
@@ -166,9 +166,9 @@ public class TestPatients extends BaseTest{
     
     @Test ()
     public void testThatDoctorCantEditRecordAfter00 (){
-    	 browserAction.goTo(HOME_URL);
+    	 browser.goTo(HOME_URL);
     	 dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-   	 	 browserAction.goTo(PATIENTS_LIST_URL);
+   	 	 browser.goTo(PATIENTS_LIST_URL);
    	 
    	   	 patientsPage.tutu.click();
 	     cardPage.dateRecordButton.click();
@@ -190,6 +190,6 @@ public class TestPatients extends BaseTest{
 
     @AfterMethod
     public void afterMethod() {
-        browserAction.driver.quit();
+        browser.driver.quit();
     }
 }
