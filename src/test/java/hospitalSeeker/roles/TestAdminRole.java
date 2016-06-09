@@ -16,8 +16,7 @@ public class TestAdminRole extends BaseRoleTest{
     @Test
     public void testAccessToAdminPage() {
         assertTrue(browser.isElementPresentByXpath(Header.adminButtonXPATH), "element isn't present!");
-        assertTrue(browser.isElementPresent(adminPage.dashboardTable), "element isn't present!");
-        assertTrue(browser.isElementPresent(adminPage.optionsButton), "element isn't present!");
+        assertTrue(browser.isElementPresent(adminPage.allUsersTable), "element isn't present!");
     }
 
     @AfterMethod

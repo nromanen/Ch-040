@@ -18,14 +18,14 @@ public class TestManagerRole extends BaseRoleTest {
     @Test
     public void testAccessDeniedToAdminDashboardForManagers() {
         assertFalse(browser.isElementPresent(Header.adminButtonByText), "element is present!");
-        assertFalse(browser.isElementPresent(adminPage.dashboardTable), "element is present!");
+        assertFalse(browser.isElementPresent(adminPage.allUsersTable), "element is present!");
         browser.goTo(ADMIN_DASHBOARD_URL);
         assertTrue(browser.containsText("not authorized to access"), "access not denied");
     }
 
     @Test
     public void testAccessDeniedToAddingNewHospitalForManagers() {
-        assertFalse(browser.isElementPresent(adminPage.optionsButton), "element is present");
+        assertFalse(browser.isElementPresent(adminPage.allUsersTable), "element is present");
         browser.goTo(ADDING_NEW_HOSPITAL_URL);
         assertTrue(browser.containsText("not authorized to access"), "access not denied");
     }
