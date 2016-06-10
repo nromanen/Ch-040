@@ -1,7 +1,8 @@
 package hospitalSeeker.roles;
 
-import hospitalSeeker.header.Header;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
@@ -10,12 +11,12 @@ public class TestAdminRole extends BaseRoleTest{
     @BeforeMethod
     public void beforeMethod(){
         browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD); // TODO: 09.06.16 loggingIn won't work now
+        dropdownLogin.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
     }
 
     @Test
     public void testAccessToAdminPage() {
-        assertTrue(browser.isElementPresentByXpath(Header.adminButtonXPATH), "element isn't present!");
+        assertTrue(browser.isElementPresent(header.actionsButton), "element isn't present!");
         assertTrue(browser.isElementPresent(adminPage.allUsersTable), "element isn't present!");
     }
 
