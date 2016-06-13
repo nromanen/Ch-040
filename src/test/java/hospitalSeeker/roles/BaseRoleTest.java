@@ -5,7 +5,6 @@ import hospitalSeeker.BaseTest;
 import hospitalSeeker.LoginPage;
 import hospitalSeeker.header.Header;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 public class BaseRoleTest extends BaseTest {
@@ -23,11 +22,6 @@ public class BaseRoleTest extends BaseTest {
 //        header = header.init(browser.getDriver());
         header = PageFactory.initElements(browser.getDriver(), Header.class);
 //        browser.waitUntilElementVisible(header.homeButton);
-    }
-
-    @AfterClass
-    public void afterClass() {
-        browser.getDriver().quit();
     }
 
 }

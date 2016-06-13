@@ -11,8 +11,8 @@ public class Header {
     public static final String FIND_BUTTON_TEXT = "Find";
     public static final String LOGIN_BUTTON_TEXT = "Login";
     public static final String ACTIONS_BUTTON_TEXT = "Actions";
-    public static final String USER_DROPDOWN_BUTTON_CLASS = "open";
-    public static final String LOG_OUT_BUTTON_CLASS = "glyphicon.glyphicon-log-out";
+    public static final String USER_DROPDOWN_BUTTON_XPATH = "//*[@id=\"bs-example-navbar-collapse-1\"]/ul/li[7]/a";
+    public static final String LOG_OUT_BUTTON_XPATH = "//*[@id=\"dropdawn\"]/li[2]/a/text()";
     public static final String CARD_BUTTON_TEXT = "Card";
     public static final String APPOINTMENTS_BUTTON_TEXT = "my appointments";
     public static final String PATIENTS_BUTTON_TEXT = "Patients";
@@ -31,10 +31,10 @@ public class Header {
     @FindBy(linkText = ACTIONS_BUTTON_TEXT)
     public WebElement actionsButton;
 
-    @FindBy(className = USER_DROPDOWN_BUTTON_CLASS)
+    @FindBy(xpath = USER_DROPDOWN_BUTTON_XPATH)
     public WebElement userDropdownButton;
 
-    @FindBy(className = LOG_OUT_BUTTON_CLASS)
+    @FindBy(xpath = LOG_OUT_BUTTON_XPATH) //terrifyingly bad thing!!!
     public WebElement logoutButton;
 
     @FindBy(className = CARD_BUTTON_TEXT)

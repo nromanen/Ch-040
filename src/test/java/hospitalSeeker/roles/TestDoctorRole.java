@@ -39,7 +39,7 @@ public class TestDoctorRole extends BaseRoleTest {
 
     @AfterMethod
     public void afterMethod() {
-        header.logoutButton.click();
+        browser.goTo(HOME_URL.concat("logout"));
     }
 
 }

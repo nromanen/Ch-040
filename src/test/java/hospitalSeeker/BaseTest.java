@@ -4,6 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.MarionetteDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
@@ -25,8 +26,8 @@ public class BaseTest {
     public static final String ADMIN_PASSWORD = "1111";
     public static final String MANAGER_LOGIN = "manager@com.com";
     public static final String MANAGER_PASSWORD = "manager";
-    public static final String DOCTOR_LOGIN = "doctor@com.com";
-    public static final String DOCTOR_PASSWORD = "doctor";
+    public static final String DOCTOR_LOGIN = "doctor.gh@hospitals.ua";
+    public static final String DOCTOR_PASSWORD = "1111";
     public static final String PATIENT_LOGIN = "tutu@ukr.net";
     public static final String PATIENT_PASSWORD = "tutu2016";
 
@@ -61,12 +62,12 @@ public class BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        firefoxLinux();
+        chromeLinux();
     }
 
-//    @AfterMethod
-//    public void afterMethod() {
-//        browser.getDriver().quit();
-//    }
+    @AfterClass
+    public void afterClass() {
+        browser.getDriver().quit();
+    }
 
 }
