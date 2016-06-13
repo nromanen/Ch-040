@@ -20,6 +20,11 @@ public class TestLogin extends BaseTest {
 		loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
 	}
 
+	@Test
+	public void googleCheck() {
+		browser.goTo("http://www.google.com");
+	}
+
 	@Test(priority = 0)
 	public void checkElementsLoginPage() {
 		browser.goTo(LOGIN_URL);

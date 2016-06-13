@@ -2,6 +2,9 @@ package hospitalSeeker;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.MarionetteDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
@@ -30,7 +33,13 @@ public class BaseTest {
 
 
     public void firefox() {
-        browser = new BrowserWrapper(new FirefoxDriver());
+        System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver.exe");
+        browser = new BrowserWrapper(new MarionetteDriver());
+    }
+
+    public void firefoxLinux() {
+        System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver");
+        browser = new BrowserWrapper(new MarionetteDriver());
     }
 
     public void chrome() {
@@ -38,9 +47,22 @@ public class BaseTest {
         browser = new BrowserWrapper(new ChromeDriver());
     }
 
+    public void chromeLinux() {
+        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver");
+        browser = new BrowserWrapper(new ChromeDriver());
+    }
+
+    public void internetExplorer() {
+        DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+        caps.setCapability("ignoreZoomSetting", true);
+        caps.setCapability("nativeEvents",false);
+        System.setProperty("webdriver.ie.driver", "src\\main\\resources\\IEDriver.exe");
+        browser = new BrowserWrapper(new InternetExplorerDriver(caps));
+    }
+
     @BeforeMethod
     public void beforeMethod() {
-        chrome();
+        firefoxLinux();
     }
 
 //    @AfterMethod
