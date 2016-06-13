@@ -1,5 +1,6 @@
 package hospitalSeeker;
 
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeMethod;
 
@@ -30,10 +31,18 @@ public class BaseTest {
     public static final String PATIENT_PASSWORD = "tutu2016";
 
 
+    public void firefox() {
+        browser = new BrowserWrapper(new FirefoxDriver());
+    }
+
+    public void chrome() {
+        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        browser = new BrowserWrapper(new ChromeDriver());
+    }
 
     @BeforeMethod
     public void beforeMethod() {
-        browser = new BrowserWrapper(new FirefoxDriver());
+        chrome();
     }
 
 }
