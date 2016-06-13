@@ -1,7 +1,6 @@
 package hospitalSeeker;
 
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.MarionetteDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -38,7 +37,7 @@ public class BaseTest {
     }
 
     public void firefoxLinux() {
-        System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver");
+        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
         browser = new BrowserWrapper(new MarionetteDriver());
     }
 
@@ -48,7 +47,7 @@ public class BaseTest {
     }
 
     public void chromeLinux() {
-        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         browser = new BrowserWrapper(new ChromeDriver());
     }
 
@@ -62,7 +61,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        firefoxLinux();
+        chrome();
     }
 
 //    @AfterMethod
