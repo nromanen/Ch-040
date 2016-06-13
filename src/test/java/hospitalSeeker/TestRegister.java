@@ -38,7 +38,7 @@ public class TestRegister extends BaseTest {
 	 * input password
 	 * choose any role
 	 * click on button"Register"*/
-	@Test(priority=0, dependsOnMethods={"checkElementsRegisterPage"})
+	@Test(priority = 1)
 	public void testRegister(){
 		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("user@gmail.com");
@@ -54,7 +54,7 @@ public class TestRegister extends BaseTest {
 	 * input password
 	 * choose any role
 	 * click on button "Cancel"*/
-	@Test(priority=1, dependsOnMethods={"checkElementsRegisterPage"})
+	@Test(priority = 2)
 	public void testRegisterButtonCancel(){
 		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("user@gmail.com");
@@ -70,7 +70,7 @@ public class TestRegister extends BaseTest {
 	* input password
 	* choose any role
 	* click on button"Register" */
-	@Test(priority=2, dependsOnMethods={"checkElementsRegisterPage"})
+	@Test(priority = 3)
 	public void testRegisterExistingEmail(){
 		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("atqc@mail.ru");
@@ -86,7 +86,7 @@ public class TestRegister extends BaseTest {
 	* input password
 	* choose any role
 	* click on button "Register"*/
-	@Test(priority=3, dependsOnMethods={"checkElementsRegisterPage"})
+	@Test(priority = 4)
 	public void testRegisterByLogin(){
 		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("atqc");
@@ -102,7 +102,7 @@ public class TestRegister extends BaseTest {
 	* input password including less than any 4 symbols
 	* choose any role
 	* click on button "Register"*/
-	@Test(priority=4, dependsOnMethods={"checkElementsRegisterPage"})
+	@Test(priority = 5)
 	public void testRegisterInsecurePassword(){
 		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("user@gmail.com");
@@ -118,7 +118,7 @@ public class TestRegister extends BaseTest {
 	 * input password
 	 * choose any role
 	 * click on button "Register"*/
-	@Test(priority=5, dependsOnMethods={"checkElementsRegisterPage"})
+	@Test(priority = 6)
 	public void testRegisterWithoutEmail(){
 		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("");
@@ -134,7 +134,7 @@ public class TestRegister extends BaseTest {
 	 * field for password keep empty
 	 * choose any role
 	 * click on button "Register"*/
-	@Test(priority=6, dependsOnMethods={"checkElementsRegisterPage"})
+	@Test(priority = 7)
 	public void testRegisterWithoutPassword(){
 		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("user@gmail.com");
