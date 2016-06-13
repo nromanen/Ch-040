@@ -5,10 +5,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class RegisterPage {
 	
-	@FindBy(xpath = "/html/body/section/div/div/div/div/form/div[1]/div/input")
+	@FindBy(id = "email")
 	public WebElement emailRegister;
 	
-	@FindBy(xpath = "/html/body/section/div/div/div/div/form/div[2]/div/input")
+	@FindBy(id = "password")
 	public WebElement passwordRegister;
 	
 	@FindBy(id = "enabled")

@@ -5,18 +5,21 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage {
 	
-	@FindBy(xpath = "/html/body/section/div/div/div/div/div/form/div[1]/input")
+	@FindBy(id = "email")
 	public WebElement emailLogin;
 	
-	@FindBy(xpath = "/html/body/section/div/div/div/div/div/form/div[2]/input")
+	@FindBy(id="password")
 	public WebElement passwordLogin;
 	
-	@FindBy(id = "rememberme")
+	@FindBy(xpath = "/html/body/section/div/div/div/div/div/form/fieldset/span/button")
 	public WebElement rememberMe;
 	
-	@FindBy(css = "input.btn.btn-block.btn-primary.btn-default")
+	@FindBy(linkText = "Forgot Password?")
+	public WebElement forgotPassword;
+	
+	@FindBy(css = "input.btn.btn-lg.btn-info.btn-block")
     public WebElement loginButton;
 	
-	@FindBy(css = "input.btn.btn-block.btn-default.btn-default")
-    public WebElement homeButton;
+	@FindBy(linkText = "Register")
+    public WebElement registerButton;
 }
