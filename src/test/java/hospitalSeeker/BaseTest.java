@@ -34,7 +34,6 @@ public class BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         browser = new BrowserWrapper(new FirefoxDriver());
-        // TODO: 09.06.16 wait until???
         browser.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
