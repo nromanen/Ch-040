@@ -12,6 +12,7 @@ public class TestDoctorRole extends BaseRoleTest {
     @BeforeMethod
     public void beforeMethod(){
         browser.goTo(HOME_URL);
+        browser.waitUntilElementVisible(header.homeButton);
         dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
     }
 

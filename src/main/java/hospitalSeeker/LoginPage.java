@@ -4,7 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage {
-	
+
+
 	@FindBy(id = "email")
 	public WebElement emailLogin;
 	
@@ -22,4 +23,5 @@ public class LoginPage {
 	
 	@FindBy(linkText = "Register")
     public WebElement registerButton;
+
 }

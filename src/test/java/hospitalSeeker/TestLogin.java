@@ -1,17 +1,18 @@
 package hospitalSeeker;
 
 import hospitalSeeker.header.DropdownLogin;
-import org.testng.annotations.Test;
+import hospitalSeeker.header.Header;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
 public class TestLogin extends BaseTest{
 	
 	LoginPage loginPage;
 	DropdownLogin dropdownLogin;
-	
+
 	@BeforeMethod
 	public void beforeMethod(){
 		super.beforeMethod();
@@ -26,7 +27,7 @@ public class TestLogin extends BaseTest{
 	        Assert.assertTrue(browser.isElementPresent(loginPage.passwordLogin));
 	        Assert.assertTrue(browser.isElementPresent(loginPage.rememberMe));
 	        Assert.assertTrue(browser.isElementPresent(loginPage.loginButton));
-	        Assert.assertTrue(browser.isElementPresent(loginPage.homeButton));
+//	        Assert.assertTrue(browser.isElementPresent(loginPage.homeButton));
 	    }
 	//
 	  
@@ -54,7 +55,7 @@ public class TestLogin extends BaseTest{
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
-		loginPage.homeButton.click();
+//		loginPage.homeButton.click();
 		Assert.assertEquals(browser.getCurrentUrl(),HOME_URL);
 	}
 	

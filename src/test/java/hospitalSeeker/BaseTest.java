@@ -3,8 +3,6 @@ package hospitalSeeker;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeMethod;
 
-import java.util.concurrent.TimeUnit;
-
 public class BaseTest {
 
     public BrowserWrapper browser;
@@ -35,5 +33,10 @@ public class BaseTest {
     public void beforeMethod() {
         browser = new BrowserWrapper(new FirefoxDriver());
     }
+
+//    @AfterMethod
+//    public void afterMethod() {
+//        browser.getDriver().quit();
+//    }
 
 }

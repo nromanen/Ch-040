@@ -1,7 +1,9 @@
 package hospitalSeeker.header;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class Header {
 
@@ -49,5 +51,11 @@ public class Header {
 
     @FindBy(className = MANAGE_BUTTON_TEXT)
     public WebElement manageButton;
+
+    public Header init(WebDriver driver) {
+        return PageFactory.initElements(driver, Header.class);
+
+//        wrapper.waitUntilElementVisible(homeButton);
+    }
 
 }
