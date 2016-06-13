@@ -15,22 +15,22 @@ public class TestUnregisteredUser extends BaseRoleTest {
 
     @Test
     public void testAccessDeniedToAdminDashboard() {
-        assertFalse(browser.isElementPresent(header.actionsButton), "element is present!");
-        assertFalse(browser.isElementPresent(adminPage.allUsersTable), "element is present!");
+        assertFalse(browser.isElementPresent(header.actionsButton), "actionsButton is present!");
+        assertFalse(browser.isElementPresent(adminPage.allUsersTable), "usersTable is present!");
         browser.goTo(ADMIN_DASHBOARD_URL);
         assertTrue(browser.containsText("Please Log In"), "access not denied!");
     }
 
     @Test
     public void testAccessDeniedToAddingNewHospital() {
-        assertFalse(browser.isElementPresent(adminPage.allUsersTable), "element is present!");
+        assertFalse(browser.isElementPresent(header.actionsButton), "actionsButton is present!");
         browser.goTo(ADDING_NEW_HOSPITAL_URL);
         assertTrue(browser.containsText("Please Log In"), "access not denied!");
     }
 
     @Test
     public void testAccessDeniedToPatientsList() {
-        assertFalse(browser.isElementPresent(header.actionsButton), "element is present!");
+        assertFalse(browser.isElementPresent(header.patientsButton), "patientsButton is present!");
         browser.goTo(PATIENTS_LIST_URL);
         assertTrue(browser.containsText("Please Log In"), "access not denied!");
     }

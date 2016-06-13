@@ -24,4 +24,9 @@ public class LoginPage {
 	@FindBy(linkText = "Register")
     public WebElement registerButton;
 
+	public void loggingIn(String email, String password) {
+		emailLogin.sendKeys(email);
+		passwordLogin.sendKeys(password);
+		loginButton.click();
+	}
 }

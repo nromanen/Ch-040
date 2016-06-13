@@ -11,9 +11,8 @@ public class TestDoctorRole extends BaseRoleTest {
 
     @BeforeMethod
     public void beforeMethod(){
-        browser.goTo(HOME_URL);
-        browser.waitUntilElementVisible(header.homeButton);
-        dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
     }
 
     @Test
@@ -26,21 +25,21 @@ public class TestDoctorRole extends BaseRoleTest {
 
     @Test
     public void testAccessDeniedToAddingNewHospitalForDoctors() {
-        assertFalse(browser.isElementPresent(adminPage.allUsersTable), "element is present");
+        assertFalse(browser.isElementPresent(header.actionsButton), "element is present");
         browser.goTo(ADDING_NEW_HOSPITAL_URL);
         assertTrue(browser.containsText("not authorized to access"), "access not denied");
     }
 
     @Test
     public void testAccessDeniedToPatientsListForDoctor() {
-        assertTrue(browser.isElementPresent(header.actionsButton), "element is present");
+        assertTrue(browser.isElementPresent(header.patientsButton), "element is present");
         browser.goTo(PATIENTS_LIST_URL);
         assertTrue(browser.containsText("Patient"), "access denied");
     }
 
     @AfterMethod
     public void afterMethod() {
-        dropdownLogin.logout();
+        header.logoutButton.click();
     }
 
 }

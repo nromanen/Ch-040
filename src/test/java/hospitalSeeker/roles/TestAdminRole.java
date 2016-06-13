@@ -10,8 +10,8 @@ public class TestAdminRole extends BaseRoleTest{
 
     @BeforeMethod
     public void beforeMethod(){
-        browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
     }
 
     @Test
@@ -22,7 +22,7 @@ public class TestAdminRole extends BaseRoleTest{
 
     @AfterMethod
     public void afterMethod() {
-        dropdownLogin.logout();
+        header.logoutButton.click();
     }
 
 }

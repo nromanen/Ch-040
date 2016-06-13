@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 public class BaseTest {
 
     public BrowserWrapper browser;
-    public static final String HOME_URL = "localhost:8080/HospitalSeeker/";
+    public static final String HOME_URL = "http://localhost:8080/HospitalSeeker/";
     public static final String DOCTOR_PAGE_URL = HOME_URL.concat("hospital/1/department/1");
     public static final String ADMIN_DASHBOARD_URL = HOME_URL.concat("admin/users?status=all");
     public static final String ADDING_NEW_HOSPITAL_URL = HOME_URL.concat("admin/map/new");
@@ -61,7 +61,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        chrome();
+        firefoxLinux();
     }
 
 //    @AfterMethod
