@@ -40,7 +40,7 @@ public class TestLogin extends BaseTest {
 	 * Correct log in go to login page input e-mail input password click on
 	 * button "Log in"
 	 */
-	@Test(priority = 0, dependsOnMethods = { "checkElementsLoginPage" })
+	@Test(priority = 1)
 	public void testLogin() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
@@ -53,7 +53,7 @@ public class TestLogin extends BaseTest {
 	 * Correct work of homeButton go to login page input e-mail input password
 	 * click on button "Home"
 	 */
-	@Test(priority = 1, dependsOnMethods = { "checkElementsLoginPage" })
+	@Test(priority = 2)
 	public void testLoginHomeButton() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
@@ -66,7 +66,7 @@ public class TestLogin extends BaseTest {
 	 * Login without e-mail go to login page field for e-mail keep empty input
 	 * password click on button "Log in"
 	 */
-	@Test(priority = 2, dependsOnMethods = { "checkElementsLoginPage" })
+	@Test(priority = 3)
 	public void testLoginWithoutEmail() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("");
@@ -79,7 +79,7 @@ public class TestLogin extends BaseTest {
 	 * Login without password go to login page input e-mail field for password
 	 * keep empty click on button "Log in"
 	 */
-	@Test(priority = 3, dependsOnMethods = { "checkElementsLoginPage" })
+	@Test(priority = 4)
 	public void testLoginWithoutPassword() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
@@ -92,7 +92,7 @@ public class TestLogin extends BaseTest {
 	 * Login by unregistered e-mail go to login page input unregistered e-mail
 	 * input password click on button "Log in"
 	 */
-	@Test(priority = 4, dependsOnMethods = { "checkElementsLoginPage" })
+	@Test(priority = 5)
 	public void testLoginIncorrectEmail() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("attqc@mail.ru");
@@ -105,7 +105,7 @@ public class TestLogin extends BaseTest {
 	 * Login by incorrect password go to login page input registered e-mail
 	 * input incorrect password click on button "Log in"
 	 */
-	@Test(priority = 5, dependsOnMethods = { "checkElementsLoginPage" })
+	@Test(priority = 6)
 	public void testLoginIncorrectPassword() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
