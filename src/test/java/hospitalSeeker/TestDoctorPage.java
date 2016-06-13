@@ -39,7 +39,6 @@ public class TestDoctorPage extends BaseTest {
         doctorPage.EricForemanLink.click();
         browser.browserBack();
         doctorPage.RemyHeadleyLink.click();
-        browser.sleep();
     }
 
 

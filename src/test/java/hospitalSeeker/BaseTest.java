@@ -34,7 +34,6 @@ public class BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         browser = new BrowserWrapper(new FirefoxDriver());
-        browser.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
 }
