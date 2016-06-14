@@ -1,7 +1,10 @@
 package hospitalSeeker;
 
+import hospitalSeeker.header.HeaderPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class RegisterPage {
 	
@@ -31,5 +34,8 @@ public class RegisterPage {
 	
 	@FindBy(xpath = "/html/body/section/div/div/div/div/form/div[5]/div/a")
 	public WebElement cancelButton;
-	
+
+	public static RegisterPage init(WebDriver driver) {
+		return PageFactory.initElements(driver, RegisterPage.class);
+	}
 }

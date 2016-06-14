@@ -1,8 +1,10 @@
 package hospitalSeeker;
 
+import hospitalSeeker.header.HeaderPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class NewRecordPage {
 
@@ -26,5 +28,9 @@ public class NewRecordPage {
 	
 	@FindBy (css = "p.error")
 	public WebElement editTimeError;
+
+	public static NewRecordPage init(WebDriver driver) {
+		return PageFactory.initElements(driver, NewRecordPage.class);
+	}
 	
 }

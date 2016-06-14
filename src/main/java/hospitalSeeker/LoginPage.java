@@ -1,7 +1,9 @@
 package hospitalSeeker;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
@@ -28,5 +30,9 @@ public class LoginPage {
 		emailLogin.sendKeys(email);
 		passwordLogin.sendKeys(password);
 		loginButton.click();
+	}
+
+	public static LoginPage init(WebDriver driver) {
+		return PageFactory.initElements(driver, LoginPage.class);
 	}
 }
