@@ -16,13 +16,13 @@ public class TestAdminRole extends BaseRoleTest{
 
     @Test
     public void testAccessToAdminPage() {
-        assertTrue(browser.isElementPresent(header.actionsButton), "element isn't present!");
-        assertTrue(browser.isElementPresent(adminPage.allUsersTable), "element isn't present!");
+        assertTrue(browser.isElementPresent(headerPage.actionsButton), "actionsButton isn't present!");
+        assertTrue(browser.isElementPresent(adminPage.allUsersTable), "usersTable isn't present!");
     }
 
     @AfterMethod
     public void afterMethod() {
-        browser.goTo(HOME_URL.concat("logout"));
+        headerPage.logout();
     }
 
 }

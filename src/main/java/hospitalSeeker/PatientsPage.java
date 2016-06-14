@@ -1,8 +1,10 @@
 package hospitalSeeker;
 
+import hospitalSeeker.header.HeaderPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class PatientsPage {
 
@@ -33,5 +35,9 @@ public class PatientsPage {
 	
 	@FindBy (linkText="nadjacv51@mail.ru")
 	public WebElement nadjacv51mailru;
+
+	public static PatientsPage init(WebDriver driver) {
+		return PageFactory.initElements(driver, PatientsPage.class);
+	}
 	
 }

@@ -39,7 +39,7 @@ public class BrowserWrapper {
             return false;
         }
     }
-
+    
     public boolean isElementPresent(WebElement webElement) {
         try {
             return webElement.isDisplayed();
@@ -101,6 +101,10 @@ public class BrowserWrapper {
 
     public void waitUntilElementVisible(WebElement element) {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void waitUntilElementInvisible(By locator) {
+        new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
     public void waitUntilTitleContains(String title) {
