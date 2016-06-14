@@ -1,7 +1,10 @@
 package hospitalSeeker;
 
+import hospitalSeeker.header.HeaderPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class CardPage {
 	@FindBy (css = "a.btn.btn-info")
@@ -12,5 +15,8 @@ public class CardPage {
 	
 	@FindBy (linkText="Edit")
 	public WebElement editButton;
-	
+
+	public static CardPage init(WebDriver driver) {
+		return PageFactory.initElements(driver, CardPage.class);
+	}
 }

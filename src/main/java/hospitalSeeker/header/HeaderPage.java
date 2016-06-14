@@ -5,13 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Header {
+public class HeaderPage {
 
     public static final String HOME_BUTTON_TEXT = "Home";
     public static final String FIND_BUTTON_TEXT = "Find";
     public static final String LOGIN_BUTTON_TEXT = "Login";
     public static final String ACTIONS_BUTTON_TEXT = "Actions";
-    public static final String ADD_NEW_USER_XPATH = "//*[@id=\"dropdawn\"]/li[2]/a";
     public static final String USER_DROPDOWN_BUTTON_XPATH = "//*[@id=\"bs-example-navbar-collapse-1\"]/ul/li[7]/a";
     public static final String LOG_OUT_BUTTON_XPATH = "/html/body/nav/div[1]/div[2]/ul/li[7]/ul/li[2]/a";
     public static final String CARD_BUTTON_TEXT = "Card";
@@ -58,8 +57,8 @@ public class Header {
         logoutButton.click();
     }
 
-    public static Header init(WebDriver driver) {
-        return PageFactory.initElements(driver, Header.class);
+    public static HeaderPage init(WebDriver driver) {
+        return PageFactory.initElements(driver, HeaderPage.class);
     }
 
 }

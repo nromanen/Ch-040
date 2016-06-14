@@ -1,8 +1,11 @@
 package hospitalSeeker.googleApi; /**
  * Created by oleg on 25.05.2016.
  */
+import hospitalSeeker.header.HeaderPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class ValidateHospital{
     @FindBy(id = "googleMap")
@@ -25,6 +28,10 @@ public class ValidateHospital{
     }
     public void findValidateHospitalClick(){
         addValidateHospital.click();
+    }
+
+    public static ValidateHospital init(WebDriver driver) {
+        return PageFactory.initElements(driver, ValidateHospital.class);
     }
 
 }
