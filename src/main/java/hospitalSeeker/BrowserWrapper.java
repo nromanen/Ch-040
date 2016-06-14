@@ -103,6 +103,10 @@ public class BrowserWrapper {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void waitUntilElementInvisible(By locator) {
+        new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
     public void waitUntilTitleContains(String title) {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.titleContains(title));
     }

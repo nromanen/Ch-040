@@ -18,10 +18,7 @@ public class BaseRoleTest extends BaseTest {
         super.beforeMethod();
         loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
         adminPage = PageFactory.initElements(browser.getDriver(), AdminPage.class);
-
-//        header = header.init(browser.getDriver());
-        header = PageFactory.initElements(browser.getDriver(), Header.class);
-//        browser.waitUntilElementVisible(header.homeButton);
+        header = Header.init(browser.getDriver());
     }
 
 }
