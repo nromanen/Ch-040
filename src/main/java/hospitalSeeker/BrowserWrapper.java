@@ -39,7 +39,7 @@ public class BrowserWrapper {
             return false;
         }
     }
-
+    
     public boolean isElementPresent(WebElement webElement) {
         try {
             return webElement.isDisplayed();

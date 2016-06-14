@@ -1,6 +1,6 @@
 package hospitalSeeker;
 
-import hospitalSeeker.header.DropdownLogin;
+//import hospitalSeeker.header.DropdownLogin;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import static org.testng.Assert.*;
@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
  */
 public class TestSchedule extends BaseTest{
     SchedulePage schedulePage;
-    DropdownLogin dropdownLogin;
+    //DropdownLogin dropdownLogin;
     HospitalPage hospitalPage;
     DepartmentPage departmentPage;
     DoctorPage doctorPage;
@@ -22,7 +22,7 @@ public class TestSchedule extends BaseTest{
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
-        dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
+        //dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
         schedulePage = PageFactory.initElements(browser.getDriver(), SchedulePage.class);
         hospitalPage = PageFactory.initElements(browser.getDriver(), HospitalPage.class);
         departmentPage = PageFactory.initElements(browser.getDriver(), DepartmentPage.class);
@@ -32,17 +32,17 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 0)
     public void checkDropdownLoginElements() {
         browser.goTo(HOME_URL);
-        dropdownLogin.dropdownLoginButton.click();
-        Assert.assertTrue(browser.isElementPresent(dropdownLogin.dropdownLoginButton), "Login button isn't present!");
-        Assert.assertTrue(browser.isElementPresent(dropdownLogin.dropdownEmailField), "Email field isn't present!");
-        Assert.assertTrue(browser.isElementPresent(dropdownLogin.dropdownPasswordField), "Password field isn't present!");
-        Assert.assertTrue(browser.isElementPresent(dropdownLogin.dropdownLoginSubmitButton), "Submit button isn't present!");
+        //dropdownLogin.dropdownLoginButton.click();
+        //Assert.assertTrue(browser.isElementPresent(dropdownLogin.dropdownLoginButton), "Login button isn't present!");
+        //Assert.assertTrue(browser.isElementPresent(dropdownLogin.dropdownEmailField), "Email field isn't present!");
+        //Assert.assertTrue(browser.isElementPresent(dropdownLogin.dropdownPasswordField), "Password field isn't present!");
+        //Assert.assertTrue(browser.isElementPresent(dropdownLogin.dropdownLoginSubmitButton), "Submit button isn't present!");
     }
 
     @Test (priority = 1)
     public void checkElementsOnSchedulePage() {
         browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        //dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         browser.goTo(DOCTOR_URL);
         Assert.assertTrue(browser.isElementPresent(schedulePage.eventBody), "Event body isn't present!");
         schedulePage.events.get(0).click();
@@ -91,7 +91,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 4, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testIfManagerCanEdit() {
         browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        //dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();
@@ -116,7 +116,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 5, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testIfPatientCanEdit() {
         browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
+        //dropdownLogin.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
         browser.goTo(HOSPITALS_URL);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
@@ -139,7 +139,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 6, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testIfDoctorCanEdit() {
         browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        //dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
         browser.goTo(HOSPITALS_URL);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
@@ -162,7 +162,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 7, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testIfAdminCanEdit() {
         browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
+        //dropdownLogin.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
         browser.goTo(HOSPITALS_URL);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
@@ -186,7 +186,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 8, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testManagerEditTimePeriod() {
         browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        //dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();
@@ -215,7 +215,7 @@ public class TestSchedule extends BaseTest{
     @Test (priority = 9, dependsOnMethods = {"checkElementsOnSchedulePage", "checkDropdownLoginElements"})
     public void testManagerEditBeyondWorkingHours() {
         browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        //dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(3).click();

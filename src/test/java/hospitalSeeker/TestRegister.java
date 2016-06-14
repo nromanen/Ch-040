@@ -1,6 +1,6 @@
 package hospitalSeeker;
 
-import hospitalSeeker.header.DropdownRegister;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 public class TestRegister extends BaseTest {
  
 	RegisterPage registerPage;
-	DropdownRegister dropdownRegister;
 	
 	@BeforeMethod
 	public void beforeMethod(){
@@ -41,11 +40,12 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 1)
 	public void testRegister(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("user@gmail.com");
-		registerPage.passwordRegister.sendKeys("user");
+		registerPage.emailRegister.sendKeys("PATIENT_LOGIN");
+		registerPage.passwordRegister.sendKeys("PATIENT_PASSWORD");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertTrue(browser.containsText("registered successfully"));
+		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/h3"));
+		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div/h3"));
 	}
 	
 	 /*Correct work of button "Cancel"
@@ -57,8 +57,8 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 2)
 	public void testRegisterButtonCancel(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("user@gmail.com");
-		registerPage.passwordRegister.sendKeys("user");
+		registerPage.emailRegister.sendKeys("PATIENT_LOGIN");
+		registerPage.passwordRegister.sendKeys("PATIENT_PASSWORD");
 		registerPage.rolePatient.click();
 		registerPage.cancelButton.click();
 		Assert.assertEquals(browser.getCurrentUrl(),HOME_URL);
@@ -73,11 +73,12 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 3)
 	public void testRegisterExistingEmail(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("atqc@mail.ru");
-		registerPage.passwordRegister.sendKeys("atqc");
+		registerPage.emailRegister.sendKeys("PATIENT_LOGIN");
+		registerPage.passwordRegister.sendKeys("PATIENT_PASSWORD");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertTrue(browser.containsText("is already exist"));
+		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/h3"));
+		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div/h3"));
 	}
 
 	/*Registration by username (not by e-mail format)
@@ -89,11 +90,10 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 4)
 	public void testRegisterByLogin(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("atqc");
-		registerPage.passwordRegister.sendKeys("atqc");
+		registerPage.emailRegister.sendKeys("tutu");
+		registerPage.passwordRegister.sendKeys("PATIENT_PASSWORD");
 		registerPage.rolePatient.click();
-		registerPage.registerButton.click();
-		Assert.assertEquals(browser.getCurrentUrl(),REGISTER_URL);
+		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
 	}
 
 	/*Registration by password including less than any 4 symbols
@@ -105,11 +105,11 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 5)
 	public void testRegisterInsecurePassword(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("user@gmail.com");
-		registerPage.passwordRegister.sendKeys("usr");
+		registerPage.emailRegister.sendKeys("PATIENT_LOGIN");
+		registerPage.passwordRegister.sendKeys("tut");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertEquals(browser.getCurrentUrl(),REGISTER_URL);
+		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
 	}
 
 	/*Registration without e-mail
@@ -122,10 +122,10 @@ public class TestRegister extends BaseTest {
 	public void testRegisterWithoutEmail(){
 		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("");
-		registerPage.passwordRegister.sendKeys("user");
+		registerPage.passwordRegister.sendKeys("PATIENT_PASSWORD");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertEquals(browser.getCurrentUrl(),REGISTER_URL);
+		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
 	} 
 	
 	/*Registration without password
@@ -137,11 +137,11 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 7)
 	public void testRegisterWithoutPassword(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("user@gmail.com");
+		registerPage.emailRegister.sendKeys("PATIENT_LOGIN");
 		registerPage.passwordRegister.sendKeys("");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertEquals(browser.getCurrentUrl(),REGISTER_URL);
+		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
 	} 
 
 	@AfterMethod
