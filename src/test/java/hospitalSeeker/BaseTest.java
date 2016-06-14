@@ -22,6 +22,7 @@ public class BaseTest {
     public static final String FIND_URL = HOME_URL.concat("mapsearch");
     public static final String VALIDATE_URL = HOME_URL.concat("admin/map/validate");
     public static final String LOGINERROR_URL = HOME_URL.concat("login?error");
+    public static final String LOGINERROR2_URL = HOME_URL.concat("login?error");
     
     public static final String ADMIN_LOGIN = "admin@hospitals.ua";
     public static final String ADMIN_PASSWORD = "1111";
