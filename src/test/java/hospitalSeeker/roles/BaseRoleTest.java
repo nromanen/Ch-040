@@ -2,10 +2,10 @@ package hospitalSeeker.roles;
 
 import hospitalSeeker.AdminPage;
 import hospitalSeeker.BaseTest;
-import hospitalSeeker.LoginPage;
 import hospitalSeeker.HeaderPage;
-import org.openqa.selenium.support.PageFactory;
+import hospitalSeeker.LoginPage;
 import org.testng.annotations.BeforeClass;
+
 
 public class BaseRoleTest extends BaseTest {
 
