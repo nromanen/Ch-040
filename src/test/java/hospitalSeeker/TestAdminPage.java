@@ -14,7 +14,6 @@ public class TestAdminPage extends BaseTest {
 	
 	@BeforeMethod
 	public void beforeMethod() {
-		super.beforeMethod();
 		loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
 		adminPage = PageFactory.initElements(browser.getDriver(), AdminPage.class);
 	}
