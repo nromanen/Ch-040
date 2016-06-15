@@ -1,11 +1,22 @@
 package hospitalSeeker;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.MarionetteDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BaseTest {
 
@@ -21,7 +32,7 @@ public class BaseTest {
     public static final String REGISTER_URL = HOME_URL.concat("newUser");
     public static final String FIND_URL = HOME_URL.concat("mapsearch");
     public static final String VALIDATE_URL = HOME_URL.concat("admin/map/validate");
-  
+
     public static final String ADMIN_LOGIN = "admin@hospitals.ua";
     public static final String ADMIN_PASSWORD = "1111";
     public static final String MANAGER_LOGIN = "manager@com.com";
@@ -55,14 +66,29 @@ public class BaseTest {
     public void internetExplorer() {
         DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
         caps.setCapability("ignoreZoomSetting", true);
-        caps.setCapability("nativeEvents",false);
+        caps.setCapability("nativeEvents", false);
         System.setProperty("webdriver.ie.driver", "src\\main\\resources\\IEDriver.exe");
         browser = new BrowserWrapper(new InternetExplorerDriver(caps));
     }
 
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod(ITestResult result) throws Exception {
+        if (!result.isSuccess()) {
+            try {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd_HH:mm");
+                Date date = new Date();
+                File scrFile = ((TakesScreenshot) browser.getDriver()).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(scrFile, new File("target/surefire-reports/screenshots/" +
+                        result.getMethod().getMethodName() + "Failure_" + dateFormat.format(date) + ".png"));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
     @BeforeMethod
     public void beforeMethod() {
-       firefox();
+        chromeLinux();
     }
 
     @AfterClass

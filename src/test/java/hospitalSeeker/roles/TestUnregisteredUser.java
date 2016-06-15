@@ -27,7 +27,6 @@ public class TestUnregisteredUser extends BaseRoleTest {
         browser.goTo(ADDING_NEW_HOSPITAL_URL);
         assertTrue(browser.containsText("Please Log In"), "access not denied!");
     }
-
     @Test
     public void testAccessDeniedToPatientsList() {
         assertFalse(browser.isElementPresent(headerPage.patientsButton), "patientsButton is present!");
