@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserWrapper {
@@ -109,6 +110,10 @@ public class BrowserWrapper {
 
     public void waitUntilTitleContains(String title) {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.titleContains(title));
+    }
+
+    public void waitUntilAllVisible(List<WebElement> elements) {
+        new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
     public void waitUntilElementIsPresent(By locator) {
