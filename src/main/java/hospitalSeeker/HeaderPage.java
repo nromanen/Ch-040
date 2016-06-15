@@ -1,4 +1,4 @@
-package hospitalSeeker.header;
+package hospitalSeeker;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
