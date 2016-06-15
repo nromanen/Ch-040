@@ -15,14 +15,13 @@ public class TestPatients extends BaseTest{
 
     @BeforeMethod
     public void beforeMethod() {
-        super.beforeMethod();
         patientsPage = PageFactory.initElements(browser.getDriver(), PatientsPage.class);
         cardPage = PageFactory.initElements(browser.getDriver(), CardPage.class);
         newRecordPage = PageFactory.initElements(browser.getDriver(), NewRecordPage.class);
         loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
         //dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
     }
-    
+
  /* Editing Record by Doctor
   * go to home url
   * logging to site
@@ -34,38 +33,38 @@ public class TestPatients extends BaseTest{
   * type some text in each area
   * press submit button
   */
-    
-   @Test 
+
+   @Test
    public void testIfDoctorCanEditOwnRecord(){
     	 browser.goTo(HOME_URL);
     	 //dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
     	 browser.goTo(PATIENTS_LIST_URL);
-    	 
+
     	 patientsPage.tutu.click();
     	 cardPage.dateRecordButton.click();
     	 cardPage.editButton.click();
-    	 
+
     	 newRecordPage.complaintArea.click();
     	 String compArea = new String(newRecordPage.complaintArea.getAttribute("value"));
     	 newRecordPage.complaintArea.sendKeys("Well Done");
     	 newRecordPage.complaintArea.clear();
     	 newRecordPage.complaintArea.sendKeys(compArea);
-    	 
+
     	 newRecordPage.resultArea.click();
     	 String resArea = new String(newRecordPage.resultArea.getAttribute("value"));
     	 newRecordPage.resultArea.sendKeys("Very Good");
     	 newRecordPage.resultArea.clear();
     	 newRecordPage.resultArea.sendKeys(resArea);
-    	 
+
     	 newRecordPage.prescriptionArea.click();
     	 String preArea = new String(newRecordPage.prescriptionArea.getAttribute("value"));
     	 newRecordPage.prescriptionArea.sendKeys("Almost Ok");
     	 newRecordPage.prescriptionArea.clear();
     	 newRecordPage.prescriptionArea.sendKeys(preArea);
-    	 
+
     	 newRecordPage.submitButton.click();
    }
-   
+
    /* New Record by Doctor
     * go to home url
     * logging to site
@@ -76,27 +75,27 @@ public class TestPatients extends BaseTest{
     * type some text in each area
     * press submit button
     */
-   
-    @Test 
+
+    @Test
     public void testIfDoctorCanMakeNewRecord(){
     	browser.goTo(HOME_URL);
     	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
    	 	browser.goTo(PATIENTS_LIST_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
-   	 	
+
    	 	newRecordPage.complaintArea.click();
    	 	newRecordPage.complaintArea.sendKeys("11kkkkkk11");
-   	 	
+
    	 	newRecordPage.resultArea.click();
    	 	newRecordPage.resultArea.sendKeys("12llll12");
-   	 	
+
    	 	newRecordPage.prescriptionArea.click();
    	 	newRecordPage.prescriptionArea.sendKeys("13jjjjj13");
-   	 	
-   	 	newRecordPage.submitButton.click();	
+
+   	 	newRecordPage.submitButton.click();
     }
-    
+
     /* Test min text size in new Record
      * go to home url
      * logging to site
@@ -108,36 +107,36 @@ public class TestPatients extends BaseTest{
      * press submit button
      * check error message
      */
-    
-    @Test 
+
+    @Test
    	public void testEmptyTextAreasInCardPage(){
     	browser.goTo(HOME_URL);
     	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
    	 	browser.goTo(PATIENTS_LIST_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
-   	 	
+
    	 	newRecordPage.complaintArea.click();
 	 	newRecordPage.complaintArea.sendKeys("111");
-	 	
+
 	 	newRecordPage.resultArea.click();
 	 	newRecordPage.resultArea.sendKeys("111");
-	 	
+
 	 	newRecordPage.prescriptionArea.click();
 	 	newRecordPage.prescriptionArea.sendKeys("111");
-	 	
-	 	newRecordPage.submitButton.click();	
+
+	 	newRecordPage.submitButton.click();
 	 	Boolean isPresent = newRecordPage.errorString.isDisplayed();
    		}
-   
+
     /* Check elements in page
      * go to home url
      * logging to site
      * go to patients url
      * check elements
      */
-    
-    @Test 
+
+    @Test
     public void checkElementsInPatientsPage() {
     	browser.goTo(HOME_URL);
     	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
@@ -148,9 +147,9 @@ public class TestPatients extends BaseTest{
     	Boolean isPresent5 = patientsPage.olegolegovich1996gmailcom.isDisplayed();
     	Boolean isPresent6 = patientsPage.archermailru.isDisplayed();
     	Boolean isPresent7 = patientsPage.nadja_cv8mailru.isDisplayed();
-    	
+
     }
-    
+
     /* Editing Record by Doctor after 00:00
      * go to home url
      * logging to site
@@ -163,29 +162,29 @@ public class TestPatients extends BaseTest{
      * press submit button
      * check error message
      */
-    
+
     @Test ()
     public void testThatDoctorCantEditRecordAfter00 (){
     	 browser.goTo(HOME_URL);
     	 //dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
    	 	 browser.goTo(PATIENTS_LIST_URL);
-   	 
+
    	   	 patientsPage.tutu.click();
 	     cardPage.dateRecordButton.click();
 	   	 cardPage.editButton.click();
-   	 
+
 	   	 newRecordPage.complaintArea.click();
 	   	 newRecordPage.complaintArea.sendKeys("Well Done");
-	   	
+
 	   	 newRecordPage.resultArea.click();
 	   	 newRecordPage.resultArea.sendKeys("Very Good");
-	   
+
 	   	 newRecordPage.prescriptionArea.click();
 	   	 newRecordPage.prescriptionArea.sendKeys("Almost Ok");
 
 	   	 newRecordPage.submitButton.click();
 	  	 Boolean isPresent10 = (newRecordPage.editTimeError).isDisplayed();
-        
+
     }
 
     @AfterMethod

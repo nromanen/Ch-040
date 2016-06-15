@@ -10,7 +10,6 @@ public class TestAdminRole extends BaseRoleTest{
 
     @BeforeMethod
     public void beforeMethod(){
-        browser.goTo(LOGIN_URL);
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
     }
 

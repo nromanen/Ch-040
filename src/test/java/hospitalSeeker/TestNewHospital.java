@@ -15,7 +15,6 @@ public class TestNewHospital extends BaseTest{
     NewHospital newHospital;
     @BeforeMethod
     public void beforeMethod() {
-        super.beforeMethod();
         newHospital = PageFactory.initElements(browser.getDriver(), NewHospital.class);
     }
     /*

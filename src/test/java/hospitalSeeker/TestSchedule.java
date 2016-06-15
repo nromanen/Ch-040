@@ -21,7 +21,6 @@ public class TestSchedule extends BaseTest{
 
     @BeforeMethod
     public void beforeMethod() {
-        super.beforeMethod();
         //dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
         schedulePage = PageFactory.initElements(browser.getDriver(), SchedulePage.class);
         hospitalPage = PageFactory.initElements(browser.getDriver(), HospitalPage.class);

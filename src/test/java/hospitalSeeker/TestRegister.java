@@ -8,12 +8,11 @@ import org.testng.annotations.BeforeMethod;
 import org.openqa.selenium.support.PageFactory;
 
 public class TestRegister extends BaseTest {
- 
+
 	RegisterPage registerPage;
-	
+
 	@BeforeMethod
 	public void beforeMethod(){
-		super.beforeMethod();
 		registerPage = PageFactory.initElements(browser.getDriver(), RegisterPage.class);
 	}
 
@@ -47,7 +46,7 @@ public class TestRegister extends BaseTest {
 		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/h3"));
 		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div/h3"));
 	}
-	
+
 	 /*Correct work of button "Cancel"
 	 * go to registration page
 	 * input e-mail
@@ -63,10 +62,10 @@ public class TestRegister extends BaseTest {
 		registerPage.cancelButton.click();
 		Assert.assertEquals(browser.getCurrentUrl(),HOME_URL);
 	}
-	
+
 	/*Registration by already existing e-mail
 	* go to registration page
-	* input already existing e-mail 
+	* input already existing e-mail
 	* input password
 	* choose any role
 	* click on button"Register" */
@@ -126,8 +125,8 @@ public class TestRegister extends BaseTest {
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
-	} 
-	
+	}
+
 	/*Registration without password
 	 * go to registration page
 	 * input e-mail
@@ -142,7 +141,7 @@ public class TestRegister extends BaseTest {
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
-	} 
+	}
 
 	@AfterMethod
 	public void afterMethod(){
