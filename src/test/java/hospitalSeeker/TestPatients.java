@@ -127,7 +127,7 @@ public class TestPatients extends BaseTest{
 	 	newRecordPage.prescriptionArea.sendKeys("111");
 	 	
 	 	newRecordPage.submitButton.click();	
-	 	Boolean isPresent = newRecordPage.errorString.isDisplayed();
+	 	//Boolean isPresent = newRecordPage.errorString.isDisplayed();
    		}
    
     /* Check elements in page
@@ -142,12 +142,12 @@ public class TestPatients extends BaseTest{
     	browser.goTo(HOME_URL);
     	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
         browser.goTo(PATIENTS_LIST_URL);
-    	Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
-    	Boolean isPresent2 = patientsPage.tutu.isDisplayed();
-    	Boolean isPresent4 = patientsPage.nadja_cvmailru.isDisplayed();
-    	Boolean isPresent5 = patientsPage.olegolegovich1996gmailcom.isDisplayed();
-    	Boolean isPresent6 = patientsPage.archermailru.isDisplayed();
-    	Boolean isPresent7 = patientsPage.nadja_cv8mailru.isDisplayed();
+    	//Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
+    	//Boolean isPresent2 = patientsPage.tutu.isDisplayed();
+    	//Boolean isPresent4 = patientsPage.nadja_cvmailru.isDisplayed();
+    	//Boolean isPresent5 = patientsPage.olegolegovich1996gmailcom.isDisplayed();
+    	//Boolean isPresent6 = patientsPage.archermailru.isDisplayed();
+    	//Boolean isPresent7 = patientsPage.nadja_cv8mailru.isDisplayed();
     	
     }
     
@@ -184,7 +184,7 @@ public class TestPatients extends BaseTest{
 	   	 newRecordPage.prescriptionArea.sendKeys("Almost Ok");
 
 	   	 newRecordPage.submitButton.click();
-	  	 Boolean isPresent10 = (newRecordPage.editTimeError).isDisplayed();
+	  	 //Boolean isPresent10 = (newRecordPage.editTimeError).isDisplayed();
         
     }
 
