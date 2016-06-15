@@ -25,7 +25,6 @@ public class BrowserInitialization {
         String driverType = properties.getProperty("driverType");
         String driverPath = properties.getProperty("driverPath");
 
-
         switch (browserType) {
             case "firefox" :
                 System.setProperty(driverType, driverPath);
