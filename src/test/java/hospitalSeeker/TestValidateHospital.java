@@ -19,7 +19,6 @@ public class TestValidateHospital extends BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        super.beforeMethod();
         validateHospital = PageFactory.initElements(browser.getDriver(), ValidateHospital.class);
         newHospital = PageFactory.initElements(browser.getDriver(), NewHospital.class);
     }

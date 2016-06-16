@@ -15,7 +15,6 @@ public class TestPatients extends BaseTest{
 
     @BeforeMethod
     public void beforeMethod() {
-        super.beforeMethod();
         patientsPage = PageFactory.initElements(browser.getDriver(), PatientsPage.class);
         cardPage = PageFactory.initElements(browser.getDriver(), CardPage.class);
         newRecordPage = PageFactory.initElements(browser.getDriver(), NewRecordPage.class);
