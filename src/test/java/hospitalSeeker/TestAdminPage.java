@@ -18,8 +18,8 @@ public class TestAdminPage extends BaseTest {
 		adminPage = PageFactory.initElements(browser.getDriver(), AdminPage.class);
 	}
 
-	@Test(priority = 0)
-	public void checkElementsAdminPage() {
+	@Test
+	public void checkElementsAdminPage(){
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(ADMIN_LOGIN);
 		loginPage.passwordLogin.sendKeys(ADMIN_PASSWORD);
@@ -41,5 +41,51 @@ public class TestAdminPage extends BaseTest {
 		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableFirstNameColumn),"14");
 		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableLastNameColumn),"15");
 		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableRoleColumn),"16");	
+	}
+	
+	
+	/*Checking equality of count of all users in DB and shown on Web-page
+	 * log in as admin
+	 * choose filter "Role"->"All"
+	 * get count of all users in result
+	 * Checking equality with count in DB
+	 * */
+	@Test(priority = 0)
+	public void countAllUsers() {
+		browser.goTo(LOGIN_URL);
+		loginPage.emailLogin.sendKeys(ADMIN_LOGIN);
+		loginPage.passwordLogin.sendKeys(ADMIN_PASSWORD);
+		loginPage.loginButton.click();
+		browser.implicitWait(3);
+		adminPage.showUsers.click();
+		browser.implicitWait(3);
+		adminPage.roleAll.click();
+		browser.implicitWait(3);
+		adminPage.submitButton.click();
+		browser.implicitWait(3);
+		Assert.assertEquals(adminPage.usersAll.size()-1, 41);
+	}
+	
+	/*Checking equality of count admins in DB and after using filter "Role"->"Admin"
+	 * log in as admin
+	 * choose filter "Role"->"Admin"
+	 * get count of admins in result
+	 * Checking equality with count in DB
+	 * */
+	@Test(priority = 0)
+	public void countAdmins() {
+		browser.goTo(LOGIN_URL);
+		loginPage.emailLogin.sendKeys(ADMIN_LOGIN);
+		loginPage.passwordLogin.sendKeys(ADMIN_PASSWORD);
+		loginPage.loginButton.click();
+		browser.implicitWait(3);
+		adminPage.showUsers.click();
+		browser.implicitWait(3);
+		adminPage.roleAdmin.click();
+		browser.implicitWait(3);
+		adminPage.submitButton.click();
+		browser.implicitWait(3);
+		System.out.println(adminPage.usersAll.size()-1);
+		Assert.assertEquals(adminPage.usersAll.size()-1,2);
 	}
 }

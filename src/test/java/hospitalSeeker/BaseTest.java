@@ -40,20 +40,21 @@ public class BaseTest {
     public static final String PATIENT_LOGIN = "Atutu@ukr.net";
     public static final String PATIENT_PASSWORD = "Atutu2016";
 
-//    @AfterMethod(alwaysRun = true)
-//    public void afterMethod(ITestResult result) throws Exception {
-//        if (!result.isSuccess()) {
-//            try {
-//                DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd_HH:mm");
-//                Date date = new Date();
-//                File scrFile = ((TakesScreenshot) browser.getDriver()).getScreenshotAs(OutputType.FILE);
-//                FileUtils.copyFile(scrFile, new File("target/surefire-reports/screenshots/" +
-//                        result.getMethod().getMethodName() + "Failure_" + dateFormat.format(date) + ".png"));
-//            } catch (IOException e1) {
-//                e1.printStackTrace();
-//            }
-//        }
-//    }
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod(ITestResult result) throws Exception {
+        if (!result.isSuccess()) {
+            try {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
+                Date date = new Date();
+                File scrFile = ((TakesScreenshot) browser.getDriver()).getScreenshotAs(OutputType.FILE);
+                
+                FileUtils.copyFile(scrFile, new File("target/surefire-reports/screenshots/" +
+                        result.getMethod().getMethodName() + "Failure_" + dateFormat.format(date) + ".png"));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
     @AfterClass
     public void afterClass() {
         browser.getDriver().quit();
