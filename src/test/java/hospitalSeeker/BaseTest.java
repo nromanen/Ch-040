@@ -3,7 +3,6 @@ package hospitalSeeker;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Listeners;
 
-@Listeners(ScreenshotOnFailure.class)
 public class BaseTest {
 
     public BrowserWrapper browser = new BrowserWrapper(BrowserInitialization.initialize());

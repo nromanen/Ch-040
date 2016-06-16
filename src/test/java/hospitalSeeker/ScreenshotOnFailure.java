@@ -5,6 +5,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.TestListenerAdapter;
 
 import java.io.File;
@@ -23,13 +24,14 @@ public class ScreenshotOnFailure extends TestListenerAdapter {
         this.driver = ((BaseTest)result.getInstance()).getWrapper().getDriver();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File targetFile = new File(filePath +
-                result.getMethod().getMethodName() + "_Failure_" + dateFormat.format(new Date()) + ".png");
+        String fileName = result.getMethod().getMethodName() + "_Failure_" + dateFormat.format(new Date()) + ".png";
+        File targetFile = new File(filePath + fileName);
         try {
             FileUtils.copyFile(screenshotFile, targetFile);
         } catch (IOException e1) {
-            System.out.println("Bad EXCEPTION");
+            e1.printStackTrace();
         }
+        Reporter.log("<a href=\"screenshots/"+ fileName + "\">Screenshot</a>");
     }
 
 }

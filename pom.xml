@@ -36,6 +36,12 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>hospitalSeeker.ScreenshotOnFailure</value>
+                        </property>
+                    </properties>
                 </configuration>
             </plugin>
         </plugins>
