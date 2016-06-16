@@ -39,8 +39,8 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 1)
 	public void testRegister(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("PATIENT_LOGIN");
-		registerPage.passwordRegister.sendKeys("PATIENT_PASSWORD");
+		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
+		registerPage.passwordRegister.sendKeys(PATIENT_PASSWORD);
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
 		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/h3"));
