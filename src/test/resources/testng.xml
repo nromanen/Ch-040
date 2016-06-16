@@ -1,6 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestHospitalSeeker" verbose="1" >
+    <listeners>
+        <listener class-name="hospitalSeeker.ScreenshotOnFailure" />
+    </listeners>
     <test name="hospitalSeeker.TestRoles" >
         <classes>
             <class name="hospitalSeeker.roles.TestAdminRole" />

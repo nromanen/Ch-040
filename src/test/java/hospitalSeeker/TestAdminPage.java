@@ -1,8 +1,6 @@
 package hospitalSeeker;
 
 import org.openqa.selenium.support.PageFactory;
-import hospitalSeeker.BaseTest;
-import hospitalSeeker.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

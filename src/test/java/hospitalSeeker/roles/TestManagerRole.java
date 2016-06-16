@@ -1,7 +1,8 @@
 package hospitalSeeker.roles;
 
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertFalse;
@@ -38,8 +39,8 @@ public class TestManagerRole extends BaseRoleTest {
         assertTrue(browser.containsText("Log in"), "access not denied");
     }
 
-    @AfterMethod
-    public void afterMethod() {
+    @AfterTest
+    public void afterTest() {
         headerPage.logoutButton.click();
     }
 
