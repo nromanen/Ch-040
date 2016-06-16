@@ -25,21 +25,22 @@ public class TestAdminPage extends BaseTest {
 		loginPage.emailLogin.sendKeys(ADMIN_LOGIN);
 		loginPage.passwordLogin.sendKeys(ADMIN_PASSWORD);
 		loginPage.loginButton.click();
-		Assert.assertTrue(browser.isElementPresent(adminPage.allUsersTable));
-		Assert.assertTrue(browser.isElementPresent(adminPage.showUsers));
-		Assert.assertTrue(browser.isElementPresent(adminPage.role));
-		Assert.assertTrue(browser.isElementPresent(adminPage.searchBy));
-		Assert.assertTrue(browser.isElementPresent(adminPage.search));
-		Assert.assertTrue(browser.isElementPresent(adminPage.submitButton));
-		Assert.assertTrue(browser.isElementPresent(adminPage.enabled));
-		Assert.assertTrue(browser.isElementPresent(adminPage.disabled));
-		Assert.assertTrue(browser.isElementPresent(adminPage.allUsers));
-		Assert.assertTrue(browser.isElementPresent(adminPage.actionsViewUser));
-		Assert.assertTrue(browser.isElementPresent(adminPage.actionsEditUser));
-		Assert.assertTrue(browser.isElementPresent(adminPage.actionsDeleteUser));
-		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableEmailColumn));
-		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableFirstNameColumn));
-		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableLastNameColumn));
-		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableRoleColumn));
-}
+		browser.implicitWait(3);
+		Assert.assertTrue(browser.isElementPresent(adminPage.allUsersTable),"1");
+		Assert.assertTrue(browser.isElementPresent(adminPage.showUsers),"2");
+		Assert.assertTrue(browser.isElementPresent(adminPage.role),"3");
+		Assert.assertTrue(browser.isElementPresent(adminPage.searchBy),"4");
+		Assert.assertTrue(browser.isElementPresent(adminPage.search),"5");
+		Assert.assertTrue(browser.isElementPresent(adminPage.submitButton),"6");
+		Assert.assertTrue(browser.isElementPresent(adminPage.enabled),"7");
+		Assert.assertTrue(browser.isElementPresent(adminPage.disabled),"8");
+		Assert.assertTrue(browser.isElementPresent(adminPage.allUsers),"9");
+		Assert.assertTrue(browser.isElementPresent(adminPage.actionsViewUser),"10");
+		Assert.assertTrue(browser.isElementPresent(adminPage.actionsEditUser),"11");
+		Assert.assertTrue(browser.isElementPresent(adminPage.actionsDeleteUser),"12");
+		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableEmailColumn),"13");
+		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableFirstNameColumn),"14");
+		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableLastNameColumn),"15");
+		Assert.assertTrue(browser.isElementPresent(adminPage.headerTableRoleColumn),"16");	
+	}
 }

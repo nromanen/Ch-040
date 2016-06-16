@@ -1,7 +1,10 @@
 package hospitalSeeker;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -22,7 +25,7 @@ public class AdminPage {
     @FindBy (id = "search")
     public WebElement search;
     
-    @FindBy (id = "input.btn.btn-default")
+    @FindBy (xpath = "/html/body/section/div/div[1]/form/button")
     public WebElement submitButton;
     
     @FindBy (linkText = "Enabled")
@@ -31,13 +34,13 @@ public class AdminPage {
     @FindBy (linkText = "Disabled")
     public WebElement disabled;
     
-    @FindBy (linkText = "All users")
+    @FindBy (linkText = "All Users")
     public WebElement allUsers;
     
     @FindBy (id = "viewUser")
     public WebElement actionsViewUser;
     
-    @FindBy (css = "a.btn.btn_user")
+    @FindBy (css = "a.btn.button_user")
     public WebElement actionsEditUser;
     
     @FindBy (id = "deleteUser")
@@ -97,7 +100,16 @@ public class AdminPage {
     @FindBy (id = "deleteButton")
     public WebElement deleteUserAlertDeleteButton;
     
-	public static AdminPage init(WebDriver driver) {
+    @FindBy (xpath = "/html/body/footer/div/div/div/p")
+    public WebElement footer;
+    
+    @FindBy (css = "/html/body/footer/div/div/div/p")
+    public WebElement foodter;
+    
+    @FindAll(@FindBy(xpath = ".//*[@class='dashboard']"))
+    public List<WebElement> elementsAdminPage;
+
+    public static AdminPage init(WebDriver driver) {
         return PageFactory.initElements(driver, AdminPage.class);
     }
 }
