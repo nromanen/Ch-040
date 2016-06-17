@@ -1,7 +1,6 @@
 package hospitalSeeker;
 
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.Listeners;
 
 public class BaseTest {
 
