@@ -1,5 +1,6 @@
 package hospitalSeeker.roles;
 
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,36 +11,25 @@ import static org.testng.Assert.assertTrue;
 public class TestDoctorRole extends BaseRoleTest {
 
     @BeforeMethod
-    public void beforeMethod(){
+    public void beforeMethod() {
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
     }
 
-    @Test
-    public void testAccessDeniedToAdminDashboardForDoctors() {
-        assertFalse(browser.isElementPresent(headerPage.actionsButton), "element is present!");
-        assertFalse(browser.isElementPresent(adminPage.allUsersTable), "element is present!");
-        browser.goTo(ADMIN_DASHBOARD_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+    @Test(dataProvider = "adminElements")
+    public void testForbiddenButtonsForDoctors(WebElement element, String string) {
+        assertFalse(browser.isElementPresent(element), string + " is present!");
     }
 
-    @Test
-    public void testAccessDeniedToAddingNewHospitalForDoctors() {
-        assertFalse(browser.isElementPresent(headerPage.actionsButton), "element is present");
-        browser.goTo(ADDING_NEW_HOSPITAL_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
-    }
-
-    @Test
-    public void testAccessDeniedToPatientsListForDoctor() {
-        assertTrue(browser.isElementPresent(headerPage.patientsButton), "element is present");
-        browser.goTo(PATIENTS_LIST_URL);
-        assertTrue(browser.containsText("Patient"), "access denied");
+    @Test(dataProvider = "urls")
+    public void testAccessDeniedToUrlsForDoctors(String url, String errorText) {
+        browser.goTo(url);
+        assertTrue(browser.containsText(errorText), "access not denied");
     }
 
     @AfterMethod
     public void afterMethod() {
-        browser.goTo(HOME_URL.concat("logout"));
+        headerPage.logout();
     }
 
 }

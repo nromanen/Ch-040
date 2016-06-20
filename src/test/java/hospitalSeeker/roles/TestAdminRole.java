@@ -1,5 +1,6 @@
 package hospitalSeeker.roles;
 
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,10 +15,9 @@ public class TestAdminRole extends BaseRoleTest{
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
     }
 
-    @Test
-    public void testAccessToAdminPage() {
-        assertTrue(browser.isElementPresent(headerPage.actionsButton), "actionsButton isn't present!");
-        assertTrue(browser.isElementPresent(adminPage.allUsersTable), "usersTable isn't present!");
+    @Test(dataProvider = "adminElements")
+    public void testAccessToAdminPage(WebElement element, String string) {
+        assertTrue(browser.isElementPresent(element), string + "isn't present!");
     }
 
     @AfterMethod
