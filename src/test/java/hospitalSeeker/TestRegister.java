@@ -142,9 +142,4 @@ public class TestRegister extends BaseTest {
 		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
 	}
-
-	@AfterMethod
-	public void afterMethod(){
-		browser.getDriver().quit();
-	}
 }

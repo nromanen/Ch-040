@@ -61,7 +61,7 @@ public class TestValidateHospital extends BaseTest {
 	 * @effects Log in
     *     </p>
      */
-    @Test(dependsOnMethods = "isElementsPresent")
+    @Test
     public void testLogin() {
         browser.goTo(HOME_URL);
         newHospital.logInAction(ADMIN_LOGIN, ADMIN_PASSWORD);
@@ -79,7 +79,7 @@ public class TestValidateHospital extends BaseTest {
 	 * @effects button must be clickable
     *     </p>
      */
-    @Test(dependsOnMethods = "isElementsPresent")
+    @Test
     public void validateButtonClick() {
         testLogin();
         browser.goTo(VALIDATE_URL);
@@ -101,7 +101,7 @@ public class TestValidateHospital extends BaseTest {
 	 *
     *     </p>
      */
-    @Test(dependsOnMethods = {"isElementsPresent","validateButtonClick"})
+    @Test
     public void addValidateHospital(){
         testLogin();
         browser.goTo(VALIDATE_URL);
@@ -127,7 +127,7 @@ public class TestValidateHospital extends BaseTest {
 	 *
     *     </p>
      */
-    @Test(dependsOnMethods = "addValidateHospital")
+    @Test
     public void  resirectToOtheUrl(){
         testLogin();
         browser.goTo(VALIDATE_URL);
@@ -136,9 +136,5 @@ public class TestValidateHospital extends BaseTest {
         validateHospital.addValidateHospitalClick();
         browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
        assertEquals(false, (browser.getCurrentUrl() == VALIDATE_URL));
-    }
-    @AfterMethod
-    public void afterMethod() {
-        browser.getDriver().quit();
     }
 }

@@ -10,4 +10,16 @@
             <class name="hospitalSeeker.roles.TestPatientRole" />
         </classes>
     </test>
+    <test name="hospitalSeeker.TestHospital" >
+        <classes>
+            <class name="hospitalSeeker.TestAdminPage" />
+            <class name="hospitalSeeker.TestFindHospital" />
+            <class name="hospitalSeeker.TestLogin" />
+            <class name="hospitalSeeker.TestNewHospital" />
+            <class name="hospitalSeeker.TestPatients" />
+            <class name="hospitalSeeker.TestRegister" />
+            <class name="hospitalSeeker.TestSchedule" />
+            <class name="hospitalSeeker.TestValidateHospital" />
+        </classes>
+    </test>
 </suite>

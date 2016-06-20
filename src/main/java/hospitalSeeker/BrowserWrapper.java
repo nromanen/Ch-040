@@ -124,9 +124,9 @@ public class BrowserWrapper {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.urlToBe(url));
     }
 
-    public void selectTime(WebElement element, String hours) {
+    public void selectDropdown(WebElement element, String text) {
         Select dropdown = new Select(element);
-        dropdown.selectByVisibleText(hours);
+        dropdown.selectByVisibleText(text);
     }
 }
 

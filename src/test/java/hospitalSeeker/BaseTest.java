@@ -1,10 +1,11 @@
 package hospitalSeeker;
 
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 public class BaseTest {
 
-    public BrowserWrapper browser = new BrowserWrapper(BrowserInitialization.initialize());
+    public BrowserWrapper browser;
 
     public BrowserWrapper getWrapper() {
         return browser;
@@ -32,6 +33,12 @@ public class BaseTest {
     public static final String DOCTOR_PASSWORD = "1111";
     public static final String PATIENT_LOGIN = "Atutu@ukr.net";
     public static final String PATIENT_PASSWORD = "Atutu2016";
+
+
+    @BeforeClass
+    public void beforeClass() {
+        browser = new BrowserWrapper(BrowserInitialization.initialize());
+    }
 
     @AfterClass
     public void afterClass() {

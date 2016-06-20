@@ -46,8 +46,4 @@ public class TestFindHospital extends BaseTest{
         browser.goTo(FIND_URL);
         findHospital.findInAction("Chernivtsi");
     }
-    @AfterMethod
-    public void afterMethod() {
-        browser.getDriver().quit();
-    }
 }
