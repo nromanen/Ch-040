@@ -50,13 +50,13 @@ public class TestLogin extends BaseTest {
 	 * input password 
 	 * click on button "Log in"
 	 */
-	@Test(priority = 3)
+	@Test(priority = 2)
 	public void testLoginWithoutEmail() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("");
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p"));
+		browser.waitUntilElementIsPresent(By.xpath(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 
@@ -68,13 +68,13 @@ public class TestLogin extends BaseTest {
 	 * keep empty 
 	 * click on button "Log in"
 	 */
-	@Test(priority = 4)
+	@Test(priority = 3)
 	public void testLoginWithoutPassword() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys("");
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p"));
+		browser.waitUntilElementIsPresent(By.xpath(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 
@@ -85,13 +85,13 @@ public class TestLogin extends BaseTest {
 	 * input password 
 	 * click on button "Log in"
 	 */
-	@Test(priority = 5)
+	@Test(priority = 4)
 	public void testLoginIncorrectEmail() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("tututu@ukr.net");
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p"));
+		browser.waitUntilElementIsPresent(By.xpath(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 
@@ -102,13 +102,13 @@ public class TestLogin extends BaseTest {
 	 * input incorrect password 
 	 * click on button "Log in"
 	 */
-	@Test(priority = 6)
+	@Test(priority = 5)
 	public void testLoginIncorrectPassword() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys("tututu2016");
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p"));
+		browser.waitUntilElementIsPresent(By.xpath(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 }

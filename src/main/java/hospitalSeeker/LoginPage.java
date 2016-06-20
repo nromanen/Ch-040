@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
+	public static final String INVALID_USERNAME_OR_PASSWORD = "/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p";
 
 	@FindBy(id = "email")
 	public WebElement emailLogin;

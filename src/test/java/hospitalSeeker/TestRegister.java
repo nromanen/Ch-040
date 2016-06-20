@@ -43,8 +43,8 @@ public class TestRegister extends BaseTest {
 		registerPage.passwordRegister.sendKeys(PATIENT_PASSWORD);
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/h3"));
-		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div/h3"));
+		browser.waitUntilElementIsPresent(By.xpath(registerPage.SUCCESSFULL_REGISTRATION));
+		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.SUCCESSFULL_REGISTRATION));
 	}
 
 	 /*Correct work of button "Cancel"
@@ -76,8 +76,8 @@ public class TestRegister extends BaseTest {
 		registerPage.passwordRegister.sendKeys("PATIENT_PASSWORD");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/h3"));
-		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div/h3"));
+		browser.waitUntilElementIsPresent(By.xpath(registerPage.THIS_USER_IS_ALREADY_EXIST));
+		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.THIS_USER_IS_ALREADY_EXIST));
 	}
 
 	/*Registration by username (not by e-mail format)
@@ -92,7 +92,7 @@ public class TestRegister extends BaseTest {
 		registerPage.emailRegister.sendKeys("tutu");
 		registerPage.passwordRegister.sendKeys("PATIENT_PASSWORD");
 		registerPage.rolePatient.click();
-		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
+		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.REGISTER_FORM));
 	}
 
 	/*Registration by password including less than any 4 symbols
@@ -108,7 +108,7 @@ public class TestRegister extends BaseTest {
 		registerPage.passwordRegister.sendKeys("tut");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
+		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.REGISTER_FORM));
 	}
 
 	/*Registration without e-mail
@@ -124,7 +124,7 @@ public class TestRegister extends BaseTest {
 		registerPage.passwordRegister.sendKeys("PATIENT_PASSWORD");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
+		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.REGISTER_FORM));
 	}
 
 	/*Registration without password
@@ -140,6 +140,6 @@ public class TestRegister extends BaseTest {
 		registerPage.passwordRegister.sendKeys("");
 		registerPage.rolePatient.click();
 		registerPage.registerButton.click();
-		Assert.assertTrue(browser.isElementPresentByXpath("/html/body/section/div/div/div"));
+		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.REGISTER_FORM));
 	}
 }
