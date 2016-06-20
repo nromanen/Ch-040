@@ -1,3 +1,6 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -62,6 +65,33 @@ CREATE SEQUENCE carditem_id_seq
 
 
 ALTER TABLE carditem_id_seq OWNER TO postgres;
+
+CREATE TABLE databasechangeloglock (
+    id integer NOT NULL,
+    locked boolean NOT NULL,
+    lockgranted timestamp without time zone,
+    lockedby character varying(255)
+);
+
+ALTER TABLE databasechangeloglock OWNER TO postgres;
+
+CREATE TABLE databasechangelog (
+    id character varying(255) NOT NULL,
+    author character varying(255) NOT NULL,
+    filename character varying(255) NOT NULL,
+    dateexecuted timestamp without time zone NOT NULL,
+    orderexecuted integer NOT NULL,
+    exectype character varying(10) NOT NULL,
+    md5sum character varying(35),
+    description character varying(255),
+    comments character varying(255),
+    tag character varying(255),
+    liquibase character varying(20),
+    contexts character varying(255),
+    labels character varying(255)
+);
+
+ALTER TABLE databasechangelog OWNER TO postgres;
 
 CREATE TABLE department (
     id bigint NOT NULL,

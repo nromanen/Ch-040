@@ -1,19 +1,84 @@
-﻿
-INSERT INTO appointment (id, color, end_date, start_date, text, doctorinfo_id, userdetail_id) VALUES (
-1, '#00BFFF', '\\xaced00057372000d6a6176612e74696d652e536572955d84ba1b2248b20c00007870770905000007e0060d13eb78', '\\xaced00057372000d6a6176612e74696d652e536572955d84ba1b2248b20c00007870770805000007e0060dec78',	'New event', 9, 17),
-(2, '#66CDAA', '\\xaced00057372000d6a6176612e74696d652e536572955d84ba1b2248b20c00007870770905000007e0060d13d778', '\\xaced00057372000d6a6176612e74696d652e536572955d84ba1b2248b20c00007870770905000007e0060d13eb78',	'New event', 9,	29),
-(3, '#ADFF2F', '\\xaced00057372000d6a6176612e74696d652e536572955d84ba1b2248b20c00007870770805000007e0060deb78', '\\xaced00057372000d6a6176612e74696d652e536572955d84ba1b2248b20c00007870770905000007e0060d13d778', 'New event', 9, 24);
 
 SELECT pg_catalog.setval('appointment_id_seq', 16, true);
 
-INSERT INTO carditem (id, complaint, date, prescription, result, doctor_id, patientcard_id) VALUES (
-3, 'xcvfdasg', '2016-06-08 23:20:10.255', 'adgadgasdg\r\ndsgadga', 'adgasdf\r\nadsgasdgag', 11, 18),
+INSERT INTO carditem (id, complaint, date, prescription, result, doctor_id, patientcard_id) VALUES 
+(3, 'xcvfdasg', '2016-06-08 23:20:10.255', 'adgadgasdg\r\ndsgadga', 'adgasdf\r\nadsgasdgag', 11, 18),
 (4, 'Lorem ipsum', '2016-06-08 23:21:07.187', 'Lorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum', 'Lorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum', 11, 18),
 (5, 'Lorem ipsum', '2016-06-08 23:21:52.397', 'Lorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum', 'Lorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum', 11, 17),
 (11, 'Lorem ipsum',	'2016-06-08 23:23:54.998', 'Lorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum', 'Lorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum\r\nLorem Ipsum', 7, 17),
 (15, 'Lorem ipsum', '2016-06-09 12:49:55.852', 'Lorem ipsum\r\nLorem ipsum\r\nLorem ipsum\r\nLorem ipsum\r\nLorem ipsum', 'Lorem ipsum\r\nLorem ipsum\r\nLorem ipsum\r\nLorem ipsum\r\nLorem ipsumlogout', 12, 18);
 
 SELECT pg_catalog.setval('carditem_id_seq', 15, true);
+
+INSERT INTO databasechangelog (id, author, filename, dateexecuted, orderexecuted, exectype, md5sum, description, comments, tag, liquibase, contexts, labels) VALUES
+('1465423649552-1', 'admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:36.93656',1,'EXECUTED','7:e8518e074bc0056697a7c33f6746c2fe','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-2','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:36.953966',2,'EXECUTED','7:aa70d416a4351e5584fca239e5660cf3','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-3','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:36.967574',3,'EXECUTED','7:25f25e99cd3388719361f80fdbc2253a','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-4','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:36.978252',4,'EXECUTED','7:f94333aa734b4d48de4993e8a93dd294','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-5','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:36.989082',5,'EXECUTED','7:ad158f979c11ac63029ba39bb5e371f7','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-6','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.000178',6,'EXECUTED','7:824c2a1a51aa62b0f331f4c1b8c082c0','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-7','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.009203',7,'EXECUTED','7:9d45579eea7d243182d5bf1b3f16ef7d','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-8','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.018078',8,'EXECUTED','7:0f660036d89a132ee26cdd8bc5db5ce0','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-9','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.029175',9,'EXECUTED','7:4af6200dd58f10e77e533ac6950ec5cb','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-10','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.03964',10,'EXECUTED','7:68c172b4585cae49e7a7a4757dffa35f','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-11','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.046198',11,'EXECUTED','7:909ee99089b2dd58a5c925517f733081','createSequence','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-12','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.053521',12,'EXECUTED','7:918fe63811684fef24f4b3867f5fde68','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-13','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.122405',13,'EXECUTED','7:0928696b7e21c2013e5166465e7f8f8f','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-14','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.188845',14,'EXECUTED','7:de218f655a6a4b7f68fe243c18740e59','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-15','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.250138',15,'EXECUTED','7:fa9c255fc9089d2632bc936b3adacd5d','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-16','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.257899',16,'EXECUTED','7:66b6b2953ed96899428b9e4f0758068b','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-17','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.265883',17,'EXECUTED','7:c13931bc30da1021470df473ad8bff29','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-18','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.312433',18,'EXECUTED','7:45d441eaa2517d319dfdf1e0a144f8bd','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-19','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.357726',19,'EXECUTED','7:1e1be72eb6e1d063aaa877d7c82ca60d','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-20','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.365786',20,'EXECUTED','7:97d9f0e2fb05d29435c7de644d23ce56','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-21','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.373618',21,'EXECUTED','7:639eea1c89295f02aa6ccb16b12da76f','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-22','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.382035',22,'EXECUTED','7:ded4385b924854bdb04ac82fced65a73','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-23','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.425544',23,'EXECUTED','7:903bf58d5916074967924e32646dc583','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-24','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.432284',24,'EXECUTED','7:de4d3e8e6523f9f6822763ebf61ac6c7','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-25','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.481487',25,'EXECUTED','7:d3f7fe38969463b511faf0d5f521da44','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-26','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.554139',26,'EXECUTED','7:bb6ade8232c1b2b2b9eb4b1b7e9dc459','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-27','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.604828',27,'EXECUTED','7:19eb4748a27fcc521fc4e878ee9f4e24','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-28','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.653446',28,'EXECUTED','7:47d1be13b4c612d65ebb10443dbac672','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-29','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.706843',29,'EXECUTED','7:5c91e27dd024aad2bf42e83471b9089e','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-30','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.752411',30,'EXECUTED','7:680b5e3f53dacaeb9858603892e545f3','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-31','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.795844',31,'EXECUTED','7:9976548fa822b488ab7a9093857c1897','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-32','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.846031',32,'EXECUTED','7:2f58c24e1e1fcbadae1735dc9cd2747a','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-33','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.888068',33,'EXECUTED','7:84fb3a103a0514ae3f27f11e3f8d73db','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-34','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.936829',34,'EXECUTED','7:143b2115312689856570fa469088522c','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-35','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:37.970243',35,'EXECUTED','7:1928d8abbae40db8a6b2211c23c0f22f','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-36','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.01172',36,'EXECUTED','7:97d88469ab286fda0a64ce890fba4e43','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-37','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.053742',37,'EXECUTED','7:1eeb70005e2a2d250af75c70771e68c3','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-38','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.094839',38,'EXECUTED','7:3f0055b321756d4ba93357ab89d456a1','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-39','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.129134',39,'EXECUTED','7:1c5c969bb97d43f16c053e4f0d8511ed','addPrimaryKey','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-40','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.169347',40,'EXECUTED','7:7df1ec022fcd513ec9a68907cc4a371e','addUniqueConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-41','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.229276',41,'EXECUTED','7:49fae88f3ec2508e0499dd1e6d7d1c9d','addUniqueConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-42','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.369495',42,'EXECUTED','7:fafb596c17b5e47a4fab917663bd3a7c','addUniqueConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-43','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.434752',43,'EXECUTED','7:31e1f4ae7e2d5af9f0ffd8e922988a91','addUniqueConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-44','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.445553',44,'EXECUTED','7:abd1f5f212759dd9493bbfe519786af0','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-45','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.45642',45,'EXECUTED','7:01399aa283f4c143c31f7d4c96908147','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-46','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.465141',46,'EXECUTED','7:29bb09e754a759ea0c336ef7aef13e18','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-47','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.474664',47,'EXECUTED','7:9b164c039e3353f0667c24edcee106dd','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-48','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.482847',48,'EXECUTED','7:e04ab7b16f3da6fc83a2c52113a0207f','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-49','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.489566',49,'EXECUTED','7:fedd65e31c38611eee4f133eb53ad1cb','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-50','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.495606',50,'EXECUTED','7:d4b11d1d01ce643bb3c18ed2d857302b','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-51','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.502513',51,'EXECUTED','7:43b9049a067b5795dc1e74c7ac5c6fd9','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-52','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.511041',52,'EXECUTED','7:b43c2855d6aaf22acc714824d4070ae9','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-53','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.517346',53,'EXECUTED','7:50debdba33902d822f129252c7832393','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-54','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.523523',54,'EXECUTED','7:9994aa727c7f26647cace77682754796','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-55','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.529525',55,'EXECUTED','7:c75745ce8029d2c73382bc4c6a7a6e92','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-56','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.535612',56,'EXECUTED','7:1aa5139fdc681d69a95954b38e22c674','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-57','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.54304',57,'EXECUTED','7:0fee5e3599a8ce85b78c29b1981ecfb8','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-58','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.550224',58,'EXECUTED','7:16b1555a6f6fbdf53c9afb24fd40ac71','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-59','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.566061',59,'EXECUTED','7:86140231159ab3045048da6a79284de5','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-60','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.572359',60,'EXECUTED','7:06fa6fbdc42971cff8aa400ec1c7f4d9','addForeignKeyConstraint','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-61','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.625637',61,'EXECUTED','7:73a473a4342caf08a3aa8f0cd7672b65','createTable','NULL','NULL','3.4.2','NULL','NULL'),
+('1465423649552-62','admin (generated)','classpath:liquibase-changeLog.xml','2016-06-21 00:39:38.635913',62,'EXECUTED','7:5106b37c6b7f59b636806dd4c6ca356b','sqlFile','NULL','NULL','3.4.2','NULL','NULL');
+
+
+
+
+INSERT INTO databasechangeloglock (id, locked, lockgranted, lockedby) VALUES
+(1, 'f', NULL, NULL);
 
 INSERT INTO department (id, imagepath, name, hospital_id) VALUES 
 (1, 'service1.png', 'Diagnostician', 1),
@@ -58,7 +123,7 @@ INSERT INTO hospital (id, building, city, country, street, description, imagepat
 (1, '137', 'Chernivtsi', 'Ukraine', 'Holovna St', '',	'Hospital_1.jpg', '48.279439400000001', '25.943196899999975', 'Chernivtsi Regional Clinical Hospital'),
 (2, '11',	'Chernivtsi', 'Ukraine', 'Lesi Ukrainky St', '', 'Hospital_2.jpg', '48.290980500000003', '25.929598499999997', 'Miska Poliklinika'),
 (3,	'185В',	'Chernivtsi', 'Ukraine', 'Ruska St', '', 'Hospital_3.jpg', '48.283664100000003', '25.973487500000033', 'Angelholm'),
-(4, '218', 'Chernivtsi', 'Ukraine', 'Holovna St', '', 'Hospital_4.jpg', '48.255651399999998', '25.957666399999994', 'Міська дитяча поліклініка №7');
+(4, '218', 'Chernivtsi', 'Ukraine', 'Holovna St', '', 'Hospital_4.jpg', '48.255651399999998', '25.957666399999994', 'Hospital #7');
 
 SELECT pg_catalog.setval('hospital_id_seq', 4, true);
 
@@ -71,7 +136,24 @@ INSERT INTO hospital_users (hospital_id, managers_id) VALUES
 INSERT INTO patientcard (id, userdetail_id) VALUES
 (1, NULL),
 (2, NULL),
-(3, NULL);
+(3, NULL),
+(4, NULL),
+(5, NULL),
+(6, NULL),
+(7, NULL),
+(8, NULL),
+(9, NULL),
+(10, NULL),
+(11, NULL),
+(12, NULL),
+(13, NULL),
+(14, NULL),
+(15, NULL),
+(16, NULL),
+(17, NULL),
+(18, NULL),
+(19, NULL),
+(20, NULL);
 
 SELECT pg_catalog.setval('patientcard_id_seq', 31, true);
 
@@ -86,46 +168,48 @@ INSERT INTO role (id, type) VALUES
 SELECT pg_catalog.setval('role_id_seq', 1, false);
 
 INSERT INTO role_users (users_id, role_id) VALUES
-(1, 1)
-(2,3)
-(3,3)
-(4,3)
-(5,3)
-(6,4)
-(7,4)
-(8,4)
-(9,4)
-(10,4)
-(11,4)
-(12,4)
-(13,4)
-(14,4)
-(15,4)
-(16,4)
-(17,2)
-(18,2)
-(19,2)
-(20,2)
-(21,2)
-(22,2)
-(23,2)
-(24,2)
-(25,2)
-(26,2)
-(28,2)
-(29,2)
-(30,2)
-(31,2);
+(1, 1),
+(2,3),
+(3,3),
+(4,3),
+(5,3),
+(6,4),
+(7,4),
+(8,4),
+(9,4),
+(10,4),
+(11,4),
+(12,4),
+(13,4),
+(14,4),
+(15,4),
+(16,4),
+(17,2),
+(18,2),
+(19,2),
+(20,2);
 
 INSERT INTO userdetail (id, address, birthdate, firstname, gender, imagepath, lastname, phone, patientcard_id) VALUES
 (1, '\N', NULL,	'Lars', 'MAN', '\N', 'Urlich', '\N', 1),
 (2, '\N', NULL, 'James', 'MAN', '\N', 'Hatfield', '\N', 2),
 (3, '\N', NULL, 'Kurt', 'MAN', '\N', 'Kobein', '\N', 3),
+(4, '\N', NULL, 'Kirk', 'MAN', '\N', 'Hammet', '\N', 4),
+(5, '\N', NULL, 'James', 'MAN', '\N', 'Nusted', '\N', 5),
 (6, '\N', NULL, 'Gregory', 'MAN', 'gh.jpg', 'House', '\N', 6),
 (7, '\N', NULL, 'Eric', 'MAN', 'ef.jpg', 'Foreman', '\N', 7),
 (8, '\N', NULL,	'Lisa',	'WOMAN', 'lc.jpg', 'Cuddy', '\N', 8),
+(9, '\N', NULL, 'Rhemy', 'WOMAN', 'rh.jpg', 'Hadley', '\N', 9),
+(10, '\N', NULL, 'James', 'MAN', 'jw.jpg', 'Wilson', '\N', 10),
+(11, '\N', NULL, 'Chester', 'MAN', 'cb.jpg', 'Benington', '\N', 11),
+(12, '\N', NULL, 'Chris', 'MAN', 'ct.jpg', 'Terk', '\N', 12),
+(13, '\N', NULL, 'Jhon', 'MAN', 'jd.jpg', 'Dorian', '\N', 13),
+(14, '\N', NULL, 'Jhared', 'MAN', 'jl.jpg', 'Leto', '\N', 14),
+(15, '\N', NULL, 'Mike', 'MAN', 'ms.jpg', 'Shinoda', '\N', 15),
+(16, '\N', NULL, 'Marshal', 'MAN', 'mm.jpg', 'Matters', '\N', 16),
 (17, '\N', NULL, 'Charles', 'MAN', '\N', 'Darvin', '\N', 17),
-(18, '\N', NULL, 'Ilay', 'MAN', '\N', 'Nails', '\N', 18);
+(18, '\N', NULL, 'Ilay', 'MAN', '\N', 'Nails', '\N', 18),
+(19, '\N', NULL, 'Michael', 'MAN', '\N', 'Luter', '\N', 19),
+(20, '\N', NULL, 'Richard', 'MAN', '\N', 'Rorshek', '\N', 20);
 
 SELECT pg_catalog.setval('userdetail_id_seq', 31, true);
 
@@ -133,14 +217,39 @@ INSERT INTO users (id, email, enabled, password, userdetails_id) VALUES
 (1, 'admin@hospitals.ua', 't', '$2a$10$N3rWp7etmNY23Zf6kFNLV.D/sT0tSJ9jHRiS0xEgiCtI2L.OQbBqi', 1),
 (2,	'manager.jh@hospitals.ua', 't', '$2a$10$xEHQ5YGjKO0.CED2gkMBsOK7eR555Zo9XAkYKjGJTQcyxHgpAWV7e', 2),
 (3, 'manager.kk@hospitals.ua', 't', '$2a$10$Y8Ou0AQGW/6UuLB6d0cqhOGZXOVzfmH.0pJnWTYjEHPXjEICAqE9u', 3),
+(4, 'manager.kh@hospitals.ua', 't', '$2a$10$2mZHnyUAbDsX8341uT1UT.fYNzey/q/TYtoOVQreYDrJsxP7v1N/K', 4),
+(5, 'manager.jn@hospitals.ua', 't', '$2a$10$bP/ijok5uiAGC4UsSp/QIujdYXT5ixCwnKkndTYW.1ml3m349w0lS', 5),
 (6, 'doctor.gh@hospitals.ua', 't', '$2a$10$FbRxp4PdXuFHK7kU8hemMezGFc.iGXH6Bs5z6gZCImhh8YM3ZJn2K', 6),
 (7, 'doctor.ef@hospitals.ua', 't', '$2a$10$Ah7jCL.GYHPWHXxQ4TPsJOok178L.SrKYIo5n3QmTy74LV1M0Clqi', 7),
 (8, 'doctor.lhc@hospitals.ua', 't', '$2a$10$RjUyAGgaT0RW9wYXAJPGjuG1ooXdpBjI/4bQwmTbvMteimyiAjbum', 8),
+(9, 'doctor.rh@hospitals.ua', 't', '$2a$10$jyvm38NWsC3WDklbGTxMRurM6SNULHlOSOFFqPGTGp2.c.UZTpxJC', 9),
+(10, 'doctor.jw@hospitals.ua', 't', '$2a$10$18snRZ9iaK7iets6IN8XmOxTZiEebBCtUMLpY3/i72Nfk40iqbn2W', 10),
+(11, 'doctor.cb@hospitals.ua', 't', '$2a$10$eNhH/O6Gb/Kzoxc7fZZJYOA9HQuYB6Pz4mrG/DJd35zHk0Nu7.32y', 11),
+(12, 'doctor.ct@hospitals.ua', 't', '$2a$10$o3apAm429gfS2jRto.sHyOWAtQ..WgYC3HvThm3/8ZApV2gVqyTbO', 12),
+(13, 'doctor.jd@hospitals.ua', 't', '$2a$10$ZbbcxIGBQFE8IxcB4GI7BeDH/kmTvMmonbCL7z0aMDglrK.6U65aW', 13),
+(14, 'doctor.jl@hospitals.ua', 't', '$2a$10$bhW4V1uVETEQ/YSC3yQPm.lGPavROHB/fmzBtW0k3ppdZlABoMiiO', 14),
+(15, 'doctor.ms@hospitals.ua', 't', '$2a$10$Hazi7OuRrnnLd6gmNWLCpOYr6dksKORDM4Xl.hB3YXbE/wl6YgA46', 15),
+(16, 'doctor.mm@hospitals.ua', 't', '$2a$10$xeVfrEqprRSHSqo8yb/AWutiqEkLlVaNmrsWUxy5kYF5ksFcW17Iu', 16),
 (17, 'patient.cd@hospitals.ua', 't', '$2a$10$lH5Sg.gocRCIuO17BV1BW.sUjVvPTXA7UokUsWtt7ODSOuRNMVhGW', 17),
-(18, 'patient.in@hospitals.ua', 't', '$2a$10$ZNCZEfFLA/TZFuhk3aL1b.2KraEr7mSLGk5hWp9KliuBY8B5quryq', 18);
+(18, 'patient.in@hospitals.ua', 't', '$2a$10$ZNCZEfFLA/TZFuhk3aL1b.2KraEr7mSLGk5hWp9KliuBY8B5quryq', 18),
+(19, 'patient.ml@hospitals.ua', 't', '$2a$10$wtRRo7Q6O.wPv8E/7M4kMebWHgdFf0GZYotCj3nBUYR2HLxQFqPMm', 19),
+(20, 'patient.rr@hospitals.ua', 't', '$2a$10$DLdRb91MrBBhNxEr5AYXrOuSn5LieZFSXrVE7RZWEbglkdfsvptsm', 20);
 
 SELECT pg_catalog.setval('users_id_seq', 31, true);
 
+INSERT INTO workscheduler (doctor_id, workscheduler) VALUES
+(1, '[{"start_date":"2016-06-13 08:00","end_date":"2016-06-13 15:00","text":"","id":"1465336679542"},{"start_date":"2016-06-14 09:00","end_date":"2016-06-14 14:00","text":"","id":"1465336679543"},{"start_date":"2016-06-15 08:00","end_date":"2016-06-15 10:00","text":"","id":"1465336679544"},{"start_date":"2016-06-10 08:00","end_date":"2016-06-10 14:00","text":"","id":"1465342429132"},{"start_date":"2016-06-11 09:00","end_date":"2016-06-11 14:00","text":"","id":"1465342487617"},{"start_date":"2016-06-16 08:00","end_date":"2016-06-16 13:00","text":"","id":"1465343061343"},{"start_date":"2016-06-17 08:00","end_date":"2016-06-17 13:00","text":"","id":"1465343061344"},{"start_date":"2016-06-18 08:00","end_date":"2016-06-18 13:00","text":"","id":"1465343061345"},{"start_date":"2016-06-12 09:00","end_date":"2016-06-12 11:00","text":"","id":"1465346790024"},{"start_date":"2016-06-19 08:00","end_date":"2016-06-19 13:00","text":"","id":"1465376657482"},{"start_date":"2016-06-20 09:00","end_date":"2016-06-20 14:00","text":"","id":"1465376657483"},{"start_date":"2016-06-21 10:00","end_date":"2016-06-21 15:00","text":"","id":"1465376657484"},{"start_date":"2016-06-22 09:00","end_date":"2016-06-22 14:00","text":"","id":"1465376657485"},{"start_date":"2016-06-23 09:00","end_date":"2016-06-23 14:00","text":"","id":"1465376657486"},{"start_date":"2016-06-24 09:00","end_date":"2016-06-24 14:00","text":"","id":"1465384386665"},{"start_date":"2016-06-27 13:00","end_date":"2016-06-27 19:00","text":"","id":"1465384386666"},{"app":"20 min"}]'),
+(4, '[{"start_date":"2016-06-09 16:00","end_date":"2016-06-09 18:00","text":"","id":"1465464127733"},{"start_date":"2016-06-10 16:00","end_date":"2016-06-10 18:00","text":"","id":"1465464127734"},{"start_date":"2016-06-13 15:00","end_date":"2016-06-13 17:00","text":"","id":"1465464127736"},{"start_date":"2016-06-14 15:00","end_date":"2016-06-14 17:00","text":"","id":"1465464127737"},{"start_date":"2016-06-15 15:00","end_date":"2016-06-15 17:00","text":"","id":"1465464127738"},{"start_date":"2016-06-16 15:00","end_date":"2016-06-16 17:00","text":"","id":"1465464127739"},{"start_date":"2016-06-17 15:00","end_date":"2016-06-17 17:00","text":"","id":"1465464127740"},{"app":"20 min"}]'),
+(5, '[{"start_date":"2016-06-09 08:00","end_date":"2016-06-09 16:00","text":"","id":"1465461001449"},{"start_date":"2016-06-10 08:00","end_date":"2016-06-10 16:00","text":"","id":"1465463855432"},{"start_date":"2016-06-13 08:00","end_date":"2016-06-13 16:00","text":"","id":"1465463855433"},{"start_date":"2016-06-14 08:00","end_date":"2016-06-14 16:00","text":"","id":"1465463855434"},{"start_date":"2016-06-15 08:00","end_date":"2016-06-15 16:00","text":"","id":"1465463855435"},{"start_date":"2016-06-16 08:00","end_date":"2016-06-16 16:00","text":"","id":"1465463855436"},{"start_date":"2016-06-17 08:00","end_date":"2016-06-17 16:00","text":"","id":"1465463855437"},{"start_date":"2016-06-18 08:00","end_date":"2016-06-18 16:00","text":"","id":"1465463855438"},{"start_date":"2016-06-19 08:00","end_date":"2016-06-19 16:00","text":"","id":"1465463855439"},{"app":"20 min"}]'),
+(6, '[{"start_date":"2016-06-09 08:00","end_date":"2016-06-09 16:00","text":"","id":"1465463922881"},{"start_date":"2016-06-10 08:00","end_date":"2016-06-10 16:00","text":"","id":"1465463922882"},{"start_date":"2016-06-13 09:00","end_date":"2016-06-13 17:00","text":"","id":"1465463922883"},{"start_date":"2016-06-14 09:00","end_date":"2016-06-14 17:00","text":"","id":"1465463922884"},{"start_date":"2016-06-15 09:00","end_date":"2016-06-15 17:00","text":"","id":"1465463922885"},{"start_date":"2016-06-16 09:00","end_date":"2016-06-16 17:00","text":"","id":"1465463922886"},{"start_date":"2016-06-17 09:00","end_date":"2016-06-17 17:00","text":"","id":"1465463922887"},{"start_date":"2016-06-18 09:00","end_date":"2016-06-18 17:00","text":"","id":"1465463922888"},{"start_date":"2016-06-19 09:00","end_date":"2016-06-19 17:00","text":"","id":"1465463922889"},{"app":"20 min"}]'),
+(7, '[{"start_date":"2016-06-09 13:00","end_date":"2016-06-09 19:00","text":"","id":"1465463971645"},{"start_date":"2016-06-10 13:00","end_date":"2016-06-10 19:00","text":"","id":"1465463971646"},{"start_date":"2016-06-13 13:00","end_date":"2016-06-13 19:00","text":"","id":"1465463971649"},{"start_date":"2016-06-14 13:00","end_date":"2016-06-14 19:00","text":"","id":"1465463971650"},{"start_date":"2016-06-15 13:00","end_date":"2016-06-15 19:00","text":"","id":"1465463971651"},{"start_date":"2016-06-16 13:00","end_date":"2016-06-16 19:00","text":"","id":"1465463971652"},{"start_date":"2016-06-17 13:00","end_date":"2016-06-17 19:00","text":"","id":"1465463971653"},{"start_date":"2016-06-18 13:00","end_date":"2016-06-18 19:00","text":"","id":"1465463971654"},{"start_date":"2016-06-19 13:00","end_date":"2016-06-19 19:00","text":"","id":"1465463971655"},{"app":"20 min"}]'),
+(8, '[{"start_date":"2016-06-09 13:00","end_date":"2016-06-09 16:00","text":"","id":"1465464014668"},{"start_date":"2016-06-10 13:00","end_date":"2016-06-10 16:00","text":"","id":"1465464014669"},{"start_date":"2016-06-13 13:00","end_date":"2016-06-13 16:00","text":"","id":"1465464014671"},{"start_date":"2016-06-14 13:00","end_date":"2016-06-14 16:00","text":"","id":"1465464014672"},{"start_date":"2016-06-15 13:00","end_date":"2016-06-15 16:00","text":"","id":"1465464014673"},{"start_date":"2016-06-16 13:00","end_date":"2016-06-16 16:00","text":"","id":"1465464014674"},{"start_date":"2016-06-17 13:00","end_date":"2016-06-17 16:00","text":"","id":"1465464014675"},{"app":"20 min"}]'),
+(3, '[{"start_date":"2016-06-09 13:00","end_date":"2016-06-09 18:00","text":"","id":"1465464097537"},{"start_date":"2016-06-10 13:00","end_date":"2016-06-10 18:00","text":"","id":"1465464097538"},{"start_date":"2016-06-11 13:00","end_date":"2016-06-11 18:00","text":"","id":"1465464097539"},{"start_date":"2016-06-12 13:00","end_date":"2016-06-12 18:00","text":"","id":"1465464097540"},{"start_date":"2016-06-13 12:00","end_date":"2016-06-13 17:00","text":"","id":"1465464097541"},{"start_date":"2016-06-14 12:00","end_date":"2016-06-14 17:00","text":"","id":"1465464097542"},{"start_date":"2016-06-15 12:00","end_date":"2016-06-15 17:00","text":"","id":"1465464097543"},{"start_date":"2016-06-16 12:00","end_date":"2016-06-16 17:00","text":"","id":"1465464097544"},{"start_date":"2016-06-17 12:00","end_date":"2016-06-17 17:00","text":"","id":"1465464097545"},{"app":"20 min"}]'),
+(9, '[{"start_date":"2016-06-09 19:00","end_date":"2016-06-09 20:00","text":"New event","id":"1465464169884"},{"start_date":"2016-06-10 19:00","end_date":"2016-06-10 20:00","text":"New event","id":"1465464169885"},{"start_date":"2016-06-13 19:00","end_date":"2016-06-13 20:00","text":"New event","id":"1465464169887"},{"start_date":"2016-06-14 19:00","end_date":"2016-06-14 20:00","text":"New event","id":"1465464169888"},{"start_date":"2016-06-15 19:00","end_date":"2016-06-15 20:00","text":"New event","id":"1465464169889"},{"start_date":"2016-06-16 19:00","end_date":"2016-06-16 20:00","text":"New event","id":"1465464169890"},{"start_date":"2016-06-17 19:00","end_date":"2016-06-17 20:00","text":"New event","id":"1465464169891"},{"app":"20 min"}]'),
+(10, '[{"start_date":"2016-06-09 13:00","end_date":"2016-06-09 15:00","text":"","id":"1465464203447"},{"start_date":"2016-06-10 13:00","end_date":"2016-06-10 15:00","text":"","id":"1465464203448"},{"start_date":"2016-06-13 15:00","end_date":"2016-06-13 17:00","text":"","id":"1465464203449"},{"start_date":"2016-06-14 15:00","end_date":"2016-06-14 17:00","text":"","id":"1465464203450"},{"start_date":"2016-06-15 15:00","end_date":"2016-06-15 17:00","text":"","id":"1465464203451"},{"start_date":"2016-06-16 15:00","end_date":"2016-06-16 17:00","text":"","id":"1465464203452"},{"start_date":"2016-06-17 15:00","end_date":"2016-06-17 17:00","text":"","id":"1465464203453"},{"app":"20 min"}]'),
+(2, '[{"start_date":"2016-06-10 10:00","end_date":"2016-06-10 15:00","text":"","id":"1465335670362"},{"start_date":"2016-06-11 10:00","end_date":"2016-06-11 15:00","text":"","id":"1465335670363"},{"start_date":"2016-06-09 10:00","end_date":"2016-06-09 15:00","text":"","id":"1465335670364"},{"start_date":"2016-06-13 08:00","end_date":"2016-06-13 13:00","text":"","id":"1465464082292"},{"start_date":"2016-06-14 08:00","end_date":"2016-06-14 13:00","text":"","id":"1465464082293"},{"start_date":"2016-06-15 08:00","end_date":"2016-06-15 13:00","text":"","id":"1465464082294"},{"start_date":"2016-06-16 08:00","end_date":"2016-06-16 13:00","text":"","id":"1465464082295"},{"start_date":"2016-06-17 08:00","end_date":"2016-06-17 13:00","text":"","id":"1465464082296"},{"app":"20 min"}]');
+	
+	
 ALTER TABLE ONLY appointment
     ADD CONSTRAINT appointment_pkey PRIMARY KEY (id);
 
@@ -406,3 +515,8 @@ ALTER TABLE ONLY department
 
 ALTER TABLE ONLY hospital_users
     ADD CONSTRAINT fk_tcu91xpek54a086jamuakvoh8 FOREIGN KEY (hospital_id) REFERENCES hospital(id);
+	
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
