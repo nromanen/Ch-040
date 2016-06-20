@@ -20,11 +20,36 @@ public class NewHospital {
     @FindBy(id = "login-submit")
     public WebElement loginSubmitButton;
 
-    @FindBy(css = "i.removable-i.fade.in")
+    @FindBy(id = "address.country-error")
+    public WebElement errorAddressField;
+    @FindBy(id = "geo-error")
+    public WebElement errorGeoField;
+
+    @FindBy(id = "address.city-error")
+    public WebElement errorCityField;
+
+    @FindBy(id = "name-error")
     public WebElement errorField;
+
+    @FindBy(id = "longitude-error")
+    public WebElement errorLongitudeField;
+
+    @FindBy(id = "latitude-error")
+    public WebElement errorLatitudeField;
+
     @FindBy(className = "alert.alert-warning.fade.in")
     public WebElement confirmBox;
-    @FindBy(id="address")
+
+    @FindBy(id ="address.country")
+    public WebElement countryField;
+
+    @FindBy(id ="address.street")
+    public WebElement streetField;
+
+    @FindBy(id ="address.building")
+    public WebElement buildingField;
+
+    @FindBy(id="addressGeo")
     public WebElement addresField;
 
     @FindBy(id = "name")
@@ -33,21 +58,44 @@ public class NewHospital {
     @FindBy(id="description")
     public WebElement descriptionField;
 
-    @FindBy(css = "button.imagePath")
-    public WebElement imagePathButton;
-
-    @FindBy(css = "button.col-sm-2.btn.btn-default")
+    @FindBy(id = "add-hospital")
     public WebElement submitButton;
 
     @FindBy(id = "latitude")
     public WebElement latitudeField;
 
+    @FindBy(id = "address.city")
+    public WebElement cityField;
+
+    @FindBy(xpath = "(//button[@type='reset'])[3]")
+    public WebElement resetButton;
+
     @FindBy(id = "longitude")
     public WebElement longitudeField;
+
+    @FindBy(css = "span.btn")
+    public WebElement imagePathButton;
+
     @FindBy(id = "googleMap")
     public WebElement googleMap;
 
+    @FindBy(css = "button.col-sm-2:nth-child(3)")
+    public WebElement backButton;
+
+    @FindBy(xpath="(//button[@type='button'])[4]")
+    public WebElement fillButton;
+
+    @FindBy(xpath="(//button[@type='button'])[3]")
+    public WebElement findButton;
+
+
+
+
+
     public void inputName(String name){
+        nameField.sendKeys(name);
+    }
+    public void input(String name){
         nameField.sendKeys(name);
     }
     public void inputAddress(String adrs){

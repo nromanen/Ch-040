@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
  */
 public class TestSchedule extends BaseTest{
     SchedulePage schedulePage;
-    //DropdownLogin dropdownLogin;
+    //DropdownLogin dropdownc;
     HospitalPage hospitalPage;
     DepartmentPage departmentPage;
     DoctorPage doctorPage;

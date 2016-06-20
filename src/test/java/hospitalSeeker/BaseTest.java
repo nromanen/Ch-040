@@ -29,7 +29,7 @@ public class BaseTest {
     public static final String REGISTER_URL = HOME_URL.concat("newUser");
     public static final String FIND_URL = HOME_URL.concat("mapsearch");
     public static final String VALIDATE_URL = HOME_URL.concat("admin/map/validate");
-
+    public static final String HOSPITAL_LIST_URL = HOME_URL.concat("/admin/map/listhospitals");
 
     public static final String ADMIN_LOGIN = "admin@hospitals.ua";
     public static final String ADMIN_PASSWORD = "1111";

@@ -10,23 +10,35 @@ public class ValidateHospital{
     @FindBy(id = "googleMap")
     public WebElement googleApi;
 
-    @FindBy(css = "button.btn.btn-default.col-sm-12")
-    public WebElement validateButton;
+    @FindBy(xpath = "xpath=(//button[@type='button'])[4]")
+    public WebElement showOnMap;
 
-    @FindBy(css = "button.btn.btn-default")
+    @FindBy(css = "span.glyphicon.glyphicon-plus")
     public WebElement addValidateHospital;
+
+    @FindBy(className = "nav navbar-nav dropdown dropdown-toggle active")
+    public WebElement actionsButton;
+
+    @FindBy(partialLinkText = "Check Hospitals List")
+    public WebElement checkButton;
+
+    @FindBy(xpath = "(//button[@type='button'])[3]")
+    public WebElement getGooglePoi;
+
+    @FindBy(className = "table table-striped table-bordered")
+    public WebElement table;
 
     public void checkGoogleApi(){
         googleApi.isDisplayed();
     }
-    public void validateButtonClick(){
-        validateButton.click();
+    public void googlePoiButtonClick(){
+        getGooglePoi.click();
     }
     public void addValidateHospitalClick(){
         addValidateHospital.click();
     }
     public void findValidateHospitalClick(){
-        addValidateHospital.click();
+        showOnMap.click();
     }
 
     public static ValidateHospital init(WebDriver driver) {

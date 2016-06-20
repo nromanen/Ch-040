@@ -1,8 +1,11 @@
-package hospitalSeeker; /**
+package hospitalSeeker;
+
+/**
  * Created by oleg on 03.06.2016.
  */
 import hospitalSeeker.googleApi.NewHospital;
 import hospitalSeeker.googleApi.ValidateHospital;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -11,17 +14,32 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 public class TestValidateHospital extends BaseTest {
 
     ValidateHospital validateHospital;
     NewHospital newHospital;
+    LoginPage loginPage;
+    BrowserWrapper browserWrapper;
 
     @BeforeMethod
     public void beforeMethod() {
         validateHospital = PageFactory.initElements(browser.getDriver(), ValidateHospital.class);
         newHospital = PageFactory.initElements(browser.getDriver(), NewHospital.class);
+        loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
+        //validateHospital.actionsButton.click();
+       // validateHospital.checkButton.click();
+        browser.goTo(LOGIN_URL);
+        loginPage.emailLogin.sendKeys(ADMIN_LOGIN);
+        loginPage.passwordLogin.sendKeys(ADMIN_PASSWORD);
+        loginPage.loginButton.click();
+        browser.implicitWait(2);
+        browser.goTo(VALIDATE_URL);
+
     }
+
+
     /*
     *<p>
     *
@@ -39,16 +57,20 @@ public class TestValidateHospital extends BaseTest {
 	 * @effects all elements must be present
 	 * </p>
 	 */
-    @Test(priority = 0)
+    @Test
     public void isElementsPresent() {
-        testLogin();
-        browser.goTo(HOME_URL);
-        browser.goTo(VALIDATE_URL);
+
         assertTrue(browser.isElementPresent(validateHospital.googleApi), "Dude, Google Api is not present");
-        assertTrue(browser.isElementPresent(validateHospital.validateButton), "Button for validate hospital is not present");
-        validateHospital.addValidateHospitalClick();
-        browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        browser.waitUntilElementIsPresent(By.cssSelector("button.btn.btn-default"));
+        assertTrue(browser.isElementPresent(validateHospital.getGooglePoi), "Button for google poi is not present");
+        System.out.println("hello1");
+        validateHospital.getGooglePoi.click();
+        System.out.println("hello1");
+        validateHospital.getGooglePoi.click();
+        System.out.println("hello2");
+        browser.implicitWait(10);
         assertTrue(browser.isElementPresent(validateHospital.addValidateHospital), "Button for addvalidate hospital is not present");
+        assertTrue(browser.isElementPresent(validateHospital.showOnMap), "Button for addvalidate hospital is not present");
     }
     /*
     *<p>
@@ -61,11 +83,8 @@ public class TestValidateHospital extends BaseTest {
 	 * @effects Log in
     *     </p>
      */
-    @Test(dependsOnMethods = "isElementsPresent")
-    public void testLogin() {
-        browser.goTo(HOME_URL);
-        newHospital.logInAction(ADMIN_LOGIN, ADMIN_PASSWORD);
-    }
+
+
     /*
     *<p>
     *
@@ -79,11 +98,11 @@ public class TestValidateHospital extends BaseTest {
 	 * @effects button must be clickable
     *     </p>
      */
-    @Test(dependsOnMethods = "isElementsPresent")
-    public void validateButtonClick() {
-        testLogin();
-        browser.goTo(VALIDATE_URL);
-        validateHospital.validateButtonClick();
+    @Test
+    public void checkTableIsVisible() {
+        validateHospital.googlePoiButtonClick();
+        browser.implicitWait(2);
+        assertTrue(browser.isElementPresent(validateHospital.table), "Table with validate hospital is not present");
     }
     /*
     *<p>
@@ -101,13 +120,11 @@ public class TestValidateHospital extends BaseTest {
 	 *
     *     </p>
      */
-    @Test(dependsOnMethods = {"isElementsPresent","validateButtonClick"})
-    public void addValidateHospital(){
-        testLogin();
-        browser.goTo(VALIDATE_URL);
-        validateHospital.validateButtonClick();
-        browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-        validateHospital.addValidateHospitalClick();
+    @Test
+    public void checkShowOnMapButton(){
+        validateHospital.googlePoiButtonClick();
+        browser.implicitWait(2);
+        validateHospital.findValidateHospitalClick();
     }
     /*
     *<p>
@@ -127,18 +144,18 @@ public class TestValidateHospital extends BaseTest {
 	 *
     *     </p>
      */
-    @Test(dependsOnMethods = "addValidateHospital")
-    public void  resirectToOtheUrl(){
-        testLogin();
-        browser.goTo(VALIDATE_URL);
-        validateHospital.validateButtonClick();
-        assertTrue(browser.isElementPresent(validateHospital.addValidateHospital));
+    @Test
+    public void checkAddvValidateHospitals(){
+        validateHospital.googlePoiButtonClick();
+
+        browser.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         validateHospital.addValidateHospitalClick();
-        browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-       assertEquals(false, (browser.getCurrentUrl() == VALIDATE_URL));
+        assertEquals(false, (browser.getCurrentUrl() == VALIDATE_URL));
     }
+
     @AfterMethod
     public void afterMethod() {
-        browser.getDriver().quit();
+        browser.driver.quit();
+
     }
 }
