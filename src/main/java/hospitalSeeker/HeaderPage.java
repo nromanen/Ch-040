@@ -11,8 +11,8 @@ public class HeaderPage {
     public static final String FIND_BUTTON_TEXT = "Find";
     public static final String LOGIN_BUTTON_TEXT = "Login";
     public static final String ACTIONS_BUTTON_TEXT = "Actions";
-    public static final String USER_DROPDOWN_BUTTON_XPATH = "//*[@id=\"bs-example-navbar-collapse-1\"]/ul/li[7]/a";
-    public static final String LOG_OUT_BUTTON_XPATH = "/html/body/nav/div[1]/div[2]/ul/li[7]/ul/li[2]/a";
+    public static final String USER_DROPDOWN_BUTTON_SELECTOR = "#bs-example-navbar-collapse-1 > ul > li:nth-child(8) > a";
+    public static final String LOG_OUT_BUTTON_SELECTOR = "#dropdawn > li:nth-child(2) > a";
     public static final String CARD_BUTTON_TEXT = "Card";
     public static final String APPOINTMENTS_BUTTON_TEXT = "my appointments";
     public static final String PATIENTS_BUTTON_TEXT = "Patients";
@@ -31,10 +31,10 @@ public class HeaderPage {
     @FindBy(linkText = ACTIONS_BUTTON_TEXT)
     public WebElement actionsButton;
 
-    @FindBy(xpath = USER_DROPDOWN_BUTTON_XPATH)
+    @FindBy(css = USER_DROPDOWN_BUTTON_SELECTOR)
     public WebElement userDropdownButton;
 
-    @FindBy(xpath = LOG_OUT_BUTTON_XPATH) //terrifyingly bad thing!!!
+    @FindBy(css = LOG_OUT_BUTTON_SELECTOR) //terrifyingly bad thing!!!
     public WebElement logoutButton;
 
     @FindBy(className = CARD_BUTTON_TEXT)

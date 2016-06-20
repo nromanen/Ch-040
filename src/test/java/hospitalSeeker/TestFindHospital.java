@@ -48,8 +48,4 @@ public class TestFindHospital extends BaseTest{
         findHospital.findInAction("Chernivtsi");
         findHospital.enterAdress.sendKeys(Keys.RETURN);
     }
-    @AfterMethod
-    public void afterMethod() {
-        browser.getDriver().quit();
-    }
 }

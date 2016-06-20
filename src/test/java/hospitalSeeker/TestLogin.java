@@ -111,10 +111,4 @@ public class TestLogin extends BaseTest {
 		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p"));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
-
-	@AfterMethod
-	public void afterMethod() {
-		browser.getDriver().quit();
-	}
-
 }

@@ -186,9 +186,4 @@ public class TestPatients extends BaseTest{
 	  	 //Boolean isPresent10 = (newRecordPage.editTimeError).isDisplayed();
         
     }
-
-    @AfterMethod
-    public void afterMethod() {
-        browser.driver.quit();
-    }
 }
