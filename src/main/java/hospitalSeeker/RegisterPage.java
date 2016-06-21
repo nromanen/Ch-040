@@ -8,7 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 public class RegisterPage {
 
 	public static final String SUCCESSFULL_REGISTRATION = "/html/body/section/div/div/div/h3";
-	public static final String THIS_USER_IS_ALREADY_EXIST = "/html/body/section/div/div/div/h3";
+	public static final String PLEASE_REGISTER_TITLE = "/html/body/section/div/div/div/div/div/form/fieldset/h2";
+	public static final String WARNING_EMAIL = "/html/body/section/div/div/div/div/div/form/fieldset/div[1]/span";
+	public static final String WARNING_PASSWORD = "/html/body/section/div/div/div/div/div/form/fieldset/div[2]/span";
+	public static final String WARNING_CONFIRM_PASSWORD = "/html/body/section/div/div/div/div/div/form/fieldset/div[3]/span";
 
 	@FindBy(id = "email")
 	public WebElement emailRegister;
