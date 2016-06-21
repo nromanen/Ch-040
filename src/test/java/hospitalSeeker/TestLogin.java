@@ -21,10 +21,12 @@ public class TestLogin extends BaseTest {
 	@Test(priority = 0)
 	public void checkElementsLoginPage() {
 		browser.goTo(LOGIN_URL);
-		Assert.assertTrue(browser.isElementPresent(loginPage.emailLogin));
-		Assert.assertTrue(browser.isElementPresent(loginPage.passwordLogin));
-		Assert.assertTrue(browser.isElementPresent(loginPage.rememberMe));
-		Assert.assertTrue(browser.isElementPresent(loginPage.loginButton));
+		Assert.assertTrue(browser.isElementPresent(loginPage.emailLogin),"1");
+		Assert.assertTrue(browser.isElementPresent(loginPage.passwordLogin),"2");
+		Assert.assertTrue(browser.isElementPresent(loginPage.rememberMe),"3");
+		Assert.assertTrue(browser.isElementPresent(loginPage.forgotPassword),"4");
+		Assert.assertTrue(browser.isElementPresent(loginPage.loginButton),"5");
+		Assert.assertTrue(browser.isElementPresent(loginPage.registerButton),"6");
 	}
 
 	/*
@@ -39,8 +41,10 @@ public class TestLogin extends BaseTest {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
+		loginPage.rememberMe.click();
 		loginPage.loginButton.click();
-		Assert.assertTrue(browser.containsText("@"));
+		browser.waitUntilElementIsPresent(By.id("userDropdown1"));
+		Assert.assertTrue(browser.containsText("Charles Darvin"));
 	}
 
 	/*
@@ -50,13 +54,13 @@ public class TestLogin extends BaseTest {
 	 * input password 
 	 * click on button "Log in"
 	 */
-	@Test(priority = 3)
+	@Test(priority = 2)
 	public void testLoginWithoutEmail() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("");
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p"));
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 
@@ -68,13 +72,13 @@ public class TestLogin extends BaseTest {
 	 * keep empty 
 	 * click on button "Log in"
 	 */
-	@Test(priority = 4)
+	@Test(priority = 3)
 	public void testLoginWithoutPassword() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys("");
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p"));
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 
@@ -85,13 +89,13 @@ public class TestLogin extends BaseTest {
 	 * input password 
 	 * click on button "Log in"
 	 */
-	@Test(priority = 5)
+	@Test(priority = 4)
 	public void testLoginIncorrectEmail() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("tututu@ukr.net");
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p"));
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 
@@ -102,13 +106,13 @@ public class TestLogin extends BaseTest {
 	 * input incorrect password 
 	 * click on button "Log in"
 	 */
-	@Test(priority = 6)
+	@Test(priority = 5)
 	public void testLoginIncorrectPassword() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys("tututu2016");
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath("/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p"));
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 }
