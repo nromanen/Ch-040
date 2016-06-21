@@ -21,10 +21,12 @@ public class TestLogin extends BaseTest {
 	@Test(priority = 0)
 	public void checkElementsLoginPage() {
 		browser.goTo(LOGIN_URL);
-		Assert.assertTrue(browser.isElementPresent(loginPage.emailLogin));
-		Assert.assertTrue(browser.isElementPresent(loginPage.passwordLogin));
-		Assert.assertTrue(browser.isElementPresent(loginPage.rememberMe));
-		Assert.assertTrue(browser.isElementPresent(loginPage.loginButton));
+		Assert.assertTrue(browser.isElementPresent(loginPage.emailLogin),"1");
+		Assert.assertTrue(browser.isElementPresent(loginPage.passwordLogin),"2");
+		Assert.assertTrue(browser.isElementPresent(loginPage.rememberMe),"3");
+		Assert.assertTrue(browser.isElementPresent(loginPage.forgotPassword),"4");
+		Assert.assertTrue(browser.isElementPresent(loginPage.loginButton),"5");
+		Assert.assertTrue(browser.isElementPresent(loginPage.registerButton),"6");
 	}
 
 	/*
@@ -39,8 +41,10 @@ public class TestLogin extends BaseTest {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
+		loginPage.rememberMe.click();
 		loginPage.loginButton.click();
-		Assert.assertTrue(browser.containsText("@"));
+		browser.waitUntilElementIsPresent(By.id("userDropdown1"));
+		Assert.assertTrue(browser.containsText("Charles Darvin"));
 	}
 
 	/*
@@ -56,7 +60,7 @@ public class TestLogin extends BaseTest {
 		loginPage.emailLogin.sendKeys("");
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath(loginPage.INVALID_USERNAME_OR_PASSWORD));
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 
@@ -74,7 +78,7 @@ public class TestLogin extends BaseTest {
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys("");
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath(loginPage.INVALID_USERNAME_OR_PASSWORD));
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 
@@ -91,7 +95,7 @@ public class TestLogin extends BaseTest {
 		loginPage.emailLogin.sendKeys("tututu@ukr.net");
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath(loginPage.INVALID_USERNAME_OR_PASSWORD));
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 
@@ -108,7 +112,7 @@ public class TestLogin extends BaseTest {
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys("tututu2016");
 		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.xpath(loginPage.INVALID_USERNAME_OR_PASSWORD));
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
 		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
 }

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
-	public static final String INVALID_USERNAME_OR_PASSWORD = "/html/body/section/div/div/div/div/div/form/fieldset/div[1]/p";
+	public static final String INVALID_USERNAME_OR_PASSWORD = "div.alert.alert-danger";
 
 	@FindBy(id = "email")
 	public WebElement emailLogin;
@@ -15,16 +15,16 @@ public class LoginPage {
 	@FindBy(id="password")
 	public WebElement passwordLogin;
 	
-	@FindBy(xpath = "/html/body/section/div/div/div/div/div/form/fieldset/span/button")
+	@FindBy(css = "button.btn.btn-default")
 	public WebElement rememberMe;
 	
-	@FindBy(linkText = "Forgot Password?")
+	@FindBy(css = "a.btn.btn-link.pull-right")
 	public WebElement forgotPassword;
 	
 	@FindBy(css = "input.btn.btn-lg.btn-info.btn-block")
     public WebElement loginButton;
 	
-	@FindBy(linkText = "Register")
+	@FindBy(id = "registerRedirect")
     public WebElement registerButton;
 
 	public void loggingIn(String email, String password) {
