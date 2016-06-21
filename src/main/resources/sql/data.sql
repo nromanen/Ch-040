@@ -153,7 +153,8 @@ INSERT INTO patientcard (id, userdetail_id) VALUES
 (17, NULL),
 (18, NULL),
 (19, NULL),
-(20, NULL);
+(20, NULL),
+(21, NULL);
 
 SELECT pg_catalog.setval('patientcard_id_seq', 31, true);
 
@@ -187,7 +188,8 @@ INSERT INTO role_users (users_id, role_id) VALUES
 (17,2),
 (18,2),
 (19,2),
-(20,2);
+(20,2),
+(21, 2);
 
 INSERT INTO userdetail (id, address, birthdate, firstname, gender, imagepath, lastname, phone, patientcard_id) VALUES
 (1, '\N', NULL,	'Lars', 'MAN', '\N', 'Urlich', '\N', 1),
@@ -209,7 +211,8 @@ INSERT INTO userdetail (id, address, birthdate, firstname, gender, imagepath, la
 (17, '\N', NULL, 'Charles', 'MAN', '\N', 'Darvin', '\N', 17),
 (18, '\N', NULL, 'Ilay', 'MAN', '\N', 'Nails', '\N', 18),
 (19, '\N', NULL, 'Michael', 'MAN', '\N', 'Luter', '\N', 19),
-(20, '\N', NULL, 'Richard', 'MAN', '\N', 'Rorshek', '\N', 20);
+(20, '\N', NULL, 'Richard', 'MAN', '\N', 'Rorshek', '\N', 20),
+(21, '\N', NULL, 'Sam', 'MAN', '\N', 'Ferdinand', '\N', 21);
 
 SELECT pg_catalog.setval('userdetail_id_seq', 31, true);
 
@@ -233,7 +236,8 @@ INSERT INTO users (id, email, enabled, password, userdetails_id) VALUES
 (17, 'patient.cd@hospitals.ua', 't', '$2a$10$lH5Sg.gocRCIuO17BV1BW.sUjVvPTXA7UokUsWtt7ODSOuRNMVhGW', 17),
 (18, 'patient.in@hospitals.ua', 't', '$2a$10$ZNCZEfFLA/TZFuhk3aL1b.2KraEr7mSLGk5hWp9KliuBY8B5quryq', 18),
 (19, 'patient.ml@hospitals.ua', 't', '$2a$10$wtRRo7Q6O.wPv8E/7M4kMebWHgdFf0GZYotCj3nBUYR2HLxQFqPMm', 19),
-(20, 'patient.rr@hospitals.ua', 't', '$2a$10$DLdRb91MrBBhNxEr5AYXrOuSn5LieZFSXrVE7RZWEbglkdfsvptsm', 20);
+(20, 'patient.rr@hospitals.ua', 't', '$2a$10$DLdRb91MrBBhNxEr5AYXrOuSn5LieZFSXrVE7RZWEbglkdfsvptsm', 20),
+(21, 'patient.sf@hospitals.ua', 't', '$2a$10$4TW.tWhaI4xoSGPZhA4iseizzcRpQB/yNessm204M7o0qXgsdJYm.', 21);
 
 SELECT pg_catalog.setval('users_id_seq', 31, true);
 
@@ -381,140 +385,152 @@ ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
---
--- Name: fk_1r6dadb3ajbaxwkpdx1v4u9n9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY doctorinfo
-    ADD CONSTRAINT fk_1r6dadb3ajbaxwkpdx1v4u9n9 FOREIGN KEY (userdetails_id) REFERENCES userdetail(id);
+    ADD CONSTRAINT "FK_1r6dadb3ajbaxwkpdx1v4u9n9" FOREIGN KEY (userdetails_id) REFERENCES userdetail(id);
 
 
 --
--- Name: fk_2xe4lqrkwymg4aoshgadolask; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2131 (class 2606 OID 23419)
+-- Name: FK_2xe4lqrkwymg4aoshgadolask; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY users
-    ADD CONSTRAINT fk_2xe4lqrkwymg4aoshgadolask FOREIGN KEY (userdetails_id) REFERENCES userdetail(id);
+    ADD CONSTRAINT "FK_2xe4lqrkwymg4aoshgadolask" FOREIGN KEY (userdetails_id) REFERENCES userdetail(id);
 
 
 --
--- Name: fk_67w5hj99v5nvjexfv0cf1mxus; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2115 (class 2606 OID 23424)
+-- Name: FK_67w5hj99v5nvjexfv0cf1mxus; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY role_users
-    ADD CONSTRAINT fk_67w5hj99v5nvjexfv0cf1mxus FOREIGN KEY (role_id) REFERENCES role(id);
+    ADD CONSTRAINT "FK_67w5hj99v5nvjexfv0cf1mxus" FOREIGN KEY (role_id) REFERENCES role(id);
 
 
 --
--- Name: fk_7uda74mreyd8pe0bc0rgm1ufe; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2125 (class 2606 OID 23429)
+-- Name: FK_7uda74mreyd8pe0bc0rgm1ufe; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY feedback
-    ADD CONSTRAINT fk_7uda74mreyd8pe0bc0rgm1ufe FOREIGN KEY (consumer_id) REFERENCES users(id);
+    ADD CONSTRAINT "FK_7uda74mreyd8pe0bc0rgm1ufe" FOREIGN KEY (consumer_id) REFERENCES users(id);
 
 
 --
--- Name: fk_8hgkscyrlwhgtdgcljai40128; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2119 (class 2606 OID 23434)
+-- Name: FK_8hgkscyrlwhgtdgcljai40128; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY carditem
-    ADD CONSTRAINT fk_8hgkscyrlwhgtdgcljai40128 FOREIGN KEY (patientcard_id) REFERENCES patientcard(id);
+    ADD CONSTRAINT "FK_8hgkscyrlwhgtdgcljai40128" FOREIGN KEY (patientcard_id) REFERENCES patientcard(id);
 
 
 --
--- Name: fk_b51bk1hxlblc0fq7l65dkcnc5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2117 (class 2606 OID 23439)
+-- Name: FK_b51bk1hxlblc0fq7l65dkcnc5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY appointment
-    ADD CONSTRAINT fk_b51bk1hxlblc0fq7l65dkcnc5 FOREIGN KEY (userdetail_id) REFERENCES userdetail(id);
+    ADD CONSTRAINT "FK_b51bk1hxlblc0fq7l65dkcnc5" FOREIGN KEY (userdetail_id) REFERENCES userdetail(id);
 
 
 --
--- Name: fk_cunrd1kjdr3pwcekkhw8r5k2l; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2116 (class 2606 OID 23444)
+-- Name: FK_cunrd1kjdr3pwcekkhw8r5k2l; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY role_users
-    ADD CONSTRAINT fk_cunrd1kjdr3pwcekkhw8r5k2l FOREIGN KEY (users_id) REFERENCES users(id);
+    ADD CONSTRAINT "FK_cunrd1kjdr3pwcekkhw8r5k2l" FOREIGN KEY (users_id) REFERENCES users(id);
 
 
 --
--- Name: fk_ej88rho1obqsgettqaymg2ax8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2122 (class 2606 OID 23449)
+-- Name: FK_ej88rho1obqsgettqaymg2ax8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY department_doctorinfo
-    ADD CONSTRAINT fk_ej88rho1obqsgettqaymg2ax8 FOREIGN KEY (departments_id) REFERENCES department(id);
+    ADD CONSTRAINT "FK_ej88rho1obqsgettqaymg2ax8" FOREIGN KEY (departments_id) REFERENCES department(id);
 
 
 --
--- Name: fk_exlldeucxpa91uwds0hpc97o; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2130 (class 2606 OID 23454)
+-- Name: FK_exlldeucxpa91uwds0hpc97o; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY userdetail
-    ADD CONSTRAINT fk_exlldeucxpa91uwds0hpc97o FOREIGN KEY (patientcard_id) REFERENCES patientcard(id);
+    ADD CONSTRAINT "FK_exlldeucxpa91uwds0hpc97o" FOREIGN KEY (patientcard_id) REFERENCES patientcard(id);
 
 
 --
--- Name: fk_hx479pw4gje0ktsjfwvl9pwn8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2118 (class 2606 OID 23459)
+-- Name: FK_hx479pw4gje0ktsjfwvl9pwn8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY appointment
-    ADD CONSTRAINT fk_hx479pw4gje0ktsjfwvl9pwn8 FOREIGN KEY (doctorinfo_id) REFERENCES doctorinfo(id);
+    ADD CONSTRAINT "FK_hx479pw4gje0ktsjfwvl9pwn8" FOREIGN KEY (doctorinfo_id) REFERENCES doctorinfo(id);
 
 
 --
--- Name: fk_ibochgjqx1dyr7ysbeg0royt9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2123 (class 2606 OID 23464)
+-- Name: FK_ibochgjqx1dyr7ysbeg0royt9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY department_doctorinfo
-    ADD CONSTRAINT fk_ibochgjqx1dyr7ysbeg0royt9 FOREIGN KEY (doctors_id) REFERENCES doctorinfo(id);
+    ADD CONSTRAINT "FK_ibochgjqx1dyr7ysbeg0royt9" FOREIGN KEY (doctors_id) REFERENCES doctorinfo(id);
 
 
 --
--- Name: fk_o7prsdub8c63s5w469e06q83; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2127 (class 2606 OID 23469)
+-- Name: FK_o7prsdub8c63s5w469e06q83; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY hospital_users
-    ADD CONSTRAINT fk_o7prsdub8c63s5w469e06q83 FOREIGN KEY (managers_id) REFERENCES users(id);
+    ADD CONSTRAINT "FK_o7prsdub8c63s5w469e06q83" FOREIGN KEY (managers_id) REFERENCES users(id);
 
 
 --
--- Name: fk_ohvlr9w2h9pvsj2bg12ox9b9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2120 (class 2606 OID 23474)
+-- Name: FK_ohvlr9w2h9pvsj2bg12ox9b9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY carditem
-    ADD CONSTRAINT fk_ohvlr9w2h9pvsj2bg12ox9b9 FOREIGN KEY (doctor_id) REFERENCES users(id);
+    ADD CONSTRAINT "FK_ohvlr9w2h9pvsj2bg12ox9b9" FOREIGN KEY (doctor_id) REFERENCES users(id);
 
 
 --
--- Name: fk_ov506nbhqxddqios9pxlb21ie; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY patientcard
-    ADD CONSTRAINT fk_ov506nbhqxddqios9pxlb21ie FOREIGN KEY (userdetail_id) REFERENCES userdetail(id);
-
-
---
--- Name: fk_pvf13utfatebavsixvqxwo3ob; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2126 (class 2606 OID 23479)
+-- Name: FK_pvf13utfatebavsixvqxwo3ob; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY feedback
-    ADD CONSTRAINT fk_pvf13utfatebavsixvqxwo3ob FOREIGN KEY (producer_id) REFERENCES users(id);
+    ADD CONSTRAINT "FK_pvf13utfatebavsixvqxwo3ob" FOREIGN KEY (producer_id) REFERENCES users(id);
 
 
 --
--- Name: fk_spotjwwrelb9dhulkiivbl62b; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2129 (class 2606 OID 23484)
+-- Name: FK_pwj6yvmnh4hwbo4148t3bwhd0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY patientcard
+    ADD CONSTRAINT "FK_pwj6yvmnh4hwbo4148t3bwhd0" FOREIGN KEY (userdetail_id) REFERENCES userdetail(id);
+
+
+--
+-- TOC entry 2121 (class 2606 OID 23489)
+-- Name: FK_spotjwwrelb9dhulkiivbl62b; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY department
-    ADD CONSTRAINT fk_spotjwwrelb9dhulkiivbl62b FOREIGN KEY (hospital_id) REFERENCES hospital(id);
+    ADD CONSTRAINT "FK_spotjwwrelb9dhulkiivbl62b" FOREIGN KEY (hospital_id) REFERENCES hospital(id);
 
 
 --
--- Name: fk_tcu91xpek54a086jamuakvoh8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2128 (class 2606 OID 23494)
+-- Name: FK_tcu91xpek54a086jamuakvoh8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY hospital_users
-    ADD CONSTRAINT fk_tcu91xpek54a086jamuakvoh8 FOREIGN KEY (hospital_id) REFERENCES hospital(id);
+    ADD CONSTRAINT "FK_tcu91xpek54a086jamuakvoh8" FOREIGN KEY (hospital_id) REFERENCES hospital(id);
 	
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM postgres;
