@@ -7,49 +7,49 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HeaderPage {
 
-    public static final String HOME_BUTTON_TEXT = "Home";
-    public static final String FIND_BUTTON_TEXT = "Find";
-    public static final String LOGIN_BUTTON_TEXT = "Login";
-    public static final String ACTIONS_BUTTON_TEXT = "Actions";
-    public static final String USER_DROPDOWN_BUTTON_SELECTOR = "#bs-example-navbar-collapse-1 > ul > li:nth-child(8) > a";
-    public static final String LOG_OUT_BUTTON_SELECTOR = "#dropdawn > li:nth-child(2) > a";
-    public static final String CARD_BUTTON_TEXT = "Card";
-    public static final String APPOINTMENTS_BUTTON_TEXT = "my appointments";
-    public static final String PATIENTS_BUTTON_TEXT = "Patients";
-    public static final String WORKSCHEDULER_BUTTON_TEXT = "workscheduler";
-    public static final String MANAGE_BUTTON_TEXT = "manage";
+    public static final String HOME_BUTTON_ID = "homeButton";
+    public static final String FIND_BUTTON_ID = "findButton";
+    public static final String LOGIN_BUTTON_ID = "logIn";
+    public static final String ACTIONS_BUTTON_ID = "actionsButton";
+    public static final String USER_DROPDOWN_BUTTON_ID = "userDropdown1";
+    public static final String LOG_OUT_BUTTON_ID = "logout";
+    public static final String CARD_BUTTON_ID = "cardButton";
+    public static final String APPOINTMENTS_BUTTON_ID = "myappButton";
+    public static final String PATIENTS_BUTTON_ID = "patientsButton";
+    public static final String WORKSCHEDULER_BUTTON_ID = "worckschedulerButton";
+    public static final String MANAGE_BUTTON_ID = "manageButton";
 
-    @FindBy(linkText = HOME_BUTTON_TEXT)
+    @FindBy(id = HOME_BUTTON_ID)
     public WebElement homeButton;
 
-    @FindBy(linkText = FIND_BUTTON_TEXT)
+    @FindBy(id = FIND_BUTTON_ID)
     public WebElement findButton;
 
-    @FindBy(linkText = LOGIN_BUTTON_TEXT)
+    @FindBy(id = LOGIN_BUTTON_ID)
     public WebElement loginButton;
 
-    @FindBy(linkText = ACTIONS_BUTTON_TEXT)
+    @FindBy(id = ACTIONS_BUTTON_ID)
     public WebElement actionsButton;
 
-    @FindBy(css = USER_DROPDOWN_BUTTON_SELECTOR)
+    @FindBy(id = USER_DROPDOWN_BUTTON_ID)
     public WebElement userDropdownButton;
 
-    @FindBy(css = LOG_OUT_BUTTON_SELECTOR) //terrifyingly bad thing!!!
+    @FindBy(id = LOG_OUT_BUTTON_ID)
     public WebElement logoutButton;
 
-    @FindBy(className = CARD_BUTTON_TEXT)
+    @FindBy(id = CARD_BUTTON_ID)
     public WebElement cardButton;
 
-    @FindBy(className = APPOINTMENTS_BUTTON_TEXT)
+    @FindBy(id = APPOINTMENTS_BUTTON_ID)
     public WebElement appointmentsButton;
 
-    @FindBy(className = PATIENTS_BUTTON_TEXT)
+    @FindBy(id = PATIENTS_BUTTON_ID)
     public WebElement patientsButton;
 
-    @FindBy(className = WORKSCHEDULER_BUTTON_TEXT)
+    @FindBy(id = WORKSCHEDULER_BUTTON_ID)
     public WebElement workschedulerButton;
 
-    @FindBy(className = MANAGE_BUTTON_TEXT)
+    @FindBy(id = MANAGE_BUTTON_ID)
     public WebElement manageButton;
 
     public void logout() {
