@@ -14,7 +14,7 @@ public class TestUnregisteredUser extends BaseRoleTest {
         browser.goTo(HOME_URL);
     }
 
-    @Test(dataProvider = "adminElements")
+    @Test(dataProvider = "forbiddenElements")
     public void testForbiddenButtonsForDoctors(WebElement element, String string) {
         assertFalse(browser.isElementPresent(element), string + " is present!");
     }

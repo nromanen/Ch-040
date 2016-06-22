@@ -16,12 +16,12 @@ public class TestDoctorRole extends BaseRoleTest {
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
     }
 
-    @Test(dataProvider = "adminElements")
+    @Test(dataProvider = "forbiddenElements")
     public void testForbiddenButtonsForDoctors(WebElement element, String string) {
         assertFalse(browser.isElementPresent(element), string + " is present!");
     }
 
-    @Test(dataProvider = "urls")
+    @Test(dataProvider = "forbiddenUrls")
     public void testAccessDeniedToUrlsForDoctors(String url, String errorText) {
         browser.goTo(url);
         assertTrue(browser.containsText(errorText), "access not denied");

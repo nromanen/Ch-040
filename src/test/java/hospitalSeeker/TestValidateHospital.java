@@ -4,7 +4,6 @@ package hospitalSeeker; /**
 import hospitalSeeker.googleApi.NewHospital;
 import hospitalSeeker.googleApi.ValidateHospital;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -43,7 +42,7 @@ public class TestValidateHospital extends BaseTest {
     public void isElementsPresent() {
         testLogin();
         browser.goTo(HOME_URL);
-        browser.goTo(VALIDATE_URL);
+        browser.goTo(CHECK_HOSPITALS_LIST_URL);
         assertTrue(browser.isElementPresent(validateHospital.googleApi), "Dude, Google Api is not present");
         assertTrue(browser.isElementPresent(validateHospital.validateButton), "Button for validate hospital is not present");
         validateHospital.addValidateHospitalClick();
@@ -82,7 +81,7 @@ public class TestValidateHospital extends BaseTest {
     @Test
     public void validateButtonClick() {
         testLogin();
-        browser.goTo(VALIDATE_URL);
+        browser.goTo(CHECK_HOSPITALS_LIST_URL);
         validateHospital.validateButtonClick();
     }
     /*
@@ -104,7 +103,7 @@ public class TestValidateHospital extends BaseTest {
     @Test
     public void addValidateHospital(){
         testLogin();
-        browser.goTo(VALIDATE_URL);
+        browser.goTo(CHECK_HOSPITALS_LIST_URL);
         validateHospital.validateButtonClick();
         browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         validateHospital.addValidateHospitalClick();
@@ -130,11 +129,11 @@ public class TestValidateHospital extends BaseTest {
     @Test
     public void  resirectToOtheUrl(){
         testLogin();
-        browser.goTo(VALIDATE_URL);
+        browser.goTo(CHECK_HOSPITALS_LIST_URL);
         validateHospital.validateButtonClick();
         assertTrue(browser.isElementPresent(validateHospital.addValidateHospital));
         validateHospital.addValidateHospitalClick();
         browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-       assertEquals(false, (browser.getCurrentUrl() == VALIDATE_URL));
+       assertEquals(false, (browser.getCurrentUrl() == CHECK_HOSPITALS_LIST_URL));
     }
 }

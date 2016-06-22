@@ -17,12 +17,12 @@ public class TestManagerRole extends BaseRoleTest {
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
     }
 
-    @Test(dataProvider = "adminElements")
+    @Test(dataProvider = "forbiddenElements")
     public void testForbiddenButtonsForManagers(WebElement element, String string) {
         assertFalse(browser.isElementPresent(element), string + " is present!");
     }
 
-    @Test(dataProvider = "urls")
+    @Test(dataProvider = "forbiddenUrls")
     public void testAccessDeniedToUrlsForManagers(String url, String errorText) {
         browser.goTo(url);
         assertTrue(browser.containsText(errorText), "access not denied");
