@@ -1,8 +1,10 @@
 package hospitalSeeker;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
@@ -98,10 +100,23 @@ public class SchedulePage {
     @FindBy(css = "div.dhx_btn_set.dhx_right_btn_set.dhx_delete_btn_set")
     public WebElement deleteDetailedChanges;
 
+    @FindBy(css = "button.btn.btn-success")
+    public WebElement saveDoctorSchedule;
+
+    @FindBy(id = "save")
+    public WebElement saveAppointment;
+
+    @FindBy(id = "close")
+    public WebElement cancelAppointment;
+
     @FindAll(@FindBy(xpath = ".//*[@class='dhx_body']"))
     public List<WebElement> events;
 
     public void editSchedule(String text) {
         editorField.sendKeys(text);
+    }
+
+    public static SchedulePage init(WebDriver driver) {
+        return PageFactory.initElements(driver, SchedulePage.class);
     }
 }

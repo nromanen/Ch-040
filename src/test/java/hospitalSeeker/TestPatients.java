@@ -1,6 +1,6 @@
 package hospitalSeeker;
 
-import hospitalSeeker.header.DropdownLogin;
+//import hospitalSeeker.header.DropdownLogin;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -11,16 +11,15 @@ public class TestPatients extends BaseTest{
     CardPage cardPage;
     NewRecordPage newRecordPage;
     LoginPage loginPage;
-    DropdownLogin dropdownLogin;
+    //DropdownLogin dropdownLogin;
 
     @BeforeMethod
     public void beforeMethod() {
-        super.beforeMethod();
         patientsPage = PageFactory.initElements(browser.getDriver(), PatientsPage.class);
         cardPage = PageFactory.initElements(browser.getDriver(), CardPage.class);
         newRecordPage = PageFactory.initElements(browser.getDriver(), NewRecordPage.class);
         loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
-        dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
+        //dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
     }
     
  /* Editing Record by Doctor
@@ -38,7 +37,7 @@ public class TestPatients extends BaseTest{
    @Test 
    public void testIfDoctorCanEditOwnRecord(){
     	 browser.goTo(HOME_URL);
-    	 dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+    	 //dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
     	 browser.goTo(PATIENTS_LIST_URL);
     	 
     	 patientsPage.tutu.click();
@@ -80,7 +79,7 @@ public class TestPatients extends BaseTest{
     @Test 
     public void testIfDoctorCanMakeNewRecord(){
     	browser.goTo(HOME_URL);
-    	dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+    	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
    	 	browser.goTo(PATIENTS_LIST_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
@@ -112,7 +111,7 @@ public class TestPatients extends BaseTest{
     @Test 
    	public void testEmptyTextAreasInCardPage(){
     	browser.goTo(HOME_URL);
-    	dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+    	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
    	 	browser.goTo(PATIENTS_LIST_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
@@ -127,7 +126,7 @@ public class TestPatients extends BaseTest{
 	 	newRecordPage.prescriptionArea.sendKeys("111");
 	 	
 	 	newRecordPage.submitButton.click();	
-	 	Boolean isPresent = newRecordPage.errorString.isDisplayed();
+	 	//Boolean isPresent = newRecordPage.errorString.isDisplayed();
    		}
    
     /* Check elements in page
@@ -140,14 +139,14 @@ public class TestPatients extends BaseTest{
     @Test 
     public void checkElementsInPatientsPage() {
     	browser.goTo(HOME_URL);
-    	dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+    	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
         browser.goTo(PATIENTS_LIST_URL);
-    	Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
-    	Boolean isPresent2 = patientsPage.tutu.isDisplayed();
-    	Boolean isPresent4 = patientsPage.nadja_cvmailru.isDisplayed();
-    	Boolean isPresent5 = patientsPage.olegolegovich1996gmailcom.isDisplayed();
-    	Boolean isPresent6 = patientsPage.archermailru.isDisplayed();
-    	Boolean isPresent7 = patientsPage.nadja_cv8mailru.isDisplayed();
+    	//Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
+    	//Boolean isPresent2 = patientsPage.tutu.isDisplayed();
+    	//Boolean isPresent4 = patientsPage.nadja_cvmailru.isDisplayed();
+    	//Boolean isPresent5 = patientsPage.olegolegovich1996gmailcom.isDisplayed();
+    	//Boolean isPresent6 = patientsPage.archermailru.isDisplayed();
+    	//Boolean isPresent7 = patientsPage.nadja_cv8mailru.isDisplayed();
     	
     }
     
@@ -167,7 +166,7 @@ public class TestPatients extends BaseTest{
     @Test ()
     public void testThatDoctorCantEditRecordAfter00 (){
     	 browser.goTo(HOME_URL);
-    	 dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+    	 //dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
    	 	 browser.goTo(PATIENTS_LIST_URL);
    	 
    	   	 patientsPage.tutu.click();
@@ -184,12 +183,7 @@ public class TestPatients extends BaseTest{
 	   	 newRecordPage.prescriptionArea.sendKeys("Almost Ok");
 
 	   	 newRecordPage.submitButton.click();
-	  	 Boolean isPresent10 = (newRecordPage.editTimeError).isDisplayed();
+	  	 //Boolean isPresent10 = (newRecordPage.editTimeError).isDisplayed();
         
-    }
-
-    @AfterMethod
-    public void afterMethod() {
-        browser.driver.quit();
     }
 }

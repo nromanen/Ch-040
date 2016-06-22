@@ -1,7 +1,9 @@
 package hospitalSeeker.roles;
 
-import hospitalSeeker.header.Header;
-import org.testng.annotations.*;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -11,35 +13,24 @@ public class TestManagerRole extends BaseRoleTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
     }
 
-    @Test
-    public void testAccessDeniedToAdminDashboardForManagers() {
-        assertFalse(browser.isElementPresent(Header.adminButtonByText), "element is present!");
-        assertFalse(browser.isElementPresent(adminPage.dashboardTable), "element is present!");
-        browser.goTo(ADMIN_DASHBOARD_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+    @Test(dataProvider = "forbiddenElements")
+    public void testForbiddenButtonsForManagers(WebElement element, String string) {
+        assertFalse(browser.isElementPresent(element), string + " is present!");
     }
 
-    @Test
-    public void testAccessDeniedToAddingNewHospitalForManagers() {
-        assertFalse(browser.isElementPresent(adminPage.optionsButton), "element is present");
-        browser.goTo(ADDING_NEW_HOSPITAL_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+    @Test(dataProvider = "forbiddenUrls")
+    public void testAccessDeniedToUrlsForManagers(String url, String errorText) {
+        browser.goTo(url);
+        assertTrue(browser.containsText(errorText), "access not denied");
     }
 
-    @Test
-    public void testAccessDeniedToPatientsListForManager() {
-        assertFalse(browser.isElementPresent(Header.patientsButtonByText), "element is present");
-        browser.goTo(PATIENTS_LIST_URL);
-        assertTrue(browser.containsText("Log in"), "access not denied");
-    }
-
-    @AfterMethod
-    public void afterMethod() {
-        dropdownLogin.logout();
+    @AfterTest
+    public void afterTest() {
+        headerPage.logout();
     }
 
 }

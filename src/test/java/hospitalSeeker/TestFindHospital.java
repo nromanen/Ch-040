@@ -14,7 +14,6 @@ public class TestFindHospital extends BaseTest{
 
     @BeforeMethod
     public void beforeMethod() {
-        super.beforeMethod();
         findHospital = PageFactory.initElements(browser.getDriver(), FindHospital.class);
     }
     /*
@@ -39,16 +38,12 @@ public class TestFindHospital extends BaseTest{
          *go to Find page
          * input address
          * @requires true
-         * @effect google api 
+         * @effect google api
         *     </p>
          */
     @Test(dependsOnMethods = "isElementsPresents")
     public void test() {
         browser.goTo(FIND_URL);
         findHospital.findInAction("Chernivtsi");
-    }
-    @AfterMethod
-    public void afterMethod() {
-        browser.getDriver().quit();
     }
 }

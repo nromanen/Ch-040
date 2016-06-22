@@ -4,7 +4,6 @@ package hospitalSeeker; /**
 import hospitalSeeker.googleApi.NewHospital;
 import hospitalSeeker.googleApi.ValidateHospital;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -19,7 +18,6 @@ public class TestValidateHospital extends BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        super.beforeMethod();
         validateHospital = PageFactory.initElements(browser.getDriver(), ValidateHospital.class);
         newHospital = PageFactory.initElements(browser.getDriver(), NewHospital.class);
     }
@@ -44,7 +42,7 @@ public class TestValidateHospital extends BaseTest {
     public void isElementsPresent() {
         testLogin();
         browser.goTo(HOME_URL);
-        browser.goTo(VALIDATE_URL);
+        browser.goTo(CHECK_HOSPITALS_LIST_URL);
         assertTrue(browser.isElementPresent(validateHospital.googleApi), "Dude, Google Api is not present");
         assertTrue(browser.isElementPresent(validateHospital.validateButton), "Button for validate hospital is not present");
         validateHospital.addValidateHospitalClick();
@@ -62,7 +60,7 @@ public class TestValidateHospital extends BaseTest {
 	 * @effects Log in
     *     </p>
      */
-    @Test(dependsOnMethods = "isElementsPresent")
+    @Test
     public void testLogin() {
         browser.goTo(HOME_URL);
         newHospital.logInAction(ADMIN_LOGIN, ADMIN_PASSWORD);
@@ -80,10 +78,10 @@ public class TestValidateHospital extends BaseTest {
 	 * @effects button must be clickable
     *     </p>
      */
-    @Test(dependsOnMethods = "isElementsPresent")
+    @Test
     public void validateButtonClick() {
         testLogin();
-        browser.goTo(VALIDATE_URL);
+        browser.goTo(CHECK_HOSPITALS_LIST_URL);
         validateHospital.validateButtonClick();
     }
     /*
@@ -102,10 +100,10 @@ public class TestValidateHospital extends BaseTest {
 	 *
     *     </p>
      */
-    @Test(dependsOnMethods = {"isElementsPresent","validateButtonClick"})
+    @Test
     public void addValidateHospital(){
         testLogin();
-        browser.goTo(VALIDATE_URL);
+        browser.goTo(CHECK_HOSPITALS_LIST_URL);
         validateHospital.validateButtonClick();
         browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         validateHospital.addValidateHospitalClick();
@@ -128,18 +126,14 @@ public class TestValidateHospital extends BaseTest {
 	 *
     *     </p>
      */
-    @Test(dependsOnMethods = "addValidateHospital")
+    @Test
     public void  resirectToOtheUrl(){
         testLogin();
-        browser.goTo(VALIDATE_URL);
+        browser.goTo(CHECK_HOSPITALS_LIST_URL);
         validateHospital.validateButtonClick();
         assertTrue(browser.isElementPresent(validateHospital.addValidateHospital));
         validateHospital.addValidateHospitalClick();
         browser.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-       assertEquals(false, (browser.getCurrentUrl() == VALIDATE_URL));
-    }
-    @AfterMethod
-    public void afterMethod() {
-        browser.getDriver().quit();
+       assertEquals(false, (browser.getCurrentUrl() == CHECK_HOSPITALS_LIST_URL));
     }
 }

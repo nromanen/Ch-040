@@ -1,35 +1,34 @@
 package hospitalSeeker;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class RegisterPage {
-	
-	@FindBy(xpath = "/html/body/section/div/div/div/div/form/div[1]/div/input")
+
+	public static final String SUCCESSFULL_REGISTRATION = "/html/body/section/div/div/div/h3";
+	public static final String PLEASE_REGISTER_TITLE = "/html/body/section/div/div/div/div/div/form/fieldset/h2";
+	public static final String WARNING_EMAIL = "/html/body/section/div/div/div/div/div/form/fieldset/div[1]/span";
+	public static final String WARNING_PASSWORD = "/html/body/section/div/div/div/div/div/form/fieldset/div[2]/span";
+	public static final String WARNING_CONFIRM_PASSWORD = "/html/body/section/div/div/div/div/div/form/fieldset/div[3]/span";
+
+	@FindBy(id = "email")
 	public WebElement emailRegister;
-	
-	@FindBy(xpath = "/html/body/section/div/div/div/div/form/div[2]/div/input")
+
+	@FindBy(id = "password")
 	public WebElement passwordRegister;
-	
-	@FindBy(id = "enabled")
-	public WebElement enabledButton;
-	
-	@FindBy(css = "option[value=ADMIN]")
-	public WebElement roleAdmin;
-	
-	@FindBy(css = "option[value=DOCTOR]")
-	public WebElement roleDoctor;
-	
-	@FindBy(css = "option[value=MANAGER]")
-	public WebElement roleManager;
-	
-	@FindBy(css = "option[value=PATIENT]")
-	public WebElement rolePatient;
-	
-	@FindBy(css = "input.btn.btn-primary.btn-sm")
+
+	@FindBy(id = "confirmPassword")
+	public WebElement confirmPasswordRegister;
+
+	@FindBy(id = "registerSubmit")
 	public WebElement registerButton;
 	
-	@FindBy(xpath = "/html/body/section/div/div/div/div/form/div[5]/div/a")
-	public WebElement cancelButton;
-	
+	@FindBy(id = "loginRedirect")
+	public WebElement loginButton;
+
+	public static RegisterPage init(WebDriver driver) {
+		return PageFactory.initElements(driver, RegisterPage.class);
+	}
 }

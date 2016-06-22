@@ -1,122 +1,118 @@
 package hospitalSeeker;
 
-import hospitalSeeker.header.DropdownLogin;
-import org.testng.annotations.Test;
+import hospitalSeeker.BaseTest;
+import hospitalSeeker.LoginPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
-public class TestLogin extends BaseTest{
-	
+public class TestLogin extends BaseTest {
+
 	LoginPage loginPage;
-	DropdownLogin dropdownLogin;
-	
+
 	@BeforeMethod
-	public void beforeMethod(){
-		super.beforeMethod();
+	public void beforeMethod() {
 		loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
 	}
-	
 
-	  @Test(priority=0)
-	    public void checkElementsLoginPage() {
-	        browser.goTo(LOGIN_URL);
-	        Assert.assertTrue(browser.isElementPresent(loginPage.emailLogin));
-	        Assert.assertTrue(browser.isElementPresent(loginPage.passwordLogin));
-	        Assert.assertTrue(browser.isElementPresent(loginPage.rememberMe));
-	        Assert.assertTrue(browser.isElementPresent(loginPage.loginButton));
-	        Assert.assertTrue(browser.isElementPresent(loginPage.homeButton));
-	    }
-	//
-	  
-	/*Correct log in
-	 * go to login page
-	 * input e-mail
-	 * input password
-	 * click on button "Log in"*/
-	@Test(priority=0, dependsOnMethods={"checkElementsLoginPage"})
-	public void testLogin(){
+	@Test(priority = 0)
+	public void checkElementsLoginPage() {
+		browser.goTo(LOGIN_URL);
+		Assert.assertTrue(browser.isElementPresent(loginPage.emailLogin),"1");
+		Assert.assertTrue(browser.isElementPresent(loginPage.passwordLogin),"2");
+		Assert.assertTrue(browser.isElementPresent(loginPage.rememberMe),"3");
+		Assert.assertTrue(browser.isElementPresent(loginPage.forgotPassword),"4");
+		Assert.assertTrue(browser.isElementPresent(loginPage.loginButton),"5");
+		Assert.assertTrue(browser.isElementPresent(loginPage.registerButton),"6");
+	}
+
+	/*
+	 * Correct log in 
+	 * go to login page 
+	 * input e-mail 
+	 * input password click on
+	 * button "Log in"
+	 */
+	@Test(priority = 1)
+	public void testLogin() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
+		loginPage.rememberMe.click();
 		loginPage.loginButton.click();
-		Assert.assertTrue(browser.containsText("Log out"));
+		browser.waitUntilElementIsPresent(By.id("userDropdown1"));
+		Assert.assertTrue(browser.containsText("Charles Darvin"));
 	}
-	
-	/*Correct work of homeButton
-	 * go to login page
-	 * input e-mail
-	 * input password
-	 * click on button "Home"*/
-	@Test(priority=1, dependsOnMethods={"checkElementsLoginPage"})
-	public void testLoginHomeButton(){
-		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
-		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
-		loginPage.homeButton.click();
-		Assert.assertEquals(browser.getCurrentUrl(),HOME_URL);
-	}
-	
-	/*Login without e-mail
-	 * go to login page
-	 * field for e-mail keep empty
-	 * input password
-	 * click on button "Log in"*/
-	@Test(priority=2, dependsOnMethods={"checkElementsLoginPage"})
-	public void testLoginWithoutEmail(){
+
+	/*
+	 * Login without e-mail 
+	 * go to login page 
+	 * field for e-mail keep empty 
+	 * input password 
+	 * click on button "Log in"
+	 */
+	@Test(priority = 2)
+	public void testLoginWithoutEmail() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("");
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
 		loginPage.loginButton.click();
-		Assert.assertEquals(browser.getCurrentUrl(),LOGIN_URL);
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
+		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
-	
-	/*Login without password
-	 * go to login page
-	 * input e-mail
-	 * field for password keep empty
-	 * click on button "Log in"*/
-	@Test(priority=3, dependsOnMethods={"checkElementsLoginPage"})
-	public void testLoginWithoutPassword(){
+
+	/*
+	 * Login without password 
+	 * go to login page 
+	 * input e-mail 
+	 * field for password
+	 * keep empty 
+	 * click on button "Log in"
+	 */
+	@Test(priority = 3)
+	public void testLoginWithoutPassword() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
 		loginPage.passwordLogin.sendKeys("");
-		loginPage.loginButton.click();	
-		Assert.assertEquals(browser.getCurrentUrl(),LOGIN_URL);
+		loginPage.loginButton.click();
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
+		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
-	
-	/*Login by unregistered e-mail
-	 * go to login page
+
+	/*
+	 * Login by unregistered e-mail 
+	 * go to login page 
 	 * input unregistered e-mail
-	 * input password
-	 * click on button "Log in"*/
-	@Test(priority=4, dependsOnMethods={"checkElementsLoginPage"})
-	public void testLoginIncorrectEmail(){
+	 * input password 
+	 * click on button "Log in"
+	 */
+	@Test(priority = 4)
+	public void testLoginIncorrectEmail() {
 		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("attqc@mail.ru");
+		loginPage.emailLogin.sendKeys("tututu@ukr.net");
 		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
 		loginPage.loginButton.click();
-		Assert.assertTrue(browser.containsText("Invalid"));
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
+		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
-	
-	/*Login by incorrect password
-	 * go to login page
+
+	/*
+	 * Login by incorrect password 
+	 * go to login page 
 	 * input registered e-mail
-	 * input incorrect password
-	 * click on button "Log in"*/
-    @Test(priority=5, dependsOnMethods={"checkElementsLoginPage"})
-	public void testLoginIncorrectPassword(){
+	 * input incorrect password 
+	 * click on button "Log in"
+	 */
+	@Test(priority = 5)
+	public void testLoginIncorrectPassword() {
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
-		loginPage.passwordLogin.sendKeys("attqc");
+		loginPage.passwordLogin.sendKeys("tututu2016");
 		loginPage.loginButton.click();
-		Assert.assertTrue(browser.containsText("Invalid"));
+		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
+		Assert.assertTrue(browser.containsText("Invalid username or password."));
 	}
-	
-	@AfterMethod
-	public void afterMethod(){
-		browser.getDriver().quit();
-	}
-	
 }

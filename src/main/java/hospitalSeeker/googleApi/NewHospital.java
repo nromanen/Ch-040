@@ -1,8 +1,10 @@
 package hospitalSeeker.googleApi; /**
  * Created by oleg on 25.05.2016.
  */
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class NewHospital {
 
@@ -66,6 +68,10 @@ public class NewHospital {
         emailField.sendKeys(username);
         passwordField.sendKeys(password);
         loginSubmitButton.click();
+    }
+
+    public static NewHospital init(WebDriver driver) {
+        return PageFactory.initElements(driver, NewHospital.class);
     }
 
 }

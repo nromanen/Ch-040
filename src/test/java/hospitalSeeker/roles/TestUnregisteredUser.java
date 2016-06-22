@@ -1,7 +1,8 @@
 package hospitalSeeker.roles;
 
-import hospitalSeeker.header.Header;
-import org.testng.annotations.*;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -13,26 +14,15 @@ public class TestUnregisteredUser extends BaseRoleTest {
         browser.goTo(HOME_URL);
     }
 
-    @Test
-    public void testAccessDeniedToAdminDashboard() {
-        assertFalse(browser.isElementPresent(Header.adminButtonByText), "element is present!");
-        assertFalse(browser.isElementPresent(adminPage.dashboardTable), "element is present!");
-        browser.goTo(ADMIN_DASHBOARD_URL);
-        assertTrue(browser.containsText("Please Log In"), "access not denied!");
+    @Test(dataProvider = "forbiddenElements")
+    public void testForbiddenButtonsForDoctors(WebElement element, String string) {
+        assertFalse(browser.isElementPresent(element), string + " is present!");
     }
 
-    @Test
-    public void testAccessDeniedToAddingNewHospital() {
-        assertFalse(browser.isElementPresent(adminPage.optionsButton), "element is present!");
-        browser.goTo(ADDING_NEW_HOSPITAL_URL);
-        assertTrue(browser.containsText("Please Log In"), "access not denied!");
-    }
-
-    @Test
-    public void testAccessDeniedToPatientsList() {
-        assertFalse(browser.isElementPresent(Header.patientsButtonByXpath), "element is present!");
-        browser.goTo(PATIENTS_LIST_URL);
-        assertTrue(browser.containsText("Please Log In"), "access not denied!");
+    @Test(dataProvider = "urlsForUnreg")
+    public void testAccessDeniedToUrlsForDoctors(String url, String errorText) {
+        browser.goTo(url);
+        assertTrue(browser.containsText(errorText), "access not denied");
     }
 
 }

@@ -15,7 +15,6 @@ public class TestNewHospital extends BaseTest{
     NewHospital newHospital;
     @BeforeMethod
     public void beforeMethod() {
-        super.beforeMethod();
         newHospital = PageFactory.initElements(browser.getDriver(), NewHospital.class);
     }
     /*
@@ -60,7 +59,7 @@ public class TestNewHospital extends BaseTest{
 	 * click on button "Log in"
     *     </p>
      */
-    @Test(dependsOnMethods = "isElementPresent")
+    @Test
     public void testLogin(){
         browser.goTo(HOME_URL);
         newHospital.logInAction(ADMIN_LOGIN,ADMIN_PASSWORD);
@@ -141,9 +140,4 @@ public class TestNewHospital extends BaseTest{
         browser.getDriver().manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
         assertTrue(browser.isElementPresent(newHospital.confirmBox),"confirm box not displayed");
     }
-    @AfterMethod
-    public void afterMethod() {
-        browser.getDriver().quit();
-}
-
 }

@@ -1,28 +1,35 @@
 package hospitalSeeker.roles;
 
-import hospitalSeeker.header.Header;
-import org.testng.annotations.*;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class TestAdminRole extends BaseRoleTest{
 
     @BeforeMethod
     public void beforeMethod(){
-        browser.goTo(HOME_URL);
-        dropdownLogin.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD); // TODO: 09.06.16 loggingIn won't work now
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
     }
 
-    @Test
-    public void testAccessToAdminPage() {
-        assertTrue(browser.isElementPresentByXpath(Header.adminButtonXPATH), "element isn't present!");
-        assertTrue(browser.isElementPresent(adminPage.dashboardTable), "element isn't present!");
-        assertTrue(browser.isElementPresent(adminPage.optionsButton), "element isn't present!");
+    @Test(dataProvider = "adminDashboardElements")
+    public void testPrimaryAdminElements(WebElement element, String errorMessage) {
+        assertTrue(browser.isElementPresent(element), errorMessage + " isn't present!");
     }
 
+    @Test(dataProvider = "adminActionButtons", priority = 1)
+    public void testAccessToAdminPages(WebElement element, String errorMessage, String url) {
+        headerPage.actionsButton.click();
+        element.click();
+        assertEquals(browser.getCurrentUrl(), url, "urls don't match! problem with this url: " + errorMessage);
+    }
     @AfterMethod
     public void afterMethod() {
-        dropdownLogin.logout();
+        headerPage.logout();
     }
 
 }
