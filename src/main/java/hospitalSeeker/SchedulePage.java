@@ -1,7 +1,9 @@
 package hospitalSeeker;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,6 +14,11 @@ import java.util.List;
  * Created by Alex on 23-May-16.
  */
 public class SchedulePage {
+
+    public Dimension dimension = new Dimension(1366, 768);
+    public int columnWidth = 177;
+    //first row width = 50
+    //other rows = 177
 
     @FindBy(css = "div.dhx_cal_event")
     public WebElement eventBody;
@@ -108,6 +115,84 @@ public class SchedulePage {
 
     @FindBy(id = "close")
     public WebElement cancelAppointment;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='0']")
+    public WebElement hours0000;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='1']")
+    public WebElement hours0100;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='2']")
+    public WebElement hours0200;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='3']")
+    public WebElement hours0300;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='4']")
+    public WebElement hours0400;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='5']")
+    public WebElement hours0500;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='6']")
+    public WebElement hours0600;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='7']")
+    public WebElement hours0700;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='8']")
+    public WebElement hours0800;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='9']")
+    public WebElement hours0900;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='10']")
+    public WebElement hours1000;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='11']")
+    public WebElement hours1100;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='12']")
+    public WebElement hours1200;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='13']")
+    public WebElement hours1300;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='14']")
+    public WebElement hours1400;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='15']")
+    public WebElement hours1500;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='16']")
+    public WebElement hours1600;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='17']")
+    public WebElement hours1700;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='18']")
+    public WebElement hours1800;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='19']")
+    public WebElement hours1900;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='20']")
+    public WebElement hours2000;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='21']")
+    public WebElement hours2100;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='22']")
+    public WebElement hours2200;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='23']")
+    public WebElement hours2300;
+
+    @FindAll(@FindBy(className = "dhx_scale_hour"))
+    public List<WebElement> scheduleRows;
+
+    @FindAll(@FindBy(className = "dhx_scale_holder"))
+    public List<WebElement> scheduleColumns;
 
     @FindAll(@FindBy(xpath = ".//*[@class='dhx_body']"))
     public List<WebElement> events;

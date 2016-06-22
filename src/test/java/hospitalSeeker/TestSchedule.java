@@ -189,9 +189,26 @@ public class TestSchedule extends BaseTest{
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
         browser.goTo(DOCTOR_PAGE_URL);
     }
+
+    @Test
+    public void createSchedule() {
+//        browser.getDriver().manage().window().setSize(schedulePage.dimension);
+        browser.goTo(HOME_URL);
+        headerPage.loginButton.click();
+        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        doctorPage.gregoryHouseLink.click();
+        schedulePage.switchViewToDay.click();
+        browser.clickOnCoordinates(schedulePage.hours2200, schedulePage.columnWidth, 0);
+        schedulePage.saveDoctorSchedule.click();
+        browser.sleep(5);
+//        browser.sleep(5);
+//        browser.clickOnCoordinates(schedulePage.scheduleRows.get(1), 800, 0);
+//        schedulePage.saveDoctorSchedule.click();
+//        browser.sleep(5);
+    }
 }
 
 /*TODO change schedule with another manager
 * TODO create schedules
-* TODO rewrite appointments of others
+* TODO rewrite appointments
 * TODO check if you can see an appointment in the appointments tab*/

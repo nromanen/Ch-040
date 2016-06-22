@@ -78,6 +78,19 @@ public class BrowserWrapper {
         action.doubleClick(element).perform();
     }
 
+    public void clickOnCoordinates(WebElement element, int x, int y) {
+        Actions builder = new Actions(driver);
+        builder.moveToElement(element, x, y).doubleClick().build().perform();
+    }
+
+    public void sleep(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
