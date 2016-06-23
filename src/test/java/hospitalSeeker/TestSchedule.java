@@ -5,6 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -200,12 +201,17 @@ public class TestSchedule extends BaseTest{
         schedulePage.switchViewToDay.click();
         browser.clickOnCoordinates(schedulePage.hours2200, schedulePage.columnWidth, 0);
         schedulePage.saveDoctorSchedule.click();
+        schedulePage.switchViewToDay.click();
         browser.sleep(5);
+        assertTrue(schedulePage.eventTitle.getText().equals("22:00 - 23:00"), "Event isn't present!");
+
+
 //        browser.sleep(5);
 //        browser.clickOnCoordinates(schedulePage.scheduleRows.get(1), 800, 0);
 //        schedulePage.saveDoctorSchedule.click();
 //        browser.sleep(5);
     }
+
 }
 
 /*TODO change schedule with another manager

@@ -16,7 +16,7 @@ public class BrowserWrapper {
 
     protected WebDriver driver;
 
-    public static final int STANDARD_WAIT_TIME = 10;
+    public static final int STANDARD_WAIT_TIME = 5;
 
     BrowserWrapper(WebDriver driver) {
         this.driver = driver;

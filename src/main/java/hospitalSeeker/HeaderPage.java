@@ -31,16 +31,16 @@ public class HeaderPage {
     @FindBy(id = FIND_BUTTON_ID)
     public WebElement findButton;
 
-    @FindBy(id = LOGIN_BUTTON_ID)
+    @FindBy(linkText = "Login")
     public WebElement loginButton;
 
     @FindBy(id = ACTIONS_BUTTON_ID)
     public WebElement actionsButton;
 
-    @FindBy(id = USER_DROPDOWN_BUTTON_ID)
+    @FindBy(css = "a.nav.navbar-nav.dropdown.dropdown-toggle.active")
     public WebElement userDropdownButton;
 
-    @FindBy(id = LOG_OUT_BUTTON_ID)
+    @FindBy(css = "span.glyphicon.glyphicon-log-out")
     public WebElement logoutButton;
 
     @FindBy(id = CARD_BUTTON_ID)
