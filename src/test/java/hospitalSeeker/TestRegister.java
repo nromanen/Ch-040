@@ -35,9 +35,9 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 1)
 	public void testRegister(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("nadiia111638974124@mail.ru");
-		registerPage.passwordRegister.sendKeys("Perekuta96");
-		registerPage.confirmPasswordRegister.sendKeys("Perekuta96");
+		registerPage.emailRegister.sendKeys("patient@mail.ru");
+		registerPage.passwordRegister.sendKeys("Patient77");
+		registerPage.confirmPasswordRegister.sendKeys("Patient77");
 		registerPage.registerButton.click();
 		browser.sleep(3);
 //		browser.waitUntilElementVisible(registerPage.successfullRegistration);
@@ -106,17 +106,17 @@ public class TestRegister extends BaseTest {
 		registerPage.registerButton.click();
 	}
 
-	/*Registration by password including no different case
+	/*Registration by password including no different case,symbols,numbers
 	* go to registration page
 	* input e-mail
-	* input password including no different case
+	* input password including no different case,symbols,numbers
 	* confirm password
 	* click on button "Register"*/
 	@Test(priority = 6)
 	public void testRegisterWeakPassword(){
 		browser.goTo(REGISTER_URL);
 		Assert.assertFalse(browser.isElementPresent(registerPage.weakPassword));
-		registerPage.emailRegister.sendKeys("patient5666@mail.ru");
+		registerPage.emailRegister.sendKeys("patient@mail.ru");
 		registerPage.passwordRegister.sendKeys("patient77");
 		registerPage.confirmPasswordRegister.sendKeys("patient77");
 		registerPage.registerButton.click();
@@ -170,6 +170,23 @@ public class TestRegister extends BaseTest {
 		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
 		registerPage.passwordRegister.sendKeys("");
 		registerPage.confirmPasswordRegister.sendKeys("Patient77");
+		registerPage.registerButton.click();
+		Assert.assertTrue(browser.isElementPresent(registerPage.withoutPasswordError));
+	}
+
+	/*Registration with incorrect confirmation
+	 * go to registration page
+	 * input e-mail
+	 * input password
+	 * confirm password incorrectly
+	 * click on button "Register"*/
+	@Test(priority = 10)
+	public void testRegisterIncorrectConfirmation(){
+		browser.goTo(REGISTER_URL);
+		Assert.assertFalse(browser.isElementPresent(registerPage.withoutPasswordError));
+		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
+		registerPage.passwordRegister.sendKeys("Patient77");
+		registerPage.confirmPasswordRegister.sendKeys("Patient777");
 		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.withoutPasswordError));
 	}
