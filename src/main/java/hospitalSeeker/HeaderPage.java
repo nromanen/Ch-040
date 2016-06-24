@@ -40,8 +40,14 @@ public class HeaderPage {
     @FindBy(id = USER_DROPDOWN_BUTTON_ID)
     public WebElement userDropdownButton;
 
+//    @FindBy(linkText = "Lars Urlich")
+//    public WebElement userDropdownButtonAdmin;
+
     @FindBy(id = LOG_OUT_BUTTON_ID)
     public WebElement logoutButton;
+
+//    @FindBy(linkText = "/HospitalSeeker/logout")
+//    public WebElement logoutButtonAdmin;
 
     @FindBy(id = CARD_BUTTON_ID)
     public WebElement cardButton;
@@ -80,6 +86,11 @@ public class HeaderPage {
         userDropdownButton.click();
         logoutButton.click();
     }
+
+//    public void logoutAdmin() {
+//        userDropdownButtonAdmin.click();
+//        logoutButtonAdmin.click();
+//    }
 
     public static HeaderPage init(WebDriver driver) {
         return PageFactory.initElements(driver, HeaderPage.class);
