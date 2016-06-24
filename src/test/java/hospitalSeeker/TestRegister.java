@@ -35,13 +35,13 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 1)
 	public void testRegister(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
+		registerPage.emailRegister.sendKeys("nadiia111638974124@mail.ru");
 		registerPage.passwordRegister.sendKeys("Perekuta96");
 		registerPage.confirmPasswordRegister.sendKeys("Perekuta96");
 		registerPage.registerButton.click();
-		browser.waitUntilElementIsPresent(By.xpath(registerPage.SUCCESSFULL_REGISTRATION));
-		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.SUCCESSFULL_REGISTRATION));
-		Assert.assertTrue(browser.containsText("successfully"));
+		browser.sleep(3);
+//		browser.waitUntilElementVisible(registerPage.successfullRegistration);
+		Assert.assertTrue(browser.isElementPresent(registerPage.successfullRegistration));
 	}
 
 	 /*Correct work of button "Log in"
@@ -66,9 +66,9 @@ public class TestRegister extends BaseTest {
 		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
 		registerPage.passwordRegister.sendKeys("Patient77");
 		registerPage.confirmPasswordRegister.sendKeys("Patient77");
+		Assert.assertFalse(browser.isElementPresent(registerPage.warningExistingEmail));
 		registerPage.registerButton.click();
-		browser.waitUntilElementIsPresent(By.cssSelector(registerPage.WARNING_EMAIL));
-		Assert.assertTrue(browser.containsText("User with this email is already exists"));
+		Assert.assertTrue(browser.isElementPresent(registerPage.warningExistingEmail));
 	}
 
 	/*Registration by username (not by e-mail format)
@@ -80,28 +80,30 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 4)
 	public void testRegisterByLogin(){
 		browser.goTo(REGISTER_URL);
+		Assert.assertFalse(browser.isElementPresent(registerPage.warningByEmail));
 		registerPage.emailRegister.sendKeys("patient");
 		registerPage.passwordRegister.sendKeys("Patient77");
 		registerPage.confirmPasswordRegister.sendKeys("Patient77");
+		Assert.assertTrue(browser.isElementPresent(registerPage.warningByEmail));
 		registerPage.registerButton.click();
-		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.PLEASE_REGISTER_TITLE));
 	}
 
-	/*Registration by password including less than any 6 symbols or more than 16
+
+	/*Registration by password including less than any 6 symbols
 	* go to registration page
 	* input e-mail
-	* input password including less than any 6 symbols or more than 16
+	* input password including less than any 6 symbols
 	* confirm password
 	* click on button "Register"*/
 	@Test(priority = 5)
 	public void testRegisterInsecurePassword(){
 		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
+		Assert.assertFalse(browser.isElementPresent(registerPage.insecurePassword));
 		registerPage.passwordRegister.sendKeys("77");
 		registerPage.confirmPasswordRegister.sendKeys("77");
+		Assert.assertTrue(browser.isElementPresent(registerPage.insecurePassword));
 		registerPage.registerButton.click();
-		browser.waitUntilElementIsPresent(By.xpath(registerPage.WARNING_PASSWORD));
-		Assert.assertTrue(browser.containsText("Your password must between 6 and 16 characters"));
 	}
 
 	/*Registration by password including no different case
@@ -111,14 +113,14 @@ public class TestRegister extends BaseTest {
 	* confirm password
 	* click on button "Register"*/
 	@Test(priority = 6)
-	public void testRegisterLowerUpperCasePassword(){
+	public void testRegisterWeakPassword(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
+		Assert.assertFalse(browser.isElementPresent(registerPage.weakPassword));
+		registerPage.emailRegister.sendKeys("patient5666@mail.ru");
 		registerPage.passwordRegister.sendKeys("patient77");
 		registerPage.confirmPasswordRegister.sendKeys("patient77");
 		registerPage.registerButton.click();
-		browser.waitUntilElementIsPresent(By.xpath(registerPage.WARNING_PASSWORD));
-		Assert.assertTrue(browser.containsText("Your password must contains at least:one lowercase characters, one uppercase characters"));
+		Assert.assertTrue(browser.isElementPresent(registerPage.weakPassword));
 	}
 
 	/*Registration without e-mail
@@ -130,12 +132,12 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 7)
 	public void testRegisterWithoutEmail(){
 		browser.goTo(REGISTER_URL);
+		Assert.assertFalse(browser.isElementPresent(registerPage.warningByEmail));
 		registerPage.emailRegister.sendKeys("");
 		registerPage.passwordRegister.sendKeys("Patient77");
 		registerPage.confirmPasswordRegister.sendKeys("Patient77");
 		registerPage.registerButton.click();
-		browser.waitUntilElementIsPresent(By.xpath(registerPage.WARNING_EMAIL));
-		Assert.assertTrue(browser.containsText("Please enter your email"));
+		Assert.assertTrue(browser.isElementPresent(registerPage.warningByEmail));
 	}
 
 	/*Registration without confirming password
@@ -147,12 +149,12 @@ public class TestRegister extends BaseTest {
 	@Test(priority = 8)
 	public void testRegisterWithoutConfirmPassword(){
 		browser.goTo(REGISTER_URL);
+		Assert.assertFalse(browser.isElementPresent(registerPage.confirmPasswordError));
 		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
 		registerPage.passwordRegister.sendKeys("Patient77");
 		registerPage.confirmPasswordRegister.sendKeys("");
 		registerPage.registerButton.click();
-		browser.waitUntilElementIsPresent(By.xpath(registerPage.WARNING_CONFIRM_PASSWORD));
-		Assert.assertTrue(browser.containsText("Please enter your password again."));
+		Assert.assertTrue(browser.isElementPresent(registerPage.confirmPasswordError));
 	}
 
 	/*Registration without password
@@ -161,15 +163,15 @@ public class TestRegister extends BaseTest {
 	 * field for password keep empty
 	 * confirm password
 	 * click on button "Register"*/
-	@Test(priority = 8)
+	@Test(priority = 9)
 	public void testRegisterWithoutPassword(){
 		browser.goTo(REGISTER_URL);
+		Assert.assertFalse(browser.isElementPresent(registerPage.withoutPasswordError));
 		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
 		registerPage.passwordRegister.sendKeys("");
 		registerPage.confirmPasswordRegister.sendKeys("Patient77");
 		registerPage.registerButton.click();
-		browser.waitUntilElementIsPresent(By.xpath(registerPage.WARNING_PASSWORD));
-		Assert.assertTrue(browser.containsText("Please enter your password."));
+		Assert.assertTrue(browser.isElementPresent(registerPage.withoutPasswordError));
 	}
 
 }

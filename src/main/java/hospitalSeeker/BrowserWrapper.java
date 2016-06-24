@@ -73,6 +73,8 @@ public class BrowserWrapper {
         return present;
     }
 
+
+
     public void doubleClick(WebElement element) {
         Actions action = new Actions(driver);
         action.doubleClick(element).perform();
@@ -114,6 +116,10 @@ public class BrowserWrapper {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
+    public void waitUntilElementInvisible(WebElement element) {
+        new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.visibilityOf(element));
+    }
+
     public void waitUntilTitleContains(String title) {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.titleContains(title));
     }
@@ -133,6 +139,14 @@ public class BrowserWrapper {
     public void selectDropdown(WebElement element, String text) {
         Select dropdown = new Select(element);
         dropdown.selectByVisibleText(text);
+    }
+
+    public void sleep(int Seconds){
+        try {
+            Thread.sleep(Seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
 
