@@ -15,10 +15,16 @@ import java.util.List;
  */
 public class SchedulePage {
 
-    public Dimension dimension = new Dimension(1366, 768);
+
     public int columnWidth = 177;
+    public int columnHeight = 20;
     //first row width = 50
     //other rows = 177
+    public final String WORK_WEEK_SIZE_5 = "5 days";
+    public final String WORK_HOURS_24 = "24:00";
+    public final String WORK_HOURS_10 = "10:00";
+    public final String WORK_HOURS_23 = "23:00";
+    public final String APPOINTMENT_REASON = "stomach ache";
 
     @FindBy(css = "div.dhx_cal_event")
     public WebElement eventBody;
@@ -50,8 +56,8 @@ public class SchedulePage {
     @FindBy(css = "div.dhx_cal_next_button")
     public WebElement nextDate;
 
-    @FindBy(css = "div.dhx_scale_holder")
-    public WebElement dateColumn;
+    @FindBy(className = "dhx_scale_bar")
+    public WebElement calendarHeader;
 
     @FindBy(css = "div.dhx_cal_tab.dhx_cal_tab_first[name=day_tab]")
     public WebElement switchViewToDay;
@@ -110,74 +116,11 @@ public class SchedulePage {
     @FindBy(css = "button.btn.btn-success")
     public WebElement saveDoctorSchedule;
 
-    @FindBy(id = "save")
-    public WebElement saveAppointment;
-
-    @FindBy(id = "close")
-    public WebElement cancelAppointment;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='0']")
-    public WebElement hours0000;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='1']")
-    public WebElement hours0100;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='2']")
-    public WebElement hours0200;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='3']")
-    public WebElement hours0300;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='4']")
-    public WebElement hours0400;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='5']")
-    public WebElement hours0500;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='6']")
-    public WebElement hours0600;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='7']")
-    public WebElement hours0700;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='8']")
-    public WebElement hours0800;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='9']")
-    public WebElement hours0900;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='10']")
-    public WebElement hours1000;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='11']")
-    public WebElement hours1100;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='12']")
-    public WebElement hours1200;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='13']")
-    public WebElement hours1300;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='14']")
-    public WebElement hours1400;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='15']")
-    public WebElement hours1500;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='16']")
-    public WebElement hours1600;
+    @FindBy(css = "div.dhtmlx_popup_button.dhtmlx_ok_button")
+    public WebElement confirmDeletingSchedule;
 
     @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='17']")
     public WebElement hours1700;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='18']")
-    public WebElement hours1800;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='19']")
-    public WebElement hours1900;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='20']")
-    public WebElement hours2000;
 
     @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='21']")
     public WebElement hours2100;
@@ -185,8 +128,29 @@ public class SchedulePage {
     @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='22']")
     public WebElement hours2200;
 
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='23']")
-    public WebElement hours2300;
+    @FindBy(id = "workWeekSize")
+    public WebElement workWeekSize;
+
+    @FindBy(id = "workDayBeginAt")
+    public WebElement workDayBeginAt;
+
+    @FindBy(id = "workDayEndAt")
+    public WebElement workDayEndAt;
+
+    @FindBy(id = "appointmentTime")
+    public WebElement appointmentSize;
+
+    @FindBy(id = "TheReasonForVisit")
+    public WebElement reasonForVisitField;
+
+    @FindBy(xpath = "//button[contains(@class, 'btn btn-default') and text()='Confirm']")
+    public WebElement appointmentConfirm;
+
+    @FindBy(xpath = "//button[contains(@class, 'btn btn-danger') and text()='Cancel the appointment']")
+    public WebElement cancelAppointment;
+
+    @FindBy(id = "batOne")
+    public WebElement confirmCancellingAppointment;
 
     @FindAll(@FindBy(className = "dhx_scale_hour"))
     public List<WebElement> scheduleRows;

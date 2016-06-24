@@ -48,7 +48,6 @@ public class BrowserWrapper {
         } catch (Exception e) {
             return false;
         }
-
     }
 
     public boolean isElementPresentByXpath(String xpath) {
@@ -60,6 +59,16 @@ public class BrowserWrapper {
             present = false;
         }
         return present;
+    }
+
+    //TODO write javadoc
+    public String checkIfElementNotPresent(WebElement element) {
+        try {
+            element.isDisplayed();
+            return "";
+        } catch (Exception e) {
+            return e.toString();
+        }
     }
 
     public boolean isElementPresentByClassName(String className) {
@@ -78,10 +87,15 @@ public class BrowserWrapper {
         action.doubleClick(element).perform();
     }
 
-    public void clickOnCoordinates(WebElement element, int x, int y) {
+    public void doubleClickOnCoordinates(WebElement element, int x, int y) {
         Actions builder = new Actions(driver);
         builder.moveToElement(element, x, y).doubleClick().build().perform();
     }
+
+    public void browserMaximize () {
+        driver.manage().window().maximize();
+    }
+
 
     public void sleep(int seconds) {
         try {

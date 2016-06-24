@@ -22,7 +22,7 @@ public class HeaderPage {
     public static final String CARD_BUTTON_ID = "cardButton";
     public static final String APPOINTMENTS_BUTTON_ID = "myappButton";
     public static final String PATIENTS_BUTTON_ID = "patientsButton";
-    public static final String WORKSCHEDULER_BUTTON_ID = "worckschedulerButton";
+//    public static final String WORKSCHEDULER_BUTTON_ID = "worckschedulerButton";
     public static final String MANAGE_BUTTON_ID = "manageButton";
 
     @FindBy(id = HOME_BUTTON_ID)
@@ -37,7 +37,7 @@ public class HeaderPage {
     @FindBy(id = ACTIONS_BUTTON_ID)
     public WebElement actionsButton;
 
-    @FindBy(css = "a.nav.navbar-nav.dropdown.dropdown-toggle.active")
+    @FindBy(css = "a.nav.navbar-nav.dropdown.dropdown-toggle")
     public WebElement userDropdownButton;
 
     @FindBy(css = "span.glyphicon.glyphicon-log-out")
@@ -52,7 +52,7 @@ public class HeaderPage {
     @FindBy(id = PATIENTS_BUTTON_ID)
     public WebElement patientsButton;
 
-    @FindBy(id = WORKSCHEDULER_BUTTON_ID)
+    @FindBy(xpath = "//a[contains(@class, 'menu') and text()='Worksheduler']")
     public WebElement workschedulerButton;
 
     @FindBy(id = ALL_USERS_BUTTON_ID)
@@ -75,6 +75,15 @@ public class HeaderPage {
 
     @FindBy(id = MANAGE_BUTTON_ID)
     public WebElement manageButton;
+
+    @FindBy(xpath = "//a[contains(@class, '[ animate ]')]")
+    public WebElement searchButton;
+
+    @FindBy(xpath = "//button[contains(@class, '[ btn btn-info ]')]")
+    public WebElement searchConfirm;
+
+    @FindBy(id = "select_search")
+    public WebElement searchField;
 
     public void logout() {
         userDropdownButton.click();
