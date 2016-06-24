@@ -38,6 +38,7 @@ public class BaseTest {
     @BeforeMethod
     public void beforeClass() {
         browser = new BrowserWrapper(BrowserInitialization.initialize());
+        browser.getDriver().manage().window().maximize();
     }
 
     @AfterMethod
