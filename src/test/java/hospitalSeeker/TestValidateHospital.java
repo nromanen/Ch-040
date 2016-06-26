@@ -3,22 +3,18 @@ package hospitalSeeker;
 /**
  * Created by oleg on 03.06.2016.
  */
+
 import hospitalSeeker.googleApi.NewHospital;
 import hospitalSeeker.googleApi.ValidateHospital;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 public class TestValidateHospital extends BaseTest {
 
@@ -40,7 +36,6 @@ public class TestValidateHospital extends BaseTest {
         loginPage.emailLogin.sendKeys(ADMIN_LOGIN);
         loginPage.passwordLogin.sendKeys(ADMIN_PASSWORD);
         loginPage.loginButton.click();
-        browser.implicitWait(2);
         browser.goTo(VALIDATE_URL);
 
     }
@@ -69,12 +64,8 @@ public class TestValidateHospital extends BaseTest {
         assertTrue(browser.isElementPresent(validateHospital.googleApi), "Dude, Google Api is not present");
         browser.waitUntilElementIsPresent(By.cssSelector("button.btn.btn-default"));
         assertTrue(browser.isElementPresent(validateHospital.getGooglePoi), "Button for google poi is not present");
-        System.out.println("hello1");
         validateHospital.getGooglePoi.click();
-        System.out.println("hello1");
         validateHospital.getGooglePoi.click();
-        System.out.println("hello2");
-        browser.implicitWait(10);
         assertTrue(browser.isElementPresent(validateHospital.tables),"Table is not present");
         assertTrue(browser.isElementPresent(validateHospital.addValidateHospital), "Button for addvalidate hospital is not present");
         assertTrue(browser.isElementPresent(validateHospital.showOnMap), "Button for addvalidate hospital is not present");
@@ -108,7 +99,6 @@ public class TestValidateHospital extends BaseTest {
     @Test
     public void checkTableIsVisible() {
         validateHospital.googlePoiButtonClick();
-        browser.implicitWait(2);
         assertTrue(browser.isElementPresent(validateHospital.table), "Table with validate hospital is not present");
     }
     /*
@@ -180,10 +170,5 @@ public class TestValidateHospital extends BaseTest {
             row_num++;
         }
         //validateHospital.tables
-    }
-    @AfterMethod
-    public void afterMethod() {
-        browser.driver.quit();
-
     }
 }

@@ -1,13 +1,11 @@
 package hospitalSeeker; /**
  * Created by oleg on 25.05.2016.
  */
+
 import hospitalSeeker.googleApi.NewHospital;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -125,7 +123,6 @@ public class TestNewHospital extends BaseTest{
         newHospital.inputLat("180");
         newHospital.imagePathButton.click();
         newHospital.submitButton.click();
-        browser.implicitWait(4);
         assertEquals(true, (browser.getCurrentUrl() == HOSPITALS_URL));
     }
     @Test
@@ -139,7 +136,6 @@ public class TestNewHospital extends BaseTest{
         newHospital.inputLat("180");
         newHospital.imagePathButton.click();
         newHospital.resetButton.click();
-        browser.implicitWait(2);
         System.out.println("oleg" + newHospital.descriptionField.getText()+"oleg");
         assertEquals(false,newHospital.cityField.getAttribute("value") == " ");
         assertEquals(false,newHospital.countryField.getText() == " ");
@@ -147,7 +143,6 @@ public class TestNewHospital extends BaseTest{
         assertEquals(false,newHospital.streetField.getAttribute("value") == " ");
         assertEquals(false,newHospital.nameField.getAttribute("value") == " ");
         assertEquals(false,newHospital.descriptionField.getAttribute("value") == " ");
-        browser.implicitWait(2);
 }
     @Test
     public void testBackButton(){
@@ -155,9 +150,4 @@ public class TestNewHospital extends BaseTest{
         assertEquals(true, (browser.getCurrentUrl() != browser.getCurrentUrl()));
 
     }
-    @AfterMethod
-    public void afterMethod() {
-        browser.getDriver().quit();
-}
-
 }
