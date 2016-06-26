@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class HospitalPage {
 
-    public final String HOSPITAL_NAME = "Regional";
+    public final String HOSPITAL_NAME = "Regonal";
 
     @FindAll(@FindBy(xpath = ".//*[@class='img-responsive']"))
     public List<WebElement> hospitals;
