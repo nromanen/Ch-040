@@ -1,36 +1,49 @@
 package hospitalSeeker.roles;
 
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class TestManagerRole extends BaseRoleTest {
 
 
     @BeforeMethod
-    public void beforeMethod() {
+    public void beforeMethod2() {
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
     }
 
-    @Test(dataProvider = "forbiddenElements")
-    public void testForbiddenButtonsForManagers(WebElement element, String string) {
-        assertFalse(browser.isElementPresent(element), string + " is present!");
+    @Test
+    public void testForbiddenButtonsForManagers() {
+        String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
+                .concat(browser.checkIfElementNotPresent(headerPage.cardButton))
+                .concat(browser.checkIfElementNotPresent(headerPage.patientsButton));
+        System.out.println(error);
     }
 
-    @Test(dataProvider = "forbiddenUrls")
-    public void testAccessDeniedToUrlsForManagers(String url, String errorText) {
-        browser.goTo(url);
-        assertTrue(browser.containsText(errorText), "access not denied");
+    @Test
+    public void testAccessDeniedDashboardForManagers() {
+        browser.goTo(ADMIN_DASHBOARD_URL);
+        assertTrue(browser.containsText("not authorized to access"), "access not denied");
     }
 
-    @AfterTest
-    public void afterTest() {
-        headerPage.logout();
+    @Test
+    public void testAccessDeniedAddNewHospitalForManagers() {
+        browser.goTo(ADDING_NEW_HOSPITAL_URL);
+        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+    }
+
+    @Test
+    public void testAccessDeniedAddNewUserForManagers() {
+        browser.goTo(ADDING_NEW_USER_URL);
+        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+    }
+
+    @Test
+    public void testAccessDeniedEditManagersForManagers() {
+        browser.goTo(EDIT_HOSPITALS_MANAGERS_URL);
+        assertTrue(browser.containsText("not authorized to access"), "access not denied");
     }
 
 }

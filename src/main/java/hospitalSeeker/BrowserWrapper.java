@@ -41,7 +41,7 @@ public class BrowserWrapper {
             return false;
         }
     }
-    
+
     public boolean isElementPresent(WebElement webElement) {
         try {
             return webElement.isDisplayed();
@@ -62,15 +62,13 @@ public class BrowserWrapper {
         return present;
     }
 
-    public boolean isElementPresentByClassName(String className) {
-        boolean present;
+    public String checkIfElementNotPresent(WebElement element) {
         try {
-            driver.findElement(By.className(className));
-            present = true;
-        } catch (NoSuchElementException e) {
-            present = false;
+            element.isDisplayed();
+            return "";
+        } catch (Exception e) {
+            return e.toString();
         }
-        return present;
     }
 
     public void doubleClick(WebElement element) {
@@ -133,6 +131,10 @@ public class BrowserWrapper {
     public void selectDropdown(WebElement element, String text) {
         Select dropdown = new Select(element);
         dropdown.selectByVisibleText(text);
+    }
+
+    public void browserMaximize() {
+        driver.manage().window().maximize();
     }
 }
 
