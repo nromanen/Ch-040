@@ -55,7 +55,6 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.showUsers,"30");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
 		Assert.assertEquals(adminPage.usersAll.size(), 21);
 	}
 	
@@ -72,7 +71,6 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.role,"ADMIN");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
 		Assert.assertEquals(adminPage.usersAll.size(),1);
 	}
 
@@ -90,7 +88,6 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.showUsers,"15");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
 		Assert.assertEquals(adminPage.usersAll.size(),11);
 	}
 
@@ -107,7 +104,6 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.role,"MANAGER");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
 		Assert.assertEquals(adminPage.usersAll.size(),4);
 	}
 
@@ -124,7 +120,6 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.role,"PATIENT");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
 		Assert.assertEquals(adminPage.usersAll.size(),5);
 	}
 
@@ -142,7 +137,6 @@ public class TestAdminPage extends BaseTest {
 		adminPage.search.sendKeys("manager.kk@hospitals.ua");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
 		Assert.assertEquals(adminPage.usersAll.size(),1);
 	}
 
@@ -160,7 +154,6 @@ public class TestAdminPage extends BaseTest {
 		adminPage.search.sendKeys("Kurt");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
 		Assert.assertEquals(adminPage.usersAll.size(),1);
 	}
 
@@ -178,7 +171,6 @@ public class TestAdminPage extends BaseTest {
 		adminPage.search.sendKeys("Kobein");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
 		Assert.assertEquals(adminPage.usersAll.size(),1);
 	}
 
@@ -195,7 +187,6 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.showUsers,"30");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
 		Assert.assertEquals(adminPage.usersAll.size(),21);
 	}
 
@@ -212,7 +203,6 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.showUsers,"30");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
 		Assert.assertEquals(adminPage.usersAll.size(),0);
 	}
 
@@ -229,8 +219,7 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.showUsers,"50");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		System.out.println(adminPage.usersAll.size());
-		Assert.assertEquals(adminPage.usersAll.size(), 0);
+		Assert.assertEquals(adminPage.usersAll.size(), 21);
 	}
 
 	/*Seeing information about user
@@ -294,7 +283,7 @@ public class TestAdminPage extends BaseTest {
 	@Test(priority = 15)
 	public void DisableUser(){
 		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("patient.cd@hospitals.ua");
+		loginPage.emailLogin.sendKeys("patient.rr@hospitals.ua");
 		loginPage.passwordLogin.sendKeys("1111");
 		loginPage.loginButton.click();
 		browser.sleep(1);
@@ -302,7 +291,7 @@ public class TestAdminPage extends BaseTest {
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.searchBy,"Email");
-		adminPage.search.sendKeys("patient.cd@hospitals.ua");
+		adminPage.search.sendKeys("patient.rr@hospitals.ua");
 		adminPage.searchButton.click();
 		browser.waitUntilElementIsPresent(By.id("allUsers"));
 		adminPage.actionsViewUser.click();
@@ -312,7 +301,7 @@ public class TestAdminPage extends BaseTest {
 		browser.sleep(2);
 		headerPage.logout();
 		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("patient.cd@hospitals.ua");
+		loginPage.emailLogin.sendKeys("patient.rr@hospitals.ua");
 		loginPage.passwordLogin.sendKeys("1111");
 		loginPage.loginButton.click();
 		Assert.assertTrue(browser.isElementPresent(adminPage.blockedAccount));
