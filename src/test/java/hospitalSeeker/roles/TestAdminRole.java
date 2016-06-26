@@ -8,7 +8,8 @@ import static org.testng.Assert.assertEquals;
 public class TestAdminRole extends BaseRoleTest{
 
     @BeforeMethod
-    public void beforeMethod2(){
+    public void beforeMethod(){
+        super.beforeMethod();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
     }

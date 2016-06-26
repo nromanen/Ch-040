@@ -8,7 +8,8 @@ import static org.testng.Assert.assertTrue;
 public class TestDoctorRole extends BaseRoleTest {
 
     @BeforeMethod
-    public void beforeMethod2() {
+    public void beforeMethod() {
+        super.beforeMethod();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
     }

@@ -17,6 +17,7 @@ public class BrowserWrapper {
     protected WebDriver driver;
 
     public static final int STANDARD_WAIT_TIME = 10;
+    private Actions builder;
 
     BrowserWrapper(WebDriver driver) {
         this.driver = driver;
@@ -74,6 +75,11 @@ public class BrowserWrapper {
     public void doubleClick(WebElement element) {
         Actions action = new Actions(driver);
         action.doubleClick(element).perform();
+    }
+
+    public void doubleClickOnCoordinates(WebElement element, int x, int y) {
+        Actions builder = new Actions(driver);
+        builder.moveToElement(element, x, y).doubleClick().build().perform();
     }
 
     public String getCurrentUrl() {
