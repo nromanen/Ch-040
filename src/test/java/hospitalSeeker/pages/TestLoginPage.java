@@ -85,7 +85,7 @@ public class TestLoginPage extends BaseTest {
 	@Test(priority = 4)
 	public void testLoginIncorrectEmail() {
 		browser.goTo(LOGIN_URL);
-		loginPage.loggingIn("patient@mail.ru",PATIENT_PASSWORD);
+		loginPage.loggingIn("patient1@mail.ru",PATIENT_PASSWORD);
 		Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
 	}
 
@@ -99,7 +99,7 @@ public class TestLoginPage extends BaseTest {
 	@Test(priority = 5)
 	public void testLoginIncorrectPassword() {
 		browser.goTo(LOGIN_URL);
-		loginPage.loggingIn(PATIENT_LOGIN,"Patient77");
+		loginPage.loggingIn("patient.ml@hospitals.ua","11111");
 		Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
 	}
 
@@ -115,12 +115,12 @@ public class TestLoginPage extends BaseTest {
 	@Test(priority = 6)
 	public void testLoginNotActivatedUser(){
 		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("patient@mail.ru");
+		registerPage.emailRegister.sendKeys("patient2@mail.ru");
 		registerPage.passwordRegister.sendKeys("Patient77");
 		registerPage.confirmPasswordRegister.sendKeys("Patient77");
 		registerPage.registerButton.click();
 		browser.goTo(LOGIN_URL);
-		loginPage.loggingIn("patient@mail.ru","Patient77");
+		loginPage.loggingIn("patient2@mail.ru","Patient77");
 		browser.sleep(1);
 		Assert.assertTrue(browser.isElementPresent(loginPage.notActivatedAccount));
 	}
