@@ -24,7 +24,7 @@ public class TestLogin extends BaseTest {
 	}
 
 	@Test
-	public void testForbiddenButtonsForUnregisteredUsers() {
+	public void checkElementsLoginPage() {
 		String error = browser.checkIfElementNotPresent(loginPage.emailLogin)
 				.concat(browser.checkIfElementNotPresent(loginPage.passwordLogin))
 				.concat(browser.checkIfElementNotPresent(loginPage.rememberMe))

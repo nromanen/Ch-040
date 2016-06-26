@@ -18,7 +18,7 @@ public class TestRegister extends BaseTest {
 	}
 
 	@Test
-	public void testForbiddenButtonsForUnregisteredUsers() {
+	public void checkElementsRegisterPage() {
 		String error = browser.checkIfElementNotPresent(registerPage.emailRegister)
 				.concat(browser.checkIfElementNotPresent(registerPage.passwordRegister))
 				.concat(browser.checkIfElementNotPresent(registerPage.confirmPasswordRegister))

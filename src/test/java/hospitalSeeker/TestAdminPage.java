@@ -24,7 +24,7 @@ public class TestAdminPage extends BaseTest {
 	}
 
 	@Test
-	public void testForbiddenButtonsForUnregisteredUsers() {
+	public void checkElementsAdminPage(){
 		String error = browser.checkIfElementNotPresent(adminPage.allUsersTable)
 				.concat(browser.checkIfElementNotPresent(adminPage.showUsers))
 				.concat(browser.checkIfElementNotPresent(adminPage.role))
