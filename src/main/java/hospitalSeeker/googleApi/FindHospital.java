@@ -8,9 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class FindHospital {
 
-    public  static final String baseUrl =  "http://91.209.24.68/ch-040/mapsearch";
-
-
     @FindBy(id = "pac-input")
     public WebElement enterAdress;
 
