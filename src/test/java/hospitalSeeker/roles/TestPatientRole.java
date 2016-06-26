@@ -19,7 +19,9 @@ public class TestPatientRole extends BaseRoleTest {
         String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
                 .concat(browser.checkIfElementNotPresent(headerPage.patientsButton))
                 .concat(browser.checkIfElementNotPresent(headerPage.manageButton));
-        System.out.println(error);
+        if (!(error.isEmpty())) {
+            throw new AssertionError(error);
+        }
     }
 
     @Test

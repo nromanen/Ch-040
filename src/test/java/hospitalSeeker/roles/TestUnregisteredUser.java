@@ -19,7 +19,9 @@ public class TestUnregisteredUser extends BaseRoleTest {
                 .concat(browser.checkIfElementNotPresent(headerPage.cardButton))
                 .concat(browser.checkIfElementNotPresent(headerPage.manageButton))
                 .concat(browser.checkIfElementNotPresent(headerPage.patientsButton));
-        System.out.println(error);
+        if (!(error.isEmpty())) {
+            throw new AssertionError(error);
+        }
     }
 
     @Test
