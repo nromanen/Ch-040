@@ -25,24 +25,24 @@ public class TestUnregisteredUser extends BaseRoleTest {
     @Test
     public void testAccessDeniedDashboardForUnregisteredUsers() {
         browser.goTo(ADMIN_DASHBOARD_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+        assertTrue(browser.containsText("Please Log In"), "access not denied");
     }
 
     @Test
     public void testAccessDeniedAddNewHospitalForUnregisteredUsers() {
         browser.goTo(ADDING_NEW_HOSPITAL_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+        assertTrue(browser.containsText("Please Log In"), "access not denied");
     }
 
     @Test
     public void testAccessDeniedAddNewUserForUnregisteredUsers() {
         browser.goTo(ADDING_NEW_USER_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+        assertTrue(browser.containsText("Please Log In"), "access not denied");
     }
 
     @Test
     public void testAccessDeniedEditManagersForUnregisteredUsers() {
         browser.goTo(EDIT_HOSPITALS_MANAGERS_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+        assertTrue(browser.containsText("Please Log In"), "access not denied");
     }
 }
