@@ -29,7 +29,7 @@ public class TestSchedulePage extends BaseTest {
         loginPage = LoginPage.init(browser.getDriver());
     }
 
-    @Test(priority = 1)
+    @Test()
     public void checkElementsOnSchedulePage() {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
@@ -253,7 +253,7 @@ public class TestSchedulePage extends BaseTest {
         headerPage.loginButton.click();
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
         headerPage.workschedulerButton.click();
-        browser.waitUntilElementVisible(schedulePage.calendarHeader);
+        browser.waitUntilElementVisible(schedulePage.eventBody);
         assertTrue(browser.isElementPresent(schedulePage.eventBody));
     }
 
@@ -271,7 +271,7 @@ public class TestSchedulePage extends BaseTest {
         headerPage.loginButton.click();
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
         headerPage.workschedulerButton.click();
-        browser.waitUntilElementVisible(schedulePage.calendarHeader);
+        browser.waitUntilElementVisible(schedulePage.eventBody);
         browser.doubleClick(schedulePage.eventTitle);
         browser.sleep(2);
         schedulePage.cancelAppointment.click();
@@ -279,6 +279,7 @@ public class TestSchedulePage extends BaseTest {
         schedulePage.confirmCancellingAppointment.click();
         browser.sleep(6);
         headerPage.workschedulerButton.click();
+        browser.waitUntilElementVisible(schedulePage.calendarHeader);
         assertFalse(browser.isElementPresent(schedulePage.eventBody));
     }
 }

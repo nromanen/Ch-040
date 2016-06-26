@@ -26,7 +26,7 @@ public class SchedulePage {
     public final String APPOINTMENT_REASON = "stomach ache";
     public final String MANAGER_EDIT_TEXT = "text field test, manager edit, #7";
 
-    @FindBy(css = "div.dhx_cal_event")
+    @FindBy(className = "dhx_cal_event")
     public WebElement eventBody;
 
     @FindBy(css = "div.dhx_menu_icon.icon_details[title=Details]")
