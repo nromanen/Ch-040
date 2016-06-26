@@ -18,13 +18,13 @@ public class SchedulePage {
 
     public int columnWidth = 177;
     public int columnHeight = 20;
-    //first row width = 50
-    //other rows = 177
+
     public final String WORK_WEEK_SIZE_5 = "5 days";
     public final String WORK_HOURS_24 = "24:00";
     public final String WORK_HOURS_10 = "10:00";
     public final String WORK_HOURS_23 = "23:00";
     public final String APPOINTMENT_REASON = "stomach ache";
+    public final String MANAGER_EDIT_TEXT = "text field test, manager edit, #7";
 
     @FindBy(css = "div.dhx_cal_event")
     public WebElement eventBody;

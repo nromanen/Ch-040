@@ -77,10 +77,9 @@ public class TestSchedulePage extends BaseTest {
         browser.waitUntilElementVisible(schedulePage.saveChanges);
         schedulePage.saveChanges.click();
         schedulePage.eventEdit.click();
-        schedulePage.editSchedule("text field test, manager edit, #7");
+        schedulePage.editSchedule(schedulePage.MANAGER_EDIT_TEXT);
         schedulePage.saveChanges.click();
-        browser.sleep(3);
-        assertTrue(schedulePage.events.get(0).getText().equals("text field test, manager edit, #7"), "Event isn't present!");
+        assertTrue(browser.isElementPresent(schedulePage.eventBody));
     }
 
     /*
