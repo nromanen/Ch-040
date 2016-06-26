@@ -28,7 +28,7 @@ public class TestAdminRole extends BaseRoleTest{
         assertEquals(browser.getCurrentUrl(), url, "urls don't match! problem with this url: " + errorMessage);
     }
     @AfterMethod
-    public void afterMethod() {
+    public void afterMethod1() {
         headerPage.logout();
     }
 

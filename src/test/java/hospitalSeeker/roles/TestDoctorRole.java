@@ -1,7 +1,6 @@
 package hospitalSeeker.roles;
 
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -11,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 public class TestDoctorRole extends BaseRoleTest {
 
     @BeforeMethod
-    public void beforeMethod() {
+    public void beforeMethod2() {
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
     }
@@ -26,10 +25,4 @@ public class TestDoctorRole extends BaseRoleTest {
         browser.goTo(url);
         assertTrue(browser.containsText(errorText), "access not denied");
     }
-
-    @AfterMethod
-    public void afterMethod() {
-        headerPage.logout();
-    }
-
 }

@@ -1,7 +1,7 @@
 package hospitalSeeker;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
@@ -33,13 +33,14 @@ public class BaseTest {
     public static final String PATIENT_LOGIN = "patient.cd@hospitals.ua";
     public static final String PATIENT_PASSWORD = "1111";
 
-    @BeforeClass
-    public void beforeClass() {
+    @BeforeMethod
+    public void beforeMethod() {
         browser = new BrowserWrapper(BrowserInitialization.initialize());
+        browser.browserMaximize();
     }
 
-    @AfterClass
-    public void afterClass() {
+    @AfterMethod
+    public void afterMethod() {
         browser.getDriver().quit();
     }
 

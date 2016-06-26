@@ -4,7 +4,7 @@ import hospitalSeeker.AdminPage;
 import hospitalSeeker.BaseTest;
 import hospitalSeeker.HeaderPage;
 import hospitalSeeker.LoginPage;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 
 
@@ -14,9 +14,9 @@ public class BaseRoleTest extends BaseTest {
     AdminPage adminPage;
     HeaderPage headerPage;
 
-    @BeforeClass
-    public void beforeClass() {
-        super.beforeClass();
+    @BeforeMethod
+    public void beforeMethod() {
+        super.beforeMethod();
         loginPage = LoginPage.init(browser.getDriver());
         adminPage = AdminPage.init(browser.getDriver());
         headerPage = HeaderPage.init(browser.getDriver());

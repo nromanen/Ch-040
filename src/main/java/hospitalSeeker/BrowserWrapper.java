@@ -41,7 +41,7 @@ public class BrowserWrapper {
             return false;
         }
     }
-    
+
     public boolean isElementPresent(WebElement webElement) {
         try {
             return webElement.isDisplayed();
@@ -133,6 +133,10 @@ public class BrowserWrapper {
     public void selectDropdown(WebElement element, String text) {
         Select dropdown = new Select(element);
         dropdown.selectByVisibleText(text);
+    }
+
+    public void browserMaximize() {
+        driver.manage().window().maximize();
     }
 }
 
