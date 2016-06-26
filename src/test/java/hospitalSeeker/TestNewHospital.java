@@ -1,21 +1,28 @@
 package hospitalSeeker; /**
  * Created by oleg on 25.05.2016.
  */
+
 import hospitalSeeker.googleApi.NewHospital;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class TestNewHospital extends BaseTest{
     NewHospital newHospital;
+    LoginPage loginPage;
+    String testAddress = "Головна вулиця, 239, Чернівці, Чернівецька область, Украина";
     @BeforeMethod
     public void beforeMethod() {
         newHospital = PageFactory.initElements(browser.getDriver(), NewHospital.class);
+        loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
+        browser.goTo(LOGIN_URL);
+        loginPage.emailLogin.sendKeys(ADMIN_LOGIN);
+        loginPage.passwordLogin.sendKeys(ADMIN_PASSWORD);
+        loginPage.loginButton.click();
+        browser.goTo(ADDING_NEW_HOSPITAL_URL);
     }
     /*
     *<p>
@@ -39,31 +46,25 @@ public class TestNewHospital extends BaseTest{
      */
     @Test(priority = 0)
     public void isElementPresent(){
-        testLogin();
-        browser.goTo(ADDING_NEW_HOSPITAL_URL);
-
         assertTrue(browser.isElementPresent(newHospital.googleMap),"element googleMap isn't present");
         assertTrue(browser.isElementPresent(newHospital.addresField),"element addres isn't present");
         assertTrue(browser.isElementPresent(newHospital.descriptionField),"input element description isn't present");
         assertTrue(browser.isElementPresent(newHospital.nameField),"input element description isn't present");
-        assertTrue(browser.isElementPresent(newHospital.longitudeField),"element isn't present");
-        assertTrue(browser.isElementPresent(newHospital.latitudeField),"element isn't present");
-        assertTrue(browser.isElementPresent(newHospital.submitButton),"element isn't present");
+        assertTrue(browser.isElementPresent(newHospital.longitudeField),"element longitudeField isn't present");
+        assertTrue(browser.isElementPresent(newHospital.latitudeField),"element  latitudeField isn't present");
+        assertTrue(browser.isElementPresent(newHospital.submitButton),"element submitButton isn't present");
+        assertTrue(browser.isElementPresent(newHospital.backButton),"element  backButton isn't present");
+        assertTrue(browser.isElementPresent(newHospital.resetButton),"element  resetButton isn't present");
+        assertTrue(browser.isElementPresent(newHospital.buildingField),"element buildingField isn't present");
+        assertTrue(browser.isElementPresent(newHospital.countryField),"element countryField isn't present");
+        assertTrue(browser.isElementPresent(newHospital.cityField),"element cityField isn't present");
+        assertTrue(browser.isElementPresent(newHospital.imagePathButton),"element imagePathButton isn't present");
+        assertTrue(browser.isElementPresent(newHospital.streetField),"element streetField isn't present");
+        assertTrue(browser.isElementPresent(newHospital.fillButton),"element fillButton isn't present");
+        assertTrue(browser.isElementPresent(newHospital.findButton),"element findButton isn't present");
+
     }
-    /*
-    *<p>
-    *
-	 * go to login page
-	 * input e-mail
-	 * input password
-	 * click on button "Log in"
-    *     </p>
-     */
-    @Test
-    public void testLogin(){
-        browser.goTo(HOME_URL);
-        newHospital.logInAction(ADMIN_LOGIN,ADMIN_PASSWORD);
-    }
+
     /*
     *<p>
     *     * go to login page
@@ -76,31 +77,17 @@ public class TestNewHospital extends BaseTest{
     *     @effect visible error field
     *     </p>
      */
-    @Test(dependsOnMethods = {"isElementPresent","testClick"})
+    @Test
     public void validationError(){
-        testLogin();
-        browser.goTo(ADDING_NEW_HOSPITAL_URL);
         newHospital.submitButton.click();
+        newHospital.fillButton.click();
         assertTrue(newHospital.errorField.isDisplayed(),"element isn't present");
+        assertTrue(newHospital.errorAddressField.isDisplayed(),"element isn't present");
+        assertTrue(newHospital.errorCityField.isDisplayed(),"element isn't present");
+        assertTrue(newHospital.errorLatitudeField.isDisplayed(),"element isn't present");
+        assertTrue(newHospital.errorLongitudeField.isDisplayed(),"element isn't present");
     }
-    /*
-   *<p>
-   * go to login page
-	* input e-mail
-    * input password
-	 * click on button "Log in"
-   *     go to validate hospital page
-   *     click on button "Save"
-   *     @requires wait any actions
-   *     @effect clickable button
-   *     </p>
-    */
-    @Test(dependsOnMethods = "isElementPresent")
-    public void testClick(){
-        testLogin();
-        browser.goTo(ADDING_NEW_HOSPITAL_URL);
-        newHospital.submitButton.click();
-    }
+
     /*
     *<p>
     *
@@ -125,19 +112,42 @@ public class TestNewHospital extends BaseTest{
 
     *     </p>
      */
-    @Test(dependsOnMethods = "isElementPresent")
+    @Test
     public void addNewHospital(){
-        testLogin();
-        browser.goTo(ADDING_NEW_HOSPITAL_URL);
-        newHospital.inputAddress("Chernivtsi");
-        browser.getDriver().manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
+        newHospital.inputAddress(testAddress);
+        newHospital.findButton.click();
+        newHospital.fillButton.click();
         newHospital.inputName("OlegHospital");
         newHospital.inputDecsription("ololooloololol");
         newHospital.inputLon("180");
         newHospital.inputLat("180");
         newHospital.imagePathButton.click();
         newHospital.submitButton.click();
-        browser.getDriver().manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
-        assertTrue(browser.isElementPresent(newHospital.confirmBox),"confirm box not displayed");
+        assertEquals(true, (browser.getCurrentUrl() == HOSPITALS_URL));
+    }
+    @Test
+    public void resetAllFields(){
+        newHospital.inputAddress(testAddress);
+        newHospital.findButton.click();
+        newHospital.fillButton.click();
+        newHospital.inputName("OlegHospital");
+        newHospital.inputDecsription("ololooloololol");
+        newHospital.inputLon("180");
+        newHospital.inputLat("180");
+        newHospital.imagePathButton.click();
+        newHospital.resetButton.click();
+        System.out.println("oleg" + newHospital.descriptionField.getText()+"oleg");
+        assertEquals(false,newHospital.cityField.getAttribute("value") == " ");
+        assertEquals(false,newHospital.countryField.getText() == " ");
+        assertEquals(false,newHospital.buildingField.getAttribute("value") == " ");
+        assertEquals(false,newHospital.streetField.getAttribute("value") == " ");
+        assertEquals(false,newHospital.nameField.getAttribute("value") == " ");
+        assertEquals(false,newHospital.descriptionField.getAttribute("value") == " ");
+}
+    @Test
+    public void testBackButton(){
+        newHospital.backButton.click();
+        assertEquals(true, (browser.getCurrentUrl() != browser.getCurrentUrl()));
+
     }
 }

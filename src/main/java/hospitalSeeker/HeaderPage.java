@@ -5,13 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static java.lang.Thread.sleep;
-
 public class HeaderPage {
 
     public static final String HOME_BUTTON_ID = "homeButton";
     public static final String FIND_BUTTON_ID = "findButton";
-    public static final String LOGIN_BUTTON_ID = "logIn";
+    public static final String LOGIN_BUTTON_ID = "loginButton";
     public static final String ACTIONS_BUTTON_ID = "actionsButton";
     public static final String ALL_USERS_BUTTON_ID = "allUsersButton";
     public static final String ADD_NEW_USER_BUTTON_ID = "addNewUserButton";
@@ -22,9 +20,7 @@ public class HeaderPage {
     public static final String USER_DROPDOWN_BUTTON_ID = "userDropdown";
     public static final String LOG_OUT_BUTTON_ID = "logoutButton";
     public static final String CARD_BUTTON_ID = "cardButton";
-    public static final String APPOINTMENTS_BUTTON_ID = "myappButton";
     public static final String PATIENTS_BUTTON_ID = "patientsButton";
-    public static final String WORKSCHEDULER_BUTTON_ID = "worckschedulerButton";
     public static final String MANAGE_BUTTON_ID = "manageButton";
 
     @FindBy(id = HOME_BUTTON_ID)
@@ -54,7 +50,7 @@ public class HeaderPage {
     @FindBy(id = PATIENTS_BUTTON_ID)
     public WebElement patientsButton;
 
-    @FindBy(id = WORKSCHEDULER_BUTTON_ID)
+    @FindBy(xpath = "//a[contains(@class, 'menu') and text()='Worksheduler']")
     public WebElement workschedulerButton;
 
     @FindBy(id = ALL_USERS_BUTTON_ID)
@@ -77,6 +73,15 @@ public class HeaderPage {
 
     @FindBy(id = MANAGE_BUTTON_ID)
     public WebElement manageButton;
+
+    @FindBy(xpath = "//a[contains(@class, '[ animate ]')]")
+    public WebElement searchButton;
+
+    @FindBy(xpath = "//button[contains(@class, '[ btn btn-info ]')]")
+    public WebElement searchConfirm;
+
+    @FindBy(id = "select_search")
+    public WebElement searchField;
 
     public void logout() {
         userDropdownButton.click();

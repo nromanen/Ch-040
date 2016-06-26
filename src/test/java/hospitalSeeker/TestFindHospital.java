@@ -1,9 +1,10 @@
 package hospitalSeeker; /**
  * Created by oleg on 25.05.2016.
  */
+
 import hospitalSeeker.googleApi.FindHospital;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -41,9 +42,10 @@ public class TestFindHospital extends BaseTest{
          * @effect google api
         *     </p>
          */
-    @Test(dependsOnMethods = "isElementsPresents")
+    @Test
     public void test() {
         browser.goTo(FIND_URL);
         findHospital.findInAction("Chernivtsi");
+        findHospital.enterAdress.sendKeys(Keys.RETURN);
     }
 }

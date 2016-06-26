@@ -9,7 +9,8 @@ public class TestManagerRole extends BaseRoleTest {
 
 
     @BeforeMethod
-    public void beforeMethod2() {
+    public void beforeMethod() {
+        super.beforeMethod();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
     }
@@ -19,7 +20,9 @@ public class TestManagerRole extends BaseRoleTest {
         String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
                 .concat(browser.checkIfElementNotPresent(headerPage.cardButton))
                 .concat(browser.checkIfElementNotPresent(headerPage.patientsButton));
-        System.out.println(error);
+        if (!(error.isEmpty())) {
+            throw new AssertionError(error);
+        }
     }
 
     @Test

@@ -8,7 +8,8 @@ import static org.testng.Assert.assertTrue;
 public class TestPatientRole extends BaseRoleTest {
 
     @BeforeMethod
-    public void beforeMethod2() {
+    public void beforeMethod() {
+        super.beforeMethod();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
     }
@@ -18,7 +19,9 @@ public class TestPatientRole extends BaseRoleTest {
         String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
                 .concat(browser.checkIfElementNotPresent(headerPage.patientsButton))
                 .concat(browser.checkIfElementNotPresent(headerPage.manageButton));
-        System.out.println(error);
+        if (!(error.isEmpty())) {
+            throw new AssertionError(error);
+        }
     }
 
     @Test

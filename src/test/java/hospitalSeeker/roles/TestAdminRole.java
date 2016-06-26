@@ -8,7 +8,8 @@ import static org.testng.Assert.assertEquals;
 public class TestAdminRole extends BaseRoleTest{
 
     @BeforeMethod
-    public void beforeMethod2(){
+    public void beforeMethod(){
+        super.beforeMethod();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
     }
@@ -17,7 +18,9 @@ public class TestAdminRole extends BaseRoleTest{
     public void testPrimaryAdminElements() {
         String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
                 .concat(browser.checkIfElementNotPresent(adminPage.allUsersTable));
-        System.out.println(error);
+        if (error.isEmpty()) {
+            throw new AssertionError(error);
+        }
     }
 
     @Test
