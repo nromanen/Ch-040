@@ -17,7 +17,6 @@ public class TestLogin extends BaseTest {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		super.beforeMethod();
 		loginPage = LoginPage.init(browser.getDriver());
 		registerPage = RegisterPage.init(browser.getDriver());
 		headerPage = HeaderPage.init(browser.getDriver());

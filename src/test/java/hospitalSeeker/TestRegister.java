@@ -13,7 +13,6 @@ public class TestRegister extends BaseTest {
 
 	@BeforeMethod
 	public void beforeMethod(){
-		super.beforeMethod();
 		registerPage = RegisterPage.init(browser.getDriver());
 	}
 
