@@ -9,6 +9,7 @@ public class TestUnregisteredUser extends BaseRoleTest {
 
     @BeforeMethod
     public void beforeMethod() {
+        super.beforeMethod();
         browser.goTo(HOME_URL);
     }
 
