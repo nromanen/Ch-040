@@ -43,7 +43,7 @@ public class AdminPage {
     @FindBy (id = "viewUser")
     public WebElement actionsViewUser;
     
-    @FindBy (css = "a.btn.button_user")
+    @FindBy (css = "editUser")
     public WebElement actionsEditUser;
     
     @FindBy (id = "deleteUser")
@@ -63,9 +63,6 @@ public class AdminPage {
     
     @FindBy (linkText = "Close")
     public WebElement viewUserAlert;
-    
-//    @FindBy (xpath = "/html/body/section/div[2]/div/div/div[2]/div/table/tbody/tr[3]/td[2]/input")
-//    public WebElement viewUserAlertEnabledButton;
     
     @FindBy (xpath = "/html/body/section/div[2]/div/div/div[3]/a")
     public WebElement viewUserAlertClose;
@@ -129,6 +126,12 @@ public class AdminPage {
 
     @FindAll(@FindBy(className = "center"))
     public List<WebElement> usersAll;
+
+    @FindBy(css = "div.alert.alert-danger")
+    public WebElement blockedAccount;
+
+    @FindBy(css = "h3.panel-title")
+    public WebElement viewUserTitle;
 
     public static AdminPage init(WebDriver driver) {
         return PageFactory.initElements(driver, AdminPage.class);

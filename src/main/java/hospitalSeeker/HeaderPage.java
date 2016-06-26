@@ -39,13 +39,10 @@ public class HeaderPage {
     @FindBy(id = ACTIONS_BUTTON_ID)
     public WebElement actionsButton;
 
-    @FindBy(css = "a.nav.navbar-nav.dropdown.dropdown-toggle")
+    @FindBy(id = "userDropdown")
     public WebElement userDropdownButton;
 
-    @FindBy(linkText = "Lars Urlich")
-    public WebElement userDropdownButtonAdmin;
-
-    @FindBy(css = "span.glyphicon.glyphicon-log-out")
+    @FindBy(id = "logoutButton")
     public WebElement logoutButton;
 
     @FindBy(id = CARD_BUTTON_ID)
@@ -83,11 +80,6 @@ public class HeaderPage {
 
     public void logout() {
         userDropdownButton.click();
-        logoutButton.click();
-    }
-
-    public void logoutAdmin(){
-        userDropdownButtonAdmin.click();
         logoutButton.click();
     }
 

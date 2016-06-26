@@ -39,8 +39,7 @@ public class TestRegister extends BaseTest {
 		registerPage.passwordRegister.sendKeys("Patient77");
 		registerPage.confirmPasswordRegister.sendKeys("Patient77");
 		registerPage.registerButton.click();
-		browser.sleep(3);
-//		browser.waitUntilElementVisible(registerPage.successfullRegistration);
+		browser.sleep(5);
 		Assert.assertTrue(browser.isElementPresent(registerPage.successfullRegistration));
 	}
 
