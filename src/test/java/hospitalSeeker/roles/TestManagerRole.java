@@ -20,7 +20,7 @@ public class TestManagerRole extends BaseRoleTest {
         String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
                 .concat(browser.checkIfElementNotPresent(headerPage.cardButton))
                 .concat(browser.checkIfElementNotPresent(headerPage.patientsButton));
-        if (!(error.isEmpty())) {
+        if (error.isEmpty()) {
             throw new AssertionError(error);
         }
     }
