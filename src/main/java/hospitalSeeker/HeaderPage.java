@@ -20,9 +20,7 @@ public class HeaderPage {
     public static final String USER_DROPDOWN_BUTTON_ID = "userDropdown";
     public static final String LOG_OUT_BUTTON_ID = "logoutButton";
     public static final String CARD_BUTTON_ID = "cardButton";
-    public static final String APPOINTMENTS_BUTTON_ID = "myappButton";
     public static final String PATIENTS_BUTTON_ID = "patientsButton";
-    public static final String WORKSCHEDULER_BUTTON_ID = "worckschedulerButton";
     public static final String MANAGE_BUTTON_ID = "manageButton";
 
     @FindBy(id = HOME_BUTTON_ID)
