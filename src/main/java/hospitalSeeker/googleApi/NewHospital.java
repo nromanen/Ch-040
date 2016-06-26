@@ -58,7 +58,7 @@ public class NewHospital {
     @FindBy(id="description")
     public WebElement descriptionField;
 
-    @FindBy(id = "add-hospital")
+    @FindBy(id = "button-save")
     public WebElement submitButton;
 
     @FindBy(id = "latitude")
@@ -67,25 +67,25 @@ public class NewHospital {
     @FindBy(id = "address.city")
     public WebElement cityField;
 
-    @FindBy(xpath = "(//button[@type='reset'])[3]")
+    @FindBy(id="button-reset")
     public WebElement resetButton;
 
     @FindBy(id = "longitude")
     public WebElement longitudeField;
 
-    @FindBy(css = "span.btn")
+    @FindBy(id="image-uploaded")
     public WebElement imagePathButton;
 
     @FindBy(id = "googleMap")
     public WebElement googleMap;
 
-    @FindBy(css = "button.col-sm-2:nth-child(3)")
+    @FindBy(id="button-back")
     public WebElement backButton;
 
-    @FindBy(xpath="(//button[@type='button'])[4]")
+    @FindBy(id="button-fill")
     public WebElement fillButton;
 
-    @FindBy(xpath="(//button[@type='button'])[3]")
+    @FindBy(id="button-find")
     public WebElement findButton;
 
 

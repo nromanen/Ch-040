@@ -1,3 +1,4 @@
+/*
 package hospitalSeeker;
 
 import org.openqa.selenium.By;
@@ -30,12 +31,13 @@ public class TestRegister extends BaseTest {
 	        Assert.assertTrue(browser.isElementPresent(registerPage.cancelButton));
 	    }
 
-	 /*Correct registration
+Correct registration
 	 * go to registration page
 	 * input e-mail
 	 * input password
 	 * choose any role
-	 * click on button"Register"*/
+	 * click on button"Register"
+
 	@Test(priority = 1)
 	public void testRegister(){
 		browser.goTo(REGISTER_URL);
@@ -47,12 +49,13 @@ public class TestRegister extends BaseTest {
 		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.SUCCESSFULL_REGISTRATION));
 	}
 
-	 /*Correct work of button "Cancel"
+Correct work of button "Cancel"
 	 * go to registration page
 	 * input e-mail
 	 * input password
 	 * choose any role
-	 * click on button "Cancel"*/
+	 * click on button "Cancel"
+
 	@Test(priority = 2)
 	public void testRegisterButtonCancel(){
 		browser.goTo(REGISTER_URL);
@@ -63,12 +66,13 @@ public class TestRegister extends BaseTest {
 		Assert.assertEquals(browser.getCurrentUrl(),HOME_URL);
 	}
 
-	/*Registration by already existing e-mail
+Registration by already existing e-mail
 	* go to registration page
 	* input already existing e-mail
 	* input password
 	* choose any role
-	* click on button"Register" */
+	* click on button"Register"
+
 	@Test(priority = 3)
 	public void testRegisterExistingEmail(){
 		browser.goTo(REGISTER_URL);
@@ -80,12 +84,13 @@ public class TestRegister extends BaseTest {
 		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.THIS_USER_IS_ALREADY_EXIST));
 	}
 
-	/*Registration by username (not by e-mail format)
+Registration by username (not by e-mail format)
 	* go to registration page
 	* input e-mail
 	* input password
 	* choose any role
-	* click on button "Register"*/
+	* click on button "Register"
+
 	@Test(priority = 4)
 	public void testRegisterByLogin(){
 		browser.goTo(REGISTER_URL);
@@ -95,12 +100,13 @@ public class TestRegister extends BaseTest {
 		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.REGISTER_FORM));
 	}
 
-	/*Registration by password including less than any 4 symbols
+Registration by password including less than any 4 symbols
 	* go to registration page
 	* input e-mail
 	* input password including less than any 4 symbols
 	* choose any role
-	* click on button "Register"*/
+	* click on button "Register"
+
 	@Test(priority = 5)
 	public void testRegisterInsecurePassword(){
 		browser.goTo(REGISTER_URL);
@@ -111,12 +117,13 @@ public class TestRegister extends BaseTest {
 		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.REGISTER_FORM));
 	}
 
-	/*Registration without e-mail
+Registration without e-mail
 	 * go to registration page
 	 * field for e-mail keep empty
 	 * input password
 	 * choose any role
-	 * click on button "Register"*/
+	 * click on button "Register"
+
 	@Test(priority = 6)
 	public void testRegisterWithoutEmail(){
 		browser.goTo(REGISTER_URL);
@@ -127,12 +134,13 @@ public class TestRegister extends BaseTest {
 		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.REGISTER_FORM));
 	}
 
-	/*Registration without password
+Registration without password
 	 * go to registration page
 	 * input e-mail
 	 * field for password keep empty
 	 * choose any role
-	 * click on button "Register"*/
+	 * click on button "Register"
+
 	@Test(priority = 7)
 	public void testRegisterWithoutPassword(){
 		browser.goTo(REGISTER_URL);
@@ -143,3 +151,4 @@ public class TestRegister extends BaseTest {
 		Assert.assertTrue(browser.isElementPresentByXpath(registerPage.REGISTER_FORM));
 	}
 }
+*/

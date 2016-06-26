@@ -22,11 +22,14 @@ public class ValidateHospital{
     @FindBy(partialLinkText = "Check Hospitals List")
     public WebElement checkButton;
 
-    @FindBy(xpath = "(//button[@type='button'])[3]")
+    @FindBy(css=".btn-default")
     public WebElement getGooglePoi;
 
-    @FindBy(className = "table table-striped table-bordered")
+    @FindBy(css = ".table")
     public WebElement table;
+
+    @FindBy(css = "table")
+    public WebElement tables;
 
     public void checkGoogleApi(){
         googleApi.isDisplayed();

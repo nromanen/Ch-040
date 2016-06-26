@@ -125,7 +125,7 @@ public class TestNewHospital extends BaseTest{
         newHospital.inputLat("180");
         newHospital.imagePathButton.click();
         newHospital.submitButton.click();
-        browser.implicitWait(2);
+        browser.implicitWait(4);
         assertEquals(true, (browser.getCurrentUrl() == HOSPITALS_URL));
     }
     @Test

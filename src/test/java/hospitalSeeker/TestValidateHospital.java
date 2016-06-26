@@ -6,11 +6,15 @@ package hospitalSeeker;
 import hospitalSeeker.googleApi.NewHospital;
 import hospitalSeeker.googleApi.ValidateHospital;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
@@ -22,6 +26,8 @@ public class TestValidateHospital extends BaseTest {
     NewHospital newHospital;
     LoginPage loginPage;
     BrowserWrapper browserWrapper;
+    List<WebElement> td_collection;
+
 
     @BeforeMethod
     public void beforeMethod() {
@@ -69,6 +75,7 @@ public class TestValidateHospital extends BaseTest {
         validateHospital.getGooglePoi.click();
         System.out.println("hello2");
         browser.implicitWait(10);
+        assertTrue(browser.isElementPresent(validateHospital.tables),"Table is not present");
         assertTrue(browser.isElementPresent(validateHospital.addValidateHospital), "Button for addvalidate hospital is not present");
         assertTrue(browser.isElementPresent(validateHospital.showOnMap), "Button for addvalidate hospital is not present");
     }
@@ -123,7 +130,7 @@ public class TestValidateHospital extends BaseTest {
     @Test
     public void checkShowOnMapButton(){
         validateHospital.googlePoiButtonClick();
-        browser.implicitWait(2);
+        browser.waitUntilElementIsPresent(By.xpath("(//button[@type='button'])[2]"));
         validateHospital.findValidateHospitalClick();
     }
     /*
@@ -147,12 +154,33 @@ public class TestValidateHospital extends BaseTest {
     @Test
     public void checkAddvValidateHospitals(){
         validateHospital.googlePoiButtonClick();
-
-        browser.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        browser.waitUntilElementIsPresent(By.xpath("(//button[@type='button'])[2]"));
         validateHospital.addValidateHospitalClick();
         assertEquals(false, (browser.getCurrentUrl() == VALIDATE_URL));
     }
+    @Test
+    public void getTableFromPage(){
+        validateHospital.googlePoiButtonClick();
+        WebElement table_element = browser.getDriver().findElement(By.cssSelector("table"));
+        List<WebElement> tr_collection=table_element.findElements(By.id("table-out"));
 
+        System.out.println("NUMBER OF ROWS IN THIS TABLE = "+tr_collection.size());
+        int row_num,col_num;
+        row_num=1;
+        for(WebElement trElement : tr_collection)
+        {
+            td_collection=trElement.findElements(By.xpath("td"));
+            System.out.println("NUMBER OF COLUMNS="+td_collection.size());
+            col_num=1;
+            for(WebElement tdElement : td_collection)
+            {
+                System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
+                col_num++;
+            }
+            row_num++;
+        }
+        //validateHospital.tables
+    }
     @AfterMethod
     public void afterMethod() {
         browser.driver.quit();
