@@ -62,15 +62,13 @@ public class BrowserWrapper {
         return present;
     }
 
-    public boolean isElementPresentByClassName(String className) {
-        boolean present;
+    public String checkIfElementNotPresent(WebElement element) {
         try {
-            driver.findElement(By.className(className));
-            present = true;
-        } catch (NoSuchElementException e) {
-            present = false;
+            element.isDisplayed();
+            return "";
+        } catch (Exception e) {
+            return e.toString();
         }
-        return present;
     }
 
     public void doubleClick(WebElement element) {

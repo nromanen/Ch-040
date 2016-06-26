@@ -22,27 +22,7 @@ public class BaseRoleTest extends BaseTest {
         headerPage = HeaderPage.init(browser.getDriver());
     }
 
-    @DataProvider(name = "adminDashboardElements")
-    public Object[][] adminDashboardElements() {
-        return new Object[][] { { headerPage.actionsButton, "actionsButton" },
-                { adminPage.allUsersTable, "allUsersTable" } };
-    }
 
-    @DataProvider(name = "adminActionButtons")
-    public Object[][] adminActionButtons() {
-        return new Object[][] { { headerPage.allUsersButton, "allUsersButton", ADMIN_DASHBOARD_URL },
-                { headerPage.addNewUserButton, "addNewUserButton", ADDING_NEW_USER_URL },
-                { headerPage.hospitalListButton, "hospitalListButton", HOSPITAL_LIST_URL },
-                { headerPage.newHospitalButton, "newHospitalButton", ADDING_NEW_HOSPITAL_URL },
-                { headerPage.checkHospitalsButton, "checkHospitalsButton", CHECK_HOSPITALS_LIST_URL },
-                { headerPage.editHospitalManagersButton, "editHospitalManagerButton", EDIT_HOSPITALS_MANAGERS_URL }};
-    }
-
-    @DataProvider(name = "forbiddenElements")
-    public Object[][] forbiddenElements() {
-        return new Object[][] { { headerPage.actionsButton, "actionsButton" },
-                { adminPage.allUsersTable, "allUsersTable" }, { headerPage.patientsButton, "patientsButton" } };
-    }
 
     @DataProvider(name = "forbiddenUrls")
     public Object[][] forbiddenUrls() {
