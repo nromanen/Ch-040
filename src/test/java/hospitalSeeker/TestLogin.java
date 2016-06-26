@@ -17,24 +17,24 @@ public class TestLogin extends BaseTest {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
-		registerPage = PageFactory.initElements(browser.getDriver(), RegisterPage.class);
-		headerPage = PageFactory.initElements(browser.getDriver(),HeaderPage.class);
+		loginPage = LoginPage.init(browser.getDriver());
+		registerPage = RegisterPage.init(browser.getDriver());
+		headerPage = HeaderPage.init(browser.getDriver());
 	}
 
-	@Test(priority = 0)
+	@Test
 	public void checkElementsLoginPage() {
-		browser.goTo(LOGIN_URL);
-		Assert.assertTrue(browser.isElementPresent(loginPage.emailLogin),"1");
-		Assert.assertTrue(browser.isElementPresent(loginPage.passwordLogin),"2");
-		Assert.assertTrue(browser.isElementPresent(loginPage.rememberMe),"3");
-		Assert.assertTrue(browser.isElementPresent(loginPage.forgotPassword),"4");
-		Assert.assertTrue(browser.isElementPresent(loginPage.loginButton),"5");
-		Assert.assertTrue(browser.isElementPresent(loginPage.registerButton),"6");
+		String error = browser.checkIfElementNotPresent(loginPage.emailLogin)
+				.concat(browser.checkIfElementNotPresent(loginPage.passwordLogin))
+				.concat(browser.checkIfElementNotPresent(loginPage.rememberMe))
+				.concat(browser.checkIfElementNotPresent(loginPage.forgotPassword))
+				.concat(browser.checkIfElementNotPresent(loginPage.loginButton))
+				.concat(browser.checkIfElementNotPresent(loginPage.registerButton));
+		System.out.println(error);
 	}
 
 	/*
-	 * Correct log in 
+	 * Correct log in
 	 * go to login page 
 	 * input e-mail 
 	 * input password click on
@@ -48,7 +48,7 @@ public class TestLogin extends BaseTest {
 	}
 
 	/*
-	 * Login without e-mail 
+	 * Log in without e-mail
 	 * go to login page 
 	 * field for e-mail keep empty 
 	 * input password 
@@ -62,8 +62,8 @@ public class TestLogin extends BaseTest {
 	}
 
 	/*
-	 * Login without password 
-	 * go to login page 
+	 * Log in without password
+	 * go to login page
 	 * input e-mail 
 	 * field for password
 	 * keep empty 
@@ -77,7 +77,7 @@ public class TestLogin extends BaseTest {
 	}
 
 	/*
-	 * Login by unregistered e-mail 
+	 * Log in by unregistered e-mail
 	 * go to login page 
 	 * input unregistered e-mail
 	 * input password 
@@ -91,7 +91,7 @@ public class TestLogin extends BaseTest {
 	}
 
 	/*
-	 * Login by incorrect password 
+	 * Log in by incorrect password
 	 * go to login page 
 	 * input registered e-mail
 	 * input incorrect password 
@@ -104,8 +104,17 @@ public class TestLogin extends BaseTest {
 		Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
 	}
 
+	/*
+ 	 * Log in for not activated user
+ 	 * go to register page
+ 	 * register correctly
+ 	 * go to login page
+ 	 * log in by upper created user
+ 	 * click on button "Log in"
+ 	 * see warning that user is not activated
+ 	 */
 	@Test(priority = 6)
-	public void testLoginBannedUser(){
+	public void testLoginNotActivatedUser(){
 		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys("patient@mail.ru");
 		registerPage.passwordRegister.sendKeys("Patient77");
@@ -113,6 +122,7 @@ public class TestLogin extends BaseTest {
 		registerPage.registerButton.click();
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn("patient@mail.ru","Patient77");
+		browser.sleep(1);
 		Assert.assertTrue(browser.isElementPresent(loginPage.notActivatedAccount));
 	}
 }

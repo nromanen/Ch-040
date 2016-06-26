@@ -39,16 +39,53 @@ public class AdminPage {
     
     @FindBy (linkText = "All Users")
     public WebElement allUsers;
-    
+
+
     @FindBy (id = "viewUser")
     public WebElement actionsViewUser;
+
+    @FindBy(css = "h3.panel-title")
+    public WebElement viewUserTitle;
+
+    @FindBy(css = "input.btn.btn-sm")
+    public WebElement viewUserAlertEnabledButton;
+
+    @FindBy (linkText = "Close")
+    public WebElement viewUserCancelButton;
+
     
-    @FindBy (css = "editUser")
+    @FindBy (id = "editUser")
     public WebElement actionsEditUser;
+
+    @FindBy(css = "input.btn.btn-sm.userEnabled")
+    public WebElement editEnabledButton;
+
+    @FindBy(css = "option[value=ADMIN]")
+    public WebElement editRoleAdmin;
+
+    @FindBy(css = "option[value=DOCTOR]")
+    public WebElement editRoleDoctor;
+
+    @FindBy(css = "option[value=MANAGER]")
+    public WebElement editRoleManager;
+
+    @FindBy(css = "option[value=PATIENT]")
+    public WebElement editRolePatient;
+
+    @FindBy(css = "input.btn.btn-primary.btn-sm")
+    public WebElement editEditUserButton;
+
+    @FindBy (xpath = "/html/body/section/div/div/div/div/form/div[3]/div/a")
+    public WebElement editCancelButton;
+
     
     @FindBy (id = "deleteUser")
     public WebElement actionsDeleteUser;
-    
+
+    @FindBy (id = "deleteButton")
+    public WebElement deleteUserAlertDeleteButton;
+
+
     @FindBy (id = "email")
     public WebElement sortEmailColumn;
 
@@ -60,42 +97,6 @@ public class AdminPage {
 
     @FindBy (id = "roles.type")
     public WebElement sortRoleColumn;
-    
-    @FindBy (linkText = "Close")
-    public WebElement viewUserAlert;
-    
-    @FindBy (xpath = "/html/body/section/div[2]/div/div/div[3]/a")
-    public WebElement viewUserAlertClose;
-
-    @FindBy(css = "input.btn.btn-sm.userEnabled")
-	public WebElement editEnabledButton;
-	
-	@FindBy(css = "option[value=ADMIN]")
-	public WebElement editRoleAdmin;
-	
-	@FindBy(css = "option[value=DOCTOR]")
-	public WebElement editRoleDoctor;
-	
-	@FindBy(css = "option[value=MANAGER]")
-	public WebElement editRoleManager;
-	
-	@FindBy(css = "option[value=PATIENT]")
-	public WebElement editRolePatient;
-	
-	@FindBy(css = "input.btn.btn-primary.btn-sm")
-	public WebElement editEditUserButton;
-	
-	@FindBy (xpath = "/html/body/section/div/div/div/div/form/div[3]/div/a")
-	public WebElement editCancelButton;
-	
-    @FindBy (linkText = "Delete User")
-    public WebElement deleteUserAlert;
-
-    @FindBy (xpath = "/html/body/section/div[3]/div/div/div[3]/a[1]")
-    public WebElement deleteUserAlertCloseButton;
-    
-    @FindBy (id = "deleteButton")
-    public WebElement deleteUserAlertDeleteButton;
 
     @FindBy (id = "firstPage")
     public WebElement firstPageButton;
@@ -112,15 +113,6 @@ public class AdminPage {
     @FindBy (xpath = "/html/body/footer/div/div/div/p")
     public WebElement footer;
 
-    @FindBy(css = "input.btn.btn-sm")
-    public WebElement viewUserAlertEnabledButton;
-
-    @FindBy (xpath = "//td[contains(@class, 'text-left') and text() = '17']")
-    public WebElement idViewUser;
-
-    @FindBy (linkText = "Close")
-    public WebElement viewUserCancelButton;
-
     @FindAll(@FindBy(linkText = "Close"))
     public List<WebElement> closeAll;
 
@@ -129,9 +121,6 @@ public class AdminPage {
 
     @FindBy(css = "div.alert.alert-danger")
     public WebElement blockedAccount;
-
-    @FindBy(css = "h3.panel-title")
-    public WebElement viewUserTitle;
 
     public static AdminPage init(WebDriver driver) {
         return PageFactory.initElements(driver, AdminPage.class);

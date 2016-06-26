@@ -13,18 +13,18 @@ public class TestRegister extends BaseTest {
 
 	@BeforeMethod
 	public void beforeMethod(){
-		registerPage = PageFactory.initElements(browser.getDriver(), RegisterPage.class);
+		registerPage = RegisterPage.init(browser.getDriver());
 	}
 
-	  @Test(priority=0)
-	    public void checkElementsRegisterPage() {
-	        browser.goTo(REGISTER_URL);
-	        Assert.assertTrue(browser.isElementPresent(registerPage.emailRegister),"1");
-	        Assert.assertTrue(browser.isElementPresent(registerPage.passwordRegister),"2");
-		  	Assert.assertTrue(browser.isElementPresent(registerPage.confirmPasswordRegister),"3");
-	        Assert.assertTrue(browser.isElementPresent(registerPage.registerButton),"4");
-	        Assert.assertTrue(browser.isElementPresent(registerPage.loginButton),"5");
-	    }
+	@Test
+	public void checkElementsRegisterPage() {
+		String error = browser.checkIfElementNotPresent(registerPage.emailRegister)
+				.concat(browser.checkIfElementNotPresent(registerPage.passwordRegister))
+				.concat(browser.checkIfElementNotPresent(registerPage.confirmPasswordRegister))
+				.concat(browser.checkIfElementNotPresent(registerPage.registerButton))
+				.concat(browser.checkIfElementNotPresent(registerPage.loginButton));
+		System.out.println(error);
+	}
 
 	 /*Correct registration
 	 * go to registration page
@@ -86,7 +86,6 @@ public class TestRegister extends BaseTest {
 		Assert.assertTrue(browser.isElementPresent(registerPage.warningByEmail));
 		registerPage.registerButton.click();
 	}
-
 
 	/*Registration by password including less than any 6 symbols
 	* go to registration page
