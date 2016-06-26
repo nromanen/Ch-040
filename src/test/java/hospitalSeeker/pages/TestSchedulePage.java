@@ -1,5 +1,6 @@
-package hospitalSeeker;
+package hospitalSeeker.pages;
 
+import hospitalSeeker.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -9,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by Alex on 23-May-16.
  */
-public class TestSchedule extends BaseTest {
+public class TestSchedulePage extends BaseTest {
     SchedulePage schedulePage;
     HospitalPage hospitalPage;
     DepartmentPage departmentPage;

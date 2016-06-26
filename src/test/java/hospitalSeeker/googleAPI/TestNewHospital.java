@@ -1,7 +1,9 @@
-package hospitalSeeker; /**
+package hospitalSeeker.googleAPI; /**
  * Created by oleg on 25.05.2016.
  */
 
+import hospitalSeeker.BaseTest;
+import hospitalSeeker.LoginPage;
 import hospitalSeeker.googleApi.NewHospital;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;
@@ -10,7 +12,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class TestNewHospital extends BaseTest{
+public class TestNewHospital extends BaseTest {
     NewHospital newHospital;
     LoginPage loginPage;
     String testAddress = "Головна вулиця, 239, Чернівці, Чернівецька область, Украина";

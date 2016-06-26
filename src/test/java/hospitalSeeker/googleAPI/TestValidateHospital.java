@@ -1,9 +1,12 @@
-package hospitalSeeker;
+package hospitalSeeker.googleAPI;
 
 /**
  * Created by oleg on 03.06.2016.
  */
 
+import hospitalSeeker.BaseTest;
+import hospitalSeeker.BrowserWrapper;
+import hospitalSeeker.LoginPage;
 import hospitalSeeker.googleApi.NewHospital;
 import hospitalSeeker.googleApi.ValidateHospital;
 import org.openqa.selenium.By;
@@ -147,28 +150,5 @@ public class TestValidateHospital extends BaseTest {
         browser.waitUntilElementIsPresent(By.xpath("(//button[@type='button'])[2]"));
         validateHospital.addValidateHospitalClick();
         assertEquals(false, (browser.getCurrentUrl() == VALIDATE_URL));
-    }
-    @Test
-    public void getTableFromPage(){
-        validateHospital.googlePoiButtonClick();
-        WebElement table_element = browser.getDriver().findElement(By.cssSelector("table"));
-        List<WebElement> tr_collection=table_element.findElements(By.id("table-out"));
-
-        System.out.println("NUMBER OF ROWS IN THIS TABLE = "+tr_collection.size());
-        int row_num,col_num;
-        row_num=1;
-        for(WebElement trElement : tr_collection)
-        {
-            td_collection=trElement.findElements(By.xpath("td"));
-            System.out.println("NUMBER OF COLUMNS="+td_collection.size());
-            col_num=1;
-            for(WebElement tdElement : td_collection)
-            {
-                System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
-                col_num++;
-            }
-            row_num++;
-        }
-        //validateHospital.tables
     }
 }

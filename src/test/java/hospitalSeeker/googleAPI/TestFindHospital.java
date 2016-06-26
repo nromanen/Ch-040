@@ -1,7 +1,8 @@
-package hospitalSeeker; /**
+package hospitalSeeker.googleAPI; /**
  * Created by oleg on 25.05.2016.
  */
 
+import hospitalSeeker.BaseTest;
 import hospitalSeeker.googleApi.FindHospital;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
@@ -10,7 +11,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-public class TestFindHospital extends BaseTest{
+public class TestFindHospital extends BaseTest {
     FindHospital findHospital;
 
     @BeforeMethod
