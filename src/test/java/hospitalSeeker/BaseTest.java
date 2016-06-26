@@ -34,13 +34,13 @@ public class BaseTest {
     public static final String PATIENT_PASSWORD = "1111";
 
     @BeforeMethod
-    public void before() {
+    public void beforeMethod() {
         browser = new BrowserWrapper(BrowserInitialization.initialize());
         browser.browserMaximize();
     }
 
     @AfterMethod
-    public void after() {
+    public void afterMethod() {
         browser.getDriver().quit();
     }
 

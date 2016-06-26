@@ -9,7 +9,7 @@ public class HeaderPage {
 
     public static final String HOME_BUTTON_ID = "homeButton";
     public static final String FIND_BUTTON_ID = "findButton";
-    public static final String LOGIN_BUTTON_ID = "logIn";
+    public static final String LOGIN_BUTTON_ID = "loginButton";
     public static final String ACTIONS_BUTTON_ID = "actionsButton";
     public static final String ALL_USERS_BUTTON_ID = "allUsersButton";
     public static final String ADD_NEW_USER_BUTTON_ID = "addNewUserButton";
@@ -31,7 +31,7 @@ public class HeaderPage {
     @FindBy(id = FIND_BUTTON_ID)
     public WebElement findButton;
 
-    @FindBy(linkText = "Login")
+    @FindBy(id = LOGIN_BUTTON_ID)
     public WebElement loginButton;
 
     @FindBy(id = ACTIONS_BUTTON_ID)
@@ -46,7 +46,7 @@ public class HeaderPage {
     @FindBy(id = CARD_BUTTON_ID)
     public WebElement cardButton;
 
-    @FindBy(id = APPOINTMENTS_BUTTON_ID)
+    @FindBy(linkText = "My appointments)
     public WebElement appointmentsButton;
 
     @FindBy(id = PATIENTS_BUTTON_ID)

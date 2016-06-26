@@ -1,6 +1,5 @@
 package hospitalSeeker;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -10,8 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -19,7 +16,7 @@ public class BrowserWrapper {
 
     protected WebDriver driver;
 
-    public static final int STANDARD_WAIT_TIME = 5;
+    public static final int STANDARD_WAIT_TIME = 10;
 
     BrowserWrapper(WebDriver driver) {
         this.driver = driver;
@@ -51,6 +48,7 @@ public class BrowserWrapper {
         } catch (Exception e) {
             return false;
         }
+
     }
 
     public boolean isElementPresentByXpath(String xpath) {
@@ -73,38 +71,9 @@ public class BrowserWrapper {
         }
     }
 
-    public boolean isElementPresentByClassName(String className) {
-        boolean present;
-        try {
-            driver.findElement(By.className(className));
-            present = true;
-        } catch (NoSuchElementException e) {
-            present = false;
-        }
-        return present;
-    }
-
     public void doubleClick(WebElement element) {
         Actions action = new Actions(driver);
         action.doubleClick(element).perform();
-    }
-
-    public void doubleClickOnCoordinates(WebElement element, int x, int y) {
-        Actions builder = new Actions(driver);
-        builder.moveToElement(element, x, y).doubleClick().build().perform();
-    }
-
-    public void browserMaximize () {
-        driver.manage().window().maximize();
-    }
-
-
-    public void sleep(int seconds) {
-        try {
-            Thread.sleep(seconds * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public String getCurrentUrl() {
@@ -162,6 +131,18 @@ public class BrowserWrapper {
     public void selectDropdown(WebElement element, String text) {
         Select dropdown = new Select(element);
         dropdown.selectByVisibleText(text);
+    }
+
+    public void sleep(int Seconds){
+        try {
+            Thread.sleep(Seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void browserMaximize() {
+        driver.manage().window().maximize();
     }
 }
 
