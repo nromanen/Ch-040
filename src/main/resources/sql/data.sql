@@ -153,7 +153,8 @@ INSERT INTO patientcard (id, userdetail_id) VALUES
 (17, NULL),
 (18, NULL),
 (19, NULL),
-(20, NULL);
+(20, NULL),
+(21, NULL);
 
 SELECT pg_catalog.setval('patientcard_id_seq', 31, true);
 
@@ -187,7 +188,8 @@ INSERT INTO role_users (users_id, role_id) VALUES
 (17,2),
 (18,2),
 (19,2),
-(20,2);
+(20,2),
+(21, 2);
 
 INSERT INTO userdetail (id, address, birthdate, firstname, gender, imagepath, lastname, phone, patientcard_id) VALUES
 (1, '\N', NULL,	'Lars', 'MAN', '\N', 'Urlich', '\N', 1),
@@ -209,7 +211,8 @@ INSERT INTO userdetail (id, address, birthdate, firstname, gender, imagepath, la
 (17, '\N', NULL, 'Charles', 'MAN', '\N', 'Darvin', '\N', 17),
 (18, '\N', NULL, 'Ilay', 'MAN', '\N', 'Nails', '\N', 18),
 (19, '\N', NULL, 'Michael', 'MAN', '\N', 'Luter', '\N', 19),
-(20, '\N', NULL, 'Richard', 'MAN', '\N', 'Rorshek', '\N', 20);
+(20, '\N', NULL, 'Richard', 'MAN', '\N', 'Rorshek', '\N', 20),
+(21, '\N', NULL, 'Sam', 'MAN', '\N', 'Ferdinand', '\N', 21);
 
 SELECT pg_catalog.setval('userdetail_id_seq', 31, true);
 
@@ -232,23 +235,11 @@ INSERT INTO users (id, email, enabled, password, userdetails_id) VALUES
 (16, 'doctor.mm@hospitals.ua', 't', '$2a$10$xeVfrEqprRSHSqo8yb/AWutiqEkLlVaNmrsWUxy5kYF5ksFcW17Iu', 16),
 (17, 'patient.cd@hospitals.ua', 't', '$2a$10$lH5Sg.gocRCIuO17BV1BW.sUjVvPTXA7UokUsWtt7ODSOuRNMVhGW', 17),
 (18, 'patient.in@hospitals.ua', 't', '$2a$10$ZNCZEfFLA/TZFuhk3aL1b.2KraEr7mSLGk5hWp9KliuBY8B5quryq', 18),
-(19, 'patient.ml@hospitals.ua', 't', '$2a$10$wtRRo7Q6O.wPv8E/7M4kMebWHgdFf0GZYotCj3nBUYR2HLxQFqPMm', 19),
-(20, 'patient.rr@hospitals.ua', 't', '$2a$10$DLdRb91MrBBhNxEr5AYXrOuSn5LieZFSXrVE7RZWEbglkdfsvptsm', 20);
+(19, 'patient.ml@hospitals.ua', 'f', '$2a$10$wtRRo7Q6O.wPv8E/7M4kMebWHgdFf0GZYotCj3nBUYR2HLxQFqPMm', 19),
+(20, 'patient.rr@hospitals.ua', 't', '$2a$10$DLdRb91MrBBhNxEr5AYXrOuSn5LieZFSXrVE7RZWEbglkdfsvptsm', 20),
+(21, 'patient.sf@hospitals.ua', 't', '$2a$10$4TW.tWhaI4xoSGPZhA4iseizzcRpQB/yNessm204M7o0qXgsdJYm.', 21);
 
-SELECT pg_catalog.setval('users_id_seq', 31, true);
-
-INSERT INTO workscheduler (doctor_id, workscheduler) VALUES
-(1, '[{"start_date":"2016-06-13 08:00","end_date":"2016-06-13 15:00","text":"","id":"1465336679542"},{"start_date":"2016-06-14 09:00","end_date":"2016-06-14 14:00","text":"","id":"1465336679543"},{"start_date":"2016-06-15 08:00","end_date":"2016-06-15 10:00","text":"","id":"1465336679544"},{"start_date":"2016-06-10 08:00","end_date":"2016-06-10 14:00","text":"","id":"1465342429132"},{"start_date":"2016-06-11 09:00","end_date":"2016-06-11 14:00","text":"","id":"1465342487617"},{"start_date":"2016-06-16 08:00","end_date":"2016-06-16 13:00","text":"","id":"1465343061343"},{"start_date":"2016-06-17 08:00","end_date":"2016-06-17 13:00","text":"","id":"1465343061344"},{"start_date":"2016-06-18 08:00","end_date":"2016-06-18 13:00","text":"","id":"1465343061345"},{"start_date":"2016-06-12 09:00","end_date":"2016-06-12 11:00","text":"","id":"1465346790024"},{"start_date":"2016-06-19 08:00","end_date":"2016-06-19 13:00","text":"","id":"1465376657482"},{"start_date":"2016-06-20 09:00","end_date":"2016-06-20 14:00","text":"","id":"1465376657483"},{"start_date":"2016-06-21 10:00","end_date":"2016-06-21 15:00","text":"","id":"1465376657484"},{"start_date":"2016-06-22 09:00","end_date":"2016-06-22 14:00","text":"","id":"1465376657485"},{"start_date":"2016-06-23 09:00","end_date":"2016-06-23 14:00","text":"","id":"1465376657486"},{"start_date":"2016-06-24 09:00","end_date":"2016-06-24 14:00","text":"","id":"1465384386665"},{"start_date":"2016-06-27 13:00","end_date":"2016-06-27 19:00","text":"","id":"1465384386666"},{"app":"20 min"}]'),
-(4, '[{"start_date":"2016-06-09 16:00","end_date":"2016-06-09 18:00","text":"","id":"1465464127733"},{"start_date":"2016-06-10 16:00","end_date":"2016-06-10 18:00","text":"","id":"1465464127734"},{"start_date":"2016-06-13 15:00","end_date":"2016-06-13 17:00","text":"","id":"1465464127736"},{"start_date":"2016-06-14 15:00","end_date":"2016-06-14 17:00","text":"","id":"1465464127737"},{"start_date":"2016-06-15 15:00","end_date":"2016-06-15 17:00","text":"","id":"1465464127738"},{"start_date":"2016-06-16 15:00","end_date":"2016-06-16 17:00","text":"","id":"1465464127739"},{"start_date":"2016-06-17 15:00","end_date":"2016-06-17 17:00","text":"","id":"1465464127740"},{"app":"20 min"}]'),
-(5, '[{"start_date":"2016-06-09 08:00","end_date":"2016-06-09 16:00","text":"","id":"1465461001449"},{"start_date":"2016-06-10 08:00","end_date":"2016-06-10 16:00","text":"","id":"1465463855432"},{"start_date":"2016-06-13 08:00","end_date":"2016-06-13 16:00","text":"","id":"1465463855433"},{"start_date":"2016-06-14 08:00","end_date":"2016-06-14 16:00","text":"","id":"1465463855434"},{"start_date":"2016-06-15 08:00","end_date":"2016-06-15 16:00","text":"","id":"1465463855435"},{"start_date":"2016-06-16 08:00","end_date":"2016-06-16 16:00","text":"","id":"1465463855436"},{"start_date":"2016-06-17 08:00","end_date":"2016-06-17 16:00","text":"","id":"1465463855437"},{"start_date":"2016-06-18 08:00","end_date":"2016-06-18 16:00","text":"","id":"1465463855438"},{"start_date":"2016-06-19 08:00","end_date":"2016-06-19 16:00","text":"","id":"1465463855439"},{"app":"20 min"}]'),
-(6, '[{"start_date":"2016-06-09 08:00","end_date":"2016-06-09 16:00","text":"","id":"1465463922881"},{"start_date":"2016-06-10 08:00","end_date":"2016-06-10 16:00","text":"","id":"1465463922882"},{"start_date":"2016-06-13 09:00","end_date":"2016-06-13 17:00","text":"","id":"1465463922883"},{"start_date":"2016-06-14 09:00","end_date":"2016-06-14 17:00","text":"","id":"1465463922884"},{"start_date":"2016-06-15 09:00","end_date":"2016-06-15 17:00","text":"","id":"1465463922885"},{"start_date":"2016-06-16 09:00","end_date":"2016-06-16 17:00","text":"","id":"1465463922886"},{"start_date":"2016-06-17 09:00","end_date":"2016-06-17 17:00","text":"","id":"1465463922887"},{"start_date":"2016-06-18 09:00","end_date":"2016-06-18 17:00","text":"","id":"1465463922888"},{"start_date":"2016-06-19 09:00","end_date":"2016-06-19 17:00","text":"","id":"1465463922889"},{"app":"20 min"}]'),
-(7, '[{"start_date":"2016-06-09 13:00","end_date":"2016-06-09 19:00","text":"","id":"1465463971645"},{"start_date":"2016-06-10 13:00","end_date":"2016-06-10 19:00","text":"","id":"1465463971646"},{"start_date":"2016-06-13 13:00","end_date":"2016-06-13 19:00","text":"","id":"1465463971649"},{"start_date":"2016-06-14 13:00","end_date":"2016-06-14 19:00","text":"","id":"1465463971650"},{"start_date":"2016-06-15 13:00","end_date":"2016-06-15 19:00","text":"","id":"1465463971651"},{"start_date":"2016-06-16 13:00","end_date":"2016-06-16 19:00","text":"","id":"1465463971652"},{"start_date":"2016-06-17 13:00","end_date":"2016-06-17 19:00","text":"","id":"1465463971653"},{"start_date":"2016-06-18 13:00","end_date":"2016-06-18 19:00","text":"","id":"1465463971654"},{"start_date":"2016-06-19 13:00","end_date":"2016-06-19 19:00","text":"","id":"1465463971655"},{"app":"20 min"}]'),
-(8, '[{"start_date":"2016-06-09 13:00","end_date":"2016-06-09 16:00","text":"","id":"1465464014668"},{"start_date":"2016-06-10 13:00","end_date":"2016-06-10 16:00","text":"","id":"1465464014669"},{"start_date":"2016-06-13 13:00","end_date":"2016-06-13 16:00","text":"","id":"1465464014671"},{"start_date":"2016-06-14 13:00","end_date":"2016-06-14 16:00","text":"","id":"1465464014672"},{"start_date":"2016-06-15 13:00","end_date":"2016-06-15 16:00","text":"","id":"1465464014673"},{"start_date":"2016-06-16 13:00","end_date":"2016-06-16 16:00","text":"","id":"1465464014674"},{"start_date":"2016-06-17 13:00","end_date":"2016-06-17 16:00","text":"","id":"1465464014675"},{"app":"20 min"}]'),
-(3, '[{"start_date":"2016-06-09 13:00","end_date":"2016-06-09 18:00","text":"","id":"1465464097537"},{"start_date":"2016-06-10 13:00","end_date":"2016-06-10 18:00","text":"","id":"1465464097538"},{"start_date":"2016-06-11 13:00","end_date":"2016-06-11 18:00","text":"","id":"1465464097539"},{"start_date":"2016-06-12 13:00","end_date":"2016-06-12 18:00","text":"","id":"1465464097540"},{"start_date":"2016-06-13 12:00","end_date":"2016-06-13 17:00","text":"","id":"1465464097541"},{"start_date":"2016-06-14 12:00","end_date":"2016-06-14 17:00","text":"","id":"1465464097542"},{"start_date":"2016-06-15 12:00","end_date":"2016-06-15 17:00","text":"","id":"1465464097543"},{"start_date":"2016-06-16 12:00","end_date":"2016-06-16 17:00","text":"","id":"1465464097544"},{"start_date":"2016-06-17 12:00","end_date":"2016-06-17 17:00","text":"","id":"1465464097545"},{"app":"20 min"}]'),
-(9, '[{"start_date":"2016-06-09 19:00","end_date":"2016-06-09 20:00","text":"New event","id":"1465464169884"},{"start_date":"2016-06-10 19:00","end_date":"2016-06-10 20:00","text":"New event","id":"1465464169885"},{"start_date":"2016-06-13 19:00","end_date":"2016-06-13 20:00","text":"New event","id":"1465464169887"},{"start_date":"2016-06-14 19:00","end_date":"2016-06-14 20:00","text":"New event","id":"1465464169888"},{"start_date":"2016-06-15 19:00","end_date":"2016-06-15 20:00","text":"New event","id":"1465464169889"},{"start_date":"2016-06-16 19:00","end_date":"2016-06-16 20:00","text":"New event","id":"1465464169890"},{"start_date":"2016-06-17 19:00","end_date":"2016-06-17 20:00","text":"New event","id":"1465464169891"},{"app":"20 min"}]'),
-(10, '[{"start_date":"2016-06-09 13:00","end_date":"2016-06-09 15:00","text":"","id":"1465464203447"},{"start_date":"2016-06-10 13:00","end_date":"2016-06-10 15:00","text":"","id":"1465464203448"},{"start_date":"2016-06-13 15:00","end_date":"2016-06-13 17:00","text":"","id":"1465464203449"},{"start_date":"2016-06-14 15:00","end_date":"2016-06-14 17:00","text":"","id":"1465464203450"},{"start_date":"2016-06-15 15:00","end_date":"2016-06-15 17:00","text":"","id":"1465464203451"},{"start_date":"2016-06-16 15:00","end_date":"2016-06-16 17:00","text":"","id":"1465464203452"},{"start_date":"2016-06-17 15:00","end_date":"2016-06-17 17:00","text":"","id":"1465464203453"},{"app":"20 min"}]'),
-(2, '[{"start_date":"2016-06-10 10:00","end_date":"2016-06-10 15:00","text":"","id":"1465335670362"},{"start_date":"2016-06-11 10:00","end_date":"2016-06-11 15:00","text":"","id":"1465335670363"},{"start_date":"2016-06-09 10:00","end_date":"2016-06-09 15:00","text":"","id":"1465335670364"},{"start_date":"2016-06-13 08:00","end_date":"2016-06-13 13:00","text":"","id":"1465464082292"},{"start_date":"2016-06-14 08:00","end_date":"2016-06-14 13:00","text":"","id":"1465464082293"},{"start_date":"2016-06-15 08:00","end_date":"2016-06-15 13:00","text":"","id":"1465464082294"},{"start_date":"2016-06-16 08:00","end_date":"2016-06-16 13:00","text":"","id":"1465464082295"},{"start_date":"2016-06-17 08:00","end_date":"2016-06-17 13:00","text":"","id":"1465464082296"},{"app":"20 min"}]');
-	
+SELECT pg_catalog.setval('users_id_seq', 31, true);	
 	
 ALTER TABLE ONLY appointment
     ADD CONSTRAINT appointment_pkey PRIMARY KEY (id);
@@ -381,140 +372,152 @@ ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
---
--- Name: fk_1r6dadb3ajbaxwkpdx1v4u9n9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY doctorinfo
-    ADD CONSTRAINT fk_1r6dadb3ajbaxwkpdx1v4u9n9 FOREIGN KEY (userdetails_id) REFERENCES userdetail(id);
+    ADD CONSTRAINT "FK_1r6dadb3ajbaxwkpdx1v4u9n9" FOREIGN KEY (userdetails_id) REFERENCES userdetail(id);
 
 
 --
--- Name: fk_2xe4lqrkwymg4aoshgadolask; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2131 (class 2606 OID 23419)
+-- Name: FK_2xe4lqrkwymg4aoshgadolask; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY users
-    ADD CONSTRAINT fk_2xe4lqrkwymg4aoshgadolask FOREIGN KEY (userdetails_id) REFERENCES userdetail(id);
+    ADD CONSTRAINT "FK_2xe4lqrkwymg4aoshgadolask" FOREIGN KEY (userdetails_id) REFERENCES userdetail(id);
 
 
 --
--- Name: fk_67w5hj99v5nvjexfv0cf1mxus; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2115 (class 2606 OID 23424)
+-- Name: FK_67w5hj99v5nvjexfv0cf1mxus; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY role_users
-    ADD CONSTRAINT fk_67w5hj99v5nvjexfv0cf1mxus FOREIGN KEY (role_id) REFERENCES role(id);
+    ADD CONSTRAINT "FK_67w5hj99v5nvjexfv0cf1mxus" FOREIGN KEY (role_id) REFERENCES role(id);
 
 
 --
--- Name: fk_7uda74mreyd8pe0bc0rgm1ufe; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2125 (class 2606 OID 23429)
+-- Name: FK_7uda74mreyd8pe0bc0rgm1ufe; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY feedback
-    ADD CONSTRAINT fk_7uda74mreyd8pe0bc0rgm1ufe FOREIGN KEY (consumer_id) REFERENCES users(id);
+    ADD CONSTRAINT "FK_7uda74mreyd8pe0bc0rgm1ufe" FOREIGN KEY (consumer_id) REFERENCES users(id);
 
 
 --
--- Name: fk_8hgkscyrlwhgtdgcljai40128; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2119 (class 2606 OID 23434)
+-- Name: FK_8hgkscyrlwhgtdgcljai40128; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY carditem
-    ADD CONSTRAINT fk_8hgkscyrlwhgtdgcljai40128 FOREIGN KEY (patientcard_id) REFERENCES patientcard(id);
+    ADD CONSTRAINT "FK_8hgkscyrlwhgtdgcljai40128" FOREIGN KEY (patientcard_id) REFERENCES patientcard(id);
 
 
 --
--- Name: fk_b51bk1hxlblc0fq7l65dkcnc5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2117 (class 2606 OID 23439)
+-- Name: FK_b51bk1hxlblc0fq7l65dkcnc5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY appointment
-    ADD CONSTRAINT fk_b51bk1hxlblc0fq7l65dkcnc5 FOREIGN KEY (userdetail_id) REFERENCES userdetail(id);
+    ADD CONSTRAINT "FK_b51bk1hxlblc0fq7l65dkcnc5" FOREIGN KEY (userdetail_id) REFERENCES userdetail(id);
 
 
 --
--- Name: fk_cunrd1kjdr3pwcekkhw8r5k2l; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2116 (class 2606 OID 23444)
+-- Name: FK_cunrd1kjdr3pwcekkhw8r5k2l; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY role_users
-    ADD CONSTRAINT fk_cunrd1kjdr3pwcekkhw8r5k2l FOREIGN KEY (users_id) REFERENCES users(id);
+    ADD CONSTRAINT "FK_cunrd1kjdr3pwcekkhw8r5k2l" FOREIGN KEY (users_id) REFERENCES users(id);
 
 
 --
--- Name: fk_ej88rho1obqsgettqaymg2ax8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2122 (class 2606 OID 23449)
+-- Name: FK_ej88rho1obqsgettqaymg2ax8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY department_doctorinfo
-    ADD CONSTRAINT fk_ej88rho1obqsgettqaymg2ax8 FOREIGN KEY (departments_id) REFERENCES department(id);
+    ADD CONSTRAINT "FK_ej88rho1obqsgettqaymg2ax8" FOREIGN KEY (departments_id) REFERENCES department(id);
 
 
 --
--- Name: fk_exlldeucxpa91uwds0hpc97o; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2130 (class 2606 OID 23454)
+-- Name: FK_exlldeucxpa91uwds0hpc97o; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY userdetail
-    ADD CONSTRAINT fk_exlldeucxpa91uwds0hpc97o FOREIGN KEY (patientcard_id) REFERENCES patientcard(id);
+    ADD CONSTRAINT "FK_exlldeucxpa91uwds0hpc97o" FOREIGN KEY (patientcard_id) REFERENCES patientcard(id);
 
 
 --
--- Name: fk_hx479pw4gje0ktsjfwvl9pwn8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2118 (class 2606 OID 23459)
+-- Name: FK_hx479pw4gje0ktsjfwvl9pwn8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY appointment
-    ADD CONSTRAINT fk_hx479pw4gje0ktsjfwvl9pwn8 FOREIGN KEY (doctorinfo_id) REFERENCES doctorinfo(id);
+    ADD CONSTRAINT "FK_hx479pw4gje0ktsjfwvl9pwn8" FOREIGN KEY (doctorinfo_id) REFERENCES doctorinfo(id);
 
 
 --
--- Name: fk_ibochgjqx1dyr7ysbeg0royt9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2123 (class 2606 OID 23464)
+-- Name: FK_ibochgjqx1dyr7ysbeg0royt9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY department_doctorinfo
-    ADD CONSTRAINT fk_ibochgjqx1dyr7ysbeg0royt9 FOREIGN KEY (doctors_id) REFERENCES doctorinfo(id);
+    ADD CONSTRAINT "FK_ibochgjqx1dyr7ysbeg0royt9" FOREIGN KEY (doctors_id) REFERENCES doctorinfo(id);
 
 
 --
--- Name: fk_o7prsdub8c63s5w469e06q83; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2127 (class 2606 OID 23469)
+-- Name: FK_o7prsdub8c63s5w469e06q83; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY hospital_users
-    ADD CONSTRAINT fk_o7prsdub8c63s5w469e06q83 FOREIGN KEY (managers_id) REFERENCES users(id);
+    ADD CONSTRAINT "FK_o7prsdub8c63s5w469e06q83" FOREIGN KEY (managers_id) REFERENCES users(id);
 
 
 --
--- Name: fk_ohvlr9w2h9pvsj2bg12ox9b9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2120 (class 2606 OID 23474)
+-- Name: FK_ohvlr9w2h9pvsj2bg12ox9b9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY carditem
-    ADD CONSTRAINT fk_ohvlr9w2h9pvsj2bg12ox9b9 FOREIGN KEY (doctor_id) REFERENCES users(id);
+    ADD CONSTRAINT "FK_ohvlr9w2h9pvsj2bg12ox9b9" FOREIGN KEY (doctor_id) REFERENCES users(id);
 
 
 --
--- Name: fk_ov506nbhqxddqios9pxlb21ie; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY patientcard
-    ADD CONSTRAINT fk_ov506nbhqxddqios9pxlb21ie FOREIGN KEY (userdetail_id) REFERENCES userdetail(id);
-
-
---
--- Name: fk_pvf13utfatebavsixvqxwo3ob; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2126 (class 2606 OID 23479)
+-- Name: FK_pvf13utfatebavsixvqxwo3ob; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY feedback
-    ADD CONSTRAINT fk_pvf13utfatebavsixvqxwo3ob FOREIGN KEY (producer_id) REFERENCES users(id);
+    ADD CONSTRAINT "FK_pvf13utfatebavsixvqxwo3ob" FOREIGN KEY (producer_id) REFERENCES users(id);
 
 
 --
--- Name: fk_spotjwwrelb9dhulkiivbl62b; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2129 (class 2606 OID 23484)
+-- Name: FK_pwj6yvmnh4hwbo4148t3bwhd0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY patientcard
+    ADD CONSTRAINT "FK_pwj6yvmnh4hwbo4148t3bwhd0" FOREIGN KEY (userdetail_id) REFERENCES userdetail(id);
+
+
+--
+-- TOC entry 2121 (class 2606 OID 23489)
+-- Name: FK_spotjwwrelb9dhulkiivbl62b; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY department
-    ADD CONSTRAINT fk_spotjwwrelb9dhulkiivbl62b FOREIGN KEY (hospital_id) REFERENCES hospital(id);
+    ADD CONSTRAINT "FK_spotjwwrelb9dhulkiivbl62b" FOREIGN KEY (hospital_id) REFERENCES hospital(id);
 
 
 --
--- Name: fk_tcu91xpek54a086jamuakvoh8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2128 (class 2606 OID 23494)
+-- Name: FK_tcu91xpek54a086jamuakvoh8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY hospital_users
-    ADD CONSTRAINT fk_tcu91xpek54a086jamuakvoh8 FOREIGN KEY (hospital_id) REFERENCES hospital(id);
+    ADD CONSTRAINT "FK_tcu91xpek54a086jamuakvoh8" FOREIGN KEY (hospital_id) REFERENCES hospital(id);
 	
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM postgres;

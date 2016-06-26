@@ -7,50 +7,81 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HeaderPage {
 
-    public static final String HOME_BUTTON_TEXT = "Home";
-    public static final String FIND_BUTTON_TEXT = "Find";
-    public static final String LOGIN_BUTTON_TEXT = "Login";
-    public static final String ACTIONS_BUTTON_TEXT = "Actions";
-    public static final String USER_DROPDOWN_BUTTON_SELECTOR = "#bs-example-navbar-collapse-1 > ul > li:nth-child(8) > a";
-    public static final String LOG_OUT_BUTTON_SELECTOR = "#dropdawn > li:nth-child(2) > a";
-    public static final String CARD_BUTTON_TEXT = "Card";
-    public static final String APPOINTMENTS_BUTTON_TEXT = "my appointments";
-    public static final String PATIENTS_BUTTON_TEXT = "Patients";
-    public static final String WORKSCHEDULER_BUTTON_TEXT = "workscheduler";
-    public static final String MANAGE_BUTTON_TEXT = "manage";
+    public static final String HOME_BUTTON_ID = "homeButton";
+    public static final String FIND_BUTTON_ID = "findButton";
+    public static final String LOGIN_BUTTON_ID = "loginButton";
+    public static final String ACTIONS_BUTTON_ID = "actionsButton";
+    public static final String ALL_USERS_BUTTON_ID = "allUsersButton";
+    public static final String ADD_NEW_USER_BUTTON_ID = "addNewUserButton";
+    public static final String HOSPITAL_LIST_BUTTON_ID = "hospitalListButton";
+    public static final String NEW_HOSPITAL_BUTTON_ID = "newHospitalButton";
+    public static final String CHECK_HOSPITALS_BUTTON_ID = "checkHospButton";
+    public static final String EDIT_HOSPITAL_MANAGERS_BUTTON_ID = "editHospManagersButton";
+    public static final String USER_DROPDOWN_BUTTON_ID = "userDropdown";
+    public static final String LOG_OUT_BUTTON_ID = "logoutButton";
+    public static final String CARD_BUTTON_ID = "cardButton";
+    public static final String PATIENTS_BUTTON_ID = "patientsButton";
+    public static final String MANAGE_BUTTON_ID = "manageButton";
 
-    @FindBy(linkText = HOME_BUTTON_TEXT)
+    @FindBy(id = HOME_BUTTON_ID)
     public WebElement homeButton;
 
-    @FindBy(linkText = FIND_BUTTON_TEXT)
+    @FindBy(id = FIND_BUTTON_ID)
     public WebElement findButton;
 
-    @FindBy(linkText = LOGIN_BUTTON_TEXT)
+    @FindBy(id = LOGIN_BUTTON_ID)
     public WebElement loginButton;
 
-    @FindBy(linkText = ACTIONS_BUTTON_TEXT)
+    @FindBy(id = ACTIONS_BUTTON_ID)
     public WebElement actionsButton;
 
-    @FindBy(css = USER_DROPDOWN_BUTTON_SELECTOR)
+    @FindBy(id = USER_DROPDOWN_BUTTON_ID)
     public WebElement userDropdownButton;
 
-    @FindBy(css = LOG_OUT_BUTTON_SELECTOR) //terrifyingly bad thing!!!
+    @FindBy(id = LOG_OUT_BUTTON_ID)
     public WebElement logoutButton;
 
-    @FindBy(className = CARD_BUTTON_TEXT)
+    @FindBy(id = CARD_BUTTON_ID)
     public WebElement cardButton;
 
-    @FindBy(className = APPOINTMENTS_BUTTON_TEXT)
+    @FindBy(linkText = "My appointments")
     public WebElement appointmentsButton;
 
-    @FindBy(className = PATIENTS_BUTTON_TEXT)
+    @FindBy(id = PATIENTS_BUTTON_ID)
     public WebElement patientsButton;
 
-    @FindBy(className = WORKSCHEDULER_BUTTON_TEXT)
+    @FindBy(xpath = "//a[contains(@class, 'menu') and text()='Worksheduler']")
     public WebElement workschedulerButton;
 
-    @FindBy(className = MANAGE_BUTTON_TEXT)
+    @FindBy(id = ALL_USERS_BUTTON_ID)
+    public WebElement allUsersButton;
+
+    @FindBy(id = ADD_NEW_USER_BUTTON_ID)
+    public WebElement addNewUserButton;
+
+    @FindBy(id = HOSPITAL_LIST_BUTTON_ID)
+    public WebElement hospitalListButton;
+
+    @FindBy(id = NEW_HOSPITAL_BUTTON_ID)
+    public WebElement newHospitalButton;
+
+    @FindBy(id = CHECK_HOSPITALS_BUTTON_ID)
+    public WebElement checkHospitalsButton;
+
+    @FindBy(id = EDIT_HOSPITAL_MANAGERS_BUTTON_ID)
+    public WebElement editHospitalManagersButton;
+
+    @FindBy(id = MANAGE_BUTTON_ID)
     public WebElement manageButton;
+
+    @FindBy(xpath = "//a[contains(@class, '[ animate ]')]")
+    public WebElement searchButton;
+
+    @FindBy(xpath = "//button[contains(@class, '[ btn btn-info ]')]")
+    public WebElement searchConfirm;
+
+    @FindBy(id = "select_search")
+    public WebElement searchField;
 
     public void logout() {
         userDropdownButton.click();

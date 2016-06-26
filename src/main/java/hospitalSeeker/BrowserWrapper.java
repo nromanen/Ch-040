@@ -17,6 +17,7 @@ public class BrowserWrapper {
     protected WebDriver driver;
 
     public static final int STANDARD_WAIT_TIME = 10;
+    private Actions builder;
 
     BrowserWrapper(WebDriver driver) {
         this.driver = driver;
@@ -62,20 +63,23 @@ public class BrowserWrapper {
         return present;
     }
 
-    public boolean isElementPresentByClassName(String className) {
-        boolean present;
+    public String checkIfElementNotPresent(WebElement element) {
         try {
-            driver.findElement(By.className(className));
-            present = true;
-        } catch (NoSuchElementException e) {
-            present = false;
+            element.isDisplayed();
+            return "";
+        } catch (Exception e) {
+            return e.toString();
         }
-        return present;
     }
 
     public void doubleClick(WebElement element) {
         Actions action = new Actions(driver);
         action.doubleClick(element).perform();
+    }
+
+    public void doubleClickOnCoordinates(WebElement element, int x, int y) {
+        Actions builder = new Actions(driver);
+        builder.moveToElement(element, x, y).doubleClick().build().perform();
     }
 
     public String getCurrentUrl() {
@@ -133,6 +137,18 @@ public class BrowserWrapper {
     public void selectDropdown(WebElement element, String text) {
         Select dropdown = new Select(element);
         dropdown.selectByVisibleText(text);
+    }
+
+    public void sleep(int Seconds){
+        try {
+            Thread.sleep(Seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void browserMaximize() {
+        driver.manage().window().maximize();
     }
 }
 

@@ -12,10 +12,14 @@ import org.testng.annotations.Test;
 public class TestLogin extends BaseTest {
 
 	LoginPage loginPage;
+	RegisterPage registerPage;
+	HeaderPage headerPage;
 
 	@BeforeMethod
 	public void beforeMethod() {
 		loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
+		registerPage = PageFactory.initElements(browser.getDriver(), RegisterPage.class);
+		headerPage = PageFactory.initElements(browser.getDriver(),HeaderPage.class);
 	}
 
 	@Test(priority = 0)
@@ -39,12 +43,8 @@ public class TestLogin extends BaseTest {
 	@Test(priority = 1)
 	public void testLogin() {
 		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
-		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
-		loginPage.rememberMe.click();
-		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.id("userDropdown1"));
-		Assert.assertTrue(browser.containsText("Charles Darvin"));
+		loginPage.loggingIn(PATIENT_LOGIN,PATIENT_PASSWORD);
+		Assert.assertTrue(browser.isElementPresent(headerPage.appointmentsButton));
 	}
 
 	/*
@@ -57,11 +57,8 @@ public class TestLogin extends BaseTest {
 	@Test(priority = 2)
 	public void testLoginWithoutEmail() {
 		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("");
-		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
-		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
-		Assert.assertTrue(browser.containsText("Invalid username or password."));
+		loginPage.loggingIn("",PATIENT_PASSWORD);
+		Assert.assertTrue(browser.isElementPresent(loginPage.loginWarning));
 	}
 
 	/*
@@ -75,11 +72,8 @@ public class TestLogin extends BaseTest {
 	@Test(priority = 3)
 	public void testLoginWithoutPassword() {
 		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
-		loginPage.passwordLogin.sendKeys("");
-		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
-		Assert.assertTrue(browser.containsText("Invalid username or password."));
+		loginPage.loggingIn(PATIENT_LOGIN,"");
+		Assert.assertTrue(browser.isElementPresent(loginPage.passwordWarning));
 	}
 
 	/*
@@ -92,11 +86,8 @@ public class TestLogin extends BaseTest {
 	@Test(priority = 4)
 	public void testLoginIncorrectEmail() {
 		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("tututu@ukr.net");
-		loginPage.passwordLogin.sendKeys(PATIENT_PASSWORD);
-		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
-		Assert.assertTrue(browser.containsText("Invalid username or password."));
+		loginPage.loggingIn("patient@mail.ru",PATIENT_PASSWORD);
+		Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
 	}
 
 	/*
@@ -109,10 +100,19 @@ public class TestLogin extends BaseTest {
 	@Test(priority = 5)
 	public void testLoginIncorrectPassword() {
 		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys(PATIENT_LOGIN);
-		loginPage.passwordLogin.sendKeys("tututu2016");
-		loginPage.loginButton.click();
-		browser.waitUntilElementIsPresent(By.cssSelector(loginPage.INVALID_USERNAME_OR_PASSWORD));
-		Assert.assertTrue(browser.containsText("Invalid username or password."));
+		loginPage.loggingIn(PATIENT_LOGIN,"Patient77");
+		Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
+	}
+
+	@Test(priority = 6)
+	public void testLoginBannedUser(){
+		browser.goTo(REGISTER_URL);
+		registerPage.emailRegister.sendKeys("patient@mail.ru");
+		registerPage.passwordRegister.sendKeys("Patient77");
+		registerPage.confirmPasswordRegister.sendKeys("Patient77");
+		registerPage.registerButton.click();
+		browser.goTo(LOGIN_URL);
+		loginPage.loggingIn("patient@mail.ru","Patient77");
+		Assert.assertTrue(browser.isElementPresent(loginPage.notActivatedAccount));
 	}
 }
