@@ -43,73 +43,13 @@ public class TestSchedule extends BaseTest {
                 .concat(browser.checkIfElementNotPresent(schedulePage.switchViewToWeek))
                 .concat(browser.checkIfElementNotPresent(schedulePage.switchViewToMonth))
                 .concat(browser.checkIfElementNotPresent(schedulePage.datePicker))
-                .concat(browser.checkIfElementNotPresent(schedulePage.workWeekSize))
-                .concat(browser.checkIfElementNotPresent(schedulePage.workWeekSize))
-                .concat(browser.checkIfElementNotPresent(schedulePage.workWeekSize))
-                .concat(browser.checkIfElementNotPresent(schedulePage.workWeekSize))
-                .concat(browser.checkIfElementNotPresent(schedulePage.workWeekSize))
-                .concat(browser.checkIfElementNotPresent(schedulePage.workWeekSize));
-        System.out.println(error);
+                .concat(browser.checkIfElementNotPresent(schedulePage.selectToday))
+                .concat(browser.checkIfElementNotPresent(schedulePage.nextDate))
+                .concat(browser.checkIfElementNotPresent(schedulePage.previousDate))
+                .concat(browser.checkIfElementNotPresent(schedulePage.calendarHeader));
         if (!(error.isEmpty())) {
             throw new AssertionError(error);
         }
-        System.out.println(schedulePage.workWeekSize);
-        assertTrue(browser.isElementPresent(schedulePage.workWeekSize));
-        assertTrue(browser.isElementPresent(schedulePage.workDayBeginAt));
-        assertTrue(browser.isElementPresent(schedulePage.workDayEndAt));
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent(schedulePage.selectToday));
-        assertTrue(browser.isElementPresent(schedulePage.nextDate));
-        assertTrue(browser.isElementPresent(schedulePage.previousDate));
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-        assertTrue(browser.isElementPresent());
-
-
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.eventBody), "Event body isn't present!");
-//        schedulePage.events.get(0).click();
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.eventDetails), "Event details button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.eventEdit), "Event edit button isn't present!");
-//        schedulePage.eventEdit.click();
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.editorField), "Editor field isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.saveChanges), "Save changes button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.cancelChanges), "Cancel changes button isn't present!");
-//        schedulePage.cancelChanges.click();
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.eventDelete), "Event delete button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.previousDate), "Previous dave button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.nextDate), "Next date button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.switchViewToDay), "Switch view to day button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.switchViewToMonth), "Switch view to month button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.switchViewToWeek), "Switch view to week button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.datePicker), "Date picker button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.selectToday), "Select today button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.selectedDate), "Selected date field isn't present!");
-//        schedulePage.eventDetails.click();
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.detailedEditorField), "Detailed editor field isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.timePeriodHoursStart), "Start hours dropdown isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.timePeriodHoursEnd), "End hours dropdown isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.timePeriodDayStart), "Start day dropdown isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.timePeriodDayEnd), "End day dropdown isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.timePeriodMonthStart), "Start month dropdown isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.timePeriodMonthEnd), "End month dropdown isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.timePeriodYearStart), "Start year dropdown isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.timePeriodYearEnd), "End year dropdown isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.cancelDetailedChanges), "Cancel detailed changes button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.deleteDetailedChanges), "Delete detailed changes button isn't present!");
-//        Assert.assertTrue(browser.isElementPresent(schedulePage.saveDetailedChanges), "Save detailed changes button isn't present!");
     }
 
     /*
@@ -129,10 +69,16 @@ public class TestSchedule extends BaseTest {
         headerPage.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         doctorPage.gregoryHouseLink.click();
-        schedulePage.events.get(0).click();
+        schedulePage.saveDoctorSchedule.click();
+        browser.waitUntilElementVisible(schedulePage.calendarHeader);
+        schedulePage.switchViewToDay.click();
+        browser.doubleClickOnCoordinates(schedulePage.hours0100, schedulePage.columnWidth, schedulePage.columnHeight);
+        browser.waitUntilElementVisible(schedulePage.saveChanges);
+        schedulePage.saveChanges.click();
         schedulePage.eventEdit.click();
         schedulePage.editSchedule("text field test, manager edit, #7");
         schedulePage.saveChanges.click();
+        browser.sleep(3);
         assertTrue(schedulePage.events.get(0).getText().equals("text field test, manager edit, #7"), "Event isn't present!");
     }
 
@@ -151,7 +97,12 @@ public class TestSchedule extends BaseTest {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
-        browser.goTo(DOCTOR_PAGE_URL);
+        headerPage.searchButton.click();
+        headerPage.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
+        headerPage.searchConfirm.click();
+        hospitalPage.hospitals.get(0).click();
+        departmentPage.departments.get(0).click();
+        doctorPage.doctors.get(0).click();
         assertFalse(browser.isElementPresent(schedulePage.eventBody), "Event body button is present!");
     }
 
@@ -170,7 +121,12 @@ public class TestSchedule extends BaseTest {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-        browser.goTo(DOCTOR_PAGE_URL);
+        headerPage.searchButton.click();
+        headerPage.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
+        headerPage.searchConfirm.click();
+        hospitalPage.hospitals.get(0).click();
+        departmentPage.departments.get(0).click();
+        doctorPage.doctors.get(0).click();
         assertFalse(browser.isElementPresent(schedulePage.eventBody), "Event body button is present!");
     }
 
@@ -189,7 +145,12 @@ public class TestSchedule extends BaseTest {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
-        browser.goTo(DOCTOR_PAGE_URL);
+        headerPage.searchButton.click();
+        headerPage.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
+        headerPage.searchConfirm.click();
+        hospitalPage.hospitals.get(0).click();
+        departmentPage.departments.get(0).click();
+        doctorPage.doctors.get(0).click();
         assertFalse(browser.isElementPresent(schedulePage.eventBody), "Event body button is present!");
     }
 
@@ -250,7 +211,7 @@ public class TestSchedule extends BaseTest {
     12. Select workscheduler and find created appointment.
      */
 
-    @Test
+    @Test(priority = 1)
     public void createScheduleCreateAppointmentAndCheckAppointment() {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
@@ -296,7 +257,15 @@ public class TestSchedule extends BaseTest {
         assertTrue(browser.isElementPresent(schedulePage.eventBody));
     }
 
-    @Test(priority = 1)
+    /*
+    1. Go to the home page.
+    2. Login as doctor.
+    3. Select an appointment.
+    4. Try to cancel it.
+    5. Confirm that it is cancelled.
+     */
+
+    @Test(priority = 2)
     public void cancelAppointment() {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
@@ -313,8 +282,3 @@ public class TestSchedule extends BaseTest {
         assertFalse(browser.isElementPresent(schedulePage.eventBody));
     }
 }
-
-/*TODO change schedule with another manager
-* TODO create schedules
-* TODO rewrite appointments
-* TODO check if you can see an appointment in the appointments tab*/

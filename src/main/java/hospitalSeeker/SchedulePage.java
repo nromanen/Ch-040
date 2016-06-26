@@ -86,24 +86,6 @@ public class SchedulePage {
     @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div[2]/select[5]")
     public WebElement timePeriodHoursEnd;
 
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div[2]/select[2]")
-    public WebElement timePeriodDayStart;
-
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div[2]/select[6]")
-    public WebElement timePeriodDayEnd;
-
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div[2]/select[3]")
-    public WebElement timePeriodMonthStart;
-
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div[2]/select[7]")
-    public WebElement timePeriodMonthEnd;
-
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div[2]/select[4]")
-    public WebElement timePeriodYearStart;
-
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div[2]/select[8]")
-    public WebElement timePeriodYearEnd;
-
     @FindBy(css = "div.dhx_btn_set.dhx_left_btn_set.dhx_save_btn_set")
     public WebElement saveDetailedChanges;
 
@@ -118,6 +100,9 @@ public class SchedulePage {
 
     @FindBy(css = "div.dhtmlx_popup_button.dhtmlx_ok_button")
     public WebElement confirmDeletingSchedule;
+
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='1']")
+    public WebElement hours0100;
 
     @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='17']")
     public WebElement hours1700;
