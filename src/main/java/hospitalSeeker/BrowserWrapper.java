@@ -62,18 +62,14 @@ public class BrowserWrapper {
         return present;
     }
 
-    public boolean isElementPresentByClassName(String className) {
-        boolean present;
+    public String checkIfElementNotPresent(WebElement element) {
         try {
-            driver.findElement(By.className(className));
-            present = true;
-        } catch (NoSuchElementException e) {
-            present = false;
+            element.isDisplayed();
+            return "";
+        } catch (Exception e) {
+            return e.toString();
         }
-        return present;
     }
-
-
 
     public void doubleClick(WebElement element) {
         Actions action = new Actions(driver);
@@ -116,10 +112,6 @@ public class BrowserWrapper {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
-    public void waitUntilElementInvisible(WebElement element) {
-        new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.visibilityOf(element));
-    }
-
     public void waitUntilTitleContains(String title) {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.titleContains(title));
     }
@@ -147,6 +139,10 @@ public class BrowserWrapper {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void browserMaximize() {
+        driver.manage().window().maximize();
     }
 }
 
