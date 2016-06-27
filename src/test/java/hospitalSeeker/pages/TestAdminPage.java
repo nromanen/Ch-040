@@ -49,7 +49,7 @@ public class TestAdminPage extends BaseTest {
 	 * Checking equality with count in DB
 	 * */
 	@Test(priority = 1)
-	public void countAllUsers() {
+	public void testCountAllUsers() {
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.showUsers,"30");
@@ -65,7 +65,7 @@ public class TestAdminPage extends BaseTest {
 	 * Checking equality with count in DB
 	 * */
 	@Test(priority = 2)
-	public void countAdmins() {
+	public void testCountAdmins() {
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.role,"ADMIN");
@@ -81,7 +81,7 @@ public class TestAdminPage extends BaseTest {
 	 * Checking equality with count in DB
 	 * */
 	@Test(priority = 3)
-	public void countDoctor(){
+	public void testCountDoctor(){
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.role,"DOCTOR");
@@ -98,7 +98,7 @@ public class TestAdminPage extends BaseTest {
 	 * Checking equality with count in DB
 	 * */
 	@Test(priority = 4)
-	public void countManager(){
+	public void testCountManager(){
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.role,"MANAGER");
@@ -114,7 +114,7 @@ public class TestAdminPage extends BaseTest {
 	 * Checking equality with count in DB
 	 * */
 	@Test(priority = 5)
-	public void countPatient(){
+	public void testCountPatient(){
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.role,"PATIENT");
@@ -130,7 +130,7 @@ public class TestAdminPage extends BaseTest {
 	 * Check result
 	 * */
 	@Test(priority = 6)
-	public void SearchByEmail(){
+	public void testSearchByEmail(){
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.searchBy,"Email");
@@ -147,7 +147,7 @@ public class TestAdminPage extends BaseTest {
 	 * Check result
 	 * */
 	@Test(priority = 7)
-	public void SearchByFirstName(){
+	public void testSearchByFirstName(){
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.searchBy,"First Name");
@@ -164,7 +164,7 @@ public class TestAdminPage extends BaseTest {
  	 * Check result
 	 * */
 	@Test(priority = 8)
-	public void SearchByLastName(){
+	public void testSearchByLastName(){
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.searchBy,"Last Name");
@@ -179,8 +179,8 @@ public class TestAdminPage extends BaseTest {
  	 * click on button "Enabled"
  	 * Checking equality with count in DB
 	 * */
-	@Test(priority = 98)
-	public void EnabledUsers(){
+	@Test(priority = 9)
+	public void testEnabledUsers(){
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		adminPage.enabled.click();
@@ -196,7 +196,7 @@ public class TestAdminPage extends BaseTest {
  	 * Checking equality with count in DB
  	 * */
 	@Test(priority = 10)
-	public void DisabledUsers(){
+	public void testDisabledUsers(){
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		adminPage.disabled.click();
@@ -212,7 +212,7 @@ public class TestAdminPage extends BaseTest {
   	 * Checking equality with count in DB
  	 * */
 	@Test(priority = 11)
-	public void AllUsers() {
+	public void testAllUsers() {
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		adminPage.allUsers.click();
@@ -228,7 +228,7 @@ public class TestAdminPage extends BaseTest {
    	 * check information in modal window
   	 * */
 	@Test(priority = 12)
-	public void ViewUser(){
+	public void testViewUser(){
  	browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.searchBy,"Email");
@@ -245,7 +245,7 @@ public class TestAdminPage extends BaseTest {
    	 * check available actions on this page
    	 * */
 	@Test(priority = 13)
-	public void EditUser(){
+	public void testEditUser(){
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.searchBy,"Email");
@@ -261,7 +261,7 @@ public class TestAdminPage extends BaseTest {
     * check functional on modal window
     * */
 	@Test(priority = 14)
-	public void DeleteUser(){
+	public void testDeleteUser(){
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.searchBy,"Email");
@@ -281,7 +281,7 @@ public class TestAdminPage extends BaseTest {
 	 * check there is no access to account
 	 * */
 	@Test(priority = 15)
-	public void DisableUser(){
+	public void testDisableUser(){
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("patient.rr@hospitals.ua");
 		loginPage.passwordLogin.sendKeys("1111");

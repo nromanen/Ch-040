@@ -121,7 +121,7 @@ public class TestLoginPage extends BaseTest {
 		registerPage.registerButton.click();
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn("patient2@mail.ru","Patient77");
-		browser.sleep(1);
+		browser.waitUntilElementVisible(loginPage.notActivatedAccount);
 		Assert.assertTrue(browser.isElementPresent(loginPage.notActivatedAccount));
 	}
 }

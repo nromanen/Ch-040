@@ -71,7 +71,7 @@ public class TestRegisterPage extends BaseTest {
 
 	/*Registration by username (not by e-mail format)
 	* go to registration page
-	* input e-mail
+	* input username
 	* input password
 	* confirm password
 	* click on button "Register"*/
