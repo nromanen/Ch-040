@@ -1,12 +1,12 @@
-package hospitalSeeker;
+package hospitalSeeker.pages;
 
 //import hospitalSeeker.header.DropdownLogin;
+import hospitalSeeker.*;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TestPatients extends BaseTest{
+public class TestCardPage extends BaseTest {
     PatientsPage patientsPage;
     CardPage cardPage;
     NewRecordPage newRecordPage;

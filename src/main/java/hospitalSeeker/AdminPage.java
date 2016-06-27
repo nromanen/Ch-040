@@ -13,7 +13,7 @@ public class AdminPage {
     @FindBy(id = "allUsers")
     public WebElement allUsersTable;
     
-    @FindBy(id = "pref-perpage" )
+    @FindBy(id = "userPerPage" )
     public WebElement showUsers;
 
     @FindBy(id = "pref-roleby")
@@ -25,9 +25,12 @@ public class AdminPage {
     @FindBy (id = "search")
     public WebElement search;
     
-    @FindBy (xpath = "/html/body/section/div/div[1]/form/button")
-    public WebElement submitButton;
-    
+    @FindBy (id = "searchButton")
+    public WebElement searchButton;
+
+    @FindBy (id = "clearButton")
+    public WebElement clearButton;
+
     @FindBy (linkText = "Enabled")
     public WebElement enabled;
     
@@ -36,75 +39,88 @@ public class AdminPage {
     
     @FindBy (linkText = "All Users")
     public WebElement allUsers;
-    
+
+
     @FindBy (id = "viewUser")
     public WebElement actionsViewUser;
+
+    @FindBy(css = "h3.panel-title")
+    public WebElement viewUserTitle;
+
+    @FindBy(css = "input.btn.btn-sm")
+    public WebElement viewUserAlertEnabledButton;
+
+    @FindBy (linkText = "Close")
+    public WebElement viewUserCancelButton;
+
     
-    @FindBy (css = "a.btn.button_user")
+    @FindBy (id = "editUser")
     public WebElement actionsEditUser;
+
+    @FindBy(css = "input.btn.btn-sm.userEnabled")
+    public WebElement editEnabledButton;
+
+    @FindBy(css = "option[value=ADMIN]")
+    public WebElement editRoleAdmin;
+
+    @FindBy(css = "option[value=DOCTOR]")
+    public WebElement editRoleDoctor;
+
+    @FindBy(css = "option[value=MANAGER]")
+    public WebElement editRoleManager;
+
+    @FindBy(css = "option[value=PATIENT]")
+    public WebElement editRolePatient;
+
+    @FindBy(css = "input.btn.btn-primary.btn-sm")
+    public WebElement editEditUserButton;
+
+    @FindBy (xpath = "/html/body/section/div/div/div/div/form/div[3]/div/a")
+    public WebElement editCancelButton;
+
     
     @FindBy (id = "deleteUser")
     public WebElement actionsDeleteUser;
-    
-    @FindBy (xpath = "/html/body/section/div/div[1]/table/thead/tr/th[2]/div")
-    public WebElement headerTableEmailColumn;
 
-    @FindBy (xpath = "/html/body/section/div/div[1]/table/thead/tr/th[3]")
-    public WebElement headerTableFirstNameColumn;
-    
-    @FindBy (xpath = "/html/body/section/div/div[1]/table/thead/tr/th[4]/div")
-    public WebElement headerTableLastNameColumn;
-
-    @FindBy (xpath = "/html/body/section/div/div[1]/table/thead/tr/th[5]/div")
-    public WebElement headerTableRoleColumn;
-    
-    @FindBy (xpath = "/html/body/section/div/div[1]/table/thead/tr/th[6]/div")
-    public WebElement headerTableActionsColumn;
-    
-    @FindBy (xpath = "/html/body/section/div/div[2]/div/div")
-    public WebElement viewUserAlert;
-    
-    @FindBy (xpath = "/html/body/section/div/div[2]/div/div/div[2]/div/tr[3]/td[2]/input")
-    public WebElement viewUserAlertEnabledButton;
-    
-    @FindBy (xpath = "/html/body/section/div/div[2]/div/div/div[3]/a")
-    public WebElement viewUserAlertCancel;
-
-    @FindBy(id = "enabled")
-	public WebElement editEnabledButton;
-	
-	@FindBy(css = "option[value=ADMIN]")
-	public WebElement editRoleAdmin;
-	
-	@FindBy(css = "option[value=DOCTOR]")
-	public WebElement editRoleDoctor;
-	
-	@FindBy(css = "option[value=MANAGER]")
-	public WebElement editRoleManager;
-	
-	@FindBy(css = "option[value=PATIENT]")
-	public WebElement editRolePatient;
-	
-	@FindBy(css = "input.btn.btn-primary.btn-sm")
-	public WebElement editEditButton;
-	
-	@FindBy (xpath = "/html/body/section/div/div/div/div/form/div[3]/div/a")
-	public WebElement editCancelButton;
-	
-    @FindBy (id = "viewModal")
-    public WebElement deleteUserAlert;
-    
-    @FindBy (xpath = "/html/body/section/div/div[3]/div/div/div[3]/a[1]")
-    public WebElement deleteUserAlertCancelButton;
-    
     @FindBy (id = "deleteButton")
     public WebElement deleteUserAlertDeleteButton;
+
+
+    @FindBy (id = "email")
+    public WebElement sortEmailColumn;
+
+    @FindBy (id = "detail.firstName")
+    public WebElement sortFirstNameColumn;
     
+    @FindBy (id = "detail.lastName")
+    public WebElement sortLastNameColumn;
+
+    @FindBy (id = "roles.type")
+    public WebElement sortRoleColumn;
+
+    @FindBy (id = "firstPage")
+    public WebElement firstPageButton;
+
+    @FindBy (id = "nextPage")
+    public WebElement nextPageButton;
+
+    @FindBy (id = "lastPAge")
+    public WebElement lastPageButton;
+
+    @FindBy (xpath = "/html/body/section/a")
+    public WebElement backToTopButton;
+
     @FindBy (xpath = "/html/body/footer/div/div/div/p")
     public WebElement footer;
-    
-    @FindAll(@FindBy(css = "tr[role=row]"))
+
+    @FindAll(@FindBy(linkText = "Close"))
+    public List<WebElement> closeAll;
+
+    @FindAll(@FindBy(className = "center"))
     public List<WebElement> usersAll;
+
+    @FindBy(css = "div.alert.alert-danger")
+    public WebElement blockedAccount;
 
     public static AdminPage init(WebDriver driver) {
         return PageFactory.initElements(driver, AdminPage.class);

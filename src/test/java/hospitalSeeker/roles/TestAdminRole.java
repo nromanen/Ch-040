@@ -1,35 +1,67 @@
 package hospitalSeeker.roles;
 
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class TestAdminRole extends BaseRoleTest{
 
     @BeforeMethod
     public void beforeMethod(){
+        super.beforeMethod();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
     }
 
-    @Test(dataProvider = "adminDashboardElements")
-    public void testPrimaryAdminElements(WebElement element, String errorMessage) {
-        assertTrue(browser.isElementPresent(element), errorMessage + " isn't present!");
+    @Test
+    public void testPrimaryAdminElements() {
+        String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
+                .concat(browser.checkIfElementNotPresent(adminPage.allUsersTable));
+        if (!(error.isEmpty())) {
+            throw new AssertionError(error);
+        }
     }
 
-    @Test(dataProvider = "adminActionButtons", priority = 1)
-    public void testAccessToAdminPages(WebElement element, String errorMessage, String url) {
+    @Test
+    public void testAccessToAdminDashboardPage() {
         headerPage.actionsButton.click();
-        element.click();
-        assertEquals(browser.getCurrentUrl(), url, "urls don't match! problem with this url: " + errorMessage);
-    }
-    @AfterMethod
-    public void afterMethod() {
-        headerPage.logout();
+        headerPage.allUsersButton.click();
+        assertEquals(browser.getCurrentUrl(), ADMIN_DASHBOARD_URL, "URLs don't match!");
     }
 
+    @Test
+    public void testAccessToAddNewUserPage() {
+        headerPage.actionsButton.click();
+        headerPage.addNewUserButton.click();
+        assertEquals(browser.getCurrentUrl(), ADDING_NEW_USER_URL, "URLs don't match!");
+    }
+
+    @Test
+    public void testAccessToHospitalListPage() {
+        headerPage.actionsButton.click();
+        headerPage.hospitalListButton.click();
+        assertEquals(browser.getCurrentUrl(), HOSPITAL_LIST_URL, "URLs don't match!");
+    }
+
+    @Test
+    public void testAccessToAddNewHospital() {
+        headerPage.actionsButton.click();
+        headerPage.newHospitalButton.click();
+        assertEquals(browser.getCurrentUrl(), ADDING_NEW_HOSPITAL_URL, "URLs don't match!");
+    }
+
+    @Test
+    public void testAccessToCheckHospitalsPage() {
+        headerPage.actionsButton.click();
+        headerPage.checkHospitalsButton.click();
+        assertEquals(browser.getCurrentUrl(), CHECK_HOSPITALS_LIST_URL, "URLs don't match!");
+    }
+
+    @Test
+    public void testAccessToEditHospitalManagers() {
+        headerPage.actionsButton.click();
+        headerPage.editHospitalManagersButton.click();
+        assertEquals(browser.getCurrentUrl(), EDIT_HOSPITALS_MANAGERS_URL, "URLs don't match!");
+    }
 }

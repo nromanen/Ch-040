@@ -1,25 +1,30 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestHospitalSeeker" verbose="1" >
-    <test name="hospitalSeeker.TestRoles" >
+<suite name="TestHospitalSeeker" verbose="1">
+    <test name="hospitalSeeker.roles">
         <classes>
-            <class name="hospitalSeeker.roles.TestAdminRole" />
-            <class name="hospitalSeeker.roles.TestUnregisteredUser" />
-            <class name="hospitalSeeker.roles.TestManagerRole" />
-            <class name="hospitalSeeker.roles.TestDoctorRole" />
-            <class name="hospitalSeeker.roles.TestPatientRole" />
+            <class name="hospitalSeeker.roles.TestAdminRole"/>
+            <class name="hospitalSeeker.roles.TestUnregisteredUser"/>
+            <class name="hospitalSeeker.roles.TestManagerRole"/>
+            <class name="hospitalSeeker.roles.TestDoctorRole"/>
+            <class name="hospitalSeeker.roles.TestPatientRole"/>
         </classes>
     </test>
-    <test name="hospitalSeeker.TestHospital" >
+    <test name="hospitalSeeker.pages">
         <classes>
-            <class name="hospitalSeeker.TestAdminPage" />
-            <class name="hospitalSeeker.TestFindHospital" />
-            <class name="hospitalSeeker.TestLogin" />
-            <class name="hospitalSeeker.TestNewHospital" />
-            <class name="hospitalSeeker.TestPatients" />
-            <class name="hospitalSeeker.TestRegister" />
-            <class name="hospitalSeeker.TestSchedule" />
-            <class name="hospitalSeeker.TestValidateHospital" />
+            <class name="hospitalSeeker.pages.TestAdminPage"/>
+            <class name="hospitalSeeker.pages.TestLoginPage"/>
+            <class name="hospitalSeeker.pages.TestCardPage"/>
+            <class name="hospitalSeeker.pages.TestRegisterPage"/>
+            <class name="hospitalSeeker.pages.TestSchedulePage"/>
+        </classes>
+    </test>
+    <test name="hospitalSeeker.googleAPI">
+        <classes>
+            <class name="hospitalSeeker.googleAPI.TestFindHospital"/>
+            <class name="hospitalSeeker.googleAPI.TestNewHospital"/>
+            <class name="hospitalSeeker.googleAPI.TestValidateHospital"/>
         </classes>
     </test>
 </suite>
+
