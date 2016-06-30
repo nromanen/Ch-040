@@ -16,7 +16,7 @@ public class HeaderPage {
     public static final String HOSPITAL_LIST_BUTTON_ID = "hospitalListButton";
     public static final String NEW_HOSPITAL_BUTTON_ID = "newHospitalButton";
     public static final String CHECK_HOSPITALS_BUTTON_ID = "checkHospButton";
-    public static final String EDIT_HOSPITAL_MANAGERS_BUTTON_ID = "editHospManagersButton";
+    public static final String EDIT_HOSPITAL_MANAGERS_BUTTON_ID = "editHospitalManagersButton";
     public static final String USER_DROPDOWN_BUTTON_ID = "userDropdown";
     public static final String LOG_OUT_BUTTON_ID = "logoutButton";
     public static final String CARD_BUTTON_ID = "cardButton";

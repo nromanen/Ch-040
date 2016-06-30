@@ -24,27 +24,10 @@ public class TestDoctorRole extends BaseRoleTest {
         }
     }
 
-    @Test
-    public void testAccessDeniedDashboardForDoctors() {
-        browser.goTo(ADMIN_DASHBOARD_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+    @Test(dataProvider = "primaryAdminUrls")
+    public void testDeniedUrlsForDoctors(String errorMessage, String url) {
+        browser.goTo(url);
+        assertTrue(browser.containsText("not authorized to access"), "access not denied to page: ".concat(errorMessage));
     }
 
-    @Test
-    public void testAccessDeniedAddNewHospitalForDoctors() {
-        browser.goTo(ADDING_NEW_HOSPITAL_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
-    }
-
-    @Test
-    public void testAccessDeniedAddNewUserForDoctors() {
-        browser.goTo(ADDING_NEW_USER_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
-    }
-
-    @Test
-    public void testAccessDeniedEditManagersForDoctors() {
-        browser.goTo(EDIT_HOSPITALS_MANAGERS_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
-    }
 }
