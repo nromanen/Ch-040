@@ -17,9 +17,9 @@ public class TestManagerRole extends BaseRoleTest {
 
     @Test
     public void testForbiddenButtonsForManagers() {
-        String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
-                .concat(browser.checkIfElementNotPresent(headerPage.cardButton))
-                .concat(browser.checkIfElementNotPresent(headerPage.patientsButton));
+        String error = browser.checkIfElementNotPresent(header.actionsButton)
+                .concat(browser.checkIfElementNotPresent(header.cardButton))
+                .concat(browser.checkIfElementNotPresent(header.patientsButton));
         if (error.isEmpty()) {
             throw new AssertionError(error);
         }

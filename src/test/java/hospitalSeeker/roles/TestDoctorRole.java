@@ -16,9 +16,9 @@ public class TestDoctorRole extends BaseRoleTest {
 
     @Test
     public void testForbiddenButtonsForDoctors() {
-        String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
-                .concat(browser.checkIfElementNotPresent(headerPage.cardButton))
-                .concat(browser.checkIfElementNotPresent(headerPage.manageButton));
+        String error = browser.checkIfElementNotPresent(header.actionsButton)
+                .concat(browser.checkIfElementNotPresent(header.cardButton))
+                .concat(browser.checkIfElementNotPresent(header.manageButton));
         if (error.isEmpty()) {
             throw new AssertionError(error);
         }

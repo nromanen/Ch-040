@@ -2,7 +2,7 @@ package hospitalSeeker.roles;
 
 import hospitalSeeker.AdminPage;
 import hospitalSeeker.BaseTest;
-import hospitalSeeker.HeaderPage;
+import hospitalSeeker.Header;
 import hospitalSeeker.LoginPage;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;
@@ -13,14 +13,14 @@ public class BaseRoleTest extends BaseTest {
 
     public static LoginPage loginPage;
     public static AdminPage adminPage;
-    public static HeaderPage headerPage;
+    public static Header header;
 
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
         loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
         adminPage = PageFactory.initElements(browser.getDriver(), AdminPage.class);
-        headerPage = PageFactory.initElements(browser.getDriver(), HeaderPage.class);
+        header = PageFactory.initElements(browser.getDriver(), Header.class);
     }
 
     @DataProvider(name = "primaryAdminUrls")

@@ -15,10 +15,10 @@ public class TestUnregisteredUser extends BaseRoleTest {
 
     @Test
     public void testForbiddenButtonsForUnregisteredUsers() {
-        String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
-                .concat(browser.checkIfElementNotPresent(headerPage.cardButton))
-                .concat(browser.checkIfElementNotPresent(headerPage.manageButton))
-                .concat(browser.checkIfElementNotPresent(headerPage.patientsButton));
+        String error = browser.checkIfElementNotPresent(header.actionsButton)
+                .concat(browser.checkIfElementNotPresent(header.cardButton))
+                .concat(browser.checkIfElementNotPresent(header.manageButton))
+                .concat(browser.checkIfElementNotPresent(header.patientsButton));
         if (error.isEmpty()) {
             throw new AssertionError(error);
         }

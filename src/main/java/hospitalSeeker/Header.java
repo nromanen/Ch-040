@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HeaderPage {
+public class Header {
 
     public static final String HOME_BUTTON_ID = "homeButton";
     public static final String FIND_BUTTON_ID = "findButton";
@@ -88,8 +88,8 @@ public class HeaderPage {
         logoutButton.click();
     }
 
-    public static HeaderPage init(WebDriver driver) {
-        return PageFactory.initElements(driver, HeaderPage.class);
+    public static Header init(WebDriver driver) {
+        return PageFactory.initElements(driver, Header.class);
     }
 
 }

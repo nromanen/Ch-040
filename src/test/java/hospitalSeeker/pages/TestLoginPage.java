@@ -1,7 +1,7 @@
 package hospitalSeeker.pages;
 
 import hospitalSeeker.BaseTest;
-import hospitalSeeker.HeaderPage;
+import hospitalSeeker.Header;
 import hospitalSeeker.LoginPage;
 import hospitalSeeker.RegisterPage;
 import org.testng.Assert;
@@ -12,13 +12,13 @@ public class TestLoginPage extends BaseTest {
 
 	LoginPage loginPage;
 	RegisterPage registerPage;
-	HeaderPage headerPage;
+	Header header;
 
 	@BeforeMethod
 	public void beforeMethod() {
 		loginPage = LoginPage.init(browser.getDriver());
 		registerPage = RegisterPage.init(browser.getDriver());
-		headerPage = HeaderPage.init(browser.getDriver());
+		header = Header.init(browser.getDriver());
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class TestLoginPage extends BaseTest {
 	public void testLogin() {
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(PATIENT_LOGIN,PATIENT_PASSWORD);
-		Assert.assertTrue(browser.isElementPresent(headerPage.appointmentsButton));
+		Assert.assertTrue(browser.isElementPresent(header.appointmentsButton));
 	}
 
 	/*

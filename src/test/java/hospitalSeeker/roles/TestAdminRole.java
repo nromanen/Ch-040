@@ -16,7 +16,7 @@ public class TestAdminRole extends BaseRoleTest {
 
     @Test
     public void testPrimaryAdminElements() {
-        String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
+        String error = browser.checkIfElementNotPresent(header.actionsButton)
                 .concat(browser.checkIfElementNotPresent(adminPage.allUsersTable));
         if (!(error.isEmpty())) {
             throw new AssertionError(error);
