@@ -1,11 +1,18 @@
 package hospitalSeeker;
 
+import org.dbunit.IDatabaseTester;
+import org.dbunit.JdbcDatabaseTester;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import java.io.FileInputStream;
 
 public class BaseTest {
 
     public BrowserWrapper browser;
+    private IDatabaseTester databaseTester;
 
     public BrowserWrapper getWrapper() {
         return browser;
@@ -39,11 +46,24 @@ public class BaseTest {
     public void before() {
         browser = new BrowserWrapper(BrowserInitialization.initialize());
         browser.browserMaximize();
+        System.out.println("hello");
+        try {
+            databaseTester = new JdbcDatabaseTester("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/hospital", "postgres", "root");
+            IDataSet dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("src/test/resources/database_full.xml"));
+            databaseTester.setDataSet(dataSet);
+            databaseTester.onSetup();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @AfterMethod
     public void after() {
         browser.getDriver().quit();
+        try {
+            databaseTester.onTearDown();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 }
