@@ -68,7 +68,7 @@ public class BrowserWrapper {
             element.isDisplayed();
             return "";
         } catch (Exception e) {
-            return e.toString();
+            return element.toString();
         }
     }
 
@@ -139,7 +139,7 @@ public class BrowserWrapper {
         dropdown.selectByVisibleText(text);
     }
 
-    public void sleep(int Seconds){
+    public void sleep(int Seconds) {
         try {
             Thread.sleep(Seconds * 1000);
         } catch (InterruptedException e) {

@@ -4,6 +4,7 @@ import hospitalSeeker.BaseTest;
 import hospitalSeeker.HeaderPage;
 import hospitalSeeker.LoginPage;
 import hospitalSeeker.RegisterPage;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,6 +20,7 @@ public class TestLoginPage extends BaseTest {
 		loginPage = LoginPage.init(browser.getDriver());
 		registerPage = RegisterPage.init(browser.getDriver());
 		headerPage = HeaderPage.init(browser.getDriver());
+		browser.goTo(LOGIN_URL);
 	}
 
 	@Test
@@ -41,7 +43,6 @@ public class TestLoginPage extends BaseTest {
 	 */
 	@Test(priority = 1)
 	public void testLogin() {
-		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(PATIENT_LOGIN,PATIENT_PASSWORD);
 		Assert.assertTrue(browser.isElementPresent(headerPage.appointmentsButton));
 	}
@@ -55,7 +56,6 @@ public class TestLoginPage extends BaseTest {
 	 */
 	@Test(priority = 2)
 	public void testLoginWithoutEmail() {
-		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn("",PATIENT_PASSWORD);
 		Assert.assertTrue(browser.isElementPresent(loginPage.loginWarning));
 	}
@@ -70,7 +70,6 @@ public class TestLoginPage extends BaseTest {
 	 */
 	@Test(priority = 3)
 	public void testLoginWithoutPassword() {
-		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(PATIENT_LOGIN,"");
 		Assert.assertTrue(browser.isElementPresent(loginPage.passwordWarning));
 	}
@@ -84,7 +83,6 @@ public class TestLoginPage extends BaseTest {
 	 */
 	@Test(priority = 4)
 	public void testLoginIncorrectEmail() {
-		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn("patient1@mail.ru",PATIENT_PASSWORD);
 		Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
 	}
@@ -98,30 +96,7 @@ public class TestLoginPage extends BaseTest {
 	 */
 	@Test(priority = 5)
 	public void testLoginIncorrectPassword() {
-		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn("patient.ml@hospitals.ua","11111");
 		Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
-	}
-
-	/*
- 	 * Log in for not activated user
- 	 * go to register page
- 	 * register correctly
- 	 * go to login page
- 	 * log in by upper created user
- 	 * click on button "Log in"
- 	 * see warning that user is not activated
- 	 */
-	@Test(priority = 6)
-	public void testLoginNotActivatedUser(){
-		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("patient2@mail.ru");
-		registerPage.passwordRegister.sendKeys("Patient77");
-		registerPage.confirmPasswordRegister.sendKeys("Patient77");
-		registerPage.registerButton.click();
-		browser.goTo(LOGIN_URL);
-		loginPage.loggingIn("patient2@mail.ru","Patient77");
-		browser.waitUntilElementVisible(loginPage.notActivatedAccount);
-		Assert.assertTrue(browser.isElementPresent(loginPage.notActivatedAccount));
 	}
 }

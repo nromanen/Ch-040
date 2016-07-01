@@ -54,7 +54,7 @@ public class AdminPage {
     public WebElement viewUserCancelButton;
 
     
-    @FindBy (id = "editUser")
+    @FindBy (id = "ediUser")
     public WebElement actionsEditUser;
 
     @FindBy(css = "input.btn.btn-sm.userEnabled")
@@ -104,6 +104,9 @@ public class AdminPage {
     @FindBy (id = "nextPage")
     public WebElement nextPageButton;
 
+    @FindBy(id = "4")
+    public WebElement fourthPage;
+
     @FindBy (id = "lastPAge")
     public WebElement lastPageButton;
 
@@ -115,9 +118,6 @@ public class AdminPage {
 
     @FindAll(@FindBy(linkText = "Close"))
     public List<WebElement> closeAll;
-
-    @FindAll(@FindBy(className = "center"))
-    public List<WebElement> usersAll;
 
     @FindBy(css = "div.alert.alert-danger")
     public WebElement blockedAccount;
