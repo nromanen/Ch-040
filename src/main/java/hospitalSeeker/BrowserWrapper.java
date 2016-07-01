@@ -52,17 +52,6 @@ public class BrowserWrapper {
 
     }
 
-    public boolean isElementPresentByXpath(String xpath) {
-        boolean present;
-        try {
-            driver.findElement(By.xpath(xpath));
-            present = true;
-        } catch (NoSuchElementException e) {
-            present = false;
-        }
-        return present;
-    }
-
     public String checkIfElementNotPresent(WebElement element) {
         try {
             element.isDisplayed();

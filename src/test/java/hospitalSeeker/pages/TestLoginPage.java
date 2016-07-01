@@ -1,7 +1,7 @@
 package hospitalSeeker.pages;
 
 import hospitalSeeker.BaseTest;
-import hospitalSeeker.HeaderPage;
+import hospitalSeeker.Header;
 import hospitalSeeker.LoginPage;
 import hospitalSeeker.RegisterPage;
 import org.openqa.selenium.By;
@@ -13,13 +13,13 @@ public class TestLoginPage extends BaseTest {
 
 	LoginPage loginPage;
 	RegisterPage registerPage;
-	HeaderPage headerPage;
+	Header header;
 
 	@BeforeMethod
 	public void beforeMethod() {
 		loginPage = LoginPage.init(browser.getDriver());
 		registerPage = RegisterPage.init(browser.getDriver());
-		headerPage = HeaderPage.init(browser.getDriver());
+		header = Header.init(browser.getDriver());
 		browser.goTo(LOGIN_URL);
 	}
 
@@ -44,7 +44,7 @@ public class TestLoginPage extends BaseTest {
 	@Test(priority = 1)
 	public void testLogin() {
 		loginPage.loggingIn(PATIENT_LOGIN,PATIENT_PASSWORD);
-		Assert.assertTrue(browser.isElementPresent(headerPage.appointmentsButton));
+		Assert.assertTrue(browser.isElementPresent(header.appointmentsButton));
 	}
 
 	/*
