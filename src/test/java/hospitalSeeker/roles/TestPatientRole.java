@@ -16,36 +16,18 @@ public class TestPatientRole extends BaseRoleTest {
 
     @Test
     public void testForbiddenButtonsForPatients() {
-        String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
-                .concat(browser.checkIfElementNotPresent(headerPage.patientsButton))
-                .concat(browser.checkIfElementNotPresent(headerPage.manageButton));
+        String error = browser.checkIfElementNotPresent(header.actionsButton)
+                .concat(browser.checkIfElementNotPresent(header.patientsButton))
+                .concat(browser.checkIfElementNotPresent(header.manageButton));
         if (error.isEmpty()) {
             throw new AssertionError(error);
         }
     }
 
-    @Test
-    public void testAccessDeniedDashboardForPatients() {
-        browser.goTo(ADMIN_DASHBOARD_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
-    }
-
-    @Test
-    public void testAccessDeniedAddNewHospitalForPatients() {
-        browser.goTo(ADDING_NEW_HOSPITAL_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
-    }
-
-    @Test
-    public void testAccessDeniedAddNewUserForPatients() {
-        browser.goTo(ADDING_NEW_USER_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
-    }
-
-    @Test
-    public void testAccessDeniedEditManagersForPatients() {
-        browser.goTo(EDIT_HOSPITALS_MANAGERS_URL);
-        assertTrue(browser.containsText("not authorized to access"), "access not denied");
+    @Test(dataProvider = "primaryAdminUrls")
+    public void testDeniedUrlsForPatients(String errorMessage, String url) {
+        browser.goTo(url);
+        assertTrue(browser.containsText("not authorized to access"), "access not denied to page: ".concat(errorMessage));
     }
 
 }

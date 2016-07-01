@@ -2,7 +2,7 @@ package hospitalSeeker.pages;
 
 import hospitalSeeker.AdminPage;
 import hospitalSeeker.BaseTest;
-import hospitalSeeker.HeaderPage;
+import hospitalSeeker.Header;
 import hospitalSeeker.LoginPage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -13,13 +13,13 @@ public class TestAdminPage extends BaseTest {
 	
 	AdminPage adminPage;
 	LoginPage loginPage;
-	HeaderPage headerPage;
+	Header header;
 	
 	@BeforeMethod
 	public void beforeMethod() {
 		loginPage =LoginPage.init(browser.getDriver());
 		adminPage = AdminPage.init(browser.getDriver());
-		headerPage = HeaderPage.init(browser.getDriver());
+		header = Header.init(browser.getDriver());
 	}
 
 	@Test
@@ -287,7 +287,7 @@ public class TestAdminPage extends BaseTest {
 		loginPage.passwordLogin.sendKeys("1111");
 		loginPage.loginButton.click();
 		browser.sleep(1);
-		headerPage.logout();
+		header.logout();
 		browser.goTo(LOGIN_URL);
 		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
 		browser.selectDropdown(adminPage.searchBy,"Email");
@@ -299,7 +299,7 @@ public class TestAdminPage extends BaseTest {
 		adminPage.viewUserAlertEnabledButton.click();
 		adminPage.viewUserCancelButton.click();
 		browser.sleep(2);
-		headerPage.logout();
+		header.logout();
 		browser.goTo(LOGIN_URL);
 		loginPage.emailLogin.sendKeys("patient.rr@hospitals.ua");
 		loginPage.passwordLogin.sendKeys("1111");

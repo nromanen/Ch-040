@@ -52,23 +52,12 @@ public class BrowserWrapper {
 
     }
 
-    public boolean isElementPresentByXpath(String xpath) {
-        boolean present;
-        try {
-            driver.findElement(By.xpath(xpath));
-            present = true;
-        } catch (NoSuchElementException e) {
-            present = false;
-        }
-        return present;
-    }
-
     public String checkIfElementNotPresent(WebElement element) {
         try {
             element.isDisplayed();
             return "";
         } catch (Exception e) {
-            return e.toString();
+            return element.toString().concat("\n" + e.toString());
         }
     }
 
