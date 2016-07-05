@@ -137,16 +137,16 @@ public class BrowserWrapper {
     }
 
     public String getDataFromTable(int k,int l){
-        int Row_count = getDriver().findElements(By.xpath("//table/tbody/tr")).size();
-        int Col_count = getDriver().findElements(By.xpath("//table/tbody/tr[1]/td")).size();
+        int rowCount = getDriver().findElements(By.xpath("//table/tbody/tr")).size();
+        int colCount = getDriver().findElements(By.xpath("//table/tbody/tr[1]/td")).size();
 
-        String first_part = "//table/tbody/tr[";
-        String second_part = "]/td[";
-        String third_part = "]";
+        String firstPart = "//table/tbody/tr[";
+        String secondPart = "]/td[";
+        String thirdPart = "]";
 
-        String final_xpath = first_part+k+second_part+l+third_part;
-        String Table_data = getDriver().findElement(By.xpath(final_xpath)).getText();
-        return Table_data;
+        String finalXpath = firstPart+k+secondPart+l+thirdPart;
+        String tableData = getDriver().findElement(By.xpath(finalXpath)).getText();
+        return tableData;
     }
 
     public void browserMaximize() {
