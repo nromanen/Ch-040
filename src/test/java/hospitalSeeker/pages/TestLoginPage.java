@@ -83,20 +83,20 @@ public class TestLoginPage extends BaseTest {
 	 */
 	@Test(priority = 4)
 	public void testLoginIncorrectEmail() {
-		loginPage.loggingIn("patient1@mail.ru",PATIENT_PASSWORD);
+		loginPage.loggingIn("patient.cdd@hospitals.ua",PATIENT_PASSWORD);
 		Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
 	}
 
-	/*
-	 * Log in by incorrect password
-	 * go to login page 
+	 /** Log in by incorrect password
+	 * go to login page
 	 * input registered e-mail
-	 * input incorrect password 
-	 * click on button "Log in"
-	 */
+	 * input incorrect password
+	 * click on button "Log in"*/
+
 	@Test(priority = 5)
 	public void testLoginIncorrectPassword() {
-		loginPage.loggingIn("patient.ml@hospitals.ua","11111");
+		loginPage.loggingIn(PATIENT_LOGIN,"11111");
+		browser.sleep(2);
 		Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
 	}
 }

@@ -13,6 +13,7 @@ public class TestRegisterPage extends BaseTest {
 	@BeforeMethod
 	public void beforeMethod(){
 		registerPage = RegisterPage.init(browser.getDriver());
+		browser.goTo(REGISTER_URL);
 	}
 
 	@Test
@@ -33,8 +34,7 @@ public class TestRegisterPage extends BaseTest {
 //	 * click on button "Register"*/
 	@Test(priority = 1)
 	public void testRegister(){
-		browser.goTo(REGISTER_URL);
-		registerPage.emailRegister.sendKeys("patient@mail123.ru");
+		registerPage.emailRegister.sendKeys("patient@mail1234.ru");
 		registerPage.passwordRegister.sendKeys("Patient77");
 		registerPage.confirmPasswordRegister.sendKeys("Patient77");
 		registerPage.registerButton.click();
@@ -46,7 +46,6 @@ public class TestRegisterPage extends BaseTest {
 	 * click on button "Log in"*/
 	@Test(priority = 2)
 	public void testRegisterButtonLogin(){
-		browser.goTo(REGISTER_URL);
 		registerPage.loginButton.click();
 		Assert.assertEquals(browser.getCurrentUrl(),LOGIN_URL);
 	}
@@ -59,7 +58,6 @@ public class TestRegisterPage extends BaseTest {
 	* click on button "Register" */
 	@Test(priority = 3)
 	public void testRegisterExistingEmail(){
-		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
 		registerPage.passwordRegister.sendKeys("Patient77");
 		registerPage.confirmPasswordRegister.sendKeys("Patient77");
@@ -76,7 +74,6 @@ public class TestRegisterPage extends BaseTest {
 	* click on button "Register"*/
 	@Test(priority = 4)
 	public void testRegisterByLogin(){
-		browser.goTo(REGISTER_URL);
 		Assert.assertFalse(browser.isElementPresent(registerPage.warningByEmail));
 		registerPage.emailRegister.sendKeys("patient");
 		registerPage.passwordRegister.sendKeys("Patient77");
@@ -93,7 +90,6 @@ public class TestRegisterPage extends BaseTest {
 	* click on button "Register"*/
 	@Test(priority = 5)
 	public void testRegisterInsecurePassword(){
-		browser.goTo(REGISTER_URL);
 		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
 		Assert.assertFalse(browser.isElementPresent(registerPage.insecurePassword));
 		registerPage.passwordRegister.sendKeys("77");
@@ -110,9 +106,8 @@ public class TestRegisterPage extends BaseTest {
 	* click on button "Register"*/
 	@Test(priority = 6)
 	public void testRegisterWeakPassword(){
-		browser.goTo(REGISTER_URL);
 		Assert.assertFalse(browser.isElementPresent(registerPage.weakPassword));
-		registerPage.emailRegister.sendKeys("patient@mail123.ru");
+		registerPage.emailRegister.sendKeys("patient@mail1234.ru");
 		registerPage.passwordRegister.sendKeys("patient77");
 		registerPage.confirmPasswordRegister.sendKeys("patient77");
 		registerPage.registerButton.click();
@@ -127,7 +122,6 @@ public class TestRegisterPage extends BaseTest {
 	 * click on button "Register"*/
 	@Test(priority = 7)
 	public void testRegisterWithoutEmail(){
-		browser.goTo(REGISTER_URL);
 		Assert.assertFalse(browser.isElementPresent(registerPage.warningByEmail));
 		registerPage.emailRegister.sendKeys("");
 		registerPage.passwordRegister.sendKeys("Patient77");
@@ -144,7 +138,6 @@ public class TestRegisterPage extends BaseTest {
 	 * click on button "Register"*/
 	@Test(priority = 8)
 	public void testRegisterWithoutConfirmPassword(){
-		browser.goTo(REGISTER_URL);
 		Assert.assertFalse(browser.isElementPresent(registerPage.confirmPasswordError));
 		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
 		registerPage.passwordRegister.sendKeys("Patient77");
@@ -162,7 +155,6 @@ public class TestRegisterPage extends BaseTest {
 	 * click on button "Register"*/
 	@Test(priority = 9)
 	public void testRegisterWithoutPassword(){
-		browser.goTo(REGISTER_URL);
 		Assert.assertFalse(browser.isElementPresent(registerPage.confirmPasswordError));
 		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
 		registerPage.passwordRegister.sendKeys("");
@@ -179,7 +171,6 @@ public class TestRegisterPage extends BaseTest {
 	 * click on button "Register"*/
 	@Test(priority = 10)
 	public void testRegisterIncorrectConfirmation(){
-		browser.goTo(REGISTER_URL);
 		Assert.assertFalse(browser.isElementPresent(registerPage.confirmPasswordError));
 		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
 		registerPage.passwordRegister.sendKeys("Patient77");

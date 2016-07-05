@@ -57,7 +57,7 @@ public class AdminPage {
     @FindBy (id = "ediUser")
     public WebElement actionsEditUser;
 
-    @FindBy(css = "input.btn.btn-sm.userEnabled")
+    @FindBy(id = "enabledUserCheckbox")
     public WebElement editEnabledButton;
 
     @FindBy(css = "option[value=ADMIN]")
@@ -72,11 +72,8 @@ public class AdminPage {
     @FindBy(css = "option[value=PATIENT]")
     public WebElement editRolePatient;
 
-    @FindBy(css = "input.btn.btn-primary.btn-sm")
+    @FindBy(css = "input.btn.btn-primary")
     public WebElement editEditUserButton;
-
-    @FindBy (xpath = "/html/body/section/div/div/div/div/form/div[3]/div/a")
-    public WebElement editCancelButton;
 
     
     @FindBy (id = "deleteUser")
@@ -98,29 +95,20 @@ public class AdminPage {
     @FindBy (id = "roles.type")
     public WebElement sortRoleColumn;
 
-    @FindBy (id = "firstPage")
-    public WebElement firstPageButton;
 
     @FindBy (id = "nextPage")
     public WebElement nextPageButton;
 
-    @FindBy(id = "4")
-    public WebElement fourthPage;
-
-    @FindBy (id = "lastPAge")
+    @FindBy (id = "lastPage")
     public WebElement lastPageButton;
 
-    @FindBy (xpath = "/html/body/section/a")
-    public WebElement backToTopButton;
-
-    @FindBy (xpath = "/html/body/footer/div/div/div/p")
-    public WebElement footer;
-
-    @FindAll(@FindBy(linkText = "Close"))
-    public List<WebElement> closeAll;
 
     @FindBy(css = "div.alert.alert-danger")
     public WebElement blockedAccount;
+
+    @FindAll(@FindBy(xpath = "/html/body/section/div[1]/div/table/tbody/tr"))
+    public List<WebElement> allRows;
+
 
     public static AdminPage init(WebDriver driver) {
         return PageFactory.initElements(driver, AdminPage.class);
