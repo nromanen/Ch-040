@@ -37,7 +37,7 @@ public class BaseTest {
     public static final String PATIENT_PASSWORD = "1111";
 
     @BeforeMethod
-    public void beforeMethod() {
+    public void before() {
         browser = new BrowserWrapper(BrowserInitialization.initialize());
         browser.browserMaximize();
     }

@@ -17,7 +17,7 @@ public class BaseRoleTest extends BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        super.beforeMethod();
+//        super.beforeMethod();
         loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
         adminPage = PageFactory.initElements(browser.getDriver(), AdminPage.class);
         header = PageFactory.initElements(browser.getDriver(), Header.class);
