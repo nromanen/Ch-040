@@ -55,7 +55,7 @@ public class TestAdminPage extends BaseTest {
 	public void testCountAllUsers() {
 		adminPage.searchButton.click();
 		adminPage.lastPageButton.click();
-		Assert.assertEquals(browser.getDataFromTable(adminPage.allRows.size(),1), "23");
+		Assert.assertEquals(adminPage.allRows.size(),3);
 	}
 
 	/*Checking equality of count admins in DB and after using filter "Role"->"Admin"
@@ -69,7 +69,7 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.role, "ADMIN");
 		adminPage.searchButton.click();
 		Assert.assertTrue(browser.getDataFromTable(1,5).contains("ADMIN"));
-		Assert.assertEquals(browser.getDataFromTable(adminPage.allRows.size(),1),"1");
+		Assert.assertEquals(adminPage.allRows.size(),1);
 	}
 
 	/*Checking equality of count admins in DB and after using filter "Role"->"Doctor"
@@ -84,7 +84,7 @@ public class TestAdminPage extends BaseTest {
 		adminPage.searchButton.click();
 		Assert.assertTrue(browser.getDataFromTable(3,5).contains("DOCTOR"));
 		adminPage.lastPageButton.click();
-		Assert.assertEquals(browser.getDataFromTable(adminPage.allRows.size(),1),"11");
+		Assert.assertEquals(adminPage.allRows.size(),1);
 	}
 
 	/*Checking equality of count admins in DB and after using filter "Role"->"Manager"
@@ -98,7 +98,7 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.role, "MANAGER");
 		adminPage.searchButton.click();
 		Assert.assertTrue(browser.getDataFromTable(3,5).contains("MANAGER"));
-		Assert.assertEquals(browser.getDataFromTable(adminPage.allRows.size(),1),"4");
+		Assert.assertEquals(adminPage.allRows.size(),4);
 	}
 
 	/*Checking equality of count admins in DB and after using filter "Role"->"Patient"
@@ -112,7 +112,7 @@ public class TestAdminPage extends BaseTest {
 		browser.selectDropdown(adminPage.role, "PATIENT");
 		adminPage.searchButton.click();
 		Assert.assertTrue(browser.getDataFromTable(3,5).contains("PATIENT"));
-		Assert.assertEquals(browser.getDataFromTable(adminPage.allRows.size(),1),"7");
+		Assert.assertEquals(adminPage.allRows.size(),7);
 	}
 
 	 /**Checking correct result after using filter "Search By"->"Email"
