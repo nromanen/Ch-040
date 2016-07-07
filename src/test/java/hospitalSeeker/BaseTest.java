@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 public class BaseTest {
 
     public BrowserWrapper browser;
-    public DatabaseConfig databaseConfig = new DatabaseConfig();
+    public DatabaseConfig databaseConfig;
 
     public BrowserWrapper getWrapper() {
         return browser;
@@ -38,6 +38,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void before() {
+        databaseConfig = new DatabaseConfig();
         databaseConfig.databaseSetup();
         browser = new BrowserWrapper(BrowserInitialization.initialize());
         browser.browserMaximize();

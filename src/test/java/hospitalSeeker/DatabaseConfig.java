@@ -19,18 +19,14 @@ public class DatabaseConfig {
     IDataSet dataSet;
 
     public void databaseSetup() {
-        long startTime = System.currentTimeMillis();
         try {
         databaseTester = new JdbcDatabaseTester("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/hospital", "postgres", "root");
-        dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("src/test/resources/database_full.xml"));
+        dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("src/test/resources/database_small.xml"));
         databaseTester.setDataSet(dataSet);
         databaseTester.onSetup();
     } catch (Exception e) {
             e.printStackTrace();
         }
-        long endTime = System.currentTimeMillis();
-        long duration = (endTime - startTime);
-        System.out.println(duration);
     }
 
     public void databaseTearDown() {
