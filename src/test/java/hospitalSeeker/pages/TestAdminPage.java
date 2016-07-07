@@ -16,6 +16,21 @@ public class TestAdminPage extends BaseTest {
 	LoginPage loginPage;
 	Header header;
 
+	public void disableUser(){
+		browser.goTo(LOGIN_URL);
+		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
+		browser.selectDropdown(adminPage.searchBy,"Email");
+		adminPage.search.sendKeys("patient.rr@hospitals.ua");
+		adminPage.searchButton.click();
+		browser.waitUntilElementIsPresent(By.id("allUsers"));
+		adminPage.actionsViewUser.click();
+		browser.waitUntilElementVisible(adminPage.viewUserAlertEnabledButton);
+		adminPage.viewUserAlertEnabledButton.click();
+		adminPage.viewUserCancelButton.click();
+		browser.sleep(2);
+		header.logout();
+	}
+
 	@BeforeMethod
 	public void beforeMethod() {
 		loginPage = LoginPage.init(browser.getDriver());
@@ -224,25 +239,14 @@ public class TestAdminPage extends BaseTest {
 	public void testDisableUser(){
 		header.logout();
 		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("patient.in@hospitals.ua");
+		loginPage.emailLogin.sendKeys("patient.rr@hospitals.ua");
 		loginPage.passwordLogin.sendKeys("1111");
 		loginPage.loginButton.click();
 		browser.sleep(1);
 		header.logout();
+		disableUser();
 		browser.goTo(LOGIN_URL);
-		loginPage.loggingIn(ADMIN_LOGIN,ADMIN_PASSWORD);
-		browser.selectDropdown(adminPage.searchBy,"Email");
-		adminPage.search.sendKeys("patient.in@hospitals.ua");
-		adminPage.searchButton.click();
-		browser.waitUntilElementIsPresent(By.id("allUsers"));
-		adminPage.actionsViewUser.click();
-		browser.waitUntilElementVisible(adminPage.viewUserAlertEnabledButton);
-		adminPage.viewUserAlertEnabledButton.click();
-		adminPage.viewUserCancelButton.click();
-		browser.sleep(2);
-		header.logout();
-		browser.goTo(LOGIN_URL);
-		loginPage.emailLogin.sendKeys("patient.in@hospitals.ua");
+		loginPage.emailLogin.sendKeys("patient.rr@hospitals.ua");
 		loginPage.passwordLogin.sendKeys("1111");
 		loginPage.loginButton.click();
 		Assert.assertTrue(browser.isElementPresent(adminPage.blockedAccount));
