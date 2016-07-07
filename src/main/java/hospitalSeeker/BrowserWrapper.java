@@ -57,7 +57,7 @@ public class BrowserWrapper {
             element.isDisplayed();
             return "";
         } catch (Exception e) {
-            return element.toString().concat("\n" + e.toString());
+            return element.toString();
         }
     }
 
@@ -128,12 +128,25 @@ public class BrowserWrapper {
         dropdown.selectByVisibleText(text);
     }
 
-    public void sleep(int Seconds){
+    public void sleep(int Seconds) {
         try {
             Thread.sleep(Seconds * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getDataFromTable(int k,int l){
+        int rowCount = getDriver().findElements(By.xpath("//table/tbody/tr")).size();
+        int colCount = getDriver().findElements(By.xpath("//table/tbody/tr[1]/td")).size();
+
+        String firstPart = "//table/tbody/tr[";
+        String secondPart = "]/td[";
+        String thirdPart = "]";
+
+        String finalXpath = firstPart+k+secondPart+l+thirdPart;
+        String tableData = getDriver().findElement(By.xpath(finalXpath)).getText();
+        return tableData;
     }
 
     public void browserMaximize() {

@@ -40,10 +40,10 @@ public class RegisterPage {
 	@FindBy(css= "span.has-error.text-danger")
 	public WebElement weakPassword;
 
-	@FindBy(xpath = "//i[contains(@class, 'error help-block') and text() = 'Please provide a password']")
+	@FindBy(id = "confirmPassword-error")
 	public WebElement confirmPasswordError;
 
-	@FindBy(xpath = "//i[contains(@class, 'error help-block') and text() = 'Please enter the same password as above']")
+	@FindBy(id = "password-error")
 	public WebElement withoutPasswordError;
 
 	public static RegisterPage init(WebDriver driver) {
