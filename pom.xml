@@ -14,29 +14,90 @@
         <sql.plugin.version>1.5</sql.plugin.version>
         <maven.surefire.plugin>2.19.1</maven.surefire.plugin>
         <maven.compiler.plugin>2.3.2</maven.compiler.plugin>
-        <selenium.server>2.53.0</selenium.server>
-        <testng>6.9.10</testng>
-        <postrgesql>9.1-901-1.jdbc4</postrgesql>
+        <selenium.server.version>2.53.0</selenium.server.version>
+        <testng.version>6.9.10</testng.version>
+        <postrgesql.version>9.1-901-1.jdbc4</postrgesql.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <dbunit.version>2.5.2</dbunit.version>
         <sql.driver>org.postgresql.Driver</sql.driver>
         <sql.driver.url.main>jdbc:postgresql://localhost:5432</sql.driver.url.main>
         <sql.driver.url.hospital>jdbc:postgresql://localhost:5432/hospital</sql.driver.url.hospital>
+        <database.name>postgres</database.name>
+        <database.password>root</database.password>
+        <browser.drivers.path>src/main/resources/drivers</browser.drivers.path>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
-            <version>${selenium.server}</version>
+            <version>${selenium.server.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng}</version>
-            <scope>test</scope>
+            <version>${testng.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.dbunit/dbunit -->
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>${dbunit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postrgesql.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>firefox</id>
+            <properties>
+                <browser.name>firefox</browser.name>
+                <driver.name>webdriver.gecko.driver</driver.name>
+                <driver.path>${browser.drivers.path}/geckodriver.exe</driver.path>
+            </properties>
+        </profile>
+        <profile>
+            <id>chrome</id>
+            <properties>
+                <browser.name>chrome</browser.name>
+                <driver.name>webdriver.chrome.driver</driver.name>
+                <driver.path>${browser.drivers.path}/chromedriver.exe</driver.path>
+            </properties>
+        </profile>
+        <profile>
+            <id>chromelinux</id>
+            <properties>
+                <browser.name>chrome</browser.name>
+                <driver.name>webdriver.chrome.driver</driver.name>
+                <driver.path>${browser.drivers.path}/chromedriver</driver.path>
+            </properties>
+        </profile>
+        <profile>
+            <id>firefoxlinux</id>
+            <properties>
+                <browser.name>firefox</browser.name>
+                <driver.name>webdriver.gecko.driver</driver.name>
+                <driver.path>${browser.drivers.path}/geckodriver</driver.path>
+            </properties>
+        </profile>
+    </profiles>
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
             <plugins>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -46,81 +107,42 @@
                         <dependency>
                             <groupId>postgresql</groupId>
                             <artifactId>postgresql</artifactId>
-                            <version>${postrgesql}</version>
+                            <version>${postrgesql.version}</version>
                         </dependency>
                     </dependencies>
                     <configuration>
                         <driver>${sql.driver}</driver>
                         <url>${sql.driver.url.hospital}</url>
-                        <username>postgres</username>
-                        <password>root</password>
+                        <username>${database.name}</username>
+                        <password>${database.password}</password>
                     </configuration>
                     <executions>
-                        <execution>
-                            <id>drop-db-before-test-if-any</id>
-                            <phase>process-test-resources</phase>
-                            <goals>
-                                <goal>execute</goal>
-                            </goals>
-                            <configuration>
-                                <url>${sql.driver.url.main}</url>
-                                <autocommit>true</autocommit>
-                                <sqlCommand>drop database hospital</sqlCommand>
-                                <onError>continue</onError>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>create-db</id>
-                            <phase>process-test-resources</phase>
-                            <goals>
-                                <goal>execute</goal>
-                            </goals>
-                            <configuration>
-                                <url>${sql.driver.url.main}</url>
-                                <autocommit>true</autocommit>
-                                <sqlCommand>create database hospital</sqlCommand>
-                                <onError>continue</onError>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>create-schema</id>
-                            <phase>process-test-resources</phase>
-                            <goals>
-                                <goal>execute</goal>
-                            </goals>
-                            <configuration>
-                                <url>${sql.driver.url.hospital}</url>
-                                <autocommit>true</autocommit>
-                                <sqlCommand>CREATE SCHEMA public;</sqlCommand>
-                                <onError>continue</onError>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>create-tables</id>
-                            <phase>process-test-resources</phase>
-                            <goals>
-                                <goal>execute</goal>
-                            </goals>
-                            <configuration>
-                                <autocommit>true</autocommit>
-                                <srcFiles>
-                                    <srcFile>src/main/resources/sql/tables.sql</srcFile>
-                                </srcFiles>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>create-data</id>
-                            <phase>process-test-resources</phase>
-                            <goals>
-                                <goal>execute</goal>
-                            </goals>
-                            <configuration>
-                                <autocommit>true</autocommit>
-                                <srcFiles>
-                                    <srcFile>src/main/resources/sql/data.sql</srcFile>
-                                </srcFiles>
-                            </configuration>
-                        </execution>
+                    <execution>
+                        <id>drop-db-before-test-if-any</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <url>${sql.driver.url.main}</url>
+                            <autocommit>true</autocommit>
+                            <sqlCommand>drop database hospital</sqlCommand>
+                            <onError>continue</onError>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>create-db</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <url>${sql.driver.url.main}</url>
+                            <autocommit>true</autocommit>
+                            <sqlCommand>create database hospital</sqlCommand>
+                            <onError>continue</onError>
+                        </configuration>
+                    </execution>
                         <execution>
                             <id>drop-db-after-test</id>
                             <phase>test</phase>
@@ -130,7 +152,7 @@
                             <configuration>
                                 <url>${sql.driver.url.main}</url>
                                 <autocommit>true</autocommit>
-                                <sqlCommand>DROP database hospital</sqlCommand>
+                                <sqlCommand>drop database hospital</sqlCommand>
                                 <onError>continue</onError>
                             </configuration>
                         </execution>
