@@ -16,7 +16,7 @@ public class TestSchedulePage extends BaseTest {
     DepartmentPage departmentPage;
     DoctorPage doctorPage;
     LoginPage loginPage;
-    HeaderPage headerPage;
+    Header header;
 
 
     @BeforeMethod
@@ -25,14 +25,14 @@ public class TestSchedulePage extends BaseTest {
         hospitalPage = HospitalPage.init(browser.getDriver());
         departmentPage = DepartmentPage.init(browser.getDriver());
         doctorPage = DoctorPage.init(browser.getDriver());
-        headerPage = HeaderPage.init(browser.getDriver());
+        header = Header.init(browser.getDriver());
         loginPage = LoginPage.init(browser.getDriver());
     }
 
     @Test
     public void checkElementsOnSchedulePage() {
         browser.goTo(HOME_URL);
-        headerPage.loginButton.click();
+        header.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         doctorPage.doctors.get(0).click();
         String error = browser.checkIfElementNotPresent(schedulePage.workDayEndAt)
@@ -67,7 +67,7 @@ public class TestSchedulePage extends BaseTest {
     @Test
     public void testIfManagerCanEdit() {
         browser.goTo(HOME_URL);
-        headerPage.loginButton.click();
+        header.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         doctorPage.gregoryHouseLink.click();
         schedulePage.saveDoctorSchedule.click();
@@ -95,11 +95,11 @@ public class TestSchedulePage extends BaseTest {
     @Test
     public void testIfPatientCanEdit() {
         browser.goTo(HOME_URL);
-        headerPage.loginButton.click();
+        header.loginButton.click();
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
-        headerPage.searchButton.click();
-        headerPage.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
-        headerPage.searchConfirm.click();
+        header.searchButton.click();
+        header.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
+        header.searchConfirm.click();
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(0).click();
@@ -119,11 +119,11 @@ public class TestSchedulePage extends BaseTest {
     @Test
     public void testIfDoctorCanEdit() {
         browser.goTo(HOME_URL);
-        headerPage.loginButton.click();
+        header.loginButton.click();
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-        headerPage.searchButton.click();
-        headerPage.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
-        headerPage.searchConfirm.click();
+        header.searchButton.click();
+        header.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
+        header.searchConfirm.click();
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(0).click();
@@ -143,11 +143,11 @@ public class TestSchedulePage extends BaseTest {
     @Test
     public void testIfAdminCanEdit() {
         browser.goTo(HOME_URL);
-        headerPage.loginButton.click();
+        header.loginButton.click();
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
-        headerPage.searchButton.click();
-        headerPage.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
-        headerPage.searchConfirm.click();
+        header.searchButton.click();
+        header.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
+        header.searchConfirm.click();
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(0).click();
@@ -168,7 +168,7 @@ public class TestSchedulePage extends BaseTest {
     @Test
     public void createAndDeleteSchedule() {
         browser.goTo(HOME_URL);
-        headerPage.loginButton.click();
+        header.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         doctorPage.doctors.get(0).click();
         browser.waitUntilElementVisible(schedulePage.workWeekSize);
@@ -214,7 +214,7 @@ public class TestSchedulePage extends BaseTest {
     @Test
     public void createScheduleCreateAppointmentAndCheckAppointment() {
         browser.goTo(HOME_URL);
-        headerPage.loginButton.click();
+        header.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
         doctorPage.doctors.get(0).click();
         browser.waitUntilElementVisible(schedulePage.workWeekSize);
@@ -232,12 +232,12 @@ public class TestSchedulePage extends BaseTest {
         browser.selectDropdown(schedulePage.timePeriodHoursEnd, schedulePage.WORK_HOURS_23);
         schedulePage.saveDetailedChanges.click();
         schedulePage.saveDoctorSchedule.click();
-        headerPage.logout();
-        headerPage.loginButton.click();
+        header.logout();
+        header.loginButton.click();
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
-        headerPage.searchButton.click();
-        headerPage.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
-        headerPage.searchConfirm.click();
+        header.searchButton.click();
+        header.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
+        header.searchConfirm.click();
         hospitalPage.hospitals.get(0).click();
         departmentPage.departments.get(0).click();
         doctorPage.doctors.get(0).click();
@@ -249,10 +249,10 @@ public class TestSchedulePage extends BaseTest {
         browser.sleep(1);
         schedulePage.appointmentConfirm.click();
         browser.sleep(6);
-        headerPage.logout();
-        headerPage.loginButton.click();
+        header.logout();
+        header.loginButton.click();
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-        headerPage.workschedulerButton.click();
+        header.workschedulerButton.click();
         browser.waitUntilElementVisible(schedulePage.eventBody);
         assertTrue(browser.isElementPresent(schedulePage.eventBody));
     }
@@ -268,9 +268,9 @@ public class TestSchedulePage extends BaseTest {
     @Test
     public void cancelAppointment() {
         browser.goTo(HOME_URL);
-        headerPage.loginButton.click();
+        header.loginButton.click();
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-        headerPage.workschedulerButton.click();
+        header.workschedulerButton.click();
         browser.waitUntilElementVisible(schedulePage.eventBody);
         browser.doubleClick(schedulePage.eventTitle);
         browser.sleep(2);
@@ -278,7 +278,7 @@ public class TestSchedulePage extends BaseTest {
         browser.waitUntilElementVisible(schedulePage.confirmCancellingAppointment);
         schedulePage.confirmCancellingAppointment.click();
         browser.sleep(6);
-        headerPage.workschedulerButton.click();
+        header.workschedulerButton.click();
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
         assertFalse(browser.isElementPresent(schedulePage.eventBody));
     }
