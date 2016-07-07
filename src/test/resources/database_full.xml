@@ -1,9 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <appointment/>
   <databasechangelog/>
   <databasechangeloglock id="1" locked="false"/>
-  <feedback/>
   <hospital id="1" building="137" city="Chernivtsi" country="Ukraine" street="Holovna St" description=" " imagepath="Hospital_1.jpg" latitude="48.2794394" longitude="25.943196899999975" name="Chernivtsi Regional Clinical Hospital"/>
   <hospital id="2" building="11" city="Chernivtsi" country="Ukraine" street="Lesi Ukrainky St" description=" " imagepath="Hospital_2.jpg" latitude="48.2909805" longitude="25.929598499999997" name="Miska Poliklinika"/>
   <hospital id="3" building="185&#1056;&#8217;" city="Chernivtsi" country="Ukraine" street="Ruska St" description=" " imagepath="Hospital_3.jpg" latitude="48.2836641" longitude="25.973487500000033" name="Angelholm"/>
@@ -76,6 +74,7 @@
   <doctorinfo id="9" specialization="Diagnostician" userdetails_id="14"/>
   <doctorinfo id="10" specialization="Endocrinologist" userdetails_id="15"/>
   <doctorinfo id="11" specialization="Oncologist" userdetails_id="16"/>
+  <appointment/>
   <department_doctorinfo departments_id="1" doctors_id="1"/>
   <department_doctorinfo departments_id="1" doctors_id="2"/>
   <department_doctorinfo departments_id="2" doctors_id="3"/>
@@ -107,6 +106,7 @@
   <users id="19" email="patient.ml@hospitals.ua" enabled="true" password="$2a$10$wtRRo7Q6O.wPv8E/7M4kMebWHgdFf0GZYotCj3nBUYR2HLxQFqPMm" userdetails_id="19"/>
   <users id="20" email="patient.rr@hospitals.ua" enabled="true" password="$2a$10$DLdRb91MrBBhNxEr5AYXrOuSn5LieZFSXrVE7RZWEbglkdfsvptsm" userdetails_id="20"/>
   <users id="21" email="patient.sf@hospitals.ua" enabled="true" password="$2a$10$4TW.tWhaI4xoSGPZhA4iseizzcRpQB/yNessm204M7o0qXgsdJYm." userdetails_id="21"/>
+  <feedback/>
   <role_users users_id="1" role_id="1"/>
   <role_users users_id="2" role_id="3"/>
   <role_users users_id="3" role_id="3"/>
