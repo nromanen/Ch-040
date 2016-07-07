@@ -29,7 +29,7 @@ public class TestSchedulePage extends BaseTest {
         loginPage = LoginPage.init(browser.getDriver());
     }
 
-    @Test()
+    @Test
     public void checkElementsOnSchedulePage() {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
@@ -64,7 +64,7 @@ public class TestSchedulePage extends BaseTest {
     8. Check if these changes are correct.
      */
 
-    @Test()
+    @Test
     public void testIfManagerCanEdit() {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
@@ -92,7 +92,7 @@ public class TestSchedulePage extends BaseTest {
     7. Check if you can edit this event.
     */
 
-    @Test()
+    @Test
     public void testIfPatientCanEdit() {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
@@ -116,7 +116,7 @@ public class TestSchedulePage extends BaseTest {
     7. Check if you can edit this event.
     */
 
-    @Test()
+    @Test
     public void testIfDoctorCanEdit() {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
@@ -140,7 +140,7 @@ public class TestSchedulePage extends BaseTest {
     7. Check if you can edit this event.
     */
 
-    @Test()
+    @Test
     public void testIfAdminCanEdit() {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
@@ -211,7 +211,7 @@ public class TestSchedulePage extends BaseTest {
     12. Select workscheduler and find created appointment.
      */
 
-    @Test(priority = 1)
+    @Test
     public void createScheduleCreateAppointmentAndCheckAppointment() {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
@@ -265,7 +265,7 @@ public class TestSchedulePage extends BaseTest {
     5. Confirm that it is cancelled.
      */
 
-    @Test(priority = 2)
+    @Test
     public void cancelAppointment() {
         browser.goTo(HOME_URL);
         headerPage.loginButton.click();
