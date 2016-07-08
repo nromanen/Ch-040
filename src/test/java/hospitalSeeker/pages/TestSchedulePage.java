@@ -18,6 +18,14 @@ public class TestSchedulePage extends BaseTest {
     LoginPage loginPage;
     Header header;
 
+    private void selectDoctor() {
+        header.searchButton.click();
+        header.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
+        header.searchConfirm.click();
+        hospitalPage.hospitals.get(0).click();
+        departmentPage.departments.get(0).click();
+        doctorPage.doctors.get(0).click();
+    }
 
     @BeforeMethod
     public void beforeMethod() {
@@ -170,29 +178,13 @@ public class TestSchedulePage extends BaseTest {
         browser.goTo(HOME_URL);
         header.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
-        doctorPage.doctors.get(0).click();
-        browser.waitUntilElementVisible(schedulePage.workWeekSize);
-        browser.selectDropdown(schedulePage.workWeekSize, schedulePage.WORK_WEEK_SIZE_5);
-        browser.selectDropdown(schedulePage.workDayEndAt, schedulePage.WORK_HOURS_24);
-        schedulePage.saveDoctorSchedule.click();
-        assertTrue(browser.isElementPresent(schedulePage.calendarHeader));
-        schedulePage.switchViewToDay.click();
-        schedulePage.nextDate.click();
-        browser.doubleClickOnCoordinates(schedulePage.hours2200, schedulePage.columnWidth, schedulePage.columnHeight);
-        schedulePage.saveChanges.click();
-        schedulePage.saveDoctorSchedule.click();
+        doctorPage.selectDoctorAsManager();
+        schedulePage.createSchedule(getWrapper());
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
         schedulePage.switchViewToDay.click();
-        schedulePage.nextDate.click();
         assertTrue(browser.isElementPresent(schedulePage.eventBody));
-        schedulePage.eventBody.click();
-        schedulePage.eventDelete.click();
-        browser.waitUntilElementVisible(schedulePage.confirmDeletingSchedule);
-        schedulePage.confirmDeletingSchedule.click();
-        schedulePage.saveDoctorSchedule.click();
-        browser.waitUntilElementVisible(schedulePage.calendarHeader);
+        schedulePage.deleteSchedule(getWrapper());
         schedulePage.switchViewToDay.click();
-        schedulePage.nextDate.click();
         assertFalse(browser.isElementPresent(schedulePage.eventBody));
     }
 
@@ -213,42 +205,17 @@ public class TestSchedulePage extends BaseTest {
 
     @Test
     public void createScheduleCreateAppointmentAndCheckAppointment() {
+        databaseConfig.fullDatabase();
         browser.goTo(HOME_URL);
         header.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
-        doctorPage.doctors.get(0).click();
-        browser.waitUntilElementVisible(schedulePage.workWeekSize);
-        browser.selectDropdown(schedulePage.workWeekSize, schedulePage.WORK_WEEK_SIZE_5);
-        browser.selectDropdown(schedulePage.workDayEndAt, schedulePage.WORK_HOURS_24);
-        schedulePage.saveDoctorSchedule.click();
-        assertTrue(browser.isElementPresent(schedulePage.calendarHeader));
-        schedulePage.switchViewToDay.click();
-        browser.doubleClickOnCoordinates(schedulePage.hours1700, schedulePage.columnWidth, schedulePage.columnHeight);
-        browser.waitUntilElementVisible(schedulePage.saveChanges);
-        schedulePage.saveChanges.click();
-        schedulePage.events.get(0).click();
-        schedulePage.eventDetails.click();
-        browser.selectDropdown(schedulePage.timePeriodHoursStart, schedulePage.WORK_HOURS_10);
-        browser.selectDropdown(schedulePage.timePeriodHoursEnd, schedulePage.WORK_HOURS_23);
-        schedulePage.saveDetailedChanges.click();
-        schedulePage.saveDoctorSchedule.click();
+        doctorPage.selectDoctorAsManager();
+        schedulePage.createSchedule(getWrapper());
         header.logout();
         header.loginButton.click();
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
-        header.searchButton.click();
-        header.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
-        header.searchConfirm.click();
-        hospitalPage.hospitals.get(0).click();
-        departmentPage.departments.get(0).click();
-        doctorPage.doctors.get(0).click();
-        browser.waitUntilElementVisible(schedulePage.switchViewToDay);
-        schedulePage.switchViewToDay.click();
-        browser.doubleClickOnCoordinates(schedulePage.hours2100, schedulePage.columnWidth, schedulePage.columnHeight);
-        browser.waitUntilElementVisible(schedulePage.appointmentConfirm);
-        schedulePage.reasonForVisitField.sendKeys(schedulePage.APPOINTMENT_REASON);
-        browser.sleep(1);
-        schedulePage.appointmentConfirm.click();
-        browser.sleep(6);
+        selectDoctor();
+        schedulePage.createAppointment(getWrapper());
         header.logout();
         header.loginButton.click();
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
@@ -269,15 +236,19 @@ public class TestSchedulePage extends BaseTest {
     public void cancelAppointment() {
         browser.goTo(HOME_URL);
         header.loginButton.click();
+        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        doctorPage.selectDoctorAsManager();
+        schedulePage.createSchedule(getWrapper());
+        header.logout();
+        header.loginButton.click();
+        loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
+        selectDoctor();
+        schedulePage.createAppointment(getWrapper());
+        header.logout();
+        header.loginButton.click();
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
         header.workschedulerButton.click();
-        browser.waitUntilElementVisible(schedulePage.eventBody);
-        browser.doubleClick(schedulePage.eventTitle);
-        browser.sleep(2);
-        schedulePage.cancelAppointment.click();
-        browser.waitUntilElementVisible(schedulePage.confirmCancellingAppointment);
-        schedulePage.confirmCancellingAppointment.click();
-        browser.sleep(6);
+        schedulePage.cancelAppointment(getWrapper());
         header.workschedulerButton.click();
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
         assertFalse(browser.isElementPresent(schedulePage.eventBody));

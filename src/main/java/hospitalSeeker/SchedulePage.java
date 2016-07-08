@@ -1,9 +1,7 @@
 package hospitalSeeker;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -15,10 +13,8 @@ import java.util.List;
  */
 public class SchedulePage {
 
-
-    public int columnWidth = 177;
-    public int columnHeight = 20;
-
+    public final int columnWidth = 177;
+    public final int columnHeight = 20;
     public final String WORK_WEEK_SIZE_5 = "5 days";
     public final String WORK_HOURS_24 = "24:00";
     public final String WORK_HOURS_10 = "10:00";
@@ -148,6 +144,53 @@ public class SchedulePage {
 
     public void editSchedule(String text) {
         editorField.sendKeys(text);
+    }
+
+    public void createSchedule(BrowserWrapper browser) {
+        browser.waitUntilElementVisible(workWeekSize);
+        browser.selectDropdown(workWeekSize, WORK_WEEK_SIZE_5);
+        browser.selectDropdown(workDayEndAt, WORK_HOURS_24);
+        saveDoctorSchedule.click();
+        switchViewToDay.click();
+        browser.doubleClickOnCoordinates(hours1700, columnWidth, columnHeight);
+        browser.waitUntilElementVisible(saveChanges);
+        saveChanges.click();
+        events.get(0).click();
+        eventDetails.click();
+        browser.selectDropdown(timePeriodHoursStart, WORK_HOURS_10);
+        browser.selectDropdown(timePeriodHoursEnd, WORK_HOURS_23);
+        saveDetailedChanges.click();
+        saveDoctorSchedule.click();
+    }
+
+    public void createAppointment(BrowserWrapper browser) {
+        browser.waitUntilElementVisible(switchViewToDay);
+        switchViewToDay.click();
+        browser.doubleClickOnCoordinates(hours2100, columnWidth, columnHeight);
+        browser.waitUntilElementVisible(appointmentConfirm);
+        reasonForVisitField.sendKeys(APPOINTMENT_REASON);
+        browser.sleep(1);
+        appointmentConfirm.click();
+        browser.sleep(6);
+    }
+
+    public void cancelAppointment(BrowserWrapper browser) {
+        browser.waitUntilElementVisible(eventBody);
+        browser.doubleClick(eventTitle);
+        browser.sleep(2);
+        cancelAppointment.click();
+        browser.waitUntilElementVisible(confirmCancellingAppointment);
+        confirmCancellingAppointment.click();
+        browser.sleep(6);
+    }
+
+    public void deleteSchedule(BrowserWrapper browser) {
+        eventBody.click();
+        eventDelete.click();
+        browser.waitUntilElementVisible(confirmDeletingSchedule);
+        confirmDeletingSchedule.click();
+        saveDoctorSchedule.click();
+        browser.waitUntilElementVisible(calendarHeader);
     }
 
     public static SchedulePage init(WebDriver driver) {
