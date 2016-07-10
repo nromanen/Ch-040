@@ -25,6 +25,7 @@
         <database.name>postgres</database.name>
         <database.password>root</database.password>
         <browser.drivers.path>src/main/resources/drivers</browser.drivers.path>
+        <sql.tables.path>src/main/resources/sql/tables.sql</sql.tables.path>
     </properties>
 
     <dependencies>
@@ -152,7 +153,7 @@
                             <configuration>
                                 <autocommit>true</autocommit>
                                 <srcFiles>
-                                    <srcFile>src/main/resources/sql/tables.sql</srcFile>
+                                    <srcFile>${sql.tables.path}</srcFile>
                                 </srcFiles>
                             </configuration>
                         </execution>

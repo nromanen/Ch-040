@@ -24,8 +24,8 @@ public class DatabaseConfig {
     private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/hospital";
     private static final String USER = "postgres";
     private static final String PASSWORD = "root";
-    public static final String FULL_DATASET_PATH = "src/test/resources/database_full.xml";
-    public static final String SMALL_DATASET_PATH = "src/test/resources/database_small.xml";
+    public static final String FULL_DATASET_PATH = "src/test/resources/dataset_full.xml";
+    public static final String SMALL_DATASET_PATH = "src/test/resources/dataset_small.xml";
 
     private IDatabaseTester databaseTester;
     private IDataSet dataSet;
