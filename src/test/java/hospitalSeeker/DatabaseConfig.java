@@ -1,36 +1,34 @@
 package hospitalSeeker;
 
+import org.dbunit.DatabaseUnitException;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
-import org.dbunit.dataset.DataSetException;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * Created by Alex on 07-Jul-16.
  */
 public class DatabaseConfig {
 
-    public DatabaseConfig() {
-    }
+    private static final String JDBC_DRIVER = "org.postgresql.Driver";
+    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/hospital";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "root";
+    public static final String FULL_DATASET_PATH = "src/test/resources/database_full.xml";
+    public static final String SMALL_DATASET_PATH = "src/test/resources/database_small.xml";
 
-    IDatabaseTester databaseTester;
-    IDataSet dataSet;
-
-    public void databaseSetup() {
-        try {
-        databaseTester = new JdbcDatabaseTester("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/hospital", "postgres", "root");
-        dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("src/test/resources/database_small.xml"));
-        databaseTester.setDataSet(dataSet);
-        databaseTester.onSetup();
-    } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    private IDatabaseTester databaseTester;
+    private IDataSet dataSet;
 
     public void databaseTearDown() {
         try {
@@ -40,22 +38,36 @@ public class DatabaseConfig {
         }
     }
 
-    public void fullDatabase() {
+    public void importDataSet() {
         try {
-            databaseTester = new JdbcDatabaseTester("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/hospital", "postgres", "root");
-            dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("src/test/resources/database_full.xml"));
-            databaseTester.setDataSet(dataSet);
-            databaseTester.onSetup();
+            dataSet = readDataSet();
+            cleanlyInsert(dataSet);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    public void importDataset() throws Exception {
-        dataSet = readDataSet();
+    private IDataSet readDataSet() throws Exception {
+        return new FlatXmlDataSetBuilder().build(new FileInputStream(SMALL_DATASET_PATH));
     }
 
-    private IDataSet readDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new FileInputStream("dataset.xml"));
+    private void cleanlyInsert(IDataSet dataSet) throws Exception {
+        databaseTester = new JdbcDatabaseTester(JDBC_DRIVER, JDBC_URL, USER, PASSWORD);
+        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+        databaseTester.setDataSet(dataSet);
+        databaseTester.onSetup();
+    }
+
+    public void selectAnotherDataset(String xml) {
+        try {
+            dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream(xml));
+            DatabaseOperation.CLEAN_INSERT.execute(getConnection(), dataSet);
+        } catch (DatabaseUnitException | SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private IDatabaseConnection getConnection() throws SQLException, DatabaseUnitException {
+        Connection jdbcConnection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
+        return new DatabaseConnection(jdbcConnection);
     }
 }

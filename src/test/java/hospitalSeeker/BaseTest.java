@@ -40,7 +40,7 @@ public class BaseTest {
     @BeforeMethod
     public void before() {
         databaseConfig = new DatabaseConfig();
-        databaseConfig.databaseSetup();
+        databaseConfig.importDataSet();
         browser = new BrowserWrapper(BrowserInitialization.initialize());
         browser.browserMaximize();
     }

@@ -205,7 +205,6 @@ public class TestSchedulePage extends BaseTest {
 
     @Test
     public void createScheduleCreateAppointmentAndCheckAppointment() {
-        databaseConfig.fullDatabase();
         browser.goTo(HOME_URL);
         header.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
