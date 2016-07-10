@@ -4,6 +4,7 @@ import hospitalSeeker.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -77,17 +78,16 @@ public class TestSchedulePage extends BaseTest {
         browser.goTo(HOME_URL);
         header.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
-        doctorPage.gregoryHouseLink.click();
-        schedulePage.saveDoctorSchedule.click();
+        doctorPage.selectDoctorAsManager();
+        schedulePage.createSchedule(getWrapper());
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
-        schedulePage.switchViewToDay.click();
-        browser.doubleClickOnCoordinates(schedulePage.hours0100, schedulePage.columnWidth, schedulePage.columnHeight);
-        browser.waitUntilElementVisible(schedulePage.saveChanges);
-        schedulePage.saveChanges.click();
+        schedulePage.selectEvent();
         schedulePage.eventEdit.click();
         schedulePage.editSchedule(schedulePage.MANAGER_EDIT_TEXT);
         schedulePage.saveChanges.click();
-        assertTrue(browser.isElementPresent(schedulePage.eventBody));
+        schedulePage.saveDoctorSchedule.click();
+        browser.waitUntilElementVisible(schedulePage.calendarHeader);
+        assertEquals(schedulePage.eventText.getText(), schedulePage.MANAGER_EDIT_TEXT, "Event text is different!");
     }
 
     /*
@@ -101,17 +101,12 @@ public class TestSchedulePage extends BaseTest {
     */
 
     @Test
-    public void testIfPatientCanEdit() {
+    public void testIfPatientCanAccessWorkSchedule() {
         browser.goTo(HOME_URL);
         header.loginButton.click();
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
-        header.searchButton.click();
-        header.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
-        header.searchConfirm.click();
-        hospitalPage.hospitals.get(0).click();
-        departmentPage.departments.get(0).click();
-        doctorPage.doctors.get(0).click();
-        assertFalse(browser.isElementPresent(schedulePage.eventBody), "Event body button is present!");
+        browser.goTo(DOCTOR_PAGE_URL);
+        assertFalse(browser.isElementPresent(schedulePage.calendarHeader), "You can access work schedule!");
     }
 
     /*
@@ -125,17 +120,12 @@ public class TestSchedulePage extends BaseTest {
     */
 
     @Test
-    public void testIfDoctorCanEdit() {
+    public void testIfDoctorCanAccessWorkSchedule() {
         browser.goTo(HOME_URL);
         header.loginButton.click();
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-        header.searchButton.click();
-        header.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
-        header.searchConfirm.click();
-        hospitalPage.hospitals.get(0).click();
-        departmentPage.departments.get(0).click();
-        doctorPage.doctors.get(0).click();
-        assertFalse(browser.isElementPresent(schedulePage.eventBody), "Event body button is present!");
+        browser.goTo(DOCTOR_PAGE_URL);
+        assertFalse(browser.isElementPresent(schedulePage.calendarHeader), "You can access work schedule!");
     }
 
     /*
@@ -149,17 +139,12 @@ public class TestSchedulePage extends BaseTest {
     */
 
     @Test
-    public void testIfAdminCanEdit() {
+    public void testIfAdminCanAccessWorkSchedule() {
         browser.goTo(HOME_URL);
         header.loginButton.click();
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
-        header.searchButton.click();
-        header.searchField.sendKeys(hospitalPage.HOSPITAL_NAME);
-        header.searchConfirm.click();
-        hospitalPage.hospitals.get(0).click();
-        departmentPage.departments.get(0).click();
-        doctorPage.doctors.get(0).click();
-        assertFalse(browser.isElementPresent(schedulePage.eventBody), "Event body button is present!");
+        browser.goTo(DOCTOR_PAGE_URL);
+        assertFalse(browser.isElementPresent(schedulePage.calendarHeader), "You can access work schedule!");
     }
 
     /*
@@ -182,10 +167,9 @@ public class TestSchedulePage extends BaseTest {
         schedulePage.createSchedule(getWrapper());
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
         schedulePage.switchViewToDay.click();
-        assertTrue(browser.isElementPresent(schedulePage.eventBody));
         schedulePage.deleteSchedule(getWrapper());
         schedulePage.switchViewToDay.click();
-        assertFalse(browser.isElementPresent(schedulePage.eventBody));
+        assertFalse(browser.isElementPresent(schedulePage.eventBody), "Schedule is present!");
     }
 
     /*
@@ -219,8 +203,8 @@ public class TestSchedulePage extends BaseTest {
         header.loginButton.click();
         loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
         header.workschedulerButton.click();
-        browser.waitUntilElementVisible(schedulePage.eventBody);
-        assertTrue(browser.isElementPresent(schedulePage.eventBody));
+        browser.waitUntilElementVisible(schedulePage.calendarHeader);
+        assertTrue(browser.isElementPresent(schedulePage.eventBody), "Event body is not present!");
     }
 
     /*
@@ -250,6 +234,6 @@ public class TestSchedulePage extends BaseTest {
         schedulePage.cancelAppointment(getWrapper());
         header.workschedulerButton.click();
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
-        assertFalse(browser.isElementPresent(schedulePage.eventBody));
+        assertFalse(browser.isElementPresent(schedulePage.eventBody), "Event body is present!");
     }
 }

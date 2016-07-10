@@ -13,7 +13,7 @@ public class BaseTest {
     }
 
     public static final String HOME_URL = "https://localhost:8443/HospitalSeeker/";
-    public static final String DOCTOR_PAGE_URL = HOME_URL.concat("hospital/1/department/1/doctor/6/dashboard");
+    public static final String DOCTOR_PAGE_URL = HOME_URL.concat("doctor/6/manage");
     public static final String ADMIN_DASHBOARD_URL = HOME_URL.concat("admin/users?status=true");
     public static final String ADDING_NEW_HOSPITAL_URL = HOME_URL.concat("admin/map/new");
     public static final String ADDING_NEW_USER_URL = HOME_URL.concat("/admin/newUser");

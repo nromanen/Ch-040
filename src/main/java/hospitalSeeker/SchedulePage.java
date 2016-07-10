@@ -15,15 +15,18 @@ public class SchedulePage {
 
     public final int columnWidth = 177;
     public final int columnHeight = 20;
-    public final String WORK_WEEK_SIZE_5 = "5 days";
+    public final String WORK_WEEK_SIZE_7 = "7 days";
     public final String WORK_HOURS_24 = "24:00";
     public final String WORK_HOURS_10 = "10:00";
     public final String WORK_HOURS_23 = "23:00";
     public final String APPOINTMENT_REASON = "stomach ache";
-    public final String MANAGER_EDIT_TEXT = "text field test, manager edit, #7";
+    public final String MANAGER_EDIT_TEXT = "text field test, manager edit";
 
     @FindBy(className = "dhx_cal_event")
     public WebElement eventBody;
+
+    @FindBy(className = "dhx_body")
+    public WebElement eventText;
 
     @FindBy(css = "div.dhx_menu_icon.icon_details[title=Details]")
     public WebElement eventDetails;
@@ -146,9 +149,13 @@ public class SchedulePage {
         editorField.sendKeys(text);
     }
 
+    public void selectEvent() {
+        events.get(0).click();
+    }
+
     public void createSchedule(BrowserWrapper browser) {
         browser.waitUntilElementVisible(workWeekSize);
-        browser.selectDropdown(workWeekSize, WORK_WEEK_SIZE_5);
+        browser.selectDropdown(workWeekSize, WORK_WEEK_SIZE_7);
         browser.selectDropdown(workDayEndAt, WORK_HOURS_24);
         saveDoctorSchedule.click();
         switchViewToDay.click();
