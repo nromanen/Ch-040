@@ -11,24 +11,44 @@ import org.dbunit.operation.DatabaseOperation;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Created by Alex on 07-Jul-16.
  */
 public class DatabaseConfig {
 
-    private static final String JDBC_DRIVER = "org.postgresql.Driver";
-    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/hospital";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "root";
-    public static final String FULL_DATASET_PATH = "src/test/resources/dataset_full.xml";
-    public static final String SMALL_DATASET_PATH = "src/test/resources/dataset_small.xml";
+    private String jdbcDriver;
+    private String jdbcUrl;
+    private String user;
+    private String password;
+    public static String fullDataset;
+    public static String smallDataset;
 
     private IDatabaseTester databaseTester;
     private IDataSet dataSet;
+
+
+    public void getProperties() {
+        Properties prop = new Properties();
+        try {
+            InputStream input = DatabaseConfig.class.getResourceAsStream("/db.properties");
+            prop.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        jdbcDriver = prop.getProperty("JDBC_DRIVER");
+        jdbcUrl = prop.getProperty("JDBC_URL");
+        user = prop.getProperty("USER");
+        password = prop.getProperty("PASSWORD");
+        fullDataset = prop.getProperty("FULL_DATASET_PATH");
+        smallDataset = prop.getProperty("SMALL_DATASET_PATH");
+    }
 
     public void databaseTearDown() {
         try {
@@ -47,11 +67,12 @@ public class DatabaseConfig {
         }
     }
     private IDataSet readDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new FileInputStream(SMALL_DATASET_PATH));
+        getProperties();
+        return new FlatXmlDataSetBuilder().build(new FileInputStream(smallDataset));
     }
 
     private void cleanlyInsert(IDataSet dataSet) throws Exception {
-        databaseTester = new JdbcDatabaseTester(JDBC_DRIVER, JDBC_URL, USER, PASSWORD);
+        databaseTester = new JdbcDatabaseTester(jdbcDriver, jdbcUrl, user, password);
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.setDataSet(dataSet);
         databaseTester.onSetup();
@@ -67,7 +88,7 @@ public class DatabaseConfig {
     }
 
     private IDatabaseConnection getConnection() throws SQLException, DatabaseUnitException {
-        Connection jdbcConnection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
+        Connection jdbcConnection = DriverManager.getConnection(jdbcUrl, user, password);
         return new DatabaseConnection(jdbcConnection);
     }
 }
