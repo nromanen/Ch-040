@@ -17,7 +17,7 @@ public class BrowserInitialization {
     public static WebDriver initialize() {
         Properties properties = new Properties();
         try {
-            InputStream inputStream = BrowserInitialization.class.getResourceAsStream("/app.properties");
+            InputStream inputStream = BrowserInitialization.class.getResourceAsStream("/browser.properties");
             properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();

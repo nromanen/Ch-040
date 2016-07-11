@@ -110,6 +110,17 @@ public class AdminPage {
     @FindAll(@FindBy(xpath = "/html/body/section/div[1]/div/table/tbody/tr"))
     public List<WebElement> allRows;
 
+    public void disableUser(String email, BrowserWrapper browser){
+        browser.selectDropdown(searchBy,"Email");
+        search.sendKeys(email);
+        searchButton.click();
+        browser.waitUntilElementIsPresent(By.id("allUsers"));
+        actionsViewUser.click();
+        browser.waitUntilElementVisible(viewUserAlertEnabledButton);
+        viewUserAlertEnabledButton.click();
+        viewUserCancelButton.click();
+        browser.sleep(2);
+    }
 
     public static AdminPage init(WebDriver driver) {
         return PageFactory.initElements(driver, AdminPage.class);
