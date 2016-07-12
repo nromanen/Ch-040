@@ -78,7 +78,7 @@ public class DatabaseConfig {
         databaseTester.onSetup();
     }
 
-    public void selectAnotherDataset(String xml) {
+    public void selectDataset(String xml) {
         try {
             dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream(xml));
             DatabaseOperation.CLEAN_INSERT.execute(getConnection(), dataSet);
