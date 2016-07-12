@@ -21,14 +21,14 @@ import java.util.Properties;
 /**
  * Created by Alex on 07-Jul-16.
  */
-public class DatabaseConfig {
+public class DataSetUtils {
 
     private String jdbcDriver;
     private String jdbcUrl;
     private String user;
     private String password;
-    public static String fullDataset;
-    public static String smallDataset;
+    public static String fullDataSet;
+    public static String smallDataSet;
 
     private IDatabaseTester databaseTester;
     private IDataSet dataSet;
@@ -37,7 +37,7 @@ public class DatabaseConfig {
     public void getProperties() {
         Properties prop = new Properties();
         try {
-            InputStream input = DatabaseConfig.class.getResourceAsStream("/db.properties");
+            InputStream input = DataSetUtils.class.getResourceAsStream("/db.properties");
             prop.load(input);
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,8 +46,8 @@ public class DatabaseConfig {
         jdbcUrl = prop.getProperty("JDBC_URL");
         user = prop.getProperty("USER");
         password = prop.getProperty("PASSWORD");
-        fullDataset = prop.getProperty("FULL_DATASET_PATH");
-        smallDataset = prop.getProperty("SMALL_DATASET_PATH");
+        fullDataSet = prop.getProperty("FULL_DATASET_PATH");
+        smallDataSet = prop.getProperty("SMALL_DATASET_PATH");
     }
 
     public void databaseTearDown() {
@@ -68,7 +68,7 @@ public class DatabaseConfig {
     }
     private IDataSet readDataSet() throws Exception {
         getProperties();
-        return new FlatXmlDataSetBuilder().build(new FileInputStream(smallDataset));
+        return new FlatXmlDataSetBuilder().build(new FileInputStream(smallDataSet));
     }
 
     private void cleanlyInsert(IDataSet dataSet) throws Exception {
@@ -78,7 +78,7 @@ public class DatabaseConfig {
         databaseTester.onSetup();
     }
 
-    public void selectDataset(String xml) {
+    public void selectDataSet(String xml) {
         try {
             dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream(xml));
             DatabaseOperation.CLEAN_INSERT.execute(getConnection(), dataSet);
