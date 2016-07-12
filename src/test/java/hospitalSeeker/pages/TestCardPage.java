@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class TestCardPage extends BaseTest {
     PatientsPage patientsPage;
@@ -22,8 +23,6 @@ public class TestCardPage extends BaseTest {
         cardPage = CardPage.init(browser.getDriver());
         newRecordPage = NewRecordPage.init(browser.getDriver());
         loginPage = LoginPage.init(browser.getDriver());
-        browser.goTo(HOME_URL);
-        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
     }
 
     @Test
@@ -45,7 +44,7 @@ public class TestCardPage extends BaseTest {
 
     @Test
     public void testDoctorCanEditOwnRecord() {
-        browser.goTo(HOME_URL);
+        browser.goTo(LOGIN_URL);
         loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         header.patientsButton.click();
         patientsPage.patientCharlesDarvin.click();
@@ -55,40 +54,20 @@ public class TestCardPage extends BaseTest {
         cardPage.editButton.click();
         newRecordPage.clearAllFields();
         newRecordPage.createNewRecord("NEW complaint", "NEW result", "NEW prescription");
-//        assertEquals();
+        assertTrue(browser.containsText("NEW complaint"), "something gone wrong");
     }
 
     @Test
     public void testDoctorCanCreateNewRecord() {
-        browser.goTo(HOME_URL);
-        //dropdownLogin.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
-        browser.goTo(PATIENTS_LIST_URL);
-        patientsPage.tutu.click();
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientCharlesDarvin.click();
         cardPage.newRecordButton.click();
-
-        newRecordPage.complaintArea.click();
-        newRecordPage.complaintArea.sendKeys("11kkkkkk11");
-
-        newRecordPage.resultArea.click();
-        newRecordPage.resultArea.sendKeys("12llll12");
-
-        newRecordPage.prescriptionArea.click();
-        newRecordPage.prescriptionArea.sendKeys("13jjjjj13");
-
-        newRecordPage.submitButton.click();
+        newRecordPage.createNewRecord("complaint", "result", "prescription");
+        assertTrue(browser.containsText(cardPage.getDate()), "something gone wrong");
     }
-    
-    /* Test min text size in new Record
-     * go to home url
-     * logging to site
-     * go to patients url
-     * click to patient
-     * click to new Record button
-     * click complaint area, result area, prescription area
-     * type short text to 5 chars in each area
-     * press submit button
-     * check error message
-     */
+
 
     @Test
     public void testEmptyTextAreasInCardPage() {
