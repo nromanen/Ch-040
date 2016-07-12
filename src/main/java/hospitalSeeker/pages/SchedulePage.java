@@ -128,6 +128,9 @@ public class SchedulePage {
     @FindBy(id = "TheReasonForVisit")
     public WebElement reasonForVisitField;
 
+    @FindBy(className = "back-to-top")
+    public WebElement backToTopButton;
+
     @FindBy(xpath = "//button[contains(@class, 'btn btn-default') and text()='Confirm']")
     public WebElement appointmentConfirm;
 
@@ -168,6 +171,7 @@ public class SchedulePage {
         browser.selectDropdown(timePeriodHoursStart, WORK_HOURS_10);
         browser.selectDropdown(timePeriodHoursEnd, WORK_HOURS_23);
         saveDetailedChanges.click();
+        backToTopButton.click();
         saveDoctorSchedule.click();
     }
 

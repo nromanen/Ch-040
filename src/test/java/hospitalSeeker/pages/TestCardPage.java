@@ -5,7 +5,6 @@ import hospitalSeeker.templates.Header;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -43,7 +42,17 @@ public class TestCardPage extends BaseTest {
     }
 
     @Test
-    public void testDoctorCanEditOwnRecord() {
+    public void testDoctorCanEditOwnRecordAfterDay() {
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientCharlesDarvin.click();
+        if (browser.getDate().after(cardPage.dateParser()))
+            assertFalse(browser.isElementPresent(cardPage.editButton)); // TODO: 12.07.2016 parser doesn't work!!
+    }
+
+    @Test
+    public void testDoctorCanEditOwnRecordOnSameDay() {
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         header.patientsButton.click();
@@ -65,86 +74,19 @@ public class TestCardPage extends BaseTest {
         patientsPage.patientCharlesDarvin.click();
         cardPage.newRecordButton.click();
         newRecordPage.createNewRecord("complaint", "result", "prescription");
-        assertTrue(browser.containsText(cardPage.getDate()), "something gone wrong");
+        assertTrue(browser.containsText(browser.getStringDate()), "something gone wrong");
     }
 
 
     @Test
     public void testEmptyTextAreasInCardPage() {
-        browser.goTo(HOME_URL);
-        //dropdownLogin.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
-        browser.goTo(PATIENTS_LIST_URL);
-        patientsPage.tutu.click();
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientCharlesDarvin.click();
         cardPage.newRecordButton.click();
-
-        newRecordPage.complaintArea.click();
-        newRecordPage.complaintArea.sendKeys("111");
-
-        newRecordPage.resultArea.click();
-        newRecordPage.resultArea.sendKeys("111");
-
-        newRecordPage.prescriptionArea.click();
-        newRecordPage.prescriptionArea.sendKeys("111");
-
-        newRecordPage.submitButton.click();
-        //Boolean isPresent = newRecordPage.errorString.isDisplayed();
+        newRecordPage.createNewRecord("comp", "res", "pres");
+        assertTrue(browser.containsText("min size"), "something gone wrong");
     }
-   
-    /* Check elements in page
-     * go to home url
-     * logging to site
-     * go to patients url
-     * check elements
-     */
 
-    @Test
-    public void checkElementsInPatientsPage() {
-        browser.goTo(HOME_URL);
-        //dropdownLogin.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
-        browser.goTo(PATIENTS_LIST_URL);
-        //Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
-        //Boolean isPresent2 = patientsPage.tutu.isDisplayed();
-        //Boolean isPresent4 = patientsPage.nadja_cvmailru.isDisplayed();
-        //Boolean isPresent5 = patientsPage.olegolegovich1996gmailcom.isDisplayed();
-        //Boolean isPresent6 = patientsPage.archermailru.isDisplayed();
-        //Boolean isPresent7 = patientsPage.nadja_cv8mailru.isDisplayed();
-
-    }
-    
-    /* Editing Record by Doctor after 00:00
-     * go to home url
-     * logging to site
-     * go to patients url
-     * click to patient
-     * click to record
-     * click to edit button
-     * click complaint area, result area, prescription area
-     * type some text in each area
-     * press submit button
-     * check error message
-     */
-
-    @Test()
-    public void testThatDoctorCantEditRecordAfter00() {
-        browser.goTo(HOME_URL);
-        //dropdownLogin.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
-        browser.goTo(PATIENTS_LIST_URL);
-
-        patientsPage.tutu.click();
-        cardPage.dateRecordButton.click();
-        cardPage.editButton.click();
-
-        newRecordPage.complaintArea.click();
-        newRecordPage.complaintArea.sendKeys("Well Done");
-
-        newRecordPage.resultArea.click();
-        newRecordPage.resultArea.sendKeys("Very Good");
-
-        newRecordPage.prescriptionArea.click();
-        newRecordPage.prescriptionArea.sendKeys("Almost Ok");
-
-        newRecordPage.submitButton.click();
-        //Boolean isPresent10 = (newRecordPage.editTimeError).isDisplayed();
-
-    }
 }
