@@ -17,7 +17,7 @@ public class BrowserInitialization {
     public static WebDriver initialize() {
         Properties properties = new Properties();
         try {
-            InputStream inputStream = BrowserInitialization.class.getResourceAsStream("/browser.properties"); // TODO: 07.07.2016 change to app when merge to master
+            InputStream inputStream = BrowserInitialization.class.getResourceAsStream("/app.properties");
             properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();

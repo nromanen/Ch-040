@@ -1,27 +1,45 @@
 package hospitalSeeker.pages;
 
-//import hospitalSeeker.header.DropdownLogin;
 import hospitalSeeker.*;
-import org.openqa.selenium.support.PageFactory;
+import hospitalSeeker.templates.Header;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertFalse;
 
 public class TestCardPage extends BaseTest {
     PatientsPage patientsPage;
     CardPage cardPage;
     NewRecordPage newRecordPage;
     LoginPage loginPage;
-    //DropdownLogin dropdownLogin;
+    Header header;
 
     @BeforeMethod
     public void beforeMethod() {
-        patientsPage = PageFactory.initElements(browser.getDriver(), PatientsPage.class);
-        cardPage = PageFactory.initElements(browser.getDriver(), CardPage.class);
-        newRecordPage = PageFactory.initElements(browser.getDriver(), NewRecordPage.class);
-        loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
-        //dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
+        patientsPage = PatientsPage.init(browser.getDriver());
+        header = Header.init(browser.getDriver());
+        cardPage = CardPage.init(browser.getDriver());
+        newRecordPage = NewRecordPage.init(browser.getDriver());
+        loginPage = LoginPage.init(browser.getDriver());
     }
-    
+
+    @Test
+    public void testDoctorCanEditAnotherDoctorsRecord() {
+        dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_LHC_LOGIN, DOCTOR_LHC_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientCharlesDarvin.click();
+        cardPage.newRecordButton.click();
+        newRecordPage.createNewRecord("complaint", "result", "prescription");
+        header.logout();
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientCharlesDarvin.click();
+        assertFalse(browser.isElementPresent(cardPage.editButton));
+    }
+
  /* Editing Record by Doctor
   * go to home url
   * logging to site
@@ -33,38 +51,38 @@ public class TestCardPage extends BaseTest {
   * type some text in each area
   * press submit button
   */
-    
-   @Test 
+
+   @Test
    public void testIfDoctorCanEditOwnRecord(){
     	 browser.goTo(HOME_URL);
-    	 //dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+    	 //dropdownLogin.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
     	 browser.goTo(PATIENTS_LIST_URL);
-    	 
+
     	 patientsPage.tutu.click();
     	 cardPage.dateRecordButton.click();
     	 cardPage.editButton.click();
-    	 
+
     	 newRecordPage.complaintArea.click();
-    	 String compArea = new String(newRecordPage.complaintArea.getAttribute("value"));
+    	 String compArea = newRecordPage.complaintArea.getAttribute("value");
     	 newRecordPage.complaintArea.sendKeys("Well Done");
     	 newRecordPage.complaintArea.clear();
     	 newRecordPage.complaintArea.sendKeys(compArea);
-    	 
+
     	 newRecordPage.resultArea.click();
-    	 String resArea = new String(newRecordPage.resultArea.getAttribute("value"));
+    	 String resArea = newRecordPage.resultArea.getAttribute("value");
     	 newRecordPage.resultArea.sendKeys("Very Good");
     	 newRecordPage.resultArea.clear();
     	 newRecordPage.resultArea.sendKeys(resArea);
-    	 
+
     	 newRecordPage.prescriptionArea.click();
-    	 String preArea = new String(newRecordPage.prescriptionArea.getAttribute("value"));
+    	 String preArea = newRecordPage.prescriptionArea.getAttribute("value");
     	 newRecordPage.prescriptionArea.sendKeys("Almost Ok");
     	 newRecordPage.prescriptionArea.clear();
     	 newRecordPage.prescriptionArea.sendKeys(preArea);
-    	 
+
     	 newRecordPage.submitButton.click();
    }
-   
+
    /* New Record by Doctor
     * go to home url
     * logging to site
@@ -79,7 +97,7 @@ public class TestCardPage extends BaseTest {
     @Test 
     public void testIfDoctorCanMakeNewRecord(){
     	browser.goTo(HOME_URL);
-    	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+    	//dropdownLogin.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
    	 	browser.goTo(PATIENTS_LIST_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
@@ -111,7 +129,7 @@ public class TestCardPage extends BaseTest {
     @Test 
    	public void testEmptyTextAreasInCardPage(){
     	browser.goTo(HOME_URL);
-    	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+    	//dropdownLogin.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
    	 	browser.goTo(PATIENTS_LIST_URL);
    	 	patientsPage.tutu.click();
    	 	cardPage.newRecordButton.click();
@@ -139,7 +157,7 @@ public class TestCardPage extends BaseTest {
     @Test 
     public void checkElementsInPatientsPage() {
     	browser.goTo(HOME_URL);
-    	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+    	//dropdownLogin.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         browser.goTo(PATIENTS_LIST_URL);
     	//Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
     	//Boolean isPresent2 = patientsPage.tutu.isDisplayed();
@@ -166,7 +184,7 @@ public class TestCardPage extends BaseTest {
     @Test ()
     public void testThatDoctorCantEditRecordAfter00 (){
     	 browser.goTo(HOME_URL);
-    	 //dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+    	 //dropdownLogin.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
    	 	 browser.goTo(PATIENTS_LIST_URL);
    	 
    	   	 patientsPage.tutu.click();
