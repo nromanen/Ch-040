@@ -11,15 +11,13 @@ public class TestCardPage extends BaseTest {
     CardPage cardPage;
     NewRecordPage newRecordPage;
     LoginPage loginPage;
-    //DropdownLogin dropdownLogin;
 
     @BeforeMethod
     public void beforeMethod() {
-        patientsPage = PageFactory.initElements(browser.getDriver(), PatientsPage.class);
-        cardPage = PageFactory.initElements(browser.getDriver(), CardPage.class);
-        newRecordPage = PageFactory.initElements(browser.getDriver(), NewRecordPage.class);
-        loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
-        //dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
+        patientsPage = PatientsPage.init(browser.getDriver());
+        cardPage = CardPage.init(browser.getDriver());
+        newRecordPage = NewRecordPage.init(browser.getDriver());
+		loginPage = LoginPage.init(browser.getDriver());
     }
     
  /* Editing Record by Doctor
