@@ -19,12 +19,9 @@
         <postrgesql.version>9.1-901-1.jdbc4</postrgesql.version>
         <slf4j.version>1.7.21</slf4j.version>
         <dbunit.version>2.5.2</dbunit.version>
-        <sql.driver>org.postgresql.Driver</sql.driver>
         <sql.driver.url.main>jdbc:postgresql://localhost:5432</sql.driver.url.main>
-        <sql.driver.url.hospital>jdbc:postgresql://localhost:5432/hospital</sql.driver.url.hospital>
-        <database.name>postgres</database.name>
-        <database.password>root</database.password>
         <browser.drivers.path>src/main/resources/drivers</browser.drivers.path>
+        <sql.tables.path>src/main/resources/sql/tables.sql</sql.tables.path>
     </properties>
 
     <dependencies>
@@ -73,6 +70,9 @@
                 <driver.name>webdriver.chrome.driver</driver.name>
                 <driver.path>${browser.drivers.path}/chromedriver.exe</driver.path>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
         <profile>
             <id>chromelinux</id>
@@ -98,25 +98,43 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sql-maven-plugin</artifactId>
-                    <version>${sql.plugin.version}</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>postgresql</groupId>
-                            <artifactId>postgresql</artifactId>
-                            <version>${postrgesql.version}</version>
-                        </dependency>
-                    </dependencies>
-                    <configuration>
-                        <driver>${sql.driver}</driver>
-                        <url>${sql.driver.url.hospital}</url>
-                        <username>${database.name}</username>
-                        <password>${database.password}</password>
-                    </configuration>
-                    <executions>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>src/main/resources/db.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>${sql.plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postrgesql.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <driver>${JDBC_DRIVER}</driver>
+                    <url>${JDBC_URL}</url>
+                    <username>${USER}</username>
+                    <password>${PASSWORD}</password>
+                </configuration>
+                <executions>
                     <execution>
                         <id>drop-db-before-test-if-any</id>
                         <phase>process-test-resources</phase>
@@ -143,47 +161,60 @@
                             <onError>continue</onError>
                         </configuration>
                     </execution>
-                        <execution>
-                            <id>drop-db-after-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>execute</goal>
-                            </goals>
-                            <configuration>
-                                <url>${sql.driver.url.main}</url>
-                                <autocommit>true</autocommit>
-                                <sqlCommand>drop database hospital</sqlCommand>
-                                <onError>continue</onError>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven.compiler.plugin}</version>
-                    <configuration>
-                        <source>${java.source.version}</source>
-                        <target>${java.target.version}</target>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven.surefire.plugin}</version>
-                    <configuration>
-                        <suiteXmlFiles>
-                            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-                        </suiteXmlFiles>
-                        <properties>
-                            <property>
-                                <name>listener</name>
-                                <value>hospitalSeeker.ScreenshotOnFailure</value>
-                            </property>
-                        </properties>
-                    </configuration>
-                </plugin>
-            </plugins>
+                    <execution>
+                        <id>create-tables</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <autocommit>true</autocommit>
+                            <srcFiles>
+                                <srcFile>${sql.tables.path}</srcFile>
+                            </srcFiles>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>drop-db-after-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <url>${sql.driver.url.main}</url>
+                            <autocommit>true</autocommit>
+                            <sqlCommand>drop database hospital</sqlCommand>
+                            <onError>continue</onError>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin}</version>
+                <configuration>
+                    <source>${java.source.version}</source>
+                    <target>${java.target.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin}</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>hospitalSeeker.ScreenshotOnFailure</value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>

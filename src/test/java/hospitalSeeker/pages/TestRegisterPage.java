@@ -33,9 +33,7 @@ public class TestRegisterPage extends BaseTest {
 //	 * click on button "Register"*/
 	@Test(priority = 1)
 	public void testRegister(){
-		registerPage.emailRegister.sendKeys("patient@mail1234.ru");
-		registerPage.passwordRegister.sendKeys("Patient77");
-		registerPage.confirmPasswordRegister.sendKeys("Patient77");
+		registerPage.registration("patient@mail1234.ru","Patient77","Patient77");
 		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.successfullRegistration));
 	}
@@ -57,9 +55,7 @@ public class TestRegisterPage extends BaseTest {
 	* click on button "Register" */
 	@Test(priority = 3)
 	public void testRegisterExistingEmail(){
-		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
-		registerPage.passwordRegister.sendKeys("Patient77");
-		registerPage.confirmPasswordRegister.sendKeys("Patient77");
+		registerPage.registration(PATIENT_LOGIN, "Patient77", "Patient77");
 		Assert.assertFalse(browser.isElementPresent(registerPage.warningExistingEmail));
 		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.warningExistingEmail));
@@ -74,9 +70,7 @@ public class TestRegisterPage extends BaseTest {
 	@Test(priority = 4)
 	public void testRegisterByLogin(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.warningByEmail));
-		registerPage.emailRegister.sendKeys("patient");
-		registerPage.passwordRegister.sendKeys("Patient77");
-		registerPage.confirmPasswordRegister.sendKeys("Patient77");
+		registerPage.registration("patient", "Patient77", "Patient77");
 		Assert.assertTrue(browser.isElementPresent(registerPage.warningByEmail));
 		registerPage.registerButton.click();
 	}
@@ -89,10 +83,8 @@ public class TestRegisterPage extends BaseTest {
 	* click on button "Register"*/
 	@Test(priority = 5)
 	public void testRegisterInsecurePassword(){
-		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
 		Assert.assertFalse(browser.isElementPresent(registerPage.insecurePassword));
-		registerPage.passwordRegister.sendKeys("77");
-		registerPage.confirmPasswordRegister.sendKeys("77");
+		registerPage.registration(PATIENT_LOGIN,"77","77");
 		Assert.assertTrue(browser.isElementPresent(registerPage.insecurePassword));
 		registerPage.registerButton.click();
 	}
@@ -106,9 +98,7 @@ public class TestRegisterPage extends BaseTest {
 	@Test(priority = 6)
 	public void testRegisterWeakPassword(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.weakPassword));
-		registerPage.emailRegister.sendKeys("patient@mail1234.ru");
-		registerPage.passwordRegister.sendKeys("patient77");
-		registerPage.confirmPasswordRegister.sendKeys("patient77");
+		registerPage.registration("patient@mail1234.ru","patient77","patient77");
 		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.weakPassword));
 	}
@@ -122,9 +112,7 @@ public class TestRegisterPage extends BaseTest {
 	@Test(priority = 7)
 	public void testRegisterWithoutEmail(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.warningByEmail));
-		registerPage.emailRegister.sendKeys("");
-		registerPage.passwordRegister.sendKeys("Patient77");
-		registerPage.confirmPasswordRegister.sendKeys("Patient77");
+		registerPage.registration("","Patient77","Patient77");
 		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.warningByEmail));
 	}
@@ -138,11 +126,8 @@ public class TestRegisterPage extends BaseTest {
 	@Test(priority = 8)
 	public void testRegisterWithoutConfirmPassword(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.confirmPasswordError));
-		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
-		registerPage.passwordRegister.sendKeys("Patient77");
-		registerPage.confirmPasswordRegister.sendKeys("");
+		registerPage.registration(PATIENT_LOGIN,"Patient77","");
 		registerPage.registerButton.click();
-		browser.sleep(2);
 		Assert.assertTrue(browser.isElementPresent(registerPage.confirmPasswordError));
 	}
 
@@ -155,9 +140,7 @@ public class TestRegisterPage extends BaseTest {
 	@Test(priority = 9)
 	public void testRegisterWithoutPassword(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.confirmPasswordError));
-		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
-		registerPage.passwordRegister.sendKeys("");
-		registerPage.confirmPasswordRegister.sendKeys("Patient77");
+		registerPage.registration(PATIENT_LOGIN,"","Patient77");
 		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.confirmPasswordError));
 	}
@@ -171,9 +154,7 @@ public class TestRegisterPage extends BaseTest {
 	@Test(priority = 10)
 	public void testRegisterIncorrectConfirmation(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.confirmPasswordError));
-		registerPage.emailRegister.sendKeys(PATIENT_LOGIN);
-		registerPage.passwordRegister.sendKeys("Patient77");
-		registerPage.confirmPasswordRegister.sendKeys("Patient777");
+		registerPage.registration(PATIENT_LOGIN,"Patient77","Patient777");
 		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.confirmPasswordError));
 	}

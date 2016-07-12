@@ -6,14 +6,14 @@ import org.testng.annotations.BeforeMethod;
 public class BaseTest {
 
     public BrowserWrapper browser;
-    public DatabaseConfig databaseConfig;
+    public DataSetUtils dataSetUtils;
 
     public BrowserWrapper getWrapper() {
         return browser;
     }
 
     public static final String HOME_URL = "https://localhost:8443/HospitalSeeker/";
-    public static final String DOCTOR_PAGE_URL = HOME_URL.concat("hospital/1/department/1/doctor/6/dashboard");
+    public static final String DOCTOR_PAGE_URL = HOME_URL.concat("doctor/6/manage");
     public static final String ADMIN_DASHBOARD_URL = HOME_URL.concat("admin/users?status=true");
     public static final String ADDING_NEW_HOSPITAL_URL = HOME_URL.concat("admin/map/new");
     public static final String ADDING_NEW_USER_URL = HOME_URL.concat("admin/newUser");
@@ -39,8 +39,8 @@ public class BaseTest {
 
     @BeforeMethod
     public void before() {
-        databaseConfig = new DatabaseConfig();
-        databaseConfig.databaseSetup();
+        dataSetUtils = new DataSetUtils();
+        dataSetUtils.importDataSet();
         browser = new BrowserWrapper(BrowserInitialization.initialize());
         browser.browserMaximize();
     }
@@ -48,6 +48,6 @@ public class BaseTest {
     @AfterMethod
     public void after() {
         browser.getDriver().quit();
-        databaseConfig.databaseTearDown();
+        dataSetUtils.databaseTearDown();
     }
 }

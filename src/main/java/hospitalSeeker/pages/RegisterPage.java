@@ -1,4 +1,4 @@
-package hospitalSeeker.pages;
+package hospitalSeeker;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,6 +45,12 @@ public class RegisterPage {
 
 	@FindBy(id = "password-error")
 	public WebElement withoutPasswordError;
+
+	public void registration(String email, String password, String confirmPassword){
+		emailRegister.sendKeys(email);
+		passwordRegister.sendKeys(password);
+		confirmPasswordRegister.sendKeys(confirmPassword);
+	}
 
 	public static RegisterPage init(WebDriver driver) {
 		return PageFactory.initElements(driver, RegisterPage.class);

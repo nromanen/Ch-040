@@ -93,7 +93,6 @@ public class TestLoginPage extends BaseTest {
 	@Test(priority = 5)
 	public void testLoginIncorrectPassword() {
 		loginPage.loggingIn(PATIENT_LOGIN,"11111");
-		browser.sleep(2);
 		Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
 	}
 }
