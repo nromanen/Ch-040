@@ -6,7 +6,7 @@ package hospitalSeeker.googleAPI;
 
 import hospitalSeeker.BaseTest;
 import hospitalSeeker.BrowserWrapper;
-import hospitalSeeker.LoginPage;
+import hospitalSeeker.pages.LoginPage;
 import hospitalSeeker.googleApi.NewHospital;
 import hospitalSeeker.googleApi.ValidateHospital;
 import org.openqa.selenium.By;

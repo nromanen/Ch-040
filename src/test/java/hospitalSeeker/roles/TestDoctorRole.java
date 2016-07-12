@@ -27,7 +27,7 @@ public class TestDoctorRole extends BaseRoleTest {
     @Test(dataProvider = "primaryAdminUrls")
     public void testDeniedUrlsForDoctors(String errorMessage, String url) {
         browser.goTo(url);
-        assertTrue(browser.containsText("not authorfized to access"), "access not denied to page: ".concat(errorMessage));
+        assertTrue(browser.containsText("not authorized to access"), "access not denied to page: ".concat(errorMessage));
     }
 
 }

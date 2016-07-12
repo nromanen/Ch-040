@@ -1,7 +1,6 @@
 package hospitalSeeker.pages;
 
 import hospitalSeeker.BaseTest;
-import hospitalSeeker.RegisterPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

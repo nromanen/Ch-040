@@ -1,4 +1,4 @@
-package hospitalSeeker;
+package hospitalSeeker.pages;
 
 import java.util.List;
 

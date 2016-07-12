@@ -1,9 +1,7 @@
 package hospitalSeeker.pages;
 
-import hospitalSeeker.AdminPage;
 import hospitalSeeker.BaseTest;
-import hospitalSeeker.Header;
-import hospitalSeeker.LoginPage;
+import hospitalSeeker.templates.Header;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

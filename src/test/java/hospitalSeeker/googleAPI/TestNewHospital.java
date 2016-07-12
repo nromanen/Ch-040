@@ -3,7 +3,7 @@ package hospitalSeeker.googleAPI; /**
  */
 
 import hospitalSeeker.BaseTest;
-import hospitalSeeker.LoginPage;
+import hospitalSeeker.pages.LoginPage;
 import hospitalSeeker.googleApi.NewHospital;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;

@@ -1,6 +1,7 @@
 package hospitalSeeker.pages;
 
 import hospitalSeeker.*;
+import hospitalSeeker.templates.Header;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
