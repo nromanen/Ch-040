@@ -23,7 +23,7 @@
         <classes>
             <class name="hospitalSeeker.googleAPI.TestFindHospitalPage"/>
             <class name="hospitalSeeker.googleAPI.TestNewHospitalPage"/>
-            <class name="hospitalSeeker.googleAPI.TestValidateHospital"/>
+            <class name="hospitalSeeker.googleAPI.TestGooglePoiPage"/>
         </classes>
     </test>
 </suite>

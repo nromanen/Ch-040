@@ -23,6 +23,7 @@ public class Header {
     public static final String PATIENTS_BUTTON_ID = "patientsButton";
     public static final String MANAGE_BUTTON_ID = "manageButton";
     public static final String CONFIGURE_TOKENS_BUTTON = "configTokensButton";
+    public static final String PROFILE_DROPDOWN_PATIENT = "profileButton";
 
     @FindBy(id = HOME_BUTTON_ID)
     public WebElement homeButton;
@@ -87,9 +88,17 @@ public class Header {
     @FindBy(id = "select_search")
     public WebElement searchField;
 
+    @FindBy(id = PROFILE_DROPDOWN_PATIENT)
+    public WebElement profilePatientDropdown;
+
     public void logout() {
         userDropdownButton.click();
         logoutButton.click();
+    }
+
+    public void goToProfile(){
+        userDropdownButton.click();
+        profilePatientDropdown.click();
     }
 
     public static Header init(WebDriver driver) {

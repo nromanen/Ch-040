@@ -161,7 +161,7 @@ public class BrowserWrapper {
         }
     }
 
-    public String getDataFromTable(int k, int l) {
+    public String getDataFromTable(int k,int l){
         int rowCount = getDriver().findElements(By.xpath("//table/tbody/tr")).size();
         int colCount = getDriver().findElements(By.xpath("//table/tbody/tr[1]/td")).size();
 
@@ -172,6 +172,10 @@ public class BrowserWrapper {
         String finalXpath = firstPart + k + secondPart + l + thirdPart;
         String tableData = getDriver().findElement(By.xpath(finalXpath)).getText();
         return tableData;
+    }
+
+    public void refreshPage(){
+        driver.navigate().refresh();
     }
 
     public void browserMaximize() {

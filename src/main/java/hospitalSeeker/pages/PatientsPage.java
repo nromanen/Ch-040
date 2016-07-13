@@ -10,29 +10,17 @@ public class PatientsPage {
     @FindBy(linkText = "patient.cd@hospitals.ua")
     public WebElement patientCharlesDarvin;
 
-    @FindBy(linkText = "tutu@ukr.net")
-    public WebElement tutu;
+    @FindBy(id = "usr")
+    public WebElement searchPatient;
 
-    @FindBy(linkText = "doctor@gmail.Com")
-    public WebElement doctorgmailCom;
+    @FindBy(id = "searchButton")
+    public WebElement searchButton;
 
-    @FindBy(linkText = "nadja_cv@mail.ru")
-    public WebElement nadja_cvmailru;
+    @FindBy(linkText = "patient.cc@hospitals.ua")
+    public WebElement patientCc;
 
-    @FindBy(linkText = "iamapatient@pat.com")
-    public WebElement iamapatientpatcom;
-
-    @FindBy(linkText = "olegolegovich1996@gmail.com")
-    public WebElement olegolegovich1996gmailcom;
-
-    @FindBy(linkText = "archer@mail.ru")
-    public WebElement archermailru;
-
-    @FindBy(linkText = "nadja_cv8@mail.ru")
-    public WebElement nadja_cv8mailru;
-
-    @FindBy(linkText = "nadjacv51@mail.ru")
-    public WebElement nadjacv51mailru;
+    @FindBy(linkText = "New record")
+    public WebElement newRecord;
 
     public static PatientsPage init(WebDriver driver) {
         return PageFactory.initElements(driver, PatientsPage.class);

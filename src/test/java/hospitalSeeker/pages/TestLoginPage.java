@@ -31,68 +31,31 @@ public class TestLoginPage extends BaseTest {
         System.out.println(error);
     }
 
-    /*
-     * Correct log in
-     * go to login page
-     * input e-mail
-     * input password click on
-     * button "Log in"
-     */
-    @Test(priority = 1)
+    @Test
     public void testLogin() {
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
         Assert.assertTrue(browser.isElementPresent(header.appointmentsButton));
     }
 
-    /*
-     * Log in without e-mail
-     * go to login page
-     * field for e-mail keep empty
-     * input password
-     * click on button "Log in"
-     */
-    @Test(priority = 2)
+    @Test
     public void testLoginWithoutEmail() {
         loginPage.loggingIn("", PATIENT_PASSWORD);
         Assert.assertTrue(browser.isElementPresent(loginPage.loginWarning));
     }
 
-    /*
-     * Log in without password
-     * go to login page
-     * input e-mail
-     * field for password
-     * keep empty
-     * click on button "Log in"
-     */
-    @Test(priority = 3)
+    @Test
     public void testLoginWithoutPassword() {
         loginPage.loggingIn(PATIENT_LOGIN, "");
         Assert.assertTrue(browser.isElementPresent(loginPage.passwordWarning));
     }
 
-    /*
-     * Log in by unregistered e-mail
-     * go to login page
-     * input unregistered e-mail
-     * input password
-     * click on button "Log in"
-     */
-    @Test(priority = 4)
+    @Test
     public void testLoginIncorrectEmail() {
         loginPage.loggingIn("patient.cdd@hospitals.ua", PATIENT_PASSWORD);
         Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
     }
 
-    /**
-     * Log in by incorrect password
-     * go to login page
-     * input registered e-mail
-     * input incorrect password
-     * click on button "Log in"
-     */
-
-    @Test(priority = 5)
+    @Test
     public void testLoginIncorrectPassword() {
         loginPage.loggingIn(PATIENT_LOGIN, "11111");
         Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
