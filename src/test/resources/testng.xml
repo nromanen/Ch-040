@@ -21,8 +21,8 @@
     </test>
     <test name="hospitalSeeker.googleAPI">
         <classes>
-            <class name="hospitalSeeker.googleAPI.TestFindHospital"/>
-            <class name="hospitalSeeker.googleAPI.TestNewHospital"/>
+            <class name="hospitalSeeker.googleAPI.TestFindHospitalPage"/>
+            <class name="hospitalSeeker.googleAPI.TestNewHospitalPage"/>
             <class name="hospitalSeeker.googleAPI.TestValidateHospital"/>
         </classes>
     </test>

@@ -22,7 +22,7 @@ public class ScreenshotOnFailure extends TestListenerAdapter {
     public void onTestFailure(ITestResult result) {
         this.driver = ((BaseTest)result.getInstance()).getWrapper().getDriver();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat timeFormat = new SimpleDateFormat("HH-mm");
+        DateFormat timeFormat = new SimpleDateFormat("HH-mm-ss");
         String filePath = "target/surefire-reports/screenshots/" + dateFormat.format(new Date()) + "/";
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String fileName = result.getMethod().getMethodName() + "_Failure_" + timeFormat.format(new Date()) + ".png";

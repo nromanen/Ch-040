@@ -1,7 +1,6 @@
-package hospitalSeeker;
+package hospitalSeeker.pages;
 
-import java.util.List;
-
+import hospitalSeeker.BrowserWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,40 +8,42 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class AdminPage {
 
     @FindBy(id = "allUsers")
     public WebElement allUsersTable;
-    
-    @FindBy(id = "userPerPage" )
+
+    @FindBy(id = "userPerPage")
     public WebElement showUsers;
 
     @FindBy(id = "pref-roleby")
     public WebElement role;
 
-    @FindBy (id = "searchBy")
+    @FindBy(id = "searchBy")
     public WebElement searchBy;
 
-    @FindBy (id = "search")
+    @FindBy(id = "search")
     public WebElement search;
-    
-    @FindBy (id = "searchButton")
+
+    @FindBy(id = "searchButton")
     public WebElement searchButton;
 
-    @FindBy (id = "clearButton")
+    @FindBy(id = "clearButton")
     public WebElement clearButton;
 
-    @FindBy (linkText = "Enabled")
+    @FindBy(linkText = "Enabled")
     public WebElement enabled;
-    
-    @FindBy (linkText = "Disabled")
+
+    @FindBy(linkText = "Disabled")
     public WebElement disabled;
-    
-    @FindBy (linkText = "All Users")
+
+    @FindBy(linkText = "All Users")
     public WebElement allUsers;
 
 
-    @FindBy (id = "viewUser")
+    @FindBy(id = "viewUser")
     public WebElement actionsViewUser;
 
     @FindBy(css = "h3.panel-title")
@@ -51,11 +52,11 @@ public class AdminPage {
     @FindBy(css = "input.btn.btn-sm")
     public WebElement viewUserAlertEnabledButton;
 
-    @FindBy (linkText = "Close")
+    @FindBy(linkText = "Close")
     public WebElement viewUserCancelButton;
 
-    
-    @FindBy (id = "ediUser")
+
+    @FindBy(id = "ediUser")
     public WebElement actionsEditUser;
 
     @FindBy(id = "enabledUserCheckbox")
@@ -76,31 +77,31 @@ public class AdminPage {
     @FindBy(css = "input.btn.btn-primary")
     public WebElement editEditUserButton;
 
-    
-    @FindBy (id = "deleteUser")
+
+    @FindBy(id = "deleteUser")
     public WebElement actionsDeleteUser;
 
-    @FindBy (id = "deleteButton")
+    @FindBy(id = "deleteButton")
     public WebElement deleteUserAlertDeleteButton;
 
 
-    @FindBy (id = "email")
+    @FindBy(id = "email")
     public WebElement sortEmailColumn;
 
-    @FindBy (id = "detail.firstName")
+    @FindBy(id = "detail.firstName")
     public WebElement sortFirstNameColumn;
-    
-    @FindBy (id = "detail.lastName")
+
+    @FindBy(id = "detail.lastName")
     public WebElement sortLastNameColumn;
 
-    @FindBy (id = "roles.type")
+    @FindBy(id = "roles.type")
     public WebElement sortRoleColumn;
 
 
-    @FindBy (id = "nextPage")
+    @FindBy(id = "nextPage")
     public WebElement nextPageButton;
 
-    @FindBy (id = "lastPage")
+    @FindBy(id = "lastPage")
     public WebElement lastPageButton;
 
 
@@ -110,8 +111,8 @@ public class AdminPage {
     @FindAll(@FindBy(xpath = "/html/body/section/div[1]/div/table/tbody/tr"))
     public List<WebElement> allRows;
 
-    public void disableUser(String email, BrowserWrapper browser){
-        browser.selectDropdown(searchBy,"Email");
+    public void disableUser(String email, BrowserWrapper browser) {
+        browser.selectDropdown(searchBy, "Email");
         search.sendKeys(email);
         searchButton.click();
         browser.waitUntilElementIsPresent(By.id("allUsers"));

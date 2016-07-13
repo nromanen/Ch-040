@@ -1,4 +1,4 @@
-package hospitalSeeker;
+package hospitalSeeker.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -121,6 +121,9 @@ public class SchedulePage {
 
     @FindBy(id = "TheReasonForVisit")
     public WebElement reasonForVisitField;
+
+    @FindBy(className = "back-to-top")
+    public WebElement backToTopButton;
 
     @FindBy(xpath = "//button[contains(@class, 'btn btn-default') and text()='Confirm']")
     public WebElement appointmentConfirm;

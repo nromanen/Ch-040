@@ -16,7 +16,7 @@ public class BaseTest {
     public static final String DOCTOR_PAGE_URL = HOME_URL.concat("doctor/6/manage");
     public static final String ADMIN_DASHBOARD_URL = HOME_URL.concat("admin/users?status=true");
     public static final String ADDING_NEW_HOSPITAL_URL = HOME_URL.concat("admin/map/new");
-    public static final String ADDING_NEW_USER_URL = HOME_URL.concat("/admin/newUser");
+    public static final String ADDING_NEW_USER_URL = HOME_URL.concat("admin/newUser");
     public static final String HOSPITAL_LIST_URL = HOME_URL.concat("admin/map/listhospitals");
     public static final String HOSPITALS_URL = HOME_URL.concat("hospitals");
     public static final String EDIT_HOSPITALS_MANAGERS_URL = HOME_URL.concat("editHospitalsManagers");
@@ -32,8 +32,10 @@ public class BaseTest {
     public static final String ADMIN_PASSWORD = "1111";
     public static final String MANAGER_LOGIN = "manager.kh@hospitals.ua";
     public static final String MANAGER_PASSWORD = "1111";
-    public static final String DOCTOR_LOGIN = "doctor.gh@hospitals.ua";
-    public static final String DOCTOR_PASSWORD = "1111";
+    public static final String DOCTOR_GH_LOGIN = "doctor.gh@hospitals.ua";
+    public static final String DOCTOR_GH_PASSWORD = "1111";
+    public static final String DOCTOR_LHC_LOGIN = "doctor.lhc@hospitals.ua";
+    public static final String DOCTOR_LHC_PASSWORD = "1111";
     public static final String PATIENT_LOGIN = "patient.cd@hospitals.ua";
     public static final String PATIENT_PASSWORD = "1111";
     public static final String SECOND_PATIENT_LOGIN = "patient.in@hospitals.ua";

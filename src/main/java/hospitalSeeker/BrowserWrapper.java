@@ -1,7 +1,6 @@
 package hospitalSeeker;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -9,6 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +22,15 @@ public class BrowserWrapper {
 
     BrowserWrapper(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public String getStringDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(new Date());
+    }
+
+    public Date getDate() {
+        return new Date();
     }
 
     public WebDriver getDriver() {
@@ -43,7 +54,7 @@ public class BrowserWrapper {
             return false;
         }
     }
-    
+
     public boolean isElementPresent(WebElement webElement) {
         try {
             return webElement.isDisplayed();
@@ -149,7 +160,7 @@ public class BrowserWrapper {
         }
     }
 
-    public String getDataFromTable(int k,int l){
+    public String getDataFromTable(int k, int l) {
         int rowCount = getDriver().findElements(By.xpath("//table/tbody/tr")).size();
         int colCount = getDriver().findElements(By.xpath("//table/tbody/tr[1]/td")).size();
 
@@ -157,7 +168,7 @@ public class BrowserWrapper {
         String secondPart = "]/td[";
         String thirdPart = "]";
 
-        String finalXpath = firstPart+k+secondPart+l+thirdPart;
+        String finalXpath = firstPart + k + secondPart + l + thirdPart;
         String tableData = getDriver().findElement(By.xpath(finalXpath)).getText();
         return tableData;
     }
