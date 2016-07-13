@@ -104,14 +104,8 @@ public class SchedulePage {
     @FindBy(className = "dhx_scale_holder_now ")
     public WebElement scheduleBody;
 
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='6']")
-    public WebElement hours0600;
-
     @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='21']")
     public WebElement hours2100;
-
-    @FindBy(className = "back-to-top")
-    public WebElement backToTopButton;
 
     @FindBy(id = "workWeekSize")
     public WebElement workWeekSize;
@@ -160,8 +154,6 @@ public class SchedulePage {
         browser.selectDropdown(workDayEndAt, WORK_HOURS_24);
         saveDoctorSchedule.click();
         switchViewToDay.click();
-//        browser.doubleClickOnCoordinates(hours0600, columnWidth, columnHeight);
-//        browser.moveToElement(hours0600, columnWidth, columnHeight);
         browser.doubleClick(scheduleBody);
         browser.waitUntilElementVisible(saveChanges);
         saveChanges.click();
@@ -177,9 +169,7 @@ public class SchedulePage {
     public void createAppointment(BrowserWrapper browser) {
         browser.waitUntilElementVisible(switchViewToDay);
         switchViewToDay.click();
-//        browser.doubleClickOnCoordinates(hours2100, columnWidth, columnHeight);
-        browser.moveToElement(hours2100);
-        browser.doubleClick(scheduleBody);
+        browser.doubleClickOnCoordinates(hours2100, columnWidth, columnHeight);
         browser.waitUntilElementVisible(appointmentConfirm);
         reasonForVisitField.sendKeys(APPOINTMENT_REASON);
         browser.sleep(1);
