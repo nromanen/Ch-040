@@ -7,6 +7,18 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PatientsPage {
 
+	@FindBy(id = "usr")
+	public WebElement searchPatient;
+
+	@FindBy(id = "searchButton")
+	public WebElement searchButton;
+
+	@FindBy(linkText = "patient.cc@hospitals.ua")
+	public WebElement patientCc;
+
+	@FindBy(linkText = "New record")
+	public WebElement newRecord;
+
 
 	@FindBy (linkText="patient2@i.ua")
 	public WebElement patient2iua;

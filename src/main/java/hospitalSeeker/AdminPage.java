@@ -97,10 +97,7 @@ public class AdminPage {
     public WebElement sortRoleColumn;
 
 
-    @FindBy (id = "nextPage")
-    public WebElement nextPageButton;
-
-    @FindBy (id = "lastPage")
+    @FindBy (css = "a.page-link[aria-label=Last]")
     public WebElement lastPageButton;
 
 

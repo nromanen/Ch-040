@@ -15,6 +15,7 @@ public class TestAdvancedRegister extends BaseTest{
     LoginPage loginPage;
     RegisterPage registerPage;
     AdvancedRegister advancedRegister;
+    PatientsPage patientsPage;
 
     @BeforeMethod
     public void beforeMethod() {
@@ -24,14 +25,28 @@ public class TestAdvancedRegister extends BaseTest{
         advancedRegister = AdvancedRegister.init(browser.getDriver());
     }
 
+    public void searchPatient(String email){
+        patientsPage.searchPatient.sendKeys(email);
+        patientsPage.searchButton.click();
+        patientsPage.patientCc.click();
+    }
+
     @Test
-    public void goToProfile(){
+    public void testAdvancedRegister(){
         browser.goTo(REGISTER_URL);
         registerPage.registration("patient.cc@hospitals.ua","Per1111","Per1111");
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn("patient.cc@hospitals.ua","Per1111");
         header.goToProfile();
-
-
+        browser.waitUntilElementVisible(advancedRegister.detailForm);
+        advancedRegister.createProfile("Perekuta","Nadiia","1990-01-10","Che","095123456789",getWrapper());
+        advancedRegister.submitChanges.click();
+        advancedRegister.closeProfile.click();
+        header.logout();
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+        header.patientsButton.click();
+        searchPatient("patient.cc@hospitals.ua");
+        Assert.assertTrue(browser.isElementPresent(patientsPage.newRecord));
     }
 }

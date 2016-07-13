@@ -35,7 +35,6 @@ public class TestRegisterPage extends BaseTest {
 	@Test(priority = 1)
 	public void testRegister(){
 		registerPage.registration("patient@mail1234.ru","Patient77","Patient77");
-		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.successfullRegistration));
 	}
 
@@ -56,9 +55,8 @@ public class TestRegisterPage extends BaseTest {
 	* click on button "Register" */
 	@Test(priority = 3)
 	public void testRegisterExistingEmail(){
-		registerPage.registration(PATIENT_LOGIN, "Patient77", "Patient77");
 		Assert.assertFalse(browser.isElementPresent(registerPage.warningExistingEmail));
-		registerPage.registerButton.click();
+		registerPage.registration(PATIENT_LOGIN, "Patient77", "Patient77");
 		Assert.assertTrue(browser.isElementPresent(registerPage.warningExistingEmail));
 	}
 
@@ -73,7 +71,6 @@ public class TestRegisterPage extends BaseTest {
 		Assert.assertFalse(browser.isElementPresent(registerPage.warningByEmail));
 		registerPage.registration("patient", "Patient77", "Patient77");
 		Assert.assertTrue(browser.isElementPresent(registerPage.warningByEmail));
-		registerPage.registerButton.click();
 	}
 
 	/*Registration by password including less than any 6 symbols
@@ -87,7 +84,6 @@ public class TestRegisterPage extends BaseTest {
 		Assert.assertFalse(browser.isElementPresent(registerPage.insecurePassword));
 		registerPage.registration(PATIENT_LOGIN,"77","77");
 		Assert.assertTrue(browser.isElementPresent(registerPage.insecurePassword));
-		registerPage.registerButton.click();
 	}
 
 	/*Registration by password including no different case,symbols,numbers
@@ -100,7 +96,6 @@ public class TestRegisterPage extends BaseTest {
 	public void testRegisterWeakPassword(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.weakPassword));
 		registerPage.registration("patient@mail1234.ru","patient77","patient77");
-		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.weakPassword));
 	}
 
@@ -114,7 +109,6 @@ public class TestRegisterPage extends BaseTest {
 	public void testRegisterWithoutEmail(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.warningByEmail));
 		registerPage.registration("","Patient77","Patient77");
-		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.warningByEmail));
 	}
 
@@ -128,7 +122,6 @@ public class TestRegisterPage extends BaseTest {
 	public void testRegisterWithoutConfirmPassword(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.confirmPasswordError));
 		registerPage.registration(PATIENT_LOGIN,"Patient77","");
-		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.confirmPasswordError));
 	}
 
@@ -142,7 +135,6 @@ public class TestRegisterPage extends BaseTest {
 	public void testRegisterWithoutPassword(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.confirmPasswordError));
 		registerPage.registration(PATIENT_LOGIN,"","Patient77");
-		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.confirmPasswordError));
 	}
 
@@ -156,7 +148,6 @@ public class TestRegisterPage extends BaseTest {
 	public void testRegisterIncorrectConfirmation(){
 		Assert.assertFalse(browser.isElementPresent(registerPage.confirmPasswordError));
 		registerPage.registration(PATIENT_LOGIN,"Patient77","Patient777");
-		registerPage.registerButton.click();
 		Assert.assertTrue(browser.isElementPresent(registerPage.confirmPasswordError));
 	}
 

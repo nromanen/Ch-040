@@ -109,8 +109,9 @@ public class TestAdminPage extends BaseTest {
  	 * */
 	@Test(priority = 4)
 	public void testDisabledUsers(){
+		dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
 		adminPage.disabled.click();
-		Assert.assertEquals(adminPage.allRows.size(), 0);
+		Assert.assertEquals(adminPage.allRows.size(), 1);
 	}
 
 	/*Seeing information about user
@@ -182,27 +183,45 @@ public class TestAdminPage extends BaseTest {
 	}
 
 	@Test(priority = 9)
+	public void testBlockedAccount(){
+		header.logout();
+		dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+		browser.goTo(LOGIN_URL);
+		loginPage.loggingIn("patient.rr@hospitals.ua",PATIENT_PASSWORD);
+		Assert.assertTrue(browser.isElementPresent(adminPage.blockedAccount));
+	}
+
+	@Test(priority = 10)
+	public void testPagination(){
+		dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+		browser.refreshPage();
+		adminPage.lastPageButton.click();
+		Assert.assertEquals(adminPage.allRows.size(),10);
+	}
+
+	@Test(priority = 11)
 	public void testSortingEmail(){
 		adminPage.sortEmailColumn.click();
 		Assert.assertEquals(browser.getDataFromTable(1,2),"patient.in@hospitals.ua");
 	}
 
-	@Test(priority = 10)
+	@Test(priority = 12)
 	public void testSortingFirstName(){
 		adminPage.sortFirstNameColumn.click();
 		Assert.assertEquals(browser.getDataFromTable(1,3),"Charles");
 	}
 
-	@Test(priority = 11)
+	@Test(priority = 13)
 	public void testSortingLastName(){
 		adminPage.sortLastNameColumn.click();
 		Assert.assertEquals(browser.getDataFromTable(1,4),"Darvin");
 	}
 
-	@Test(priority = 12)
+	@Test(priority = 14)
 	public void testSortingRole(){
 		adminPage.sortRoleColumn.click();
 		Assert.assertEquals(browser.getDataFromTable(1,5),"PATIENT");
+
 	}
 }
 

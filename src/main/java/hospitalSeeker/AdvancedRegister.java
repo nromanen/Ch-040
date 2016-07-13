@@ -10,17 +10,20 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class AdvancedRegister {
 
+    @FindBy(id = "detailForm")
+    public WebElement detailForm;
+
     @FindBy(id = "firstName")
-    public WebElement firstName;
+    public WebElement firstNameProfile;
 
     @FindBy(id = "lastName")
-    public WebElement lastName;
+    public WebElement lastNameProfile;
 
     @FindBy(id = "image-uploaded")
     public WebElement imageUploader;
 
     @FindBy(id = "birthDate")
-    public WebElement birthDate;
+    public WebElement birthDateProfile;
 
     @FindBy(id = "gender")
     public WebElement gender;
@@ -34,11 +37,17 @@ public class AdvancedRegister {
     @FindBy(id = "submitChanges")
     public WebElement submitChanges;
 
-    @FindBy(css = "close")
-    public WebElement closeButton;
+    @FindBy(css = "button.close[data-dismiss=modal]")
+    public WebElement closeProfile;
 
-/*    @FindBy(id = "")
-    public WebElement ;*/
+    public void createProfile(String firstName,String lastName,String birthDate,String homeAddress,String phoneNumber, BrowserWrapper browser){
+        firstNameProfile.sendKeys(firstName);
+        lastNameProfile.sendKeys(lastName);
+        birthDateProfile.sendKeys(birthDate);
+        browser.selectDropdown(gender,"WOMAN");
+        address.sendKeys(homeAddress);
+        phone.sendKeys(phoneNumber);
+    }
 
     public static AdvancedRegister init(WebDriver driver) {
         return PageFactory.initElements(driver, AdvancedRegister.class);
