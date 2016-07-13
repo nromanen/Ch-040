@@ -35,7 +35,9 @@ public class TestGooglePoiPage extends BaseTest {
                 .concat(browser.checkIfElementNotPresent(googlePoiPage.tables))
                 .concat(browser.checkIfElementNotPresent(googlePoiPage.addValidateHospital))
                 .concat(browser.checkIfElementNotPresent(googlePoiPage.showOnMap));
-        System.out.println(error);
+        if (!(error.isEmpty())) {
+            throw new AssertionError(error);
+        }
     }
 
     @Test

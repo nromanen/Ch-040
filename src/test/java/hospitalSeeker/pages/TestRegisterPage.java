@@ -22,7 +22,9 @@ public class TestRegisterPage extends BaseTest {
                 .concat(browser.checkIfElementNotPresent(registerPage.confirmPasswordRegister))
                 .concat(browser.checkIfElementNotPresent(registerPage.registerButton))
                 .concat(browser.checkIfElementNotPresent(registerPage.loginButton));
-        System.out.println(error);
+        if (!(error.isEmpty())) {
+            throw new AssertionError(error);
+        }
     }
 
     @Test

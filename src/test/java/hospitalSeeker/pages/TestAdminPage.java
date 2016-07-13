@@ -61,7 +61,9 @@ public class TestAdminPage extends BaseTest {
                 .concat(browser.checkIfElementNotPresent(adminPage.sortEmailColumn))
                 .concat(browser.checkIfElementNotPresent(adminPage.sortFirstNameColumn))
                 .concat(browser.checkIfElementNotPresent(adminPage.sortRoleColumn));
-        System.out.println(error);
+        if (!(error.isEmpty())) {
+            throw new AssertionError(error);
+        }
     }
 
     @Test
