@@ -20,15 +20,11 @@ public class CardPage {
     @FindBy(linkText = "Edit")
     public WebElement editButton;
 
-    public Date dateParser() {
+    public Date dateParser() throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm dd-MM-yyyy");
-        String dateString = dateRecordButton.getAttribute("value").trim();
-        Date date = null;
-        try {
-            date = formatter.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        String dateString = dateRecordButton.getAttribute("text").trim();
+        Date date = formatter.parse(dateString);
+        System.out.println(date);
         return date;
     }
 

@@ -5,6 +5,8 @@ import hospitalSeeker.templates.Header;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.text.ParseException;
+
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -42,13 +44,13 @@ public class TestCardPage extends BaseTest {
     }
 
     @Test
-    public void testDoctorCanEditOwnRecordAfterDay() {
+    public void testDoctorCanEditOwnRecordAfterDay() throws ParseException {
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         header.patientsButton.click();
         patientsPage.patientCharlesDarvin.click();
         if (browser.getDate().after(cardPage.dateParser()))
-            assertFalse(browser.isElementPresent(cardPage.editButton)); // TODO: 12.07.2016 parser doesn't work!!
+            assertFalse(browser.isElementPresent(cardPage.editButton));
     }
 
     @Test
