@@ -1,11 +1,10 @@
 package hospitalSeeker.googleAPI;
+
 import hospitalSeeker.BaseTest;
 import hospitalSeeker.googleApi.FindHospitalPage;
 import hospitalSeeker.templates.Header;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static org.testng.Assert.assertTrue;
 
 public class TestFindHospitalPage extends BaseTest {
     public FindHospitalPage findHospitalPage;

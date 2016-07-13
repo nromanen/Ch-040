@@ -1,8 +1,8 @@
 package hospitalSeeker.googleAPI;
 
 import hospitalSeeker.BaseTest;
-import hospitalSeeker.pages.LoginPage;
 import hospitalSeeker.googleApi.NewHospitalPage;
+import hospitalSeeker.pages.LoginPage;
 import hospitalSeeker.templates.Header;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

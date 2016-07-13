@@ -1,12 +1,13 @@
 package hospitalSeeker.googleApi; /**
  * Created by oleg on 25.05.2016.
  */
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ValidateHospital{
+public class ValidateHospital {
     @FindBy(id = "googleMap")
     public WebElement googleApi;
 
@@ -22,7 +23,7 @@ public class ValidateHospital{
     @FindBy(partialLinkText = "Check Hospitals List")
     public WebElement checkButton;
 
-    @FindBy(css=".btn-default")
+    @FindBy(css = ".btn-default")
     public WebElement getGooglePoi;
 
     @FindBy(css = ".table")
@@ -31,16 +32,19 @@ public class ValidateHospital{
     @FindBy(css = "table")
     public WebElement tables;
 
-    public void checkGoogleApi(){
+    public void checkGoogleApi() {
         googleApi.isDisplayed();
     }
-    public void googlePoiButtonClick(){
+
+    public void googlePoiButtonClick() {
         getGooglePoi.click();
     }
-    public void addValidateHospitalClick(){
+
+    public void addValidateHospitalClick() {
         addValidateHospital.click();
     }
-    public void findValidateHospitalClick(){
+
+    public void findValidateHospitalClick() {
         showOnMap.click();
     }
 

@@ -1,4 +1,5 @@
 package hospitalSeeker.googleApi;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +13,7 @@ public class FindHospitalPage {
     @FindBy(id = "googleMap")
     public WebElement googleMap;
 
-    public void find(String city){
+    public void find(String city) {
         enterAddress.sendKeys(city);
     }
 

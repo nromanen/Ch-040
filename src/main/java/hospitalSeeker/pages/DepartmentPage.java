@@ -8,9 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-/**
- * Created by Alex on 6/3/2016.
- */
 public class DepartmentPage {
 
     @FindAll(@FindBy(xpath = ".//*[@class='heart img-responsive']"))

@@ -13,7 +13,7 @@ public class NewHospitalPage {
     public static final String testDescription = "Лікарня для тестів";
     public static final String testBuildingNumber = "246";
 
-    @FindBy(id ="address.country")
+    @FindBy(id = "address.country")
     public WebElement countryField;
 
     @FindBy(id = "address.country-error")
@@ -25,13 +25,13 @@ public class NewHospitalPage {
     @FindBy(id = "address.city-error")
     public WebElement errorCityField;
 
-    @FindBy(id ="address.street")
+    @FindBy(id = "address.street")
     public WebElement streetField;
 
-    @FindBy(id ="address.building")
+    @FindBy(id = "address.building")
     public WebElement buildingField;
 
-    @FindBy(id="addressGeo")
+    @FindBy(id = "addressGeo")
     public WebElement addressField;
 
     @FindBy(id = "name")
@@ -40,7 +40,7 @@ public class NewHospitalPage {
     @FindBy(id = "name-error")
     public WebElement errorNameField;
 
-    @FindBy(id="description")
+    @FindBy(id = "description")
     public WebElement descriptionField;
 
     @FindBy(id = "button-save")
@@ -58,22 +58,22 @@ public class NewHospitalPage {
     @FindBy(id = "longitude-error")
     public WebElement errorLongitudeField;
 
-    @FindBy(id="button-reset")
+    @FindBy(id = "button-reset")
     public WebElement resetButton;
 
-    @FindBy(id="image-uploaded")
+    @FindBy(id = "image-uploaded")
     public WebElement imagePathButton;
 
     @FindBy(id = "googleMap")
     public WebElement googleMap;
 
-    @FindBy(id="button-back")
+    @FindBy(id = "button-back")
     public WebElement backButton;
 
-    @FindBy(id="button-fill")
+    @FindBy(id = "button-fill")
     public WebElement fillButton;
 
-    @FindBy(id="button-find")
+    @FindBy(id = "button-find")
     public WebElement findButton;
 
     public void addNewHospital() {

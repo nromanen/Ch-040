@@ -28,24 +28,25 @@ public class BrowserInitialization {
         String driverPath = properties.getProperty("driverPath");
 
         switch (browserType) {
-            case "firefox" :
+            case "firefox":
 //                System.setProperty(driverType, driverPath);
                 return new FirefoxDriver();
-            case "chrome" :
+            case "chrome":
                 System.setProperty(driverType, driverPath);
                 return new ChromeDriver();
-            case "firefoxLinux" :
+            case "firefoxLinux":
                 System.setProperty(driverType, driverPath);
                 return new MarionetteDriver();
-            case "chromeLinux" :
+            case "chromeLinux":
                 System.setProperty(driverType, driverPath);
                 return new ChromeDriver();
-            case "internetExplorer" :
+            case "internetExplorer":
                 System.setProperty(driverType, driverPath);
                 return new InternetExplorerDriver();
             default:
                 System.out.println(browserType + " is invalid");
                 break;
-        } return null;
+        }
+        return null;
     }
 }
