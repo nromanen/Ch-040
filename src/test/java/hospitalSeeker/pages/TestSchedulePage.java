@@ -1,6 +1,7 @@
 package hospitalSeeker.pages;
 
 import hospitalSeeker.*;
+import hospitalSeeker.templates.Header;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -123,7 +124,7 @@ public class TestSchedulePage extends BaseTest {
     public void testIfDoctorCanAccessWorkSchedule() {
         browser.goTo(HOME_URL);
         header.loginButton.click();
-        loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         browser.goTo(DOCTOR_PAGE_URL);
         assertFalse(browser.isElementPresent(schedulePage.calendarHeader), "You can access work schedule!");
     }
@@ -201,7 +202,7 @@ public class TestSchedulePage extends BaseTest {
         schedulePage.createAppointment(getWrapper());
         header.logout();
         header.loginButton.click();
-        loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         header.workschedulerButton.click();
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
         assertTrue(browser.isElementPresent(schedulePage.eventBody), "Event body is not present!");
@@ -229,7 +230,7 @@ public class TestSchedulePage extends BaseTest {
         schedulePage.createAppointment(getWrapper());
         header.logout();
         header.loginButton.click();
-        loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         header.workschedulerButton.click();
         schedulePage.cancelAppointment(getWrapper());
         header.workschedulerButton.click();

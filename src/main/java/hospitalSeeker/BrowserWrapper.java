@@ -9,6 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -21,6 +24,15 @@ public class BrowserWrapper {
 
     BrowserWrapper(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public String getStringDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(new Date());
+    }
+
+    public Date getDate() {
+        return new Date();
     }
 
     public WebDriver getDriver() {

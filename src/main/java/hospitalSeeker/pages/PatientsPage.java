@@ -1,4 +1,4 @@
-package hospitalSeeker;
+package hospitalSeeker.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,9 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PatientsPage {
 
-
-	@FindBy (linkText="patient2@i.ua")
-	public WebElement patient2iua;
+	@FindBy (linkText="patient.cd@hospitals.ua")
+	public WebElement patientCharlesDarvin;
 	
 	@FindBy (linkText="tutu@ukr.net")
 	public WebElement tutu;

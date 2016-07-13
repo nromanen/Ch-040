@@ -1,9 +1,9 @@
 package hospitalSeeker.roles;
 
-import hospitalSeeker.AdminPage;
+import hospitalSeeker.pages.AdminPage;
 import hospitalSeeker.BaseTest;
-import hospitalSeeker.Header;
-import hospitalSeeker.LoginPage;
+import hospitalSeeker.templates.Header;
+import hospitalSeeker.pages.LoginPage;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;

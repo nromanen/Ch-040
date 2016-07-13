@@ -11,7 +11,7 @@ public class TestDoctorRole extends BaseRoleTest {
     public void beforeMethod() {
         super.beforeMethod();
         browser.goTo(LOGIN_URL);
-        loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
     }
 
     @Test
