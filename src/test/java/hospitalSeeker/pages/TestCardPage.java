@@ -17,13 +17,17 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import bsh.ParseException;
+
 public class TestCardPage extends BaseTest {
 	
     PatientsPage patientsPage;
     CardPage cardPage;
     NewRecordPage newRecordPage;
     LoginPage loginPage;
-    HeaderPage headerPage;
+    Header header;
+    BrowserWrapper browserWrapper;
+    RegisterPage registerPage;
 
     @BeforeMethod
     public void beforeMethod() {
@@ -31,101 +35,66 @@ public class TestCardPage extends BaseTest {
     		cardPage = CardPage.init(browser.getDriver());
     		newRecordPage = NewRecordPage.init(browser.getDriver());
     		loginPage = LoginPage.init(browser.getDriver());
-    		headerPage = HeaderPage.init(browser.getDriver());
+    		header = Header.init(browser.getDriver());
+    		registerPage = RegisterPage.init(browser.getDriver());
     }
-
-    @Test 
-   	public void testEmptyTextAreasInCardPage(){
-    	browser.goTo(LOGIN_URL);
-	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
-	    browser.goTo(PATIENTS_LIST_URL);
-	 	patientsPage.patientsf.click();
-   	cardPage.newRecordButton.click();
-   	 	
-   	newRecordPage.complaintArea.click();
-	 	newRecordPage.complaintArea.sendKeys("111");
-	 	
-	 	newRecordPage.resultArea.click();
-	 	newRecordPage.resultArea.sendKeys("111");
-	 	
-	 	newRecordPage.prescriptionArea.click();
-	 	newRecordPage.prescriptionArea.sendKeys("111");
-	 	
-	 	newRecordPage.submitButton.click();	
-	 	Assert.assertTrue(browser.isElementPresent(newRecordPage.cError));
-	 	Assert.assertTrue(browser.isElementPresent(newRecordPage.pError));
-	 	Assert.assertTrue(browser.isElementPresent(newRecordPage.rError));
-   		}
     
     @Test
     public void checkPatientsSearch(){
+    	dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
     	browser.goTo(LOGIN_URL);
 	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
-	    browser.goTo(PATIENTS_LIST_URL);
+	    header.patientsButton.click();
 	    
 	    patientsPage.searchField.click();
 	    patientsPage.searchField.sendKeys("patient.sf@hospitals.ua");
 	    patientsPage.submitButton.click();
 	    Assert.assertTrue(browser.isElementPresent(patientsPage.patientsf));
-	    
-	    patientsPage.searchField.click();
-	    patientsPage.searchField.sendKeys("patient.rr@hospitals.ua");
-	    patientsPage.submitButton.click();
-	    Assert.assertTrue(browser.isElementPresent(patientsPage.patientrr));
     }
     
-//    @Test
-//    public void testPatientsSortingByEmail (){
-//    	browser.goTo(LOGIN_URL);
-//	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
-//	    browser.goTo(PATIENTS_LIST_URL);
-//	    patientsPage.sortButtonByEmail.click();
-//	    String first_patient_after_sort =  getTableData(PATIENT_TABLE_XPATH_FOR_ROWS, PATIENT_TABLE_XPATH_FOR_COLUMNS, 0, 1);
-//	    Assert.assertEquals(first_patient_after_sort, "patient.cd@hospitals.ua"); 
-//    }
+    @Test
+    public void testPatientsSortingByEmail (){
+    	browser.goTo(LOGIN_URL);
+	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+	    header.patientsButton.click();
+	    patientsPage.sortButtonByEmail.click();
+	    String first_patient_after_sort = browser.getDataFromTable(1, 2) ;
+	    Assert.assertEquals(first_patient_after_sort, "patient.cd@hospitals.ua"); 
+    }
 //    
-//    @Test
-//    public void testPatientsSortingByFirstName (){
-//    	browser.goTo(LOGIN_URL);
-//	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
-//	    browser.goTo(PATIENTS_LIST_URL);
-//	    patientsPage.sortButtonByFirstName.click();
-//	    String first_patient_after_sort =  getTableData(PATIENT_TABLE_XPATH_FOR_ROWS, PATIENT_TABLE_XPATH_FOR_COLUMNS, 0, 2);
-//	    Assert.assertEquals(first_patient_after_sort, "Charles"); 
-//    }
+    @Test
+    public void testPatientsSortingByFirstName (){
+    	browser.goTo(LOGIN_URL);
+	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+	    header.patientsButton.click();
+	    patientsPage.sortButtonByFirstName.click();
+	    String first_patient_after_sort =  browser.getDataFromTable(1, 3);
+	    Assert.assertEquals(first_patient_after_sort, "Charles"); 
+    }
 //    
-//    @Test
-//    public void testPatientsSortingByLastName (){
-//    	browser.goTo(LOGIN_URL);
-//	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
-//	    browser.goTo(PATIENTS_LIST_URL);
-//	    patientsPage.sortButtonByLastName.click();
-//	    String first_patient_after_sort =  getTableData(PATIENT_TABLE_XPATH_FOR_ROWS, PATIENT_TABLE_XPATH_FOR_COLUMNS, 0, 3);
-//	    Assert.assertEquals(first_patient_after_sort, "Darvin"); 
-//    }
-    
-//    @Test
-//    public void testWorkNextPageButton (){
-//    	browser.goTo(LOGIN_URL);
-//	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
-//	    browser.goTo(PATIENTS_LIST_URL);
-//	    patientsPage.secondPage.click();
-//	    String url = browser.getDriver().getCurrentUrl();
-//	    Assert.assertEquals(url, "https://localhost:8443/HospitalSeeker/patients?page=2&order=false&sortBy=firstName");
-//    }
-    
-//    @Test
-//    public void testFullName (){
-//    	browser.goTo(LOGIN_URL);
-//    	loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
-//    	browser.goTo(PATIENTS_LIST_URL);
-//    /	String patient_first_name = getTableData(PATIENT_TABLE_XPATH_FOR_ROWS, PATIENT_TABLE_XPATH_FOR_COLUMNS, 0, 2);
-//    //	String patient_last_name = getTableData(PATIENT_TABLE_XPATH_FOR_ROWS, PATIENT_TABLE_XPATH_FOR_COLUMNS, 0, 3);
-//    	String f_name = patient_first_name + " " + patient_last_name;
-//    	patientsPage.patientsf.click();
-//    	String patient_full_name = cardPage.profileButton.getText();
-//    	Assert.assertEquals(patient_full_name, f_name.toUpperCase());
-//    	}
+    @Test
+    public void testPatientsSortingByLastName (){
+    	browser.goTo(LOGIN_URL);
+	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+	    header.patientsButton.click();
+	    patientsPage.sortButtonByLastName.click();
+	    String first_patient_after_sort =  browser.getDataFromTable(1, 4);
+	    Assert.assertEquals(first_patient_after_sort, "Darvin"); 
+    }
+     
+    @Test
+    public void testFullName (){
+    	dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+    	browser.goTo(LOGIN_URL);
+    	loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+    	header.patientsButton.click();
+    	String patient_first_name = browser.getDataFromTable(1, 3);
+    	String patient_last_name = browser.getDataFromTable(1, 4);
+    	String f_name = patient_first_name + " " + patient_last_name;
+    	patientsPage.patientsf.click();
+    	String patient_full_name = cardPage.profileButton.getText();
+    	Assert.assertEquals(patient_full_name, f_name.toUpperCase());
+    	}
     
 //      @Test // To do
 //      public void testSortingAppoinmentsByDate (){
@@ -140,9 +109,10 @@ public class TestCardPage extends BaseTest {
     
     @Test
     public void checkTextOfDoctorsRecords (){
+    	dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
     	browser.goTo(LOGIN_URL);
     	loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
-    	browser.goTo(PATIENTS_LIST_URL);
+    	header.patientsButton.click();
     	patientsPage.patientcd.click();
     	cardPage.newRecordButton.click();
     	
@@ -164,7 +134,7 @@ public class TestCardPage extends BaseTest {
 	 	
 	 	browser.goTo(LOGIN_URL);
 	 	loginPage.loggingIn(PATIENT_LOGIN,PATIENT_PASSWORD);
-	 	browser.goTo("https://localhost:8443/HospitalSeeker/card");
+	 	header.cardButton.click();
 	 	
 	 	cardPage.dateRecordButton.click();
 	 	
@@ -175,9 +145,10 @@ public class TestCardPage extends BaseTest {
     
     @Test
     public void testCurentDate (){
+    	dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
     	browser.goTo(LOGIN_URL);
 	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
-	    browser.goTo(PATIENTS_LIST_URL);
+		header.patientsButton.click();
 	    patientsPage.patientsf.click();
 	 	cardPage.newRecordButton.click();
 	 	String strDate = new SimpleDateFormat("HH:mm dd-MM-yyyy").format(new Date());
@@ -187,9 +158,10 @@ public class TestCardPage extends BaseTest {
     
   @Test 
   public void testComplaintAreaError(){
-  	browser.goTo(LOGIN_URL);
+	    dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+    	browser.goTo(LOGIN_URL);
  	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
- 	    browser.goTo(PATIENTS_LIST_URL);
+ 	    header.patientsButton.click();
  	 	patientsPage.patientcd.click();
  	 	cardPage.newRecordButton.click();
  	 	
@@ -202,9 +174,10 @@ public class TestCardPage extends BaseTest {
   
   @Test 
   public void testResultAreaError(){
+	    dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
   		browser.goTo(LOGIN_URL);
  	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
- 	    browser.goTo(PATIENTS_LIST_URL);
+ 	    header.patientsButton.click();
  	 	patientsPage.patientcd.click();
  	 	cardPage.newRecordButton.click();
  	 	
@@ -217,9 +190,10 @@ public class TestCardPage extends BaseTest {
   
   @Test 
   public void testPrescriptionAreaError(){
-  	browser.goTo(LOGIN_URL);
+	    dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+    	browser.goTo(LOGIN_URL);
  	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
- 	    browser.goTo(PATIENTS_LIST_URL);
+ 	    header.patientsButton.click();
  	 	patientsPage.patientcd.click();
  	 	cardPage.newRecordButton.click();
  	 	
@@ -229,5 +203,70 @@ public class TestCardPage extends BaseTest {
  	 	newRecordPage.submitButton.click();	
  	 	Assert.assertTrue(newRecordPage.pError.isDisplayed());
     }
-    }
+  
+  @Test
+  public void testDoctorCanEditAnotherDoctorsRecord() {
+      dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+      browser.goTo(LOGIN_URL);
+      loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+      header.patientsButton.click();
+      patientsPage.patientcd.click();
+      cardPage.newRecordButton.click();
+      newRecordPage.createNewRecord("complaint", "result", "prescription");
+      header.logout();
+      browser.goTo(LOGIN_URL);
+      loginPage.loggingIn(DOCTOR_LOGIN2, DOCTOR_PASSWORD2);
+      header.patientsButton.click();
+      patientsPage.patientcd.click();
+      Assert.assertFalse(browser.isElementPresent(cardPage.editButton));
+  }
 
+  @Test
+  public void testDoctorCanEditOwnRecordAfterDay() throws ParseException, java.text.ParseException {
+      browser.goTo(LOGIN_URL);
+      loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+      header.patientsButton.click();
+      patientsPage.patientcd.click();
+      if (browser.getDate().after(cardPage.dateParser()))
+      Assert.assertFalse(browser.isElementPresent(cardPage.editButton));
+  }
+
+  @Test
+  public void testDoctorCanEditOwnRecordOnSameDay() {
+      browser.goTo(LOGIN_URL);
+      loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+      header.patientsButton.click();
+      patientsPage.patientcd.click();
+      cardPage.newRecordButton.click();
+      newRecordPage.createNewRecord("complaint", "result", "prescription");
+      cardPage.dateRecordButton.click();
+      cardPage.editButton.click();
+      newRecordPage.clearAllFields();
+      newRecordPage.createNewRecord("NEW complaint", "NEW result", "NEW prescription");
+      Assert.assertTrue(browser.containsText("NEW complaint"), "something gone wrong");
+  }
+
+  @Test
+  public void testDoctorCanCreateNewRecord2() {
+      browser.goTo(LOGIN_URL);
+      loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+      header.patientsButton.click();
+      patientsPage.patientcd.click();
+      cardPage.newRecordButton.click();
+      newRecordPage.createNewRecord("complaint", "result", "prescription");
+      Assert.assertTrue(browser.containsText(browser.getStringDate()), "something gone wrong");
+  }
+
+
+  @Test
+  public void testEmptyTextAreasInCardPage2() {
+      browser.goTo(LOGIN_URL);
+      loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+      header.patientsButton.click();
+      patientsPage.patientcd.click();
+      cardPage.newRecordButton.click();
+      newRecordPage.createNewRecord("comp", "res", "pres");
+      Assert.assertTrue(browser.containsText("min size"), "something gone wrong");
+  }
+
+}

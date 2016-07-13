@@ -37,6 +37,23 @@ public class NewRecordPage {
 	@FindBy (id = "result-error")
 	public WebElement rError;
 
+	public void createNewRecord(String complaintText, String resultText, String prescriptionText) {
+        complaintArea.click();
+        complaintArea.sendKeys(complaintText);
+        resultArea.click();
+        resultArea.sendKeys(resultText);
+        prescriptionArea.click();
+        prescriptionArea.sendKeys(prescriptionText);
+        submitButton.click();
+    }
+
+    public void clearAllFields() {
+        complaintArea.clear();
+        resultArea.clear();
+        prescriptionArea.clear();
+        submitButton.click();
+    }
+    
 	public static NewRecordPage init(WebDriver driver) {
 		return PageFactory.initElements(driver, NewRecordPage.class);
 	}

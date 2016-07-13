@@ -34,6 +34,8 @@ public class BaseTest {
     public static final String MANAGER_PASSWORD = "1111";
     public static final String DOCTOR_LOGIN = "doctor.gh@hospitals.ua";
     public static final String DOCTOR_PASSWORD = "1111";
+    public static final String DOCTOR_LOGIN2 = "doctor.ms@hospitals.ua";
+    public static final String DOCTOR_PASSWORD2 = "1111";
     public static final String PATIENT_LOGIN = "patient.cd@hospitals.ua";
     public static final String PATIENT_PASSWORD = "1111";
 
