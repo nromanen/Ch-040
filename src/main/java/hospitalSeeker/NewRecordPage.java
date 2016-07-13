@@ -5,31 +5,35 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class NewRecordPage {
+public class CardPage {
+	@FindBy (css = "a.btn.btn-info")
+	public WebElement newRecordButton;
+	
+	@FindBy (css = "a.collapsed")
+	public WebElement dateRecordButton;
+	
+	@FindBy (linkText="Edit")
+	public WebElement editButton;
+	
+	@FindBy (xpath = "//div/div[1]/div[2]/h1/a")
+	public WebElement profileButton;
+	
+	@FindBy (css = ".//*[@id='headingOne']/h4/a > div???????????????????? ")
+	public WebElement record1;
+	
+	@FindBy (xpath = ".//*[@id='headingOne']/h4/a")
+	public WebElement record2;
+	
+	@FindBy (xpath = ".//*[@id='item-dm']/pre[1]")
+	public WebElement cArea;
+	
+	@FindBy (xpath = ".//*[@id='item-dm']/pre[2]")
+	public WebElement pArea;
+	
+	@FindBy (xpath = ".//*[@id='item-dm']/pre[3]")
+	public WebElement rArea;
 
-	@FindBy (id="complaint")
-	public WebElement complaintArea;
-	
-	@FindBy (id="result")
-	public WebElement resultArea;
-	
-	@FindBy (id="prescription")
-	public WebElement prescriptionArea;
-	
-	@FindBy (css = "button.btn.btn-danger")
-	public WebElement backButton;
-	
-	@FindBy (css = "button.btn.btn-default")
-	public WebElement submitButton;
-	
-	@FindBy (css = "p.error")
-	public WebElement errorString;
-	
-	@FindBy (css = "p.error")
-	public WebElement editTimeError;
-
-	public static NewRecordPage init(WebDriver driver) {
-		return PageFactory.initElements(driver, NewRecordPage.class);
+	public static CardPage init(WebDriver driver) {
+		return PageFactory.initElements(driver, CardPage.class);
 	}
-	
 }
