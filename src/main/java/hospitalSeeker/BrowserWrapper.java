@@ -1,6 +1,7 @@
 package hospitalSeeker;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -39,7 +40,9 @@ public class BrowserWrapper {
 
     public void goTo(String url) {
         driver.get(url);
-    }
+        if (driver.getClass().getName().equalsIgnoreCase("org.openqa.selenium.ie.InternetExplorerDriver") && isElementPresentById("overridelink")) {
+            driver.findElement(By.id("overridelink")).click();
+        }}
 
     public String getTitle() {
         return driver.getTitle();
@@ -56,10 +59,17 @@ public class BrowserWrapper {
     public boolean isElementPresent(WebElement webElement) {
         try {
             return webElement.isDisplayed();
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
+    }
 
+    public boolean isElementPresentById(String id) {
+        try {
+            return driver.findElement(By.id(id)).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public String checkIfElementNotPresent(WebElement element) {
@@ -74,6 +84,11 @@ public class BrowserWrapper {
     public void doubleClick(WebElement element) {
         Actions action = new Actions(driver);
         action.doubleClick(element).perform();
+    }
+
+    public void moveToElement(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
     }
 
     public void doubleClickOnCoordinates(WebElement element, int x, int y) {
@@ -129,7 +144,7 @@ public class BrowserWrapper {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
-    public void waitUntilUrlToBe(String url) {
+    public void waitUntilUrlAvaliable(String url) {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.urlToBe(url));
     }
 

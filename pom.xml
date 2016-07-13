@@ -90,6 +90,14 @@
                 <driver.path>${browser.drivers.path}/geckodriver</driver.path>
             </properties>
         </profile>
+        <profile>
+            <id>internetExplorer</id>
+            <properties>
+                <browser.name>internetExplorer</browser.name>
+                <driver.name>webdriver.ie.driver</driver.name>
+                <driver.path>${browser.drivers.path}/IEDriver.exe</driver.path>
+            </properties>
+        </profile>
     </profiles>
     <build>
         <resources>

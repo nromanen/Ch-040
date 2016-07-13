@@ -29,7 +29,6 @@ public class BrowserInitialization {
 
         switch (browserType) {
             case "firefox":
-//                System.setProperty(driverType, driverPath);
                 return new FirefoxDriver();
             case "chrome":
                 System.setProperty(driverType, driverPath);
