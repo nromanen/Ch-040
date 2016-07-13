@@ -1,5 +1,6 @@
 package hospitalSeeker;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -100,17 +101,17 @@ public class SchedulePage {
     @FindBy(css = "div.dhtmlx_popup_button.dhtmlx_ok_button")
     public WebElement confirmDeletingSchedule;
 
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='1']")
-    public WebElement hours0100;
+    @FindBy(className = "dhx_scale_holder_now ")
+    public WebElement scheduleBody;
 
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='17']")
-    public WebElement hours1700;
+    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='6']")
+    public WebElement hours0600;
 
     @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='21']")
     public WebElement hours2100;
 
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='22']")
-    public WebElement hours2200;
+    @FindBy(className = "back-to-top")
+    public WebElement backToTopButton;
 
     @FindBy(id = "workWeekSize")
     public WebElement workWeekSize;
@@ -159,7 +160,9 @@ public class SchedulePage {
         browser.selectDropdown(workDayEndAt, WORK_HOURS_24);
         saveDoctorSchedule.click();
         switchViewToDay.click();
-        browser.doubleClickOnCoordinates(hours1700, columnWidth, columnHeight);
+//        browser.doubleClickOnCoordinates(hours0600, columnWidth, columnHeight);
+//        browser.moveToElement(hours0600, columnWidth, columnHeight);
+        browser.doubleClick(scheduleBody);
         browser.waitUntilElementVisible(saveChanges);
         saveChanges.click();
         events.get(0).click();
@@ -167,13 +170,16 @@ public class SchedulePage {
         browser.selectDropdown(timePeriodHoursStart, WORK_HOURS_10);
         browser.selectDropdown(timePeriodHoursEnd, WORK_HOURS_23);
         saveDetailedChanges.click();
+        backToTop(browser);
         saveDoctorSchedule.click();
     }
 
     public void createAppointment(BrowserWrapper browser) {
         browser.waitUntilElementVisible(switchViewToDay);
         switchViewToDay.click();
-        browser.doubleClickOnCoordinates(hours2100, columnWidth, columnHeight);
+//        browser.doubleClickOnCoordinates(hours2100, columnWidth, columnHeight);
+        browser.moveToElement(hours2100);
+        browser.doubleClick(scheduleBody);
         browser.waitUntilElementVisible(appointmentConfirm);
         reasonForVisitField.sendKeys(APPOINTMENT_REASON);
         browser.sleep(1);
@@ -196,8 +202,13 @@ public class SchedulePage {
         eventDelete.click();
         browser.waitUntilElementVisible(confirmDeletingSchedule);
         confirmDeletingSchedule.click();
+        backToTop(browser);
         saveDoctorSchedule.click();
         browser.waitUntilElementVisible(calendarHeader);
+    }
+
+    public void backToTop(BrowserWrapper browser) {
+        ((JavascriptExecutor) browser.getDriver()).executeScript("scroll(0, -1000);");
     }
 
     public static SchedulePage init(WebDriver driver) {

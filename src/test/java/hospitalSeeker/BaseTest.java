@@ -36,6 +36,8 @@ public class BaseTest {
     public static final String DOCTOR_PASSWORD = "1111";
     public static final String PATIENT_LOGIN = "patient.cd@hospitals.ua";
     public static final String PATIENT_PASSWORD = "1111";
+    public static final String SECOND_PATIENT_LOGIN = "patient.in@hospitals.ua";
+    public static final String SECOND_PATIENT_PASSWORD = "1111";
 
     @BeforeMethod
     public void before() {

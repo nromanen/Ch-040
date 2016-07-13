@@ -2,6 +2,7 @@ package hospitalSeeker;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.MarionetteDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
@@ -28,8 +29,7 @@ public class BrowserInitialization {
 
         switch (browserType) {
             case "firefox" :
-                System.setProperty(driverType, driverPath);
-                return new MarionetteDriver();
+                return new FirefoxDriver();
             case "chrome" :
                 System.setProperty(driverType, driverPath);
                 return new ChromeDriver();

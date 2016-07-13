@@ -66,6 +66,11 @@ public class BrowserWrapper {
         action.doubleClick(element).perform();
     }
 
+    public void moveToElement(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
+    }
+
     public void doubleClickOnCoordinates(WebElement element, int x, int y) {
         Actions builder = new Actions(driver);
         builder.moveToElement(element, x, y).doubleClick().build().perform();

@@ -43,7 +43,8 @@ public class TestSchedulePage extends BaseTest {
         browser.goTo(HOME_URL);
         header.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
-        doctorPage.doctors.get(0).click();
+        doctorPage.selectDoctorAsManager();
+        schedulePage.saveDoctorSchedule.click();
         String error = browser.checkIfElementNotPresent(schedulePage.workDayEndAt)
                 .concat(browser.checkIfElementNotPresent(schedulePage.workDayBeginAt))
                 .concat(browser.checkIfElementNotPresent(schedulePage.workWeekSize))
@@ -85,6 +86,7 @@ public class TestSchedulePage extends BaseTest {
         schedulePage.eventEdit.click();
         schedulePage.editSchedule(schedulePage.MANAGER_EDIT_TEXT);
         schedulePage.saveChanges.click();
+        schedulePage.backToTop(getWrapper());
         schedulePage.saveDoctorSchedule.click();
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
         assertEquals(schedulePage.eventText.getText(), schedulePage.MANAGER_EDIT_TEXT, "Event text is different!");
@@ -235,5 +237,27 @@ public class TestSchedulePage extends BaseTest {
         header.workschedulerButton.click();
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
         assertFalse(browser.isElementPresent(schedulePage.eventBody), "Event body is present!");
+    }
+
+    @Test
+    public void createTwoAppointments() {
+        browser.goTo(HOME_URL);
+        header.loginButton.click();
+        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        doctorPage.selectDoctorAsManager();
+        schedulePage.createSchedule(getWrapper());
+        header.logout();
+        header.loginButton.click();
+        loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
+        selectDoctor();
+        schedulePage.createAppointment(getWrapper());
+        header.logout();
+        header.loginButton.click();
+        loginPage.loggingIn(SECOND_PATIENT_LOGIN, SECOND_PATIENT_PASSWORD);
+        selectDoctor();
+        browser.waitUntilElementVisible(schedulePage.switchViewToDay);
+        schedulePage.switchViewToDay.click();
+        browser.doubleClickOnCoordinates(schedulePage.hours2100, schedulePage.columnWidth, schedulePage.columnHeight);
+        assertFalse(browser.isElementPresent(schedulePage.appointmentConfirm), "You can create an appointment!");
     }
 }
