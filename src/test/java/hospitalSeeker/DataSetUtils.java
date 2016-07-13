@@ -18,9 +18,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-/**
- * Created by Alex on 07-Jul-16.
- */
 public class DataSetUtils {
 
     private String jdbcDriver;
@@ -66,6 +63,7 @@ public class DataSetUtils {
             e.printStackTrace();
         }
     }
+
     private IDataSet readDataSet() throws Exception {
         getProperties();
         return new FlatXmlDataSetBuilder().build(new FileInputStream(smallDataSet));
