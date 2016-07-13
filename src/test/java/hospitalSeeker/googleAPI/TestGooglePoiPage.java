@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-public class TestGetGooglePoiPage extends BaseTest {
+public class TestGooglePoiPage extends BaseTest {
 
     GooglePoiPage googlePoiPage;
     NewHospitalPage newHospitalPage;

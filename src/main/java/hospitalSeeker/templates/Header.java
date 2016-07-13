@@ -96,7 +96,7 @@ public class Header {
         logoutButton.click();
     }
 
-    public void goToProfile(){
+    public void goToProfile() {
         userDropdownButton.click();
         profilePatientDropdown.click();
     }

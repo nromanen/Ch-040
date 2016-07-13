@@ -19,46 +19,46 @@ public class PatientsPage {
     @FindBy(linkText = "New record")
     public WebElement newRecord;
 
-    @FindBy (linkText="patient.sf@hospitals.ua")
+    @FindBy(linkText = "patient.sf@hospitals.ua")
     public WebElement patientsf;
 
-    @FindBy (linkText="patient.rr@hospitals.ua")
+    @FindBy(linkText = "patient.rr@hospitals.ua")
     public WebElement patientrr;
 
-    @FindBy (linkText="patient.ml@hospitals.ua")
+    @FindBy(linkText = "patient.ml@hospitals.ua")
     public WebElement patientml;
 
-    @FindBy (linkText="patient.in@hospitals.ua")
+    @FindBy(linkText = "patient.in@hospitals.ua")
     public WebElement patientin;
 
-    @FindBy (linkText="patient.cd@hospitals.ua")
+    @FindBy(linkText = "patient.cd@hospitals.ua")
     public WebElement patientcd;
 
-    @FindBy (xpath = "//table/thead/tr/th[2]/div[2]/a/i")
+    @FindBy(xpath = "//table/thead/tr/th[2]/div[2]/a/i")
     public WebElement sortButtonByEmail;
 
-    @FindBy (xpath = "//table/thead/tr/th[3]/div[2]/a/i")
+    @FindBy(xpath = "//table/thead/tr/th[3]/div[2]/a/i")
     public WebElement sortButtonByFirstName;
 
-    @FindBy (xpath = "//table/thead/tr/th[4]/div[2]/a/i")
+    @FindBy(xpath = "//table/thead/tr/th[4]/div[2]/a/i")
     public WebElement sortButtonByLastName;
 
-    @FindBy (id = "usr")
+    @FindBy(id = "usr")
     public WebElement searchField;
 
-    @FindBy (css = "button.btn.btn-default")
+    @FindBy(css = "button.btn.btn-default")
     public WebElement submitButton;
 
-    @FindBy (css = "a.back-to-top")
+    @FindBy(css = "a.back-to-top")
     public WebElement backToTopButton;
 
-    @FindBy (xpath = "html/body/section/div/div/div[2]/div/div/ul/li[3]/a")
+    @FindBy(xpath = "html/body/section/div/div/div[2]/div/div/ul/li[3]/a")
     public WebElement secondPage;
 
-    @FindBy (xpath = ".//*[@id='bs-example-navbar-collapse-1']/ul/li[6]/a")
+    @FindBy(xpath = ".//*[@id='bs-example-navbar-collapse-1']/ul/li[6]/a")
     public WebElement doctorLink;
 
-    @FindBy (xpath = ".//*[@id='dropdawn']/li[2]/a")
+    @FindBy(xpath = ".//*[@id='dropdawn']/li[2]/a")
     public WebElement logoutButton;
 
     public static PatientsPage init(WebDriver driver) {

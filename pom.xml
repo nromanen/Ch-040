@@ -35,7 +35,6 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.dbunit/dbunit -->
         <dependency>
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
@@ -46,7 +45,6 @@
             <artifactId>postgresql</artifactId>
             <version>${postrgesql.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
@@ -59,8 +57,6 @@
             <id>firefox</id>
             <properties>
                 <browser.name>firefox</browser.name>
-                <driver.name>webdriver.gecko.driver</driver.name>
-                <driver.path>${browser.drivers.path}/geckodriver.exe</driver.path>
             </properties>
         </profile>
         <profile>
@@ -86,8 +82,6 @@
             <id>firefoxlinux</id>
             <properties>
                 <browser.name>firefox</browser.name>
-                <driver.name>webdriver.gecko.driver</driver.name>
-                <driver.path>${browser.drivers.path}/geckodriver</driver.path>
             </properties>
         </profile>
         <profile>

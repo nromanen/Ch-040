@@ -21,7 +21,7 @@ public class GooglePoiPage {
     @FindBy(partialLinkText = "Check Hospitals List")
     public WebElement checkButton;
 
-    @FindBy(css=".btn-default")
+    @FindBy(css = ".btn-default")
     public WebElement getGooglePoi;
 
     @FindBy(css = ".table")

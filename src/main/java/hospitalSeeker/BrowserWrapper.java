@@ -42,7 +42,8 @@ public class BrowserWrapper {
         driver.get(url);
         if (driver.getClass().getName().equalsIgnoreCase("org.openqa.selenium.ie.InternetExplorerDriver") && isElementPresentById("overridelink")) {
             driver.findElement(By.id("overridelink")).click();
-        }}
+        }
+    }
 
     public String getTitle() {
         return driver.getTitle();
@@ -161,7 +162,7 @@ public class BrowserWrapper {
         }
     }
 
-    public String getDataFromTable(int k,int l){
+    public String getDataFromTable(int k, int l) {
         int rowCount = getDriver().findElements(By.xpath("//table/tbody/tr")).size();
         int colCount = getDriver().findElements(By.xpath("//table/tbody/tr[1]/td")).size();
 
@@ -174,7 +175,7 @@ public class BrowserWrapper {
         return tableData;
     }
 
-    public void refreshPage(){
+    public void refreshPage() {
         driver.navigate().refresh();
     }
 

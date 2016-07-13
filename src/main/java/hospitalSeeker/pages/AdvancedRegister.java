@@ -6,9 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-/**
- * Created by Надежда on 12.07.2016.
- */
 public class AdvancedRegister {
 
     @FindBy(id = "detailForm")
@@ -41,11 +38,11 @@ public class AdvancedRegister {
     @FindBy(css = "button.close[data-dismiss=modal]")
     public WebElement closeProfile;
 
-    public void createProfile(String firstName,String lastName,String birthDate,String homeAddress,String phoneNumber, BrowserWrapper browser){
+    public void createProfile(String firstName, String lastName, String birthDate, String homeAddress, String phoneNumber, BrowserWrapper browser) {
         firstNameProfile.sendKeys(firstName);
         lastNameProfile.sendKeys(lastName);
         birthDateProfile.sendKeys(birthDate);
-        browser.selectDropdown(gender,"WOMAN");
+        browser.selectDropdown(gender, "WOMAN");
         address.sendKeys(homeAddress);
         phone.sendKeys(phoneNumber);
     }

@@ -1,4 +1,4 @@
-package hospitalSeeker;
+package hospitalSeeker.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,7 +37,7 @@ public class RegisterPage {
     @FindBy(id = "password-error")
     public WebElement insecurePassword;
 
-    @FindBy(css= "span.has-error.text-danger")
+    @FindBy(css = "span.has-error.text-danger")
     public WebElement weakPassword;
 
     @FindBy(id = "confirmPassword-error")
@@ -46,7 +46,7 @@ public class RegisterPage {
     @FindBy(id = "password-error")
     public WebElement withoutPasswordError;
 
-    public void registration(String email, String password, String confirmPassword){
+    public void registration(String email, String password, String confirmPassword) {
         emailRegister.sendKeys(email);
         passwordRegister.sendKeys(password);
         confirmPasswordRegister.sendKeys(confirmPassword);
