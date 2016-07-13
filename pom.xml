@@ -14,7 +14,7 @@
         <sql.plugin.version>1.5</sql.plugin.version>
         <maven.surefire.plugin>2.19.1</maven.surefire.plugin>
         <maven.compiler.plugin>2.3.2</maven.compiler.plugin>
-        <selenium.server.version>2.53.0</selenium.server.version>
+        <selenium.server.version>2.53.1</selenium.server.version>
         <testng.version>6.9.10</testng.version>
         <postrgesql.version>9.1-901-1.jdbc4</postrgesql.version>
         <slf4j.version>1.7.21</slf4j.version>
@@ -88,6 +88,14 @@
                 <browser.name>firefox</browser.name>
                 <driver.name>webdriver.gecko.driver</driver.name>
                 <driver.path>${browser.drivers.path}/geckodriver</driver.path>
+            </properties>
+        </profile>
+        <profile>
+            <id>internetExplorer</id>
+            <properties>
+                <browser.name>internetExplorer</browser.name>
+                <driver.name>webdriver.ie.driver</driver.name>
+                <driver.path>${browser.drivers.path}/IEDriver.exe</driver.path>
             </properties>
         </profile>
     </profiles>

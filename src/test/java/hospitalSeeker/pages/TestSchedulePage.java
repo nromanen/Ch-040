@@ -1,12 +1,11 @@
 package hospitalSeeker.pages;
 
-import hospitalSeeker.*;
+import hospitalSeeker.BaseTest;
+import hospitalSeeker.templates.Header;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 /**
  * Created by Alex on 23-May-16.
@@ -43,7 +42,8 @@ public class TestSchedulePage extends BaseTest {
         browser.goTo(HOME_URL);
         header.loginButton.click();
         loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
-        doctorPage.doctors.get(0).click();
+        doctorPage.selectDoctorAsManager();
+        schedulePage.saveDoctorSchedule.click();
         String error = browser.checkIfElementNotPresent(schedulePage.workDayEndAt)
                 .concat(browser.checkIfElementNotPresent(schedulePage.workDayBeginAt))
                 .concat(browser.checkIfElementNotPresent(schedulePage.workWeekSize))
@@ -62,17 +62,6 @@ public class TestSchedulePage extends BaseTest {
         }
     }
 
-    /*
-    1. Go to the home page.
-    2. Login from the dropdown login form as manager.
-    3. Select hospital.
-    4. Select department.
-    5. Select doctor.
-    6. Choose event that you want to edit.
-    7. Change description of the event and click save changes.
-    8. Check if these changes are correct.
-     */
-
     @Test
     public void testIfManagerCanEdit() {
         browser.goTo(HOME_URL);
@@ -85,20 +74,11 @@ public class TestSchedulePage extends BaseTest {
         schedulePage.eventEdit.click();
         schedulePage.editSchedule(schedulePage.MANAGER_EDIT_TEXT);
         schedulePage.saveChanges.click();
+        schedulePage.backToTop(getWrapper());
         schedulePage.saveDoctorSchedule.click();
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
         assertEquals(schedulePage.eventText.getText(), schedulePage.MANAGER_EDIT_TEXT, "Event text is different!");
     }
-
-    /*
-    1. Go to the home page.
-    2. Login from the dropdown login form as patient.
-    3. Select hospital.
-    4. Select department.
-    5. Select doctor.
-    6. Choose event that you want to edit.
-    7. Check if you can edit this event.
-    */
 
     @Test
     public void testIfPatientCanAccessWorkSchedule() {
@@ -109,34 +89,14 @@ public class TestSchedulePage extends BaseTest {
         assertFalse(browser.isElementPresent(schedulePage.calendarHeader), "You can access work schedule!");
     }
 
-    /*
-    1. Go to the home page.
-    2. Login from the dropdown login form as doctor.
-    3. Select hospital.
-    4. Select department.
-    5. Select doctor.
-    6. Choose event that you want to edit.
-    7. Check if you can edit this event.
-    */
-
     @Test
     public void testIfDoctorCanAccessWorkSchedule() {
         browser.goTo(HOME_URL);
         header.loginButton.click();
-        loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         browser.goTo(DOCTOR_PAGE_URL);
         assertFalse(browser.isElementPresent(schedulePage.calendarHeader), "You can access work schedule!");
     }
-
-    /*
-    1. Go to the home page.
-    2. Login from the dropdown login form as administrator.
-    3. Select hospital.
-    4. Select department.
-    5. Select doctor.
-    6. Choose event that you want to edit.
-    7. Check if you can edit this event.
-    */
 
     @Test
     public void testIfAdminCanAccessWorkSchedule() {
@@ -146,17 +106,6 @@ public class TestSchedulePage extends BaseTest {
         browser.goTo(DOCTOR_PAGE_URL);
         assertFalse(browser.isElementPresent(schedulePage.calendarHeader), "You can access work schedule!");
     }
-
-    /*
-    1. Go to the home page.
-    2. Login as manager.
-    3. Click on the first doctor.
-    4. Select work week size, work day hours and appointment size. Press save.
-    5. Check if you can see schedule.
-    6. Switch to the day tab, and create work schedule for tomorrow. Press save.
-    7. Switch to the day tab and find created schedule.
-    8. Delete it and confirm that it is deleted.
-     */
 
     @Test
     public void createAndDeleteSchedule() {
@@ -172,21 +121,6 @@ public class TestSchedulePage extends BaseTest {
         assertFalse(browser.isElementPresent(schedulePage.eventBody), "Schedule is present!");
     }
 
-    /*
-    1. Go to the home page.
-    2. Login as manager.
-    3. Click on the first doctor.
-    4. Select work week size, work day hours and appointment size. Press save.
-    5. Check if you can see schedule.
-    6. Switch to the day tab, and create work schedule for today. Press save.
-    7. Logout as manager and login as patient.
-    8. Click on search and write "Regional".
-    9. Select first hospital, department and doctor.
-    10. Switch to the day tab, and create an appointment, type in the reason for visit. Confirm it.
-    11. Logout as patient and login as doctor.
-    12. Select workscheduler and find created appointment.
-     */
-
     @Test
     public void createScheduleCreateAppointmentAndCheckAppointment() {
         browser.goTo(HOME_URL);
@@ -201,19 +135,11 @@ public class TestSchedulePage extends BaseTest {
         schedulePage.createAppointment(getWrapper());
         header.logout();
         header.loginButton.click();
-        loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         header.workschedulerButton.click();
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
         assertTrue(browser.isElementPresent(schedulePage.eventBody), "Event body is not present!");
     }
-
-    /*
-    1. Go to the home page.
-    2. Login as doctor.
-    3. Select an appointment.
-    4. Try to cancel it.
-    5. Confirm that it is cancelled.
-     */
 
     @Test
     public void cancelAppointment() {
@@ -229,11 +155,33 @@ public class TestSchedulePage extends BaseTest {
         schedulePage.createAppointment(getWrapper());
         header.logout();
         header.loginButton.click();
-        loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         header.workschedulerButton.click();
         schedulePage.cancelAppointment(getWrapper());
         header.workschedulerButton.click();
         browser.waitUntilElementVisible(schedulePage.calendarHeader);
         assertFalse(browser.isElementPresent(schedulePage.eventBody), "Event body is present!");
+    }
+
+    @Test
+    public void createTwoAppointments() {
+        browser.goTo(HOME_URL);
+        header.loginButton.click();
+        loginPage.loggingIn(MANAGER_LOGIN, MANAGER_PASSWORD);
+        doctorPage.selectDoctorAsManager();
+        schedulePage.createSchedule(getWrapper());
+        header.logout();
+        header.loginButton.click();
+        loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
+        selectDoctor();
+        schedulePage.createAppointment(getWrapper());
+        header.logout();
+        header.loginButton.click();
+        loginPage.loggingIn(SECOND_PATIENT_LOGIN, SECOND_PATIENT_PASSWORD);
+        selectDoctor();
+        browser.waitUntilElementVisible(schedulePage.switchViewToDay);
+        schedulePage.switchViewToDay.click();
+        browser.doubleClickOnCoordinates(schedulePage.hours2100, schedulePage.columnWidth, schedulePage.columnHeight);
+        assertFalse(browser.isElementPresent(schedulePage.appointmentConfirm), "You can create an appointment!");
     }
 }

@@ -1,7 +1,8 @@
-package hospitalSeeker;
+package hospitalSeeker.pages;
 
 import java.util.List;
 
+import hospitalSeeker.BrowserWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -97,10 +98,7 @@ public class AdminPage {
     public WebElement sortRoleColumn;
 
 
-    @FindBy (id = "nextPage")
-    public WebElement nextPageButton;
-
-    @FindBy (id = "lastPage")
+    @FindBy (css = "a.page-link[aria-label=Last]")
     public WebElement lastPageButton;
 
 

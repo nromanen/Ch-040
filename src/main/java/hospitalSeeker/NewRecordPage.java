@@ -21,19 +21,16 @@ public class NewRecordPage {
 	
 	@FindBy (css = "button.btn.btn-default")
 	public WebElement submitButton;
-	
-	@FindBy (css = "p.error")
-	public WebElement errorString;
-	
+
 	@FindBy (xpath = "//div/div/h4")
 	public WebElement currentDate;
-	
+
 	@FindBy (id = "complaint-error")
 	public WebElement cError;
-	
+
 	@FindBy (id = "prescription-error")
 	public WebElement pError;
-	
+
 	@FindBy (id = "result-error")
 	public WebElement rError;
 
@@ -53,7 +50,7 @@ public class NewRecordPage {
         prescriptionArea.clear();
         submitButton.click();
     }
-    
+
 	public static NewRecordPage init(WebDriver driver) {
 		return PageFactory.initElements(driver, NewRecordPage.class);
 	}

@@ -104,7 +104,7 @@
   <users id="17" email="patient.cd@hospitals.ua" enabled="true" password="$2a$10$lH5Sg.gocRCIuO17BV1BW.sUjVvPTXA7UokUsWtt7ODSOuRNMVhGW" userdetails_id="17"/>
   <users id="18" email="patient.in@hospitals.ua" enabled="true" password="$2a$10$ZNCZEfFLA/TZFuhk3aL1b.2KraEr7mSLGk5hWp9KliuBY8B5quryq" userdetails_id="18"/>
   <users id="19" email="patient.ml@hospitals.ua" enabled="true" password="$2a$10$wtRRo7Q6O.wPv8E/7M4kMebWHgdFf0GZYotCj3nBUYR2HLxQFqPMm" userdetails_id="19"/>
-  <users id="20" email="patient.rr@hospitals.ua" enabled="true" password="$2a$10$DLdRb91MrBBhNxEr5AYXrOuSn5LieZFSXrVE7RZWEbglkdfsvptsm" userdetails_id="20"/>
+  <users id="20" email="patient.rr@hospitals.ua" enabled="false" password="$2a$10$DLdRb91MrBBhNxEr5AYXrOuSn5LieZFSXrVE7RZWEbglkdfsvptsm" userdetails_id="20"/>
   <users id="21" email="patient.sf@hospitals.ua" enabled="true" password="$2a$10$4TW.tWhaI4xoSGPZhA4iseizzcRpQB/yNessm204M7o0qXgsdJYm." userdetails_id="21"/>
   <feedback/>
   <role_users users_id="1" role_id="1"/>

@@ -1,7 +1,8 @@
 package hospitalSeeker.pages;
 
-import hospitalSeeker.*;
-import org.openqa.selenium.By;
+import hospitalSeeker.BaseTest;
+import hospitalSeeker.DataSetUtils;
+import hospitalSeeker.templates.Header;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -63,25 +64,13 @@ public class TestAdminPage extends BaseTest {
 		System.out.println(error);
 	}
 
-	/*Checking equality of count of all users in DB and shown on Web-page
-    * log in as admin
-    * choose filter "Role"->"All"
-    * get count of all users in result
-    * Checking equality with count in DB
-    * */
-	@Test(priority = 1)
+	@Test
 	public void testCountAllUsers() {
 		adminPage.searchButton.click();
 		Assert.assertEquals(adminPage.allRows.size(),5);
 	}
 
-	/*Checking equality of count admins in DB and after using filter "Role"->"Admin", "Manager", "Doctor", "Patient"
-	 * log in as admin
-	 * choose filter "Role"->"Admin", "Manager", "Doctor", "Patient"
-	 * get count of users in result
-	 * Checking equality with count in DB
-	 * */
-	@Test(priority = 2, dataProvider = "rolesCount")
+	@Test(dataProvider = "rolesCount")
 	public void testCountUsers(String role,int expectedCount) {
 		browser.selectDropdown(adminPage.role, role);
 		adminPage.searchButton.click();
@@ -89,13 +78,7 @@ public class TestAdminPage extends BaseTest {
 		Assert.assertEquals(adminPage.allRows.size(),expectedCount);
 	}
 
-	 /**Checking correct result after using filter "Search By"->"Email", "Last Name", "First Name"
-	 * log in as admin
-	 * choose filter "Search By"->"Email", "Last Name", "First Name"
-	 * input value, what you find
-	 * Check result
-	 * */
-	@Test(priority = 3, dataProvider = "searchBy")
+	@Test(dataProvider = "searchBy")
 	public void testSearchBy(String filter, String expectedValue, int columnNumber){
 		browser.selectDropdown(adminPage.searchBy,filter);
 		adminPage.search.sendKeys(expectedValue);
@@ -103,23 +86,14 @@ public class TestAdminPage extends BaseTest {
 		Assert.assertEquals(browser.getDataFromTable(1,columnNumber),expectedValue);
 	}
 
-	/*Checking correct work of filter "Disabled" button
-  	 * log in as admin
-  	 * click on button "Disabled"
- 	 * Checking equality with count in DB
- 	 * */
-	@Test(priority = 4)
+	@Test
 	public void testDisabledUsers(){
+		dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
 		adminPage.disabled.click();
-		Assert.assertEquals(adminPage.allRows.size(), 0);
+		Assert.assertEquals(adminPage.allRows.size(), 1);
 	}
 
-	/*Seeing information about user
-   	 * log in as admin
-   	 * click on icon "View user"
-   	 * check information in modal window
-  	 * */
-	@Test(priority = 5)
+	@Test
 	public void testViewUser(){
 		browser.selectDropdown(adminPage.searchBy,"Email");
 		adminPage.search.sendKeys("manager.kh@hospitals.ua");
@@ -129,12 +103,7 @@ public class TestAdminPage extends BaseTest {
 		Assert.assertTrue(browser.isElementPresent(adminPage.viewUserTitle));
 	}
 
-	/*Editing user
-   	 * log in as admin
-   	 * click on icon "Edit user"
-   	 * check available actions on this page
-   	 * */
-	@Test(priority = 6)
+	@Test
 	public void testEditUser(){
 		browser.selectDropdown(adminPage.searchBy,"Email");
 		adminPage.search.sendKeys("manager.kh@hospitals.ua");
@@ -144,12 +113,7 @@ public class TestAdminPage extends BaseTest {
 		Assert.assertTrue(browser.isElementPresent(adminPage.editEditUserButton));
 	}
 
-	/*Deleting user
-    * log in as admin
-    * click on icon "Delete user"
-    * check functional on modal window
-    * */
-	@Test(priority = 7)
+	@Test
 	public void testDeleteUser(){
 		browser.selectDropdown(adminPage.searchBy,"Email");
 		adminPage.search.sendKeys("manager.kh@hospitals.ua");
@@ -159,15 +123,7 @@ public class TestAdminPage extends BaseTest {
 		Assert.assertTrue(browser.isElementPresent(adminPage.deleteUserAlertDeleteButton));
 	}
 
-	/*Disabling user
-	 * log in as patient
-	 * check there is access to account
-	 * log out and log in as admin
-	 * disable user
-	 * log out and log in as patient
-	 * check there is no access to account
-	 * */
-	@Test(priority = 8)
+	@Test
 	public void testDisableUser(){
 		header.logout();
 		browser.goTo(LOGIN_URL);
@@ -182,28 +138,46 @@ public class TestAdminPage extends BaseTest {
 		Assert.assertTrue(browser.isElementPresent(adminPage.blockedAccount));
 	}
 
-	@Test(priority = 9)
+	@Test
+	public void testBlockedAccount(){
+		header.logout();
+		dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+		browser.goTo(LOGIN_URL);
+		loginPage.loggingIn("patient.rr@hospitals.ua",PATIENT_PASSWORD);
+		Assert.assertTrue(browser.isElementPresent(adminPage.blockedAccount));
+	}
+
+	@Test
+	public void testPagination(){
+		dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+		browser.refreshPage();
+		adminPage.lastPageButton.click();
+		Assert.assertEquals(adminPage.allRows.size(),10);
+	}
+
+	@Test
 	public void testSortingEmail(){
 		adminPage.sortEmailColumn.click();
 		Assert.assertEquals(browser.getDataFromTable(1,2),"patient.in@hospitals.ua");
 	}
 
-	@Test(priority = 10)
+	@Test
 	public void testSortingFirstName(){
 		adminPage.sortFirstNameColumn.click();
 		Assert.assertEquals(browser.getDataFromTable(1,3),"Charles");
 	}
 
-	@Test(priority = 11)
+	@Test
 	public void testSortingLastName(){
 		adminPage.sortLastNameColumn.click();
 		Assert.assertEquals(browser.getDataFromTable(1,4),"Darvin");
 	}
 
-	@Test(priority = 12)
+	@Test
 	public void testSortingRole(){
 		adminPage.sortRoleColumn.click();
 		Assert.assertEquals(browser.getDataFromTable(1,5),"PATIENT");
+
 	}
 }
 

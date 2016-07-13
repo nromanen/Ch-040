@@ -50,6 +50,7 @@ public class RegisterPage {
 		emailRegister.sendKeys(email);
 		passwordRegister.sendKeys(password);
 		confirmPasswordRegister.sendKeys(confirmPassword);
+		registerButton.click();
 	}
 
 	public static RegisterPage init(WebDriver driver) {
