@@ -160,15 +160,6 @@ public class BrowserWrapper {
             e.printStackTrace();
         }
     }
-    
-    public String getStringDate() {
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        return dateFormat.format(new Date());
-    }
-    
-    public Date getDate() {
-        return new Date();
-    }
 
     public String getDataFromTable(int k,int l){
         int rowCount = getDriver().findElements(By.xpath("//table/tbody/tr")).size();

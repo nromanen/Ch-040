@@ -4,15 +4,11 @@ import hospitalSeeker.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
+import hospitalSeeker.CardPage;
+import hospitalSeeker.NewRecordPage;
+import hospitalSeeker.RegisterPage;
+import hospitalSeeker.templates.Header;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -43,7 +39,7 @@ public class TestCardPage extends BaseTest {
     public void checkPatientsSearch(){
     	dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
     	browser.goTo(LOGIN_URL);
-	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+	    loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
 	    header.patientsButton.click();
 	    
 	    patientsPage.searchField.click();
@@ -55,27 +51,27 @@ public class TestCardPage extends BaseTest {
     @Test
     public void testPatientsSortingByEmail (){
     	browser.goTo(LOGIN_URL);
-	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+	    loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
 	    header.patientsButton.click();
 	    patientsPage.sortButtonByEmail.click();
 	    String first_patient_after_sort = browser.getDataFromTable(1, 2) ;
 	    Assert.assertEquals(first_patient_after_sort, "patient.cd@hospitals.ua"); 
     }
-//    
+
     @Test
     public void testPatientsSortingByFirstName (){
     	browser.goTo(LOGIN_URL);
-	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+	    loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
 	    header.patientsButton.click();
 	    patientsPage.sortButtonByFirstName.click();
 	    String first_patient_after_sort =  browser.getDataFromTable(1, 3);
 	    Assert.assertEquals(first_patient_after_sort, "Charles"); 
     }
-//    
+
     @Test
     public void testPatientsSortingByLastName (){
     	browser.goTo(LOGIN_URL);
-	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+	    loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
 	    header.patientsButton.click();
 	    patientsPage.sortButtonByLastName.click();
 	    String first_patient_after_sort =  browser.getDataFromTable(1, 4);
@@ -86,7 +82,7 @@ public class TestCardPage extends BaseTest {
     public void testFullName (){
     	dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
     	browser.goTo(LOGIN_URL);
-    	loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+    	loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
     	header.patientsButton.click();
     	String patient_first_name = browser.getDataFromTable(1, 3);
     	String patient_last_name = browser.getDataFromTable(1, 4);
@@ -95,23 +91,12 @@ public class TestCardPage extends BaseTest {
     	String patient_full_name = cardPage.profileButton.getText();
     	Assert.assertEquals(patient_full_name, f_name.toUpperCase());
     	}
-    
-//      @Test // To do
-//      public void testSortingAppoinmentsByDate (){
-//      	browser.goTo(LOGIN_URL);
-//      	loginPage.loggingIn(PATIENT_LOGIN,PATIENT_PASSWORD);
-//      	browser.goTo(CARD_URL);
-//      	String date1 = cardPage.record1.getText();
-//      	String date2 = cardPage.record2.getText();
-//      	System.out.println(date1);
-//      	System.out.println(date2);
-//      }
-    
+
     @Test
     public void checkTextOfDoctorsRecords (){
     	dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
     	browser.goTo(LOGIN_URL);
-    	loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+    	loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
     	header.patientsButton.click();
     	patientsPage.patientcd.click();
     	cardPage.newRecordButton.click();
@@ -147,7 +132,7 @@ public class TestCardPage extends BaseTest {
     public void testCurentDate (){
     	dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
     	browser.goTo(LOGIN_URL);
-	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+	    loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
 		header.patientsButton.click();
 	    patientsPage.patientsf.click();
 	 	cardPage.newRecordButton.click();
@@ -160,7 +145,7 @@ public class TestCardPage extends BaseTest {
   public void testComplaintAreaError(){
 	    dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
     	browser.goTo(LOGIN_URL);
- 	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+ 	    loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
  	    header.patientsButton.click();
  	 	patientsPage.patientcd.click();
  	 	cardPage.newRecordButton.click();
@@ -176,7 +161,7 @@ public class TestCardPage extends BaseTest {
   public void testResultAreaError(){
 	    dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
   		browser.goTo(LOGIN_URL);
- 	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+ 	    loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
  	    header.patientsButton.click();
  	 	patientsPage.patientcd.click();
  	 	cardPage.newRecordButton.click();
@@ -192,7 +177,7 @@ public class TestCardPage extends BaseTest {
   public void testPrescriptionAreaError(){
 	    dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
     	browser.goTo(LOGIN_URL);
- 	    loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+ 	    loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
  	    header.patientsButton.click();
  	 	patientsPage.patientcd.click();
  	 	cardPage.newRecordButton.click();
@@ -208,14 +193,14 @@ public class TestCardPage extends BaseTest {
   public void testDoctorCanEditAnotherDoctorsRecord() {
       dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
       browser.goTo(LOGIN_URL);
-      loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+      loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
       header.patientsButton.click();
       patientsPage.patientcd.click();
       cardPage.newRecordButton.click();
       newRecordPage.createNewRecord("complaint", "result", "prescription");
       header.logout();
       browser.goTo(LOGIN_URL);
-      loginPage.loggingIn(DOCTOR_LOGIN2, DOCTOR_PASSWORD2);
+      loginPage.loggingIn(DOCTOR_LHC_LOGIN, DOCTOR_LHC_PASSWORD);
       header.patientsButton.click();
       patientsPage.patientcd.click();
       Assert.assertFalse(browser.isElementPresent(cardPage.editButton));
@@ -224,7 +209,7 @@ public class TestCardPage extends BaseTest {
   @Test
   public void testDoctorCanEditOwnRecordAfterDay() throws ParseException, java.text.ParseException {
       browser.goTo(LOGIN_URL);
-      loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+      loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
       header.patientsButton.click();
       patientsPage.patientcd.click();
       if (browser.getDate().after(cardPage.dateParser()))
@@ -234,7 +219,7 @@ public class TestCardPage extends BaseTest {
   @Test
   public void testDoctorCanEditOwnRecordOnSameDay() {
       browser.goTo(LOGIN_URL);
-      loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+      loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
       header.patientsButton.click();
       patientsPage.patientcd.click();
       cardPage.newRecordButton.click();
@@ -249,7 +234,7 @@ public class TestCardPage extends BaseTest {
   @Test
   public void testDoctorCanCreateNewRecord2() {
       browser.goTo(LOGIN_URL);
-      loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+      loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
       header.patientsButton.click();
       patientsPage.patientcd.click();
       cardPage.newRecordButton.click();
@@ -261,7 +246,7 @@ public class TestCardPage extends BaseTest {
   @Test
   public void testEmptyTextAreasInCardPage2() {
       browser.goTo(LOGIN_URL);
-      loginPage.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
+      loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
       header.patientsButton.click();
       patientsPage.patientcd.click();
       cardPage.newRecordButton.click();
