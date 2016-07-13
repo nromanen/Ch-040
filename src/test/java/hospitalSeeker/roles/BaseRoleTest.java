@@ -28,7 +28,7 @@ public class BaseRoleTest extends BaseTest {
         return new Object[][] { { "allUsers", ADMIN_DASHBOARD_URL },
                 { "addNewUser", ADDING_NEW_USER_URL },
                 { "hospitalList", HOSPITAL_LIST_URL },
-                { "newHospital", ADDING_NEW_HOSPITAL_URL },
+                { "newHospitalPage", ADDING_NEW_HOSPITAL_URL },
                 { "checkHospitals", CHECK_HOSPITALS_LIST_URL },
                 { "editHospitalManager", EDIT_HOSPITALS_MANAGERS_URL },
                 { "configureTokens", CONFIGURE_TOKENS_URL }};

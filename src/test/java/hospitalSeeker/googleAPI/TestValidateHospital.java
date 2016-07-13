@@ -6,8 +6,8 @@ package hospitalSeeker.googleAPI;
 
 import hospitalSeeker.BaseTest;
 import hospitalSeeker.BrowserWrapper;
+import hospitalSeeker.googleApi.NewHospitalPage;
 import hospitalSeeker.pages.LoginPage;
-import hospitalSeeker.googleApi.NewHospital;
 import hospitalSeeker.googleApi.ValidateHospital;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,7 +22,7 @@ import static org.testng.Assert.assertTrue;
 public class TestValidateHospital extends BaseTest {
 
     ValidateHospital validateHospital;
-    NewHospital newHospital;
+    NewHospitalPage newHospitalPage;
     LoginPage loginPage;
     BrowserWrapper browserWrapper;
     List<WebElement> td_collection;
@@ -31,7 +31,7 @@ public class TestValidateHospital extends BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         validateHospital = PageFactory.initElements(browser.getDriver(), ValidateHospital.class);
-        newHospital = PageFactory.initElements(browser.getDriver(), NewHospital.class);
+        newHospitalPage = PageFactory.initElements(browser.getDriver(), NewHospitalPage.class);
         loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
         //validateHospital.actionsButton.click();
        // validateHospital.checkButton.click();
