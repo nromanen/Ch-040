@@ -1,14 +1,11 @@
 package hospitalSeeker.pages;
 
 import hospitalSeeker.*;
+import hospitalSeeker.templates.Header;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-/**
- * Created by Надежда on 12.07.2016.
- */
 public class TestAdvancedRegister extends BaseTest{
 
     Header header;
@@ -44,7 +41,7 @@ public class TestAdvancedRegister extends BaseTest{
         advancedRegister.closeProfile.click();
         header.logout();
         browser.goTo(LOGIN_URL);
-        loginPage.loggingIn(DOCTOR_LOGIN,DOCTOR_PASSWORD);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN,DOCTOR_GH_PASSWORD);
         header.patientsButton.click();
         searchPatient("patient.cc@hospitals.ua");
         Assert.assertTrue(browser.isElementPresent(patientsPage.newRecord));
