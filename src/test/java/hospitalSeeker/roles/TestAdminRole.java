@@ -54,7 +54,7 @@ public class TestAdminRole extends BaseRoleTest {
     public void testAddNewHospitalButton() {
         header.actionsButton.click();
         header.newHospitalButton.click();
-        assertEquals(browser.getCurrentUrl(), ADMIN_DASHBOARD_URL, "url's don't match!");
+        assertEquals(browser.getCurrentUrl(), ADDING_NEW_HOSPITAL_URL, "url's don't match!");
     }
 
     @Test
