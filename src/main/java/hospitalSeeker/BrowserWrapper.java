@@ -9,6 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -17,10 +20,18 @@ public class BrowserWrapper {
     protected WebDriver driver;
 
     public static final int STANDARD_WAIT_TIME = 10;
-    private Actions builder;
 
     BrowserWrapper(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public String getStringDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(new Date());
+    }
+
+    public Date getDate() {
+        return new Date();
     }
 
     public WebDriver getDriver() {
@@ -29,6 +40,9 @@ public class BrowserWrapper {
 
     public void goTo(String url) {
         driver.get(url);
+        if (driver.getClass().getName().equalsIgnoreCase("org.openqa.selenium.ie.InternetExplorerDriver") && isElementPresentById("overridelink")) {
+            driver.findElement(By.id("overridelink")).click();
+        }
     }
 
     public String getTitle() {
@@ -42,25 +56,21 @@ public class BrowserWrapper {
             return false;
         }
     }
-    
+
     public boolean isElementPresent(WebElement webElement) {
         try {
             return webElement.isDisplayed();
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
-
     }
 
-    public boolean isElementPresentByXpath(String xpath) {
-        boolean present;
+    public boolean isElementPresentById(String id) {
         try {
-            driver.findElement(By.xpath(xpath));
-            present = true;
+            return driver.findElement(By.id(id)).isDisplayed();
         } catch (NoSuchElementException e) {
-            present = false;
+            return false;
         }
-        return present;
     }
 
     public String checkIfElementNotPresent(WebElement element) {
@@ -68,13 +78,18 @@ public class BrowserWrapper {
             element.isDisplayed();
             return "";
         } catch (Exception e) {
-            return e.toString();
+            return element.toString();
         }
     }
 
     public void doubleClick(WebElement element) {
         Actions action = new Actions(driver);
         action.doubleClick(element).perform();
+    }
+
+    public void moveToElement(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
     }
 
     public void doubleClickOnCoordinates(WebElement element, int x, int y) {
@@ -130,7 +145,7 @@ public class BrowserWrapper {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
-    public void waitUntilUrlToBe(String url) {
+    public void waitUntilUrlAvaliable(String url) {
         new WebDriverWait(driver, STANDARD_WAIT_TIME).until(ExpectedConditions.urlToBe(url));
     }
 
@@ -139,12 +154,29 @@ public class BrowserWrapper {
         dropdown.selectByVisibleText(text);
     }
 
-    public void sleep(int Seconds){
+    public void sleep(int Seconds) {
         try {
             Thread.sleep(Seconds * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getDataFromTable(int k, int l) {
+        int rowCount = getDriver().findElements(By.xpath("//table/tbody/tr")).size();
+        int colCount = getDriver().findElements(By.xpath("//table/tbody/tr[1]/td")).size();
+
+        String firstPart = "//table/tbody/tr[";
+        String secondPart = "]/td[";
+        String thirdPart = "]";
+
+        String finalXpath = firstPart + k + secondPart + l + thirdPart;
+        String tableData = getDriver().findElement(By.xpath(finalXpath)).getText();
+        return tableData;
+    }
+
+    public void refreshPage() {
+        driver.navigate().refresh();
     }
 
     public void browserMaximize() {

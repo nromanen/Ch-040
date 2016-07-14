@@ -1,33 +1,31 @@
-package hospitalSeeker;
+package hospitalSeeker.pages;
 
-import org.openqa.selenium.Dimension;
+import hospitalSeeker.BrowserWrapper;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-/**
- * Created by Alex on 23-May-16.
- */
 public class SchedulePage {
 
-
-    public int columnWidth = 177;
-    public int columnHeight = 20;
-
-    public final String WORK_WEEK_SIZE_5 = "5 days";
+    public final int columnWidth = 177;
+    public final int columnHeight = 20;
+    public final String WORK_WEEK_SIZE_7 = "7 days";
     public final String WORK_HOURS_24 = "24:00";
     public final String WORK_HOURS_10 = "10:00";
     public final String WORK_HOURS_23 = "23:00";
     public final String APPOINTMENT_REASON = "stomach ache";
-    public final String MANAGER_EDIT_TEXT = "text field test, manager edit, #7";
+    public final String MANAGER_EDIT_TEXT = "text field test, manager edit";
 
     @FindBy(className = "dhx_cal_event")
     public WebElement eventBody;
+
+    @FindBy(className = "dhx_body")
+    public WebElement eventText;
 
     @FindBy(css = "div.dhx_menu_icon.icon_details[title=Details]")
     public WebElement eventDetails;
@@ -101,17 +99,11 @@ public class SchedulePage {
     @FindBy(css = "div.dhtmlx_popup_button.dhtmlx_ok_button")
     public WebElement confirmDeletingSchedule;
 
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='1']")
-    public WebElement hours0100;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='17']")
-    public WebElement hours1700;
+    @FindBy(className = "dhx_scale_holder_now ")
+    public WebElement scheduleBody;
 
     @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='21']")
     public WebElement hours2100;
-
-    @FindBy(xpath = "//span[contains(@class, 'dhx_scale_h') and text()='22']")
-    public WebElement hours2200;
 
     @FindBy(id = "workWeekSize")
     public WebElement workWeekSize;
@@ -127,6 +119,9 @@ public class SchedulePage {
 
     @FindBy(id = "TheReasonForVisit")
     public WebElement reasonForVisitField;
+
+    @FindBy(className = "back-to-top")
+    public WebElement backToTopButton;
 
     @FindBy(xpath = "//button[contains(@class, 'btn btn-default') and text()='Confirm']")
     public WebElement appointmentConfirm;
@@ -148,6 +143,63 @@ public class SchedulePage {
 
     public void editSchedule(String text) {
         editorField.sendKeys(text);
+    }
+
+    public void selectEvent() {
+        events.get(0).click();
+    }
+
+    public void createSchedule(BrowserWrapper browser) {
+        browser.waitUntilElementVisible(workWeekSize);
+        browser.selectDropdown(workWeekSize, WORK_WEEK_SIZE_7);
+        browser.selectDropdown(workDayEndAt, WORK_HOURS_24);
+        saveDoctorSchedule.click();
+        switchViewToDay.click();
+        browser.doubleClick(scheduleBody);
+        browser.waitUntilElementVisible(saveChanges);
+        saveChanges.click();
+        events.get(0).click();
+        eventDetails.click();
+        browser.selectDropdown(timePeriodHoursStart, WORK_HOURS_10);
+        browser.selectDropdown(timePeriodHoursEnd, WORK_HOURS_23);
+        saveDetailedChanges.click();
+        backToTop(browser);
+        saveDoctorSchedule.click();
+    }
+
+    public void createAppointment(BrowserWrapper browser) {
+        browser.waitUntilElementVisible(switchViewToDay);
+        switchViewToDay.click();
+        browser.doubleClickOnCoordinates(hours2100, columnWidth, columnHeight);
+        browser.waitUntilElementVisible(appointmentConfirm);
+        reasonForVisitField.sendKeys(APPOINTMENT_REASON);
+        browser.sleep(1);
+        appointmentConfirm.click();
+        browser.sleep(6);
+    }
+
+    public void cancelAppointment(BrowserWrapper browser) {
+        browser.waitUntilElementVisible(eventBody);
+        browser.doubleClick(eventTitle);
+        browser.sleep(2);
+        cancelAppointment.click();
+        browser.waitUntilElementVisible(confirmCancellingAppointment);
+        confirmCancellingAppointment.click();
+        browser.sleep(6);
+    }
+
+    public void deleteSchedule(BrowserWrapper browser) {
+        eventBody.click();
+        eventDelete.click();
+        browser.waitUntilElementVisible(confirmDeletingSchedule);
+        confirmDeletingSchedule.click();
+        backToTop(browser);
+        saveDoctorSchedule.click();
+        browser.waitUntilElementVisible(calendarHeader);
+    }
+
+    public void backToTop(BrowserWrapper browser) {
+        ((JavascriptExecutor) browser.getDriver()).executeScript("scroll(0, -1000);");
     }
 
     public static SchedulePage init(WebDriver driver) {

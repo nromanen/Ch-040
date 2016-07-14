@@ -15,36 +15,18 @@ public class TestUnregisteredUser extends BaseRoleTest {
 
     @Test
     public void testForbiddenButtonsForUnregisteredUsers() {
-        String error = browser.checkIfElementNotPresent(headerPage.actionsButton)
-                .concat(browser.checkIfElementNotPresent(headerPage.cardButton))
-                .concat(browser.checkIfElementNotPresent(headerPage.manageButton))
-                .concat(browser.checkIfElementNotPresent(headerPage.patientsButton));
+        String error = browser.checkIfElementNotPresent(header.actionsButton)
+                .concat(browser.checkIfElementNotPresent(header.cardButton))
+                .concat(browser.checkIfElementNotPresent(header.manageButton))
+                .concat(browser.checkIfElementNotPresent(header.patientsButton));
         if (error.isEmpty()) {
             throw new AssertionError(error);
         }
     }
 
-    @Test
-    public void testAccessDeniedDashboardForUnregisteredUsers() {
-        browser.goTo(ADMIN_DASHBOARD_URL);
-        assertTrue(browser.containsText("Please Log In"), "access not denied");
-    }
-
-    @Test
-    public void testAccessDeniedAddNewHospitalForUnregisteredUsers() {
-        browser.goTo(ADDING_NEW_HOSPITAL_URL);
-        assertTrue(browser.containsText("Please Log In"), "access not denied");
-    }
-
-    @Test
-    public void testAccessDeniedAddNewUserForUnregisteredUsers() {
-        browser.goTo(ADDING_NEW_USER_URL);
-        assertTrue(browser.containsText("Please Log In"), "access not denied");
-    }
-
-    @Test
-    public void testAccessDeniedEditManagersForUnregisteredUsers() {
-        browser.goTo(EDIT_HOSPITALS_MANAGERS_URL);
-        assertTrue(browser.containsText("Please Log In"), "access not denied");
+    @Test(dataProvider = "primaryAdminUrls")
+    public void testDeniedUrlsForUnregisteredUsers(String errorMessage, String url) {
+        browser.goTo(url);
+        assertTrue(browser.containsText("Please Login"), "access not denied to page: ".concat(errorMessage));
     }
 }

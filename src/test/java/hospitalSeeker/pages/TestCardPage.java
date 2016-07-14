@@ -1,189 +1,254 @@
 package hospitalSeeker.pages;
 
-//import hospitalSeeker.header.DropdownLogin;
-import hospitalSeeker.*;
-import org.openqa.selenium.support.PageFactory;
+import bsh.ParseException;
+import hospitalSeeker.BaseTest;
+import hospitalSeeker.BrowserWrapper;
+import hospitalSeeker.DataSetUtils;
+import hospitalSeeker.templates.Header;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TestCardPage extends BaseTest {
+
     PatientsPage patientsPage;
     CardPage cardPage;
     NewRecordPage newRecordPage;
     LoginPage loginPage;
-    //DropdownLogin dropdownLogin;
+    Header header;
+    BrowserWrapper browserWrapper;
+    RegisterPage registerPage;
 
     @BeforeMethod
     public void beforeMethod() {
-        patientsPage = PageFactory.initElements(browser.getDriver(), PatientsPage.class);
-        cardPage = PageFactory.initElements(browser.getDriver(), CardPage.class);
-        newRecordPage = PageFactory.initElements(browser.getDriver(), NewRecordPage.class);
-        loginPage = PageFactory.initElements(browser.getDriver(), LoginPage.class);
-        //dropdownLogin = PageFactory.initElements(browser.getDriver(), DropdownLogin.class);
+        patientsPage = PatientsPage.init(browser.getDriver());
+        cardPage = CardPage.init(browser.getDriver());
+        newRecordPage = NewRecordPage.init(browser.getDriver());
+        loginPage = LoginPage.init(browser.getDriver());
+        header = Header.init(browser.getDriver());
+        registerPage = RegisterPage.init(browser.getDriver());
     }
-    
- /* Editing Record by Doctor
-  * go to home url
-  * logging to site
-  * go to patients url
-  * click to record
-  * click to patient
-  * click to edit button
-  * click complaint area, result area, prescription area
-  * type some text in each area
-  * press submit button
-  */
-    
-   @Test 
-   public void testIfDoctorCanEditOwnRecord(){
-    	 browser.goTo(HOME_URL);
-    	 //dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-    	 browser.goTo(PATIENTS_LIST_URL);
-    	 
-    	 patientsPage.tutu.click();
-    	 cardPage.dateRecordButton.click();
-    	 cardPage.editButton.click();
-    	 
-    	 newRecordPage.complaintArea.click();
-    	 String compArea = new String(newRecordPage.complaintArea.getAttribute("value"));
-    	 newRecordPage.complaintArea.sendKeys("Well Done");
-    	 newRecordPage.complaintArea.clear();
-    	 newRecordPage.complaintArea.sendKeys(compArea);
-    	 
-    	 newRecordPage.resultArea.click();
-    	 String resArea = new String(newRecordPage.resultArea.getAttribute("value"));
-    	 newRecordPage.resultArea.sendKeys("Very Good");
-    	 newRecordPage.resultArea.clear();
-    	 newRecordPage.resultArea.sendKeys(resArea);
-    	 
-    	 newRecordPage.prescriptionArea.click();
-    	 String preArea = new String(newRecordPage.prescriptionArea.getAttribute("value"));
-    	 newRecordPage.prescriptionArea.sendKeys("Almost Ok");
-    	 newRecordPage.prescriptionArea.clear();
-    	 newRecordPage.prescriptionArea.sendKeys(preArea);
-    	 
-    	 newRecordPage.submitButton.click();
-   }
-   
-   /* New Record by Doctor
-    * go to home url
-    * logging to site
-    * go to patients url
-    * click to patient
-    * click to new Record button
-    * click complaint area, result area, prescription area
-    * type some text in each area
-    * press submit button
-    */
-   
-    @Test 
-    public void testIfDoctorCanMakeNewRecord(){
-    	browser.goTo(HOME_URL);
-    	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-   	 	browser.goTo(PATIENTS_LIST_URL);
-   	 	patientsPage.tutu.click();
-   	 	cardPage.newRecordButton.click();
-   	 	
-   	 	newRecordPage.complaintArea.click();
-   	 	newRecordPage.complaintArea.sendKeys("11kkkkkk11");
-   	 	
-   	 	newRecordPage.resultArea.click();
-   	 	newRecordPage.resultArea.sendKeys("12llll12");
-   	 	
-   	 	newRecordPage.prescriptionArea.click();
-   	 	newRecordPage.prescriptionArea.sendKeys("13jjjjj13");
-   	 	
-   	 	newRecordPage.submitButton.click();	
-    }
-    
-    /* Test min text size in new Record
-     * go to home url
-     * logging to site
-     * go to patients url
-     * click to patient
-     * click to new Record button
-     * click complaint area, result area, prescription area
-     * type short text to 5 chars in each area
-     * press submit button
-     * check error message
-     */
-    
-    @Test 
-   	public void testEmptyTextAreasInCardPage(){
-    	browser.goTo(HOME_URL);
-    	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-   	 	browser.goTo(PATIENTS_LIST_URL);
-   	 	patientsPage.tutu.click();
-   	 	cardPage.newRecordButton.click();
-   	 	
-   	 	newRecordPage.complaintArea.click();
-	 	newRecordPage.complaintArea.sendKeys("111");
-	 	
-	 	newRecordPage.resultArea.click();
-	 	newRecordPage.resultArea.sendKeys("111");
-	 	
-	 	newRecordPage.prescriptionArea.click();
-	 	newRecordPage.prescriptionArea.sendKeys("111");
-	 	
-	 	newRecordPage.submitButton.click();	
-	 	//Boolean isPresent = newRecordPage.errorString.isDisplayed();
-   		}
-   
-    /* Check elements in page
-     * go to home url
-     * logging to site
-     * go to patients url
-     * check elements
-     */
-    
-    @Test 
-    public void checkElementsInPatientsPage() {
-    	browser.goTo(HOME_URL);
-    	//dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-        browser.goTo(PATIENTS_LIST_URL);
-    	//Boolean isPresent1 = patientsPage.patient2iua.isDisplayed();
-    	//Boolean isPresent2 = patientsPage.tutu.isDisplayed();
-    	//Boolean isPresent4 = patientsPage.nadja_cvmailru.isDisplayed();
-    	//Boolean isPresent5 = patientsPage.olegolegovich1996gmailcom.isDisplayed();
-    	//Boolean isPresent6 = patientsPage.archermailru.isDisplayed();
-    	//Boolean isPresent7 = patientsPage.nadja_cv8mailru.isDisplayed();
-    	
-    }
-    
-    /* Editing Record by Doctor after 00:00
-     * go to home url
-     * logging to site
-     * go to patients url
-     * click to patient
-     * click to record
-     * click to edit button
-     * click complaint area, result area, prescription area
-     * type some text in each area
-     * press submit button
-     * check error message
-     */
-    
-    @Test ()
-    public void testThatDoctorCantEditRecordAfter00 (){
-    	 browser.goTo(HOME_URL);
-    	 //dropdownLogin.loggingIn(DOCTOR_LOGIN, DOCTOR_PASSWORD);
-   	 	 browser.goTo(PATIENTS_LIST_URL);
-   	 
-   	   	 patientsPage.tutu.click();
-	     cardPage.dateRecordButton.click();
-	   	 cardPage.editButton.click();
-   	 
-	   	 newRecordPage.complaintArea.click();
-	   	 newRecordPage.complaintArea.sendKeys("Well Done");
-	   	
-	   	 newRecordPage.resultArea.click();
-	   	 newRecordPage.resultArea.sendKeys("Very Good");
-	   
-	   	 newRecordPage.prescriptionArea.click();
-	   	 newRecordPage.prescriptionArea.sendKeys("Almost Ok");
 
-	   	 newRecordPage.submitButton.click();
-	  	 //Boolean isPresent10 = (newRecordPage.editTimeError).isDisplayed();
-        
+    @Test
+    public void checkPatientsSearch() {
+        dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+
+        patientsPage.searchField.click();
+        patientsPage.searchField.sendKeys("patient.sf@hospitals.ua");
+        patientsPage.submitButton.click();
+        Assert.assertTrue(browser.isElementPresent(patientsPage.patientsf));
     }
+
+    @Test
+    public void testPatientsSortingByEmail() {
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.sortButtonByEmail.click();
+        String first_patient_after_sort = browser.getDataFromTable(1, 2);
+        Assert.assertEquals(first_patient_after_sort, "patient.cd@hospitals.ua");
+    }
+
+    @Test
+    public void testPatientsSortingByFirstName() {
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.sortButtonByFirstName.click();
+        String first_patient_after_sort = browser.getDataFromTable(1, 3);
+        Assert.assertEquals(first_patient_after_sort, "Charles");
+    }
+
+    @Test
+    public void testPatientsSortingByLastName() {
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.sortButtonByLastName.click();
+        String first_patient_after_sort = browser.getDataFromTable(1, 4);
+        Assert.assertEquals(first_patient_after_sort, "Darvin");
+    }
+
+    @Test
+    public void testFullName() {
+        dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        String patient_first_name = browser.getDataFromTable(1, 3);
+        String patient_last_name = browser.getDataFromTable(1, 4);
+        String f_name = patient_first_name + " " + patient_last_name;
+        patientsPage.patientsf.click();
+        String patient_full_name = cardPage.profileButton.getText();
+        Assert.assertEquals(patient_full_name, f_name.toUpperCase());
+    }
+
+    @Test
+    public void checkTextOfDoctorsRecords() {
+        dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientcd.click();
+        cardPage.newRecordButton.click();
+
+        newRecordPage.complaintArea.click();
+        String str = new String("11kkkkkk11");
+        newRecordPage.complaintArea.sendKeys(str);
+
+        newRecordPage.prescriptionArea.click();
+        String str1 = new String("11kkkkkk11");
+        newRecordPage.prescriptionArea.sendKeys(str1);
+
+        newRecordPage.resultArea.click();
+        String str2 = new String("11kkkkkk11");
+        newRecordPage.resultArea.sendKeys(str2);
+
+        newRecordPage.submitButton.click();
+        patientsPage.doctorLink.click();
+        patientsPage.logoutButton.click();
+
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
+        header.cardButton.click();
+
+        cardPage.dateRecordButton.click();
+
+        Assert.assertEquals(cardPage.cArea.getText(), str);
+        Assert.assertEquals(cardPage.pArea.getText(), str1);
+        Assert.assertEquals(cardPage.rArea.getText(), str2);
+    }
+
+    @Test
+    public void testCurentDate() {
+        dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientsf.click();
+        cardPage.newRecordButton.click();
+        String strDate = new SimpleDateFormat("HH:mm dd-MM-yyyy").format(new Date());
+        String fulStr = new String("Current date: ".concat(strDate));
+        Assert.assertEquals(newRecordPage.currentDate.getText(), fulStr);
+    }
+
+    @Test
+    public void testComplaintAreaError() {
+        dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientcd.click();
+        cardPage.newRecordButton.click();
+
+        newRecordPage.complaintArea.click();
+        newRecordPage.complaintArea.sendKeys("111");
+
+        newRecordPage.submitButton.click();
+        Assert.assertTrue(newRecordPage.cError.isDisplayed());
+    }
+
+    @Test
+    public void testResultAreaError() {
+        dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientcd.click();
+        cardPage.newRecordButton.click();
+
+        newRecordPage.resultArea.click();
+        newRecordPage.resultArea.sendKeys("111");
+
+        newRecordPage.submitButton.click();
+        Assert.assertTrue(newRecordPage.rError.isDisplayed());
+    }
+
+    @Test
+    public void testPrescriptionAreaError() {
+        dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientcd.click();
+        cardPage.newRecordButton.click();
+
+        newRecordPage.prescriptionArea.click();
+        newRecordPage.prescriptionArea.sendKeys("111");
+
+        newRecordPage.submitButton.click();
+        Assert.assertTrue(newRecordPage.pError.isDisplayed());
+    }
+
+    @Test
+    public void testDoctorCanEditAnotherDoctorsRecord() {
+        dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientcd.click();
+        cardPage.newRecordButton.click();
+        newRecordPage.createNewRecord("complaint", "result", "prescription");
+        header.logout();
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_LHC_LOGIN, DOCTOR_LHC_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientcd.click();
+        Assert.assertFalse(browser.isElementPresent(cardPage.editButton));
+    }
+
+    @Test
+    public void testDoctorCanEditOwnRecordAfterDay() throws ParseException, java.text.ParseException {
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientcd.click();
+        if (browser.getDate().after(cardPage.dateParser()))
+            Assert.assertFalse(browser.isElementPresent(cardPage.editButton));
+    }
+
+    @Test
+    public void testDoctorCanEditOwnRecordOnSameDay() {
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientcd.click();
+        cardPage.newRecordButton.click();
+        newRecordPage.createNewRecord("complaint", "result", "prescription");
+        cardPage.dateRecordButton.click();
+        cardPage.editButton.click();
+        newRecordPage.clearAllFields();
+        newRecordPage.createNewRecord("NEW complaint", "NEW result", "NEW prescription");
+        Assert.assertTrue(browser.containsText("NEW complaint"), "something gone wrong");
+    }
+
+    @Test
+    public void testDoctorCanCreateNewRecord2() {
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientcd.click();
+        cardPage.newRecordButton.click();
+        newRecordPage.createNewRecord("complaint", "result", "prescription");
+        Assert.assertTrue(browser.containsText(browser.getStringDate()), "something gone wrong");
+    }
+
+
+    @Test
+    public void testEmptyTextAreasInCardPage2() {
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.patientcd.click();
+        cardPage.newRecordButton.click();
+        newRecordPage.createNewRecord("comp", "res", "pres");
+        Assert.assertTrue(browser.containsText("min size"), "something gone wrong");
+    }
+
 }
