@@ -19,7 +19,6 @@
         <postrgesql.version>9.1-901-1.jdbc4</postrgesql.version>
         <slf4j.version>1.7.21</slf4j.version>
         <dbunit.version>2.5.2</dbunit.version>
-        <sql.driver.url.main>jdbc:postgresql://localhost:5432</sql.driver.url.main>
         <browser.drivers.path>src/main/resources/drivers</browser.drivers.path>
         <sql.tables.path>src/main/resources/sql/tables.sql</sql.tables.path>
     </properties>
@@ -144,7 +143,7 @@
                             <goal>execute</goal>
                         </goals>
                         <configuration>
-                            <url>${sql.driver.url.main}</url>
+                            <url>${JDBC_MAIN_URL}</url>
                             <autocommit>true</autocommit>
                             <sqlCommand>drop database hospital</sqlCommand>
                             <onError>continue</onError>
@@ -157,7 +156,7 @@
                             <goal>execute</goal>
                         </goals>
                         <configuration>
-                            <url>${sql.driver.url.main}</url>
+                            <url>${JDBC_MAIN_URL}</url>
                             <autocommit>true</autocommit>
                             <sqlCommand>create database hospital</sqlCommand>
                             <onError>continue</onError>
@@ -183,7 +182,7 @@
                             <goal>execute</goal>
                         </goals>
                         <configuration>
-                            <url>${sql.driver.url.main}</url>
+                            <url>${JDBC_MAIN_URL}</url>
                             <autocommit>true</autocommit>
                             <sqlCommand>drop database hospital</sqlCommand>
                             <onError>continue</onError>
