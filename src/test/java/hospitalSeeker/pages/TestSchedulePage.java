@@ -7,9 +7,6 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-/**
- * Created by Alex on 23-May-16.
- */
 public class TestSchedulePage extends BaseTest {
     SchedulePage schedulePage;
     HospitalPage hospitalPage;
@@ -137,7 +134,8 @@ public class TestSchedulePage extends BaseTest {
         header.loginButton.click();
         loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
         header.workschedulerButton.click();
-        browser.waitUntilElementVisible(schedulePage.calendarHeader);
+        browser.waitUntilElementVisible(schedulePage.scheduleBody);
+        schedulePage.switchViewToDay.click();
         assertTrue(browser.isElementPresent(schedulePage.eventBody), "Event body is not present!");
     }
 

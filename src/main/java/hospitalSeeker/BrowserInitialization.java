@@ -9,9 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Created by Alex on 6/14/2016.
- */
 public class BrowserInitialization {
 
     public static WebDriver initialize() {

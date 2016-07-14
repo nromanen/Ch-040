@@ -10,9 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-/**
- * Created by Alex on 23-May-16.
- */
 public class SchedulePage {
 
     public final int columnWidth = 177;
