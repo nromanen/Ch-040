@@ -1,6 +1,7 @@
 package hospitalSeeker.tools;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -19,8 +20,8 @@ import java.util.Date;
 public class Log {
     private static final Logger logger = LogManager.getLogger(Log.class.getName());
 
-    public static void endTestCase() {
-        logger.info("-E---N---D-");
+    public static void endTestCase(ITestResult iTestResult) {
+        logger.info("Test " + iTestResult.getName() + " ended");
     }
 
     public static void info(String message) {
@@ -36,29 +37,34 @@ public class Log {
     }
 
     public static void onTestStartLog(ITestResult iTestResult) {
-        logger.info("Test " + iTestResult.getName());
-    }
-
-    public static void onTestFailure(ITestResult iTestResult) {
-        WebDriver driver = ((BaseTest) iTestResult.getInstance()).getWrapper().getDriver();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat timeFormat = new SimpleDateFormat("HH-mm-ss");
-        String filePath = "target/surefire-reports/screenshots/" + dateFormat.format(new Date()) + "/";
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String fileName = iTestResult.getMethod().getMethodName() + "_Failure_" + timeFormat.format(new Date()) + ".png";
-        File targetFile = new File(filePath + fileName);
-        try {
-            FileUtils.copyFile(screenshotFile, targetFile);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        Reporter.log("<a href=\"../../../" + filePath + fileName + "\">Screenshot</a>");
+        logger.info("Test " + iTestResult.getName() + " started");
     }
 
     public static void onStartLog(ITestContext iTestContext) {
-        logger.info("About to begin executing Suite " + iTestContext.getName());
+        logger.info("Suite " + iTestContext.getName());
+    }
+
+    public static void onError(String text) {
+        logger.error(text);
     }
 
     public static void onFinishLog(ITestContext iTestContext) {
+    }
+
+    public static void printTestResults(ITestResult result) {
+
+        logger.log(Level.INFO, "Test Method resides in " + result.getTestClass().getName(), true);
+        String status = null;
+        switch (result.getStatus()) {
+            case ITestResult.SUCCESS:
+                status = "Pass";
+                break;
+            case ITestResult.FAILURE:
+                status = "Failed";
+                break;
+            case ITestResult.SKIP:
+                status = "Skipped";
+        }
+        logger.log(Level.INFO, "Test Status: " + status);
     }
 }

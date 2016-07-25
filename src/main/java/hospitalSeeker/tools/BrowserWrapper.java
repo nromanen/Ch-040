@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -189,6 +190,15 @@ public class BrowserWrapper {
 
     public void browserMaximize() {
         driver.manage().window().maximize();
+    }
+
+    public void assertTrue(boolean condition) {
+        try {
+            Assert.assertTrue(condition);
+        } catch (Throwable ex) {
+            logger.error(ex);
+            throw new Error();
+        }
     }
 }
 
