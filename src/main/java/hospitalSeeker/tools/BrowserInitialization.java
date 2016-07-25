@@ -1,4 +1,4 @@
-package hospitalSeeker;
+package hospitalSeeker.tools;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
