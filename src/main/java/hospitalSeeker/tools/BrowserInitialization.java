@@ -2,8 +2,10 @@ package hospitalSeeker.tools;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +30,11 @@ public class BrowserInitialization {
                 return new FirefoxDriver();
             case "chrome":
                 System.setProperty(driverType, driverPath);
-                return new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--no-sandbox");
+                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+                capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+                return new ChromeDriver(capabilities);
             case "firefoxLinux":
                 return new FirefoxDriver();
             case "chromeLinux":
