@@ -25,7 +25,7 @@ public class Listener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        Log.endTestCase(iTestResult);
+        Log.onTestSuccessLog(iTestResult);
     }
 
     @Override
@@ -43,12 +43,13 @@ public class Listener implements ITestListener {
             e1.printStackTrace();
         }
         Reporter.log("<a href=\"../../../" + filePath + fileName + "\">Screenshot</a>");
-        Log.error(iTestResult);
+        Log.printTestResults(iTestResult);
+        Log.onTestFailureLog(iTestResult);
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-
+        Log.printTestResults(iTestResult);
     }
 
     @Override
@@ -58,10 +59,11 @@ public class Listener implements ITestListener {
 
     @Override
     public void onStart(ITestContext iTestContext) {
-        Log.onStartLog(iTestContext);
+        Log.onSuiteStartLog(iTestContext);
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
+        Log.onSuiteFinishLog(iTestContext);
     }
 }
