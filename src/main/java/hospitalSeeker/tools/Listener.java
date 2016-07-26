@@ -20,12 +20,12 @@ public class Listener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        Log.onTestStartLog(iTestResult);
+        LogConfig.onTestStartLog(iTestResult);
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        Log.onTestSuccessLog(iTestResult);
+        LogConfig.onTestSuccessLog(iTestResult);
     }
 
     @Override
@@ -43,13 +43,13 @@ public class Listener implements ITestListener {
             e1.printStackTrace();
         }
         Reporter.log("<a href=\"../../../" + filePath + fileName + "\">Screenshot</a>");
-        Log.printTestResults(iTestResult);
-        Log.onTestFailureLog(iTestResult);
+        LogConfig.printTestResults(iTestResult);
+        LogConfig.onTestFailureLog(iTestResult);
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        Log.printTestResults(iTestResult);
+        LogConfig.printTestResults(iTestResult);
     }
 
     @Override
@@ -59,11 +59,11 @@ public class Listener implements ITestListener {
 
     @Override
     public void onStart(ITestContext iTestContext) {
-        Log.onSuiteStartLog(iTestContext);
+        LogConfig.onSuiteStartLog(iTestContext);
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-        Log.onSuiteFinishLog(iTestContext);
+        LogConfig.onSuiteFinishLog(iTestContext);
     }
 }

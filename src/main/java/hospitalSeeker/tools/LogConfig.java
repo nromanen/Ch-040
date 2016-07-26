@@ -6,8 +6,8 @@ import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 
-public class Log {
-    private static final Logger logger = LogManager.getLogger(Log.class.getName());
+public class LogConfig {
+    private static final Logger logger = LogManager.getLogger(LogConfig.class.getName());
 
     public static void onTestSuccessLog(ITestResult iTestResult) {
         logger.info("Test " + iTestResult.getTestClass().getName() + "." + iTestResult.getName() + " ended");
@@ -36,7 +36,7 @@ public class Log {
                 status = "--FAILED--";
                 break;
             case ITestResult.SKIP:
-                status = "SKIPPED";
+                status = " SKIPPED";
         }
         logger.log(Level.INFO, result.getTestClass().getName() + "." + result.getName() + status);
     }
