@@ -13,8 +13,8 @@ public class PatientsPage {
     @FindBy(id = "searchButton")
     public WebElement searchButton;
 
-    @FindBy(linkText = "patient.cc@hospitals.ua")
-    public WebElement patientCc;
+    @FindBy(linkText = "patient.ml@hospitals.ua")
+    public WebElement patientMl;
 
     @FindBy(css = "a.btn.btn-info[style=display: inherit; margin-bottom: 12px]")
     public WebElement newRecord;
@@ -26,7 +26,7 @@ public class PatientsPage {
     public WebElement patientrr;
 
     @FindBy(linkText = "patient.ml@hospitals.ua")
-    public WebElement patientml;
+    public WebElement patientCc;
 
     @FindBy(linkText = "patient.in@hospitals.ua")
     public WebElement patientin;

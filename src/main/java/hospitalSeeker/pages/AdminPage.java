@@ -120,6 +120,18 @@ public class AdminPage {
         browser.sleep(2);
     }
 
+    public void enableUser(String email, BrowserWrapper browser) {
+        browser.selectDropdown(searchBy, "Email");
+        search.sendKeys(email);
+        searchButton.click();
+        browser.waitUntilElementIsPresent(By.id("allUsers"));
+        actionsViewUser.click();
+        browser.waitUntilElementVisible(viewUserAlertEnabledButton);
+        viewUserAlertEnabledButton.click();
+        viewUserCancelButton.click();
+        browser.sleep(2);
+    }
+
     public static AdminPage init(WebDriver driver) {
         return PageFactory.initElements(driver, AdminPage.class);
     }
