@@ -1,5 +1,3 @@
-.idea/
-target/
-test-output/
-*properties
-ch-040.iml
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+target
