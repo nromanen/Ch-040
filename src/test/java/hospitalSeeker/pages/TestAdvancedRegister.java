@@ -1,6 +1,6 @@
 package hospitalSeeker.pages;
 
-import hospitalSeeker.BaseTest;
+import hospitalSeeker.tools.BaseTest;
 import hospitalSeeker.templates.Header;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

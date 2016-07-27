@@ -1,6 +1,6 @@
 package hospitalSeeker.googleAPI;
 
-import hospitalSeeker.BaseTest;
+import hospitalSeeker.tools.BaseTest;
 import hospitalSeeker.googleApi.FindHospitalPage;
 import hospitalSeeker.templates.Header;
 import org.testng.annotations.BeforeMethod;

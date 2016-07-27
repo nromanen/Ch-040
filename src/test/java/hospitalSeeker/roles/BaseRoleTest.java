@@ -1,6 +1,6 @@
 package hospitalSeeker.roles;
 
-import hospitalSeeker.BaseTest;
+import hospitalSeeker.tools.BaseTest;
 import hospitalSeeker.pages.AdminPage;
 import hospitalSeeker.pages.LoginPage;
 import hospitalSeeker.templates.Header;

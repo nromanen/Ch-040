@@ -14,13 +14,18 @@
         <sql.plugin.version>1.5</sql.plugin.version>
         <maven.surefire.plugin>2.19.1</maven.surefire.plugin>
         <maven.compiler.plugin>2.3.2</maven.compiler.plugin>
+        <maven.properties.plugin>1.0.0</maven.properties.plugin>
         <selenium.server.version>2.53.1</selenium.server.version>
         <testng.version>6.9.10</testng.version>
         <postrgesql.version>9.1-901-1.jdbc4</postrgesql.version>
         <slf4j.version>1.7.21</slf4j.version>
         <dbunit.version>2.5.2</dbunit.version>
+        <log4j.version>2.6.2</log4j.version>
         <browser.drivers.path>src/main/resources/drivers</browser.drivers.path>
         <sql.tables.path>src/main/resources/sql/tables.sql</sql.tables.path>
+        <jmeter.jtl.folder>target/jmeter/results/</jmeter.jtl.folder>
+        <jmeter.plugin.version>2.0.3</jmeter.plugin.version>
+        <jmeter.graphs.plugin.version>0.1.0</jmeter.graphs.plugin.version>
     </properties>
 
     <dependencies>
@@ -49,6 +54,16 @@
             <artifactId>slf4j-nop</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
     </dependencies>
 
     <profiles>
@@ -103,7 +118,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <version>${maven.properties.plugin}</version>
                 <executions>
                     <execution>
                         <phase>initialize</phase>
@@ -177,7 +192,7 @@
                     </execution>
                     <execution>
                         <id>drop-db-after-test</id>
-                        <phase>test</phase>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>execute</goal>
                         </goals>
@@ -200,6 +215,81 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>${jmeter.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>jmeter-tests</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>de.codecentric</groupId>
+                <artifactId>jmeter-graph-maven-plugin</artifactId>
+                <version>${jmeter.graphs.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>1</id>
+                        <goals>
+                            <goal>create-graph</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <inputFile>${jmeter.jtl.folder}*-login.jtl</inputFile>
+                            <graphs>
+                                <graph>
+                                    <pluginType>ResponseTimesOverTime</pluginType>
+                                    <width>800</width>
+                                    <height>600</height>
+                                    <outputFile>${jmeter.jtl.folder}login.png</outputFile>
+                                </graph>
+                            </graphs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>2</id>
+                        <goals>
+                            <goal>create-graph</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <inputFile>${jmeter.jtl.folder}*-register.jtl</inputFile>
+                            <graphs>
+                                <graph>
+                                    <pluginType>ResponseTimesOverTime</pluginType>
+                                    <width>800</width>
+                                    <height>600</height>
+                                    <outputFile>${jmeter.jtl.folder}register.png</outputFile>
+                                </graph>
+                            </graphs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>3</id>
+                        <goals>
+                            <goal>create-graph</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <inputFile>${jmeter.jtl.folder}*-find_hospital.jtl</inputFile>
+                            <graphs>
+                                <graph>
+                                    <pluginType>ResponseTimesOverTime</pluginType>
+                                    <width>800</width>
+                                    <height>600</height>
+                                    <outputFile>${jmeter.jtl.folder}find_hospital.png</outputFile>
+                                </graph>
+                            </graphs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin}</version>
@@ -207,12 +297,6 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>hospitalSeeker.ScreenshotOnFailure</value>
-                        </property>
-                    </properties>
                 </configuration>
             </plugin>
             <plugin>

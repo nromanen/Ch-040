@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="log-path">target/logs/</Property>
+    </Properties>
+    <Appenders>
+        <Console name="console-log" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d [%-5p] - %m%n"/>
+        </Console>
+        <RollingFile name="info-log" fileName="${log-path}info.log"
+                     filePattern="${log-path}trace-%d{yyyy-MM-dd}.log">
+            <PatternLayout
+                    pattern="%d [%-5p] - %m%n"/>
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL"/>
+
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="error-log" fileName="${log-path}error.log"
+                     filePattern="${log-path}error-%d{yyyy-MM-dd}.log">
+            <PatternLayout
+                pattern="%d [%-5p] - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="info-log"/>
+        </Root>
+        <Logger name="hospitalSeeker" level="debug" additivity="false">
+            <appender-ref ref="info-log" level="INFO"/>
+            <appender-ref ref="error-log" level="ERROR"/>
+            <appender-ref ref="console-log" level="INFO"/>
+        </Logger>
+    </Loggers>
+</Configuration>

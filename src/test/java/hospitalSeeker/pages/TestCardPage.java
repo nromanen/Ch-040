@@ -1,9 +1,9 @@
 package hospitalSeeker.pages;
 
 import bsh.ParseException;
-import hospitalSeeker.BaseTest;
-import hospitalSeeker.BrowserWrapper;
-import hospitalSeeker.DataSetUtils;
+import hospitalSeeker.tools.BaseTest;
+import hospitalSeeker.tools.BrowserWrapper;
+import hospitalSeeker.tools.DataSetUtils;
 import hospitalSeeker.templates.Header;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -249,6 +249,18 @@ public class TestCardPage extends BaseTest {
         cardPage.newRecordButton.click();
         newRecordPage.createNewRecord("comp", "res", "pres");
         Assert.assertTrue(browser.containsText("min size"), "something gone wrong");
+    }
+    
+     @Test
+    public void testDisabledUser(){
+        dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
+        browser.goTo(LOGIN_URL);
+        loginPage.loggingIn(DOCTOR_GH_LOGIN, DOCTOR_GH_PASSWORD);
+        header.patientsButton.click();
+        patientsPage.searchField.click();
+        patientsPage.searchField.sendKeys("patient.rr@hospitals.ua");
+        patientsPage.submitButton.click();
+        Assert.assertFalse(browser.isElementPresent(patientsPage.patientrr));
     }
 
 }
