@@ -106,6 +106,109 @@
                 <driver.path>${browser.drivers.path}/IEDriver.exe</driver.path>
             </properties>
         </profile>
+        <profile>
+            <id>jmeter</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.lazerycode.jmeter</groupId>
+                        <artifactId>jmeter-maven-plugin</artifactId>
+                        <version>${jmeter.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>jmeter-tests</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>jmeter</goal>
+                                </goals>
+                                <configuration>
+                                    <resultsDirectory>${jmeter.jtl.folder}</resultsDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>de.codecentric</groupId>
+                        <artifactId>jmeter-graph-maven-plugin</artifactId>
+                        <version>${jmeter.graphs.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>100</id>
+                                <goals>
+                                    <goal>create-graph</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <inputFile>${jmeter.jtl.folder}*-login-100.jtl</inputFile>
+                                    <graphs>
+                                        <graph>
+                                            <pluginType>ResponseTimesOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${jmeter.jtl.folder}login-100.png</outputFile>
+                                        </graph>
+                                    </graphs>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>500</id>
+                                <goals>
+                                    <goal>create-graph</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <inputFile>${jmeter.jtl.folder}*-login-500.jtl</inputFile>
+                                    <graphs>
+                                        <graph>
+                                            <pluginType>ResponseTimesOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${jmeter.jtl.folder}login-500.png</outputFile>
+                                        </graph>
+                                    </graphs>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>2</id>
+                                <goals>
+                                    <goal>create-graph</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <inputFile>${jmeter.jtl.folder}*-register.jtl</inputFile>
+                                    <graphs>
+                                        <graph>
+                                            <pluginType>ResponseTimesOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${jmeter.jtl.folder}register.png</outputFile>
+                                        </graph>
+                                    </graphs>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>3</id>
+                                <goals>
+                                    <goal>create-graph</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <inputFile>${jmeter.jtl.folder}*-find_hospital.jtl</inputFile>
+                                    <graphs>
+                                        <graph>
+                                            <pluginType>ResponseTimesOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${jmeter.jtl.folder}find_hospital.png</outputFile>
+                                        </graph>
+                                    </graphs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     <build>
         <resources>
@@ -215,81 +318,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>com.lazerycode.jmeter</groupId>
-                <artifactId>jmeter-maven-plugin</artifactId>
-                <version>${jmeter.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>jmeter-tests</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jmeter</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>de.codecentric</groupId>
-                <artifactId>jmeter-graph-maven-plugin</artifactId>
-                <version>${jmeter.graphs.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>1</id>
-                        <goals>
-                            <goal>create-graph</goal>
-                        </goals>
-                        <phase>verify</phase>
-                        <configuration>
-                            <inputFile>${jmeter.jtl.folder}*-login.jtl</inputFile>
-                            <graphs>
-                                <graph>
-                                    <pluginType>ResponseTimesOverTime</pluginType>
-                                    <width>800</width>
-                                    <height>600</height>
-                                    <outputFile>${jmeter.jtl.folder}login.png</outputFile>
-                                </graph>
-                            </graphs>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>2</id>
-                        <goals>
-                            <goal>create-graph</goal>
-                        </goals>
-                        <phase>verify</phase>
-                        <configuration>
-                            <inputFile>${jmeter.jtl.folder}*-register.jtl</inputFile>
-                            <graphs>
-                                <graph>
-                                    <pluginType>ResponseTimesOverTime</pluginType>
-                                    <width>800</width>
-                                    <height>600</height>
-                                    <outputFile>${jmeter.jtl.folder}register.png</outputFile>
-                                </graph>
-                            </graphs>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>3</id>
-                        <goals>
-                            <goal>create-graph</goal>
-                        </goals>
-                        <phase>verify</phase>
-                        <configuration>
-                            <inputFile>${jmeter.jtl.folder}*-find_hospital.jtl</inputFile>
-                            <graphs>
-                                <graph>
-                                    <pluginType>ResponseTimesOverTime</pluginType>
-                                    <width>800</width>
-                                    <height>600</height>
-                                    <outputFile>${jmeter.jtl.folder}find_hospital.png</outputFile>
-                                </graph>
-                            </graphs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin}</version>
@@ -301,5 +329,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
