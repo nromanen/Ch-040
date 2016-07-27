@@ -14,11 +14,13 @@
         <sql.plugin.version>1.5</sql.plugin.version>
         <maven.surefire.plugin>2.19.1</maven.surefire.plugin>
         <maven.compiler.plugin>2.3.2</maven.compiler.plugin>
+        <maven.properties.plugin>1.0.0</maven.properties.plugin>
         <selenium.server.version>2.53.1</selenium.server.version>
         <testng.version>6.9.10</testng.version>
         <postrgesql.version>9.1-901-1.jdbc4</postrgesql.version>
         <slf4j.version>1.7.21</slf4j.version>
         <dbunit.version>2.5.2</dbunit.version>
+        <log4j.version>2.6.2</log4j.version>
         <browser.drivers.path>src/main/resources/drivers</browser.drivers.path>
         <sql.tables.path>src/main/resources/sql/tables.sql</sql.tables.path>
         <jmeter.jtl.folder>target/jmeter/results/</jmeter.jtl.folder>
@@ -52,6 +54,16 @@
             <artifactId>slf4j-nop</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
     </dependencies>
 
     <profiles>
@@ -106,7 +118,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <version>${maven.properties.plugin}</version>
                 <executions>
                     <execution>
                         <phase>initialize</phase>
@@ -285,12 +297,6 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>hospitalSeeker.ScreenshotOnFailure</value>
-                        </property>
-                    </properties>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,4 +1,4 @@
-package hospitalSeeker;
+package hospitalSeeker.tools;
 
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.IDatabaseTester;

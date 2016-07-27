@@ -1,6 +1,6 @@
 package hospitalSeeker.googleAPI;
 
-import hospitalSeeker.BaseTest;
+import hospitalSeeker.tools.BaseTest;
 import hospitalSeeker.googleApi.NewHospitalPage;
 import hospitalSeeker.pages.LoginPage;
 import hospitalSeeker.templates.Header;
