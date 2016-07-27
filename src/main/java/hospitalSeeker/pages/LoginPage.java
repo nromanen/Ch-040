@@ -7,8 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
-    public static final String WARNING = "div.alert.alert-danger";
-
     @FindBy(id = "email")
     public WebElement emailLogin;
 
@@ -33,11 +31,8 @@ public class LoginPage {
     @FindBy(id = "password-error")
     public WebElement passwordWarning;
 
-    @FindBy(css = WARNING)
-    public WebElement invalidUsernameOrPasswordWarning;
-
-    @FindBy(css = WARNING)
-    public WebElement notActivatedAccount;
+    @FindBy(css = "div.alert.alert-danger")
+    public WebElement warning;
 
     public void loggingIn(String email, String password) {
         emailLogin.sendKeys(email);

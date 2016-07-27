@@ -33,13 +33,13 @@ public class AdminPage {
     @FindBy(id = "clearButton")
     public WebElement clearButton;
 
-    @FindBy(linkText = "Enabled")
+    @FindBy(id = "showEnabledButton")
     public WebElement enabled;
 
-    @FindBy(linkText = "Disabled")
+    @FindBy(id = "showDisabledButton")
     public WebElement disabled;
 
-    @FindBy(linkText = "All Users")
+    @FindBy(id = "showAllButton")
     public WebElement allUsers;
 
 
@@ -109,6 +109,18 @@ public class AdminPage {
     public List<WebElement> allRows;
 
     public void disableUser(String email, BrowserWrapper browser) {
+        browser.selectDropdown(searchBy, "Email");
+        search.sendKeys(email);
+        searchButton.click();
+        browser.waitUntilElementIsPresent(By.id("allUsers"));
+        actionsViewUser.click();
+        browser.waitUntilElementVisible(viewUserAlertEnabledButton);
+        viewUserAlertEnabledButton.click();
+        viewUserCancelButton.click();
+        browser.sleep(2);
+    }
+
+    public void enableUser(String email, BrowserWrapper browser) {
         browser.selectDropdown(searchBy, "Email");
         search.sendKeys(email);
         searchButton.click();
