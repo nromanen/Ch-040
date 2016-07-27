@@ -1,17 +1,12 @@
 package hospitalSeeker.pages;
 
-import hospitalSeeker.BaseTest;
-import hospitalSeeker.BrowserInitialization;
+import hospitalSeeker.tools.BaseTest;
 import hospitalSeeker.templates.Header;
+import hospitalSeeker.tools.LocalizationConfig;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.Properties;
 
 public class TestLoginPage extends BaseTest {
@@ -26,15 +21,11 @@ public class TestLoginPage extends BaseTest {
 
     @BeforeClass
     public static void setLocalizationMessage() {
-        Properties properties = getPropertiesForLocalization();
-            //properties.load(reader);
-
-            REQUIRED_FIELD = properties.getProperty("REQUIRED_FIELD");
-            USERNAME_OR_PASSWORD_WARNING = properties.getProperty("USERNAME_OR_PASSWORD_WARNING");
-            NOT_ACTIVATED_ACCOUNT = properties.getProperty("NOT_ACTIVATED_ACCOUNT");
-        System.out.println(REQUIRED_FIELD);
-        }
-
+        Properties properties = LocalizationConfig.getPropertiesForLocalization();
+        REQUIRED_FIELD = properties.getProperty("REQUIRED_FIELD");
+        USERNAME_OR_PASSWORD_WARNING = properties.getProperty("USERNAME_OR_PASSWORD_WARNING");
+        NOT_ACTIVATED_ACCOUNT = properties.getProperty("NOT_ACTIVATED_ACCOUNT");
+    }
 
     @BeforeMethod
     public void beforeMethod() {
@@ -42,7 +33,7 @@ public class TestLoginPage extends BaseTest {
         registerPage = RegisterPage.init(browser.getDriver());
         header = Header.init(browser.getDriver());
         browser.goTo(LOGIN_URL);
-        if ("UA".equals(TestLoginPage.language))
+        if ("UA".equals(language))
             header.changeLocToUa();
     }
 
@@ -62,6 +53,7 @@ public class TestLoginPage extends BaseTest {
     @Test
     public void testLogin() {
         loginPage.loggingIn(PATIENT_LOGIN, PATIENT_PASSWORD);
+        browser.sleep(3);
         Assert.assertTrue(browser.isElementPresent(header.appointmentsButton));
     }
 

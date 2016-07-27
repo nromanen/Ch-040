@@ -1,23 +1,20 @@
 package hospitalSeeker.pages;
 
-import hospitalSeeker.BaseTest;
+import hospitalSeeker.tools.BaseTest;
 import hospitalSeeker.templates.Header;
-import org.omg.CORBA.PUBLIC_MEMBER;
+import hospitalSeeker.tools.DataSetUtils;
+import hospitalSeeker.tools.LocalizationConfig;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.Properties;
 
 public class TestRegisterPage extends BaseTest {
-    public static String language = "UA";
+
     RegisterPage registerPage;
     Header header;
+    AdminPage adminPage;
 
     public static String REQUIRED_FIELD;
     public static String WARNING_EXISTING_EMAIL;
@@ -28,33 +25,22 @@ public class TestRegisterPage extends BaseTest {
 
     @BeforeClass
     public static void setLocalizationMessage() {
-        Properties properties = new Properties();
-        try {
-            InputStream inputStream = TestLoginPage.class.getClassLoader().getResourceAsStream("app.properties");
-            Reader reader = new InputStreamReader(inputStream, "UTF-8");
-            properties.load(reader);
-            if ("ukrainian".equals(properties.getProperty("language"))) {
-                inputStream = TestLoginPage.class.getClassLoader().getResourceAsStream("ua.messages.properties");
-                reader = new InputStreamReader(inputStream, "UTF-8");
-                properties.load(reader);
-                REQUIRED_FIELD = properties.getProperty("REQUIRED_FIELD");
-                WARNING_EXISTING_EMAIL = properties.getProperty("WARNING_EXISTING_EMAIL");
-                INCORRECT_EMAIL_FORMAT = properties.getProperty("INCORRECT_EMAIL_FORMAT");
-                INSECURE_PASSWORD = properties.getProperty("INSECURE_PASSWORD");
-                WEAK_PASSWORD = properties.getProperty("WEAK_PASSWORD");
-                CONFIRM_PASSWORD_ERROR = properties.getProperty("CONFIRM_PASSWORD_ERROR");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Properties properties = LocalizationConfig.getPropertiesForLocalization();
+        REQUIRED_FIELD = properties.getProperty("REQUIRED_FIELD");
+        WARNING_EXISTING_EMAIL = properties.getProperty("WARNING_EXISTING_EMAIL");
+        INCORRECT_EMAIL_FORMAT = properties.getProperty("INCORRECT_EMAIL_FORMAT");
+        INSECURE_PASSWORD = properties.getProperty("INSECURE_PASSWORD");
+        WEAK_PASSWORD = properties.getProperty("WEAK_PASSWORD");
+        CONFIRM_PASSWORD_ERROR = properties.getProperty("CONFIRM_PASSWORD_ERROR");
     }
 
     @BeforeMethod
     public void beforeMethod() {
         registerPage = RegisterPage.init(browser.getDriver());
+        adminPage = AdminPage.init(browser.getDriver());
         header = Header.init(browser.getDriver());
         browser.goTo(REGISTER_URL);
-        if ("UA".equals(TestRegisterPage.language))
+        if ("UA".equals(language))
             header.changeLocToUa();
     }
 
@@ -137,5 +123,4 @@ public class TestRegisterPage extends BaseTest {
         registerPage.registration(PATIENT_LOGIN, "Patient77", "Patient777");
         Assert.assertEquals(registerPage.confirmPasswordError.getText(),CONFIRM_PASSWORD_ERROR);
     }
-
 }

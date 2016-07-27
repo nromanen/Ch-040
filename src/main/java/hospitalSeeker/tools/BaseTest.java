@@ -1,6 +1,5 @@
-package hospitalSeeker;
+package hospitalSeeker.tools;
 
-import hospitalSeeker.pages.TestLoginPage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -14,7 +13,7 @@ public class BaseTest {
 
     public BrowserWrapper browser;
     public DataSetUtils dataSetUtils;
-    public static String language = "UA";
+    public static String language = LocalizationConfig.setLanguage();
 
     public BrowserWrapper getWrapper() {
         return browser;
@@ -55,42 +54,6 @@ public class BaseTest {
         dataSetUtils.importDataSet();
         browser = new BrowserWrapper(BrowserInitialization.initialize());
         browser.browserMaximize();
-    }
-
-    public static void setLanguage(){
-        Properties properties = new Properties();
-        try {
-            Reader reader = new InputStreamReader(BaseTest.class.getClassLoader().getResourceAsStream("app.properties"), "UTF-8");
-            properties.load(reader);
-            if ("UA".equals(properties.getProperty("language"))) {
-                language = "UA";
-            } else {
-                language = "EN";
-            }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static Properties getPropertiesForLocalization() {
-        Properties properties = new Properties();
-        try {
-            Reader reader;
-            setLanguage();
-            if ("UA".equals(language)) {
-                reader = new InputStreamReader(TestLoginPage.class.getClassLoader().getResourceAsStream("ua.messages.properties"), "UTF-8");
-            } else {
-                reader = new InputStreamReader(TestLoginPage.class.getClassLoader().getResourceAsStream("en.messages.properties"), "UTF-8");
-            }
-            properties.load(reader);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return properties;
     }
 
     @AfterMethod

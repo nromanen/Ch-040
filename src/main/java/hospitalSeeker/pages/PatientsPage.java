@@ -16,7 +16,7 @@ public class PatientsPage {
     @FindBy(linkText = "patient.cc@hospitals.ua")
     public WebElement patientCc;
 
-    @FindBy(linkText = "New record")
+    @FindBy(css = "a.btn.btn-info[style=display: inherit; margin-bottom: 12px]")
     public WebElement newRecord;
 
     @FindBy(linkText = "patient.sf@hospitals.ua")

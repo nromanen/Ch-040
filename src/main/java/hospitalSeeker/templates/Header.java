@@ -55,7 +55,7 @@ public class Header {
     @FindBy(id = CARD_BUTTON_ID)
     public WebElement cardButton;
 
-    @FindBy(linkText = "My appointments")
+    @FindBy(id = "myappButton")
     public WebElement appointmentsButton;
 
     @FindBy(id = PATIENTS_BUTTON_ID)
