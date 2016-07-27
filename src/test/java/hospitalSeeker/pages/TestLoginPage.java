@@ -1,10 +1,18 @@
 package hospitalSeeker.pages;
 
 import hospitalSeeker.BaseTest;
+import hospitalSeeker.BrowserInitialization;
 import hospitalSeeker.templates.Header;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.Properties;
 
 public class TestLoginPage extends BaseTest {
 
@@ -12,12 +20,30 @@ public class TestLoginPage extends BaseTest {
     RegisterPage registerPage;
     Header header;
 
+    public static String REQUIRED_FIELD;
+    public static String USERNAME_OR_PASSWORD_WARNING;
+    public static String NOT_ACTIVATED_ACCOUNT;
+
+    @BeforeClass
+    public static void setLocalizationMessage() {
+        Properties properties = getPropertiesForLocalization();
+            //properties.load(reader);
+
+            REQUIRED_FIELD = properties.getProperty("REQUIRED_FIELD");
+            USERNAME_OR_PASSWORD_WARNING = properties.getProperty("USERNAME_OR_PASSWORD_WARNING");
+            NOT_ACTIVATED_ACCOUNT = properties.getProperty("NOT_ACTIVATED_ACCOUNT");
+        System.out.println(REQUIRED_FIELD);
+        }
+
+
     @BeforeMethod
     public void beforeMethod() {
         loginPage = LoginPage.init(browser.getDriver());
         registerPage = RegisterPage.init(browser.getDriver());
         header = Header.init(browser.getDriver());
         browser.goTo(LOGIN_URL);
+        if ("UA".equals(TestLoginPage.language))
+            header.changeLocToUa();
     }
 
     @Test
@@ -42,24 +68,33 @@ public class TestLoginPage extends BaseTest {
     @Test
     public void testLoginWithoutEmail() {
         loginPage.loggingIn("", PATIENT_PASSWORD);
-        Assert.assertTrue(browser.isElementPresent(loginPage.loginWarning));
+        Assert.assertEquals(loginPage.loginWarning.getText(), REQUIRED_FIELD);
     }
 
     @Test
     public void testLoginWithoutPassword() {
         loginPage.loggingIn(PATIENT_LOGIN, "");
-        Assert.assertTrue(browser.isElementPresent(loginPage.passwordWarning));
+        Assert.assertEquals(loginPage.passwordWarning.getText(), REQUIRED_FIELD);
     }
 
     @Test
     public void testLoginIncorrectEmail() {
         loginPage.loggingIn("patient.cdd@hospitals.ua", PATIENT_PASSWORD);
-        Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
+        Assert.assertEquals(loginPage.warning.getText(), USERNAME_OR_PASSWORD_WARNING);
     }
 
     @Test
     public void testLoginIncorrectPassword() {
         loginPage.loggingIn(PATIENT_LOGIN, "11111");
-        Assert.assertTrue(browser.isElementPresent(loginPage.invalidUsernameOrPasswordWarning));
+        Assert.assertEquals(loginPage.warning.getText(), USERNAME_OR_PASSWORD_WARNING);
+    }
+
+    @Test
+    public void testLoginByNotConfirmedEmail() {
+        loginPage.registerButton.click();
+        registerPage.registration("patient.ns@hospitals.ua", "Patient77", "Patient77");
+        header.loginButton.click();
+        loginPage.loggingIn("patient.ns@hospitals.ua", "Patient77");
+        Assert.assertEquals(loginPage.warning.getText(), NOT_ACTIVATED_ACCOUNT);
     }
 }

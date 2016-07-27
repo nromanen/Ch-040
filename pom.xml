@@ -215,6 +215,51 @@
                     </properties>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>1.8.1</version>
+                <configuration>
+                    <testResultsTimestamp>false</testResultsTimestamp>
+                    <overrideRootLogLevel>DEBUG</overrideRootLogLevel>
+                    <suppressJMeterOutput>false</suppressJMeterOutput>
+                    <ignoreResultFailures>true</ignoreResultFailures>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>kg.apc</groupId>
+                        <artifactId>jmeter-plugins</artifactId>
+                        <version>1.0.0</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>kg.apc</groupId>
+                                <artifactId>perfmon</artifactId>
+                            </exclusion>
+                            <exclusion>
+                                <groupId>org.apache.jmeter</groupId>
+                                <artifactId>jorphan</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>de.codecentric</groupId>
+                <artifactId>jmeter-graph-maven-plugin</artifactId>
+                <version>0.1.0</version>
+                <configuration>
+                    <inputFile>target/jmeter/results/JMeterTestPlan.jtl</inputFile>
+                    <graphs>
+                        <graph>
+                            <pluginType>ResponseTimesOverTime</pluginType>
+                            <width>800</width>
+                            <height>600</height>
+                            <outputFile>target/jmeter/results/SimpleWebservicePerformanceTest-ThreadsStateOverTime.png</outputFile>
+                        </graph>
+                        <!-- ... you can declare more <graph>-elements here -->
+                    </graphs>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

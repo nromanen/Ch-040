@@ -33,13 +33,13 @@ public class AdminPage {
     @FindBy(id = "clearButton")
     public WebElement clearButton;
 
-    @FindBy(linkText = "Enabled")
+    @FindBy(id = "showEnabledButton")
     public WebElement enabled;
 
-    @FindBy(linkText = "Disabled")
+    @FindBy(id = "showDisabledButton")
     public WebElement disabled;
 
-    @FindBy(linkText = "All Users")
+    @FindBy(id = "showAllButton")
     public WebElement allUsers;
 
 

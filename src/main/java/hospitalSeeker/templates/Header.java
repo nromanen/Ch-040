@@ -31,6 +31,15 @@ public class Header {
     @FindBy(id = FIND_BUTTON_ID)
     public WebElement findButton;
 
+    @FindBy(id = "locChangerButton")
+    public WebElement locChanger;
+
+    @FindBy(id = "ukrLoc")
+    public WebElement ukrLanguage;
+
+    @FindBy(id = "engLoc")
+    public  WebElement engLanguage;
+
     @FindBy(id = LOGIN_BUTTON_ID)
     public WebElement loginButton;
 
@@ -99,6 +108,16 @@ public class Header {
     public void goToProfile() {
         userDropdownButton.click();
         profilePatientDropdown.click();
+    }
+
+    public void changeLocToEng(){
+        locChanger.click();
+        engLanguage.click();
+    }
+
+    public void changeLocToUa(){
+        locChanger.click();
+        ukrLanguage.click();
     }
 
     public static Header init(WebDriver driver) {

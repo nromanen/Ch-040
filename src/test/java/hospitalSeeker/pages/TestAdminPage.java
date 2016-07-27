@@ -137,7 +137,7 @@ public class TestAdminPage extends BaseTest {
         header.logout();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(PATIENT_EMAIL, PATIENT_PASSWORD);
-        Assert.assertTrue(browser.isElementPresent(adminPage.blockedAccount));
+        Assert.assertEquals(adminPage.blockedAccount.getText(),"Your account is blocked.");
     }
 
     @Test
@@ -146,7 +146,7 @@ public class TestAdminPage extends BaseTest {
         dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn("patient.rr@hospitals.ua", PATIENT_PASSWORD);
-        Assert.assertTrue(browser.isElementPresent(adminPage.blockedAccount));
+        Assert.assertEquals(adminPage.blockedAccount.getText(),"Your account is blocked.");
     }
 
     @Test
