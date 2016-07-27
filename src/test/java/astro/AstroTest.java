@@ -16,8 +16,8 @@ public class AstroTest {
 
     @DataProvider(name = "lightyears")
     public Object[][] lightyears() {
-        return new Object[][] {{1, MILES_IN_LIGHTYEAR}, {2, MILES_IN_LIGHTYEAR*2},
-                {3, MILES_IN_LIGHTYEAR*3}, {4, MILES_IN_LIGHTYEAR*4}};
+        return new Object[][]{{1, MILES_IN_LIGHTYEAR}, {0, 0.0}
+        };
     }
 
     @BeforeMethod
