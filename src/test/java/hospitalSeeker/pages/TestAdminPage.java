@@ -1,12 +1,16 @@
 package hospitalSeeker.pages;
 
-import hospitalSeeker.BaseTest;
-import hospitalSeeker.DataSetUtils;
+import hospitalSeeker.tools.BaseTest;
+import hospitalSeeker.tools.DataSetUtils;
 import hospitalSeeker.templates.Header;
+import hospitalSeeker.tools.LocalizationConfig;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.Properties;
 
 
 public class TestAdminPage extends BaseTest {
@@ -14,7 +18,15 @@ public class TestAdminPage extends BaseTest {
     AdminPage adminPage;
     LoginPage loginPage;
     Header header;
+
+    public static String BLOCKED_ACCOUNT;
     public static final String PATIENT_EMAIL = "patient.in@hospitals.ua";
+
+    @BeforeClass
+    public static void setLocalizationMessage() {
+        Properties properties = LocalizationConfig.getPropertiesForLocalization();
+        BLOCKED_ACCOUNT = properties.getProperty("BLOCKED_ACCOUNT");
+    }
 
     @DataProvider(name = "rolesCount")
     public Object[][] rolesCount() {
@@ -42,6 +54,8 @@ public class TestAdminPage extends BaseTest {
         header = Header.init(browser.getDriver());
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
+        if ("UA".equals(language))
+            header.changeLocToUa();
     }
 
     @Test
@@ -89,7 +103,7 @@ public class TestAdminPage extends BaseTest {
     }
 
     @Test
-    public void testDisabledUsers() {
+    public void testCountDisabledUsers() {
         dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
         adminPage.disabled.click();
         Assert.assertEquals(adminPage.allRows.size(), 1);
@@ -133,11 +147,11 @@ public class TestAdminPage extends BaseTest {
         header.logout();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
-        adminPage.disableUser(PATIENT_EMAIL, getWrapper());
+        adminPage.changeEnableStatus(PATIENT_EMAIL, getWrapper());
         header.logout();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(PATIENT_EMAIL, PATIENT_PASSWORD);
-        Assert.assertTrue(browser.isElementPresent(adminPage.blockedAccount));
+        Assert.assertEquals(adminPage.blockedAccount.getText(), BLOCKED_ACCOUNT);
     }
 
     @Test
@@ -146,7 +160,7 @@ public class TestAdminPage extends BaseTest {
         dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn("patient.rr@hospitals.ua", PATIENT_PASSWORD);
-        Assert.assertTrue(browser.isElementPresent(adminPage.blockedAccount));
+        Assert.assertEquals(adminPage.blockedAccount.getText(), BLOCKED_ACCOUNT);
     }
 
     @Test
@@ -179,8 +193,5 @@ public class TestAdminPage extends BaseTest {
     public void testSortingRole() {
         adminPage.sortRoleColumn.click();
         Assert.assertEquals(browser.getDataFromTable(1, 5), "PATIENT");
-
     }
 }
-
-

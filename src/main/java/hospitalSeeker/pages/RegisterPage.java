@@ -7,8 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class RegisterPage {
 
-    public static final String SUCCESSFULL_REGISTRATION_TEXT = "h3.text-success.text-center.menu";
-    public static final String WARNING_EMAIL_TEXT = "span.has-error.text-danger";
+    public static final String SUCCESSFULL_REGISTRATION = "h3.text-success.text-center.menu";
+    public static final String WARNING_EMAIL = "span.has-error.text-danger";
 
     @FindBy(id = "email")
     public WebElement emailRegister;
@@ -25,14 +25,17 @@ public class RegisterPage {
     @FindBy(id = "loginRedirect")
     public WebElement loginButton;
 
-    @FindBy(css = SUCCESSFULL_REGISTRATION_TEXT)
+    @FindBy(css = SUCCESSFULL_REGISTRATION)
     public WebElement successfullRegistration;
 
-    @FindBy(css = WARNING_EMAIL_TEXT)
+    @FindBy(css = WARNING_EMAIL)
     public WebElement warningExistingEmail;
 
     @FindBy(id = "email-error")
     public WebElement warningByEmail;
+
+    @FindBy(id = "email-error")
+    public WebElement incorrectEmailFormat;
 
     @FindBy(id = "password-error")
     public WebElement insecurePassword;
@@ -42,9 +45,6 @@ public class RegisterPage {
 
     @FindBy(id = "confirmPassword-error")
     public WebElement confirmPasswordError;
-
-    @FindBy(id = "password-error")
-    public WebElement withoutPasswordError;
 
     public void registration(String email, String password, String confirmPassword) {
         emailRegister.sendKeys(email);

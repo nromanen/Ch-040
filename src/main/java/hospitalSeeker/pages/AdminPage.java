@@ -2,7 +2,7 @@ package hospitalSeeker.pages;
 
 import java.util.List;
 
-import hospitalSeeker.BrowserWrapper;
+import hospitalSeeker.tools.BrowserWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,13 +33,13 @@ public class AdminPage {
     @FindBy(id = "clearButton")
     public WebElement clearButton;
 
-    @FindBy(linkText = "Enabled")
+    @FindBy(id = "showEnabledButton")
     public WebElement enabled;
 
-    @FindBy(linkText = "Disabled")
+    @FindBy(id = "showDisabledButton")
     public WebElement disabled;
 
-    @FindBy(linkText = "All Users")
+    @FindBy(id = "showAllButton")
     public WebElement allUsers;
 
 
@@ -108,7 +108,7 @@ public class AdminPage {
     @FindAll(@FindBy(xpath = "/html/body/section/div[1]/div/table/tbody/tr"))
     public List<WebElement> allRows;
 
-    public void disableUser(String email, BrowserWrapper browser) {
+    public void changeEnableStatus(String email, BrowserWrapper browser) {
         browser.selectDropdown(searchBy, "Email");
         search.sendKeys(email);
         searchButton.click();
