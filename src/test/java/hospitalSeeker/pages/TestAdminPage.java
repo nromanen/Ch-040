@@ -103,7 +103,7 @@ public class TestAdminPage extends BaseTest {
     }
 
     @Test
-    public void testDisabledUsers() {
+    public void testCountDisabledUsers() {
         dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
         adminPage.disabled.click();
         Assert.assertEquals(adminPage.allRows.size(), 1);
@@ -147,7 +147,7 @@ public class TestAdminPage extends BaseTest {
         header.logout();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
-        adminPage.disableUser(PATIENT_EMAIL, getWrapper());
+        adminPage.changeEnableStatus(PATIENT_EMAIL, getWrapper());
         header.logout();
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(PATIENT_EMAIL, PATIENT_PASSWORD);

@@ -35,13 +35,13 @@ public class TestAdvancedRegister extends BaseTest {
     public void testAdvancedRegister() {
         dataSetUtils.selectDataSet(DataSetUtils.fullDataSet);
         browser.goTo(REGISTER_URL);
-        registerPage.registration("patient.cc@hospitals.ua", "Per1111", "Per1111");
+        registerPage.registration("patient.cc@hospitals.ua", "Pat1111", "Pat1111");
         browser.goTo(LOGIN_URL);
         loginPage.loggingIn(ADMIN_LOGIN, ADMIN_PASSWORD);
-        adminPage.enableUser("patient.cc@hospitals.ua", getWrapper());
+        adminPage.changeEnableStatus("patient.cc@hospitals.ua", getWrapper());
         header.logout();
         browser.goTo(LOGIN_URL);
-        loginPage.loggingIn("patient.cc@hospitals.ua", "Per1111");
+        loginPage.loggingIn("patient.cc@hospitals.ua", "Pat1111");
         header.goToProfile();
         browser.waitUntilElementVisible(advancedRegister.detailForm);
         advancedRegister.createProfile("Perekuta", "Nadiia", "1990-01-10", "Che", "095123456789", getWrapper());
